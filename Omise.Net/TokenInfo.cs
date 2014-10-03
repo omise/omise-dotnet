@@ -8,7 +8,7 @@ namespace Omise
 	public class TokenInfo: RequestObject
 	{
 		private Dictionary<string, string> errors{ get; set; }
-		public CardInfo Card{ get; set;}
+		public CardCreateInfo Card{ get; set;}
 		public TokenInfo ()
 		{
 			errors = new Dictionary<string, string> ();
@@ -20,8 +20,8 @@ namespace Omise
 
 			if (Card != null) {
 				dict.Add ("card[number]", Card.Number);
-				dict.Add ("card[expiration_month]", Card.ExpirationMonth);
-				dict.Add ("card[expiration_year]", Card.ExpirationYear);
+				dict.Add ("card[expiration_month]", Card.ExpirationMonth.ToString());
+				dict.Add ("card[expiration_year]", Card.ExpirationYear.ToString());
 				dict.Add ("card[name]", Card.Name);
 			}
 

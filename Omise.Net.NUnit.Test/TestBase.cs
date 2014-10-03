@@ -1,22 +1,37 @@
 ﻿using System;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Omise.Net.NUnit.Test
 {
 	public abstract class TestBase
 	{
-		protected string apiKey = "skey_test_4xhm5bi59825tfoq3s2";
-		protected string apiUrlBase = "http://api.lvh.me:3000";
+		protected string apiKey = "123456789";
+		protected string apiUrlBase = "http://localhost";
 		protected Omise.Client client;
+		protected IRequestManager requestManager;
 
 		[SetUp]
 		public virtual void Setup(){
-			client = new Omise.Client (this.apiKey, this.apiUrlBase);
+			requestManager = MockRepository.GenerateStub<IRequestManager> ();
+			client = new Omise.Client (requestManager, this.apiKey, this.apiUrlBase);
 		}
 
 		[TearDown]
 		public virtual void Teardown(){
 			client = null;
+		}
+
+		protected void StubRequestWithResponse(string response){
+			requestManager.BackToRecord (BackToRecordOptions.All);
+			requestManager.Replay ();
+			requestManager.Stub (r => r.ExecuteRequest("","","")).Return (response).IgnoreArguments();
+		}
+
+		protected void StubExceptionThrow(Exception ex){
+			requestManager.BackToRecord (BackToRecordOptions.All);
+			requestManager.Replay ();
+			requestManager.Stub (r => r.ExecuteRequest("","","")).Throw (ex).IgnoreArguments();
 		}
 	}
 }

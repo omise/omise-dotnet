@@ -21,9 +21,9 @@ namespace Omise
 		[JsonProperty("brand")]
 		public Brand Brand{ get; set; }
 		[JsonProperty("expiration_month")]
-		public string ExpirationMonth{ get; set; }
+		public int ExpirationMonth{ get; set; }
 		[JsonProperty("expiration_year")]
-		public string ExpirationYear{ get; set; }
+		public int ExpirationYear{ get; set; }
 		[JsonProperty("fingerprint")]
 		public string Fingerprint{ get; set; }
 		[JsonProperty("name")]

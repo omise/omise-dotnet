@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Omise.Net.NUnit.Test
 {
@@ -8,6 +9,8 @@ namespace Omise.Net.NUnit.Test
 	{
 		[Test]
 		public void TestGetBalance(){
+			string json = "{'object': 'balance','livemode': false,'available': 0,'total': 0,'currency': 'thb'}";
+			StubRequestWithResponse (json);
 			var result = client.BalanceService.GetBalance ();
 			Assert.IsNotNull (result);
 			Assert.GreaterOrEqual (0m, result.Available);

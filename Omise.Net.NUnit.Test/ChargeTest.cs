@@ -9,14 +9,14 @@ namespace Omise.Net.NUnit.Test
 	{
 		[Test]
 		public void TestChargeMountValidations(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo();
 			Assert.False (charge.Valid);
 			Assert.Contains(new KeyValuePair<string, string>("Amount", "must be greater than 0"), charge.Errors);
 		}
 
 		[Test]
 		public void TestChargeCurrencyValidations(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;
 			Assert.False (charge.Valid);
 			Assert.Contains(new KeyValuePair<string, string>("Currency", "cannot be blank"), charge.Errors);
@@ -24,42 +24,155 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestCreateCharge(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
+
+			StubRequestWithResponse(@"{
+				'object': 'charge',
+				'id': '123',
+				'livemode': false,
+				'location': '/charges/123',
+				'amount': 10000,
+				'currency': 'thb',
+				'description': 'test charge',
+				'capture': true,
+				'authorized': false,
+				'captured': false,
+				'transaction': null,
+				'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+				'reference': '123',
+				'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+				'card': {
+					'object': 'card',
+					'id': '123',
+					'livemode': false,
+					'country': '',
+					'city': null,
+					'postal_code': null,
+					'financing': '',
+					'last_digits': '4242',
+					'brand': 'Visa',
+					'expiration_month': 10,
+					'expiration_year': 2017,
+					'fingerprint': '123',
+					'name': 'test card',
+					'created': '2014-10-02T07:22:27Z'
+				},
+				'customer': null,
+				'ip': null,
+				'created': '2014-10-02T07:22:27Z'
+			}");
+
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
 			Assert.AreEqual (charge.Amount, result.Amount);
 		}
+
+		[Test]
+		public void TestGetCharge(){
+			StubRequestWithResponse (@"{
+								    'object': 'charge',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/charges/123',
+								    'amount': 10000,
+								    'currency': 'thb',
+								    'description': 'test update',
+								    'capture': true,
+								    'authorized': false,
+								    'captured': false,
+								    'transaction': null,
+								    'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+								    'reference': '123',
+								    'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+								    'card': {
+								        'object': 'card',
+								        'id': '123',
+								        'livemode': false,
+								        'country': '',
+								        'city': null,
+								        'postal_code': null,
+								        'financing': '',
+								        'last_digits': '4242',
+								        'brand': 'Visa',
+								        'expiration_month': 9,
+								        'expiration_year': 2017,
+								        'fingerprint': '123',
+								        'name': 'test card',
+								        'created': '2014-10-02T08:08:11Z'
+								    },
+								    'customer': null,
+								    'ip': null,
+								    'created': '2014-10-02T08:08:11Z'
+								}");
+			var result = client.ChargeService.GetCharge ("123");
+			Assert.IsNotNullOrEmpty (result.Id);
+			Assert.GreaterOrEqual (result.Amount, 0);
+			Assert.IsNotNullOrEmpty (result.Currency);
+			Assert.IsNotNull (result.CreatedAt);
+			Assert.IsNotNull (result.Card);
+			Assert.IsNotNull (result.Card.Name);
+			Assert.IsNotNull (result.Card.Brand);
+			Assert.GreaterOrEqual (result.Card.ExpirationMonth, 1);
+			Assert.LessOrEqual (result.Card.ExpirationMonth, 12);
+			Assert.GreaterOrEqual (result.Card.ExpirationYear, 0);
+			Assert.IsNotNullOrEmpty (result.Location);
+		}
+
 		[Test]
 		public void TestCreateChargeWithCardToken(){
-			var card = new CardInfo ();
-			card.Name="TestCard";
-			card.Number="4242424242424242";
-			card.ExpirationMonth = "9";
-			card.ExpirationYear="2017";
-
-			var token = new TokenInfo ();
-			token.Card = card;
-
-			var resultToken = client.TokenService.CreateToken (token);
-
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = resultToken.Id;
+			charge.CardId = "123";
+			StubRequestWithResponse(@"{
+					    'object': 'charge',
+					    'id': '123',
+					    'livemode': false,
+					    'location': '/charges/123',
+					    'amount': 10000,
+					    'currency': 'thb',
+					    'description': 'test charge',
+					    'capture': true,
+					    'authorized': false,
+					    'captured': false,
+					    'transaction': null,
+					    'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+					    'reference': '123',
+					    'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+					    'card': {
+					        'object': 'card',
+					        'id': '123',
+					        'livemode': false,
+					        'country': '',
+					        'city': null,
+					        'postal_code': null,
+					        'financing': '',
+					        'last_digits': '4242',
+					        'brand': 'Visa',
+					        'expiration_month': 9,
+					        'expiration_year': 2017,
+					        'fingerprint': '123',
+					        'name': 'test card',
+					        'created': '2014-10-02T07:27:30Z'
+					    },
+					    'customer': null,
+					    'ip': null,
+					    'created': '2014-10-02T07:30:29Z'
+					}");
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
 			Assert.AreEqual (charge.Amount, result.Amount);
@@ -67,25 +180,51 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestCreateChargeWithCardId(){
-			var customerInfo = new CustomerInfo ();
-			customerInfo.Email = "test1@localhost";
-			var customerResult = client.CustomerService.CreateCustomer (customerInfo);
-
-			var card = new CardInfo ();
-			card.Name="Test Card";
-			card.Number = "4242424242424242";
-			card.ExpirationMonth="9";
-			card.ExpirationYear="2017";
-
-			var cardResult = client.CardService.CreateCard (customerResult.Id, card);
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = cardResult.Id;
-			charge.CustomerId = customerResult.Id;
+			charge.CardId = "123";
+			charge.CustomerId = "123";
+			StubRequestWithResponse(@"{
+					    'object': 'charge',
+					    'id': '123',
+					    'livemode': false,
+					    'location': '/charges/123',
+					    'amount': 10000,
+					    'currency': 'thb',
+					    'description': 'test charge',
+					    'capture': true,
+					    'authorized': false,
+					    'captured': false,
+					    'transaction': null,
+					    'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+					    'reference': '123',
+					    'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+					    'card': {
+					        'object': 'card',
+					        'id': '123',
+					        'livemode': false,
+					        'location': '/customers/123/cards/123',
+					        'country': '',
+					        'city': null,
+					        'postal_code': null,
+					        'financing': '',
+					        'last_digits': '4242',
+					        'brand': 'Visa',
+					        'expiration_month': 9,
+					        'expiration_year': 2017,
+					        'fingerprint': '123',
+					        'name': 'test card 2',
+					        'created': '2014-10-02T07:39:50Z'
+					    },
+					    'customer': '123',
+					    'ip': null,
+					    'created': '2014-10-02T07:40:36Z'
+					}");
+
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
 			Assert.AreEqual (charge.Amount, result.Amount);
@@ -93,33 +232,49 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestCreateChargeWithCustomerDefaultCard(){
-			var customerInfo = new CustomerInfo ();
-			customerInfo.Email = "test1@localhost";
-			var customerResult = client.CustomerService.CreateCustomer (customerInfo);
-
-			var card1 = new CardInfo ();
-			card1.Name="Test Card";
-			card1.Number = "4242424242424242";
-			card1.ExpirationMonth="9";
-			card1.ExpirationYear="2017";
-
-			client.CardService.CreateCard (customerResult.Id, card1);
-
-			var card2 = new CardInfo ();
-			card2.Name="Test Card";
-			card2.Number = "4242424242424242";
-			card2.ExpirationMonth="10";
-			card2.ExpirationYear="2018";
-
-			client.CardService.CreateCard (customerResult.Id, card2);
-
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CustomerId = customerResult.Id;
+			charge.CustomerId = "123";
+			StubRequestWithResponse(@"{
+					    'object': 'charge',
+					    'id': '123',
+					    'livemode': false,
+					    'location': '/charges/123',
+					    'amount': 10000,
+					    'currency': 'thb',
+					    'description': 'test charge',
+					    'capture': true,
+					    'authorized': false,
+					    'captured': false,
+					    'transaction': null,
+					    'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+					    'reference': '123',
+					    'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+					    'card': {
+					        'object': 'card',
+					        'id': '123',
+					        'livemode': false,
+					        'location': '/customers/123/cards/123',
+					        'country': '',
+					        'city': null,
+					        'postal_code': null,
+					        'financing': '',
+					        'last_digits': '4242',
+					        'brand': 'Visa',
+					        'expiration_month': 9,
+					        'expiration_year': 2017,
+					        'fingerprint': '123',
+					        'name': 'test card',
+					        'created': '2014-10-02T05:25:10Z'
+					    },
+					    'customer': 'cust_test_4xl54swemkocy39ukvi',
+					    'ip': null,
+					    'created': '2014-10-02T07:53:10Z'
+					}");
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
 			Assert.AreEqual (charge.Amount, result.Amount);
@@ -128,25 +283,46 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestUpdateCharge(){
-			var charge = new ChargeInfo ();
-			charge.Amount = 10000;//100 THB,=> 10000 Satangs
-			charge.Currency = "THB";
-			charge.Description = "Test charge";
-			charge.ReturnUri = "http://localhost:3000/";
-			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
-			card.Number = "4242424242424242";
-			card.Name = "Test card";
-			charge.Card = card;
-			var result = client.ChargeService.CreateCharge (charge);
-			Assert.IsNotNull (result);
-			Assert.AreEqual (charge.Amount, result.Amount);
-
 			var chargeUpdateInfo = new ChargeUpdateInfo();
-			chargeUpdateInfo.Id = result.Id;
+			chargeUpdateInfo.Id = "123";
 			chargeUpdateInfo.Description = "Test update description";
+
+			StubRequestWithResponse(@"{
+					    'object': 'charge',
+					    'id': '123',
+					    'livemode': false,
+					    'location': '/charges/123',
+					    'amount': 10000,
+					    'currency': 'thb',
+					    'description': 'Test update description',
+					    'capture': true,
+					    'authorized': false,
+					    'captured': false,
+					    'transaction': null,
+					    'return_uri': 'http://www.lvh.me:3000/?payment-result=success',
+					    'reference': '123',
+					    'authorize_uri': 'http://api.lvh.me:3000/payments/123/authorize',
+					    'card': {
+					        'object': 'card',
+					        'id': '123',
+					        'livemode': false,
+					        'country': '',
+					        'city': null,
+					        'postal_code': null,
+					        'financing': '',
+					        'last_digits': '4242',
+					        'brand': 'Visa',
+					        'expiration_month': 9,
+					        'expiration_year': 2017,
+					        'fingerprint': '123',
+					        'name': 'test card',
+					        'created': '2014-10-02T08:08:11Z'
+					    },
+					    'customer': null,
+					    'ip': null,
+					    'created': '2014-10-02T08:08:11Z'
+					}");
+
 			var updateResult = client.ChargeService.UpdateCharge(chargeUpdateInfo);
 			Assert.IsNotNull (updateResult);
 			Assert.AreEqual ("Test update description", updateResult.Description);
@@ -154,15 +330,15 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestCreateInvalidChargeAmount(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = -1;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
@@ -171,86 +347,90 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestCreateInvalidCurrencyCharge(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THBs";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
+			StubExceptionThrow (new ApiException ());
 			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
 		[Test]
 		public void TestCreateInvalidChargeCardNumber(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 1000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
 			card.Number = "42424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
+			StubExceptionThrow (new ApiException ());
 			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
 		[Test]
 		public void TestCreateInvalidChargeCardExpirationMonth(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 1000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "99";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 99;
+			card.ExpirationYear = 2017;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
-			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 
-			card.ExpirationMonth = "-10";
-			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
+			Assert.Throws<InvalidChargeException>(delegate { client.ChargeService.CreateCharge (charge); } );
+
+			card.ExpirationMonth = -10;
+			Assert.Throws<InvalidChargeException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
 		[Test]
 		public void TestCreateInvalidChargeCardExpirationYear(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 1000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "01";
-			card.ExpirationYear = "9999";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 1;
+			card.ExpirationYear = 9999;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;
+			StubExceptionThrow (new ApiException ());
 			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
 		[Test]
 		public void TestUnreachableHost(){
-			var charge = new ChargeInfo ();
+			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			var card = new CardInfo ();
-			card.ExpirationMonth = "09";
-			card.ExpirationYear = "2017";
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
 			charge.Card = card;

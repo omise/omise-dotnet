@@ -45,7 +45,6 @@
     <Compile Include="Exceptions\InvalidCardException.cs" />
     <Compile Include="Utils\DictionaryHelper.cs" />
     <Compile Include="Exceptions\InvalidChargeException.cs" />
-    <Compile Include="Exceptions\InvalidExceptionBase.cs" />
     <Compile Include="Exceptions\InvalidCredentialException.cs" />
     <Compile Include="IValidatable.cs" />
     <Compile Include="Enums\Brand.cs" />
@@ -57,11 +56,8 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="ChargeInfo.cs" />
     <Compile Include="Charge.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="CardInfo.cs" />
-    <Compile Include="CustomerInfo.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Exceptions\InvalidCustomerException.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
@@ -84,6 +80,12 @@
     <Compile Include="ResponseObject.cs" />
     <Compile Include="CollectionResponseObject.cs" />
     <Compile Include="Utils\DateTimeHelper.cs" />
+    <Compile Include="IRequestManager.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="Factories\TransactionFactory.cs" />
+    <Compile Include="ChargeCreateInfo.cs" />
+    <Compile Include="CardCreateInfo.cs" />
+    <Compile Include="CustomerInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

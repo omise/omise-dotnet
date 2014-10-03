@@ -1,54 +1,52 @@
 ﻿using System;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Omise.Net.NUnit.Test
 {
 	[TestFixture]
 	public class CardTest:TestBase
 	{
-		private string customerId;
-
-		[SetUp]
-		public override void Setup(){
-			base.Setup ();
-			var customerInfo = new CustomerInfo ();
-			customerInfo.Email = "test1@localhost";
-			var customerResult = client.CustomerService.CreateCustomer (customerInfo);
-			customerId = customerResult.Id;
-		}
-
-		[TearDown]
-		public override void Teardown(){
-			client.CustomerService.DeleteCustomer (customerId);
-			client = null;
-		}
+		private string customerId = "123";
 
 		[Test]
 		public void TestGetAllCards(){
-			var card = new CardInfo ();
-			card.Name="Test Card";
-			card.Number = "4242424242424242";
-			card.ExpirationMonth="9";
-			card.ExpirationYear="2017";
-
-			client.CardService.CreateCard (customerId, card);
-
+			StubRequestWithResponse (TestHelper.GetJson("AllCards"));
 			var cards = client.CardService.GetAllCards (customerId, DateTime.Now.AddDays(-5), null, 0, 20);
 			Assert.IsNotNull (cards);
 			Assert.AreEqual(20, cards.Limit);
 			Assert.AreEqual(0, cards.Offset);
-			Assert.AreEqual(1, cards.Collection.Count);
+			Assert.AreEqual(2, cards.Collection.Count);
 		}
 
 		[Test]
 		public void TestCreateCard(){
-			var card = new CardInfo ();
+			var card = new CardCreateInfo ();
 			card.Name="Test Card";
 			card.Number = "4242424242424242";
-			card.ExpirationMonth="9";
-			card.ExpirationYear="2017";
+			card.ExpirationMonth=9;
+			card.ExpirationYear=2017;
 
-			var result = client.CardService.CreateCard (customerId, card);
+			string json = @"{
+				'object': 'card',
+				'id': '123',
+				'livemode': false,
+				'location': '/customers/123/cards/123',
+				'country': '',
+				'city': null,
+				'postal_code': null,
+				'financing': '',
+				'last_digits': '4242',
+				'brand': 'Visa',
+				'expiration_month': 9,
+				'expiration_year': 2017,
+				'fingerprint': '123',
+				'name': 'Test Card',
+				'created': '2014-10-02T06:09:01Z'
+				}";
+
+			StubRequestWithResponse (json);
+			var result = client.CardService.CreateCard(customerId, card);
 			Assert.AreEqual ("4242", result.LastDigits);
 			Assert.AreEqual (card.ExpirationMonth, result.ExpirationMonth);
 			Assert.AreEqual (card.ExpirationYear, result.ExpirationYear);
@@ -59,38 +57,91 @@ namespace Omise.Net.NUnit.Test
 			Assert.IsNotNullOrEmpty (result.Fingerprint);
 			Assert.IsNotNull (result.Id);
 			Assert.IsNotNull (result.CreatedAt);
-			Assert.IsNotNull (result.UpdatedAt);
+		}
+
+		[Test]
+		public void TestUpdateCard(){
+			var card = new CardCreateInfo ();
+			card.Id = "123";
+			card.Name="My Test Card";
+			card.Number = "4242424242424242";
+			card.ExpirationMonth=10;
+			card.ExpirationYear=2018;
+
+			string json = @"{
+						    'object': 'card',
+						    'id': '123',
+						    'livemode': false,
+						    'location': '/customers/123/cards/123',
+						    'country': '',
+						    'city': null,
+						    'postal_code': null,
+						    'financing': '',
+						    'last_digits': '4242',
+						    'brand': 'Visa',
+						    'expiration_month': 9,
+						    'expiration_year': 2017,
+						    'fingerprint': '123',
+						    'name': 'My Test Card',
+						    'created': '2014-10-02T05:25:10Z'
+						}";
+
+			StubRequestWithResponse (json);
+			var updateResult = client.CardService.UpdateCard (customerId, card);
+			Assert.IsNotNull (updateResult);
+			Assert.AreEqual ("4242", updateResult.LastDigits);
+			Assert.AreEqual ("My Test Card", updateResult.Name);
+			Assert.AreEqual (9, updateResult.ExpirationMonth);
+			Assert.AreEqual (2017, updateResult.ExpirationYear);
+			Assert.IsNotNullOrEmpty (updateResult.Fingerprint);
 		}
 
 		[Test]
 		public void TestGetCard(){
-			var card = new CardInfo ();
-			card.Name="Test Card";
-			card.Number = "4242424242424242";
-			card.ExpirationMonth="9";
-			card.ExpirationYear="2017";
+			string json = @"{
+				'object': 'card',
+				'id': '123',
+				'livemode': false,
+				'location': '/customers/123/cards/123',
+				'country': '',
+				'city': null,
+				'postal_code': null,
+				'financing': '',
+				'last_digits': '4242',
+				'brand': 'Visa',
+				'expiration_month': 9,
+				'expiration_year': 2017,
+				'fingerprint': '123',
+				'name': 'Test Card',
+				'created': '2014-10-02T06:09:01Z'
+				}";
 
-			var createResult = client.CardService.CreateCard (customerId, card);
-			var getCardResult = client.CardService.GetCard (customerId, createResult.Id);
+			StubRequestWithResponse (json);
+			var getCardResult = client.CardService.GetCard (customerId, "123");
 			Assert.IsNotNull (getCardResult);
 			Assert.AreEqual ("4242", getCardResult.LastDigits);
 			Assert.AreEqual ("Test Card", getCardResult.Name);
-			Assert.AreEqual ("9", getCardResult.ExpirationMonth);
-			Assert.AreEqual ("2017", getCardResult.ExpirationYear);
+			Assert.AreEqual (9, getCardResult.ExpirationMonth);
+			Assert.AreEqual (2017, getCardResult.ExpirationYear);
 			Assert.IsNotNullOrEmpty (getCardResult.Fingerprint);
 		}
 
 		[Test]
 		public void TestDeleteCard(){
-			var card = new CardInfo ();
-			card.Name="Test Card";
-			card.Number = "4242424242424242";
-			card.ExpirationMonth="9";
-			card.ExpirationYear="2017";
+			var json = @"{
+    					'object': 'card',
+					    'id': '123',
+					    'livemode': false,
+					    'deleted': true
+						}";
 
-			var createResult = client.CardService.CreateCard (customerId, card);
-			client.CardService.DeleteCard (customerId, createResult.Id);
-			Assert.Throws<ApiException>(delegate { client.CardService.GetCard (customerId, createResult.Id); } );
+			StubRequestWithResponse (json);
+			client.CardService.DeleteCard (customerId, "123");
+
+			StubExceptionThrow (new ApiException());
+			Assert.Throws<ApiException> (delegate {
+				client.CardService.GetCard (customerId, "123");
+			});
 		}
 	}
 }

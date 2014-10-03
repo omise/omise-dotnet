@@ -9,7 +9,6 @@ namespace Omise
 		public virtual string Id{ get; set;}
 		[JsonProperty("created")]
 		public virtual DateTime CreatedAt{ get; set;}
-		public virtual DateTime UpdatedAt{ get; set;}
 	}
 }
 

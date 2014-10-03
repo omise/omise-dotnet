@@ -4,20 +4,47 @@ namespace Omise
 {
 	public class TokenService: ServiceBase
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with api url and api key. The service uses default IRequestManager object.
+		/// </summary>
+		/// <param name="apiUrlBase">API base URL</param>
+		/// <param name="apiKey">API key</param>
 		public TokenService (string apiUrlBase, string apiKey): base(apiUrlBase, apiKey)
 		{
 		}
 
-		public Token CreateToken(TokenInfo card){
-			if (!card.Valid)
-				throw new InvalidCardException (getObjectErrors(card));
-			string result = requester.ExecuteRequest ("/tokens", "POST", card.ToRequestParams ());
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with IRequestManager object, api url and api key.
+		/// </summary>
+		/// <param name="requestManager">IRequestManager object.</param>
+		/// <param name="apiUrlBase">API base URL</param>
+		/// <param name="apiKey">API key</param>
+		public TokenService (IRequestManager requestManager, string apiUrlBase, string apiKey): base(requestManager, apiUrlBase, apiKey)
+		{
+		}
+
+		/// <summary>
+		/// Creates the token to use for charging.
+		/// </summary>
+		/// <returns>Omise Token object</returns>
+		/// <param name="token">TokenInfo object</param>
+		public Token CreateToken(TokenInfo token){
+			if (token == null)
+				throw new ArgumentNullException ("Token info is required.");
+			if (!token.Valid)
+				throw new InvalidCardException (getObjectErrors(token));
+			string result = requester.ExecuteRequest ("/tokens", "POST", token.ToRequestParams ());
 			return tokenFactory.Create (result);
 		}
 
+		/// <summary>
+		/// Gets the token information.
+		/// </summary>
+		/// <returns>Omise Token object</returns>
+		/// <param name="tokenId">Token Id</param>
 		public Token GetToken(string tokenId){
 			if (string.IsNullOrEmpty (tokenId))
-				throw new ArgumentException ("Token id is required.");
+				throw new ArgumentNullException ("Token id is required.");
 			string result = requester.ExecuteRequest ("/tokens/" + tokenId, "GET", null);
 			return tokenFactory.Create (result);
 		}

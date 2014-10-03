@@ -5,12 +5,20 @@ using System.Text;
 
 namespace Omise
 {
-	public class RequestManager
+	/// <summary>
+	/// Default Request manager object implementing IRequestManager interface.
+	/// </summary>
+	public class RequestManager: IRequestManager
 	{
 		private string apiUrlBase;
 		private string apiKey;
 		private string encodedCredentials;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
+		/// </summary>
+		/// <param name="apiUrlBase">API base URL</param>
+		/// <param name="apiKey">API key</param>
 		public RequestManager (string apiUrlBase, string apiKey)
 		{
 			this.apiUrlBase = apiUrlBase;
@@ -18,11 +26,13 @@ namespace Omise
 			this.encodedCredentials = Convert.ToBase64String (Encoding.GetEncoding ("ISO-8859-1").GetBytes (this.apiKey + ":"));
 		}
 
-		public static RequestManager Create (string apiUrlBase, string apiKey)
-		{
-			return new RequestManager (apiUrlBase, apiKey);
-		}
-
+		/// <summary>
+		/// Executes the request and return result string
+		/// </summary>
+		/// <returns>Response string</returns>
+		/// <param name="path">Path</param>
+		/// <param name="method">Method</param>
+		/// <param name="payload">Request payload</param>
 		public string ExecuteRequest (string path, string method, string payload)
 		{
 			StringBuilder result = new StringBuilder ();
@@ -66,69 +76,6 @@ namespace Omise
 				}
 			}
 		}
-
-		//		public string ExecutePutRequest (string payload, string path)
-		//		{
-		//			StringBuilder result = new StringBuilder ();
-		//			path = path.StartsWith ("/") ? path : "/" + path;
-		//			WebRequest req = PutRequest (apiUrlBase + path);
-		//			byte[] data = Encoding.UTF8.GetBytes (payload);
-		//			using (Stream reqStream = req.GetRequestStream ()) {
-		//				reqStream.Write (data, 0, data.Length);
-		//				using (WebResponse response = req.GetResponse ()) {
-		//					using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
-		//						string line;
-		//						while ((line = reader.ReadLine ()) != null) {
-		//							result.AppendLine (line);
-		//						}
-		//					}
-		//				}
-		//			}
-		//
-		//
-		//			return result.ToString ();
-		//		}
-		//
-		//		public string ExecutePatchRequest (string payload, string path)
-		//		{
-		//			StringBuilder result = new StringBuilder ();
-		//			path = path.StartsWith ("/") ? path : "/" + path;
-		//			WebRequest req = PutRequest (apiUrlBase + path);
-		//			byte[] data = Encoding.UTF8.GetBytes (payload);
-		//			using (Stream reqStream = req.GetRequestStream ()) {
-		//				reqStream.Write (data, 0, data.Length);
-		//				using (WebResponse response = req.GetResponse ()) {
-		//					using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
-		//						string line;
-		//						while ((line = reader.ReadLine ()) != null) {
-		//							result.AppendLine (line);
-		//						}
-		//					}
-		//				}
-		//			}
-		//
-		//
-		//			return result.ToString ();
-		//		}
-		//
-		//		public string ExecuteGetRequest (string path)
-		//		{
-		//			StringBuilder result = new StringBuilder ();
-		//			path = path.StartsWith ("/") ? path : "/" + path;
-		//			WebRequest req = GetRequest (apiUrlBase + path);
-		//			using (Stream reqStream = req.GetRequestStream ()) {
-		//				using (WebResponse response = req.GetResponse ()) {
-		//					using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
-		//						string line;
-		//						while ((line = reader.ReadLine ()) != null) {
-		//							result.AppendLine (line);
-		//						}
-		//					}
-		//				}
-		//			}
-		//
-		//			return result.ToString ();
-		//		}
 	}
 }
 

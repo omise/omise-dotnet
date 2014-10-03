@@ -34,6 +34,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\Rhino.Mocks.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChargeTest.cs" />
@@ -43,15 +46,22 @@
     <Compile Include="BalanceTest.cs" />
     <Compile Include="AccountTest.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="MockRequestManager.cs" />
+    <Compile Include="TestHelper.cs" />
+    <Compile Include="TransactionTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="JsonFixtures\AllCards.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Omise.Net\Omise.Net.csproj">
       <Project>{75BC4F64-AEC4-43C8-9546-47830FFF25BA}</Project>
       <Name>Omise.Net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="JsonFixtures\" />
   </ItemGroup>
 </Project>
