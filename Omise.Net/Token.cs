@@ -9,7 +9,7 @@ namespace Omise
 	public class Token: ResponseObject
 	{
 		[JsonProperty("livemode")]
-		public string LiveMode{ get; set;}
+		public bool LiveMode{ get; set;}
 
 		[JsonProperty("location")]
 		public string Location{get;set;}

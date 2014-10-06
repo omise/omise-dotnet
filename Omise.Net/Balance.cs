@@ -7,7 +7,7 @@ namespace Omise
 	public class Balance: ResponseObject
 	{
 		[JsonProperty("livemode")]
-		public string LiveMode{ get; set;}
+		public bool LiveMode{ get; set;}
 		[JsonProperty("available")]
 		public decimal Available{ get; set;}
 		[JsonProperty("total")]

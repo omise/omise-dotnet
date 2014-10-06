@@ -13,6 +13,9 @@ namespace Omise
 		[JsonProperty("offset")]
 		public virtual int Offset{get;set;}
 
+		[JsonProperty("total")]
+		public virtual int Total{get;set;}
+
 		[JsonProperty("from")]
 		public virtual DateTime From{get;set;}
 
@@ -21,6 +24,9 @@ namespace Omise
 
 		[JsonIgnore]
 		public virtual ICollection<T> Collection{get;set;}
+
+		[JsonProperty("location")]
+		public virtual string Location{get;set;}
 	}
 }
 

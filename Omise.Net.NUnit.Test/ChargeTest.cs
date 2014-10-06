@@ -8,7 +8,7 @@ namespace Omise.Net.NUnit.Test
 	public class ChargeTest:TestBase
 	{
 		[Test]
-		public void TestChargeMountValidations(){
+		public void TestChargeAmountValidations(){
 			var charge = new ChargeCreateInfo();
 			Assert.False (charge.Valid);
 			Assert.Contains(new KeyValuePair<string, string>("Amount", "must be greater than 0"), charge.Errors);
@@ -117,16 +117,24 @@ namespace Omise.Net.NUnit.Test
 								}");
 			var result = client.ChargeService.GetCharge ("123");
 			Assert.IsNotNullOrEmpty (result.Id);
-			Assert.GreaterOrEqual (result.Amount, 0);
-			Assert.IsNotNullOrEmpty (result.Currency);
-			Assert.IsNotNull (result.CreatedAt);
+			Assert.AreEqual (10000, result.Amount);
+			Assert.AreEqual ("thb", result.Currency);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 8, 8, 11), result.CreatedAt);
 			Assert.IsNotNull (result.Card);
-			Assert.IsNotNull (result.Card.Name);
-			Assert.IsNotNull (result.Card.Brand);
-			Assert.GreaterOrEqual (result.Card.ExpirationMonth, 1);
-			Assert.LessOrEqual (result.Card.ExpirationMonth, 12);
-			Assert.GreaterOrEqual (result.Card.ExpirationYear, 0);
-			Assert.IsNotNullOrEmpty (result.Location);
+			Assert.AreEqual ("4242", result.Card.LastDigits);
+			Assert.AreEqual ("test card", result.Card.Name);
+			Assert.AreEqual (9, result.Card.ExpirationMonth);
+			Assert.AreEqual (2017, result.Card.ExpirationYear);
+			Assert.AreEqual ("123", result.Card.Fingerprint);
+			Assert.IsNull (result.Card.Location);
+			Assert.IsNullOrEmpty (result.Card.Country);
+			Assert.IsNullOrEmpty (result.Card.City);
+			Assert.IsNullOrEmpty (result.Card.PostalCode);
+			Assert.IsNullOrEmpty (result.Card.Financing);
+			Assert.AreEqual (Brand.Visa, result.Card.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 8, 8, 11), result.Card.CreatedAt);
+			Assert.False (result.Card.LiveMode);
+			Assert.AreEqual ("/charges/123", result.Location);
 		}
 
 		[Test]
@@ -174,8 +182,25 @@ namespace Omise.Net.NUnit.Test
 					    'created': '2014-10-02T07:30:29Z'
 					}");
 			var result = client.ChargeService.CreateCharge (charge);
-			Assert.IsNotNull (result);
-			Assert.AreEqual (charge.Amount, result.Amount);
+			Assert.AreEqual ("123", result.Id);
+			Assert.AreEqual (10000, result.Amount);
+			Assert.AreEqual ("thb", result.Currency);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 7, 30, 29), result.CreatedAt);
+			Assert.IsNotNull (result.Card);
+			Assert.AreEqual ("4242", result.Card.LastDigits);
+			Assert.AreEqual ("test card", result.Card.Name);
+			Assert.AreEqual (9, result.Card.ExpirationMonth);
+			Assert.AreEqual (2017, result.Card.ExpirationYear);
+			Assert.AreEqual ("123", result.Card.Fingerprint);
+			Assert.IsNull (result.Card.Location);
+			Assert.IsNullOrEmpty (result.Card.Country);
+			Assert.IsNullOrEmpty (result.Card.City);
+			Assert.IsNullOrEmpty (result.Card.PostalCode);
+			Assert.IsNullOrEmpty (result.Card.Financing);
+			Assert.AreEqual (Brand.Visa, result.Card.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 7, 27, 30), result.Card.CreatedAt);
+			Assert.False (result.Card.LiveMode);
+			Assert.AreEqual ("/charges/123", result.Location);
 		}
 
 		[Test]
@@ -227,7 +252,25 @@ namespace Omise.Net.NUnit.Test
 
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
-			Assert.AreEqual (charge.Amount, result.Amount);
+			Assert.AreEqual ("123", result.Id);
+			Assert.AreEqual (10000, result.Amount);
+			Assert.AreEqual ("thb", result.Currency);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 7, 40, 36), result.CreatedAt);
+			Assert.IsNotNull (result.Card);
+			Assert.AreEqual ("4242", result.Card.LastDigits);
+			Assert.AreEqual ("test card 2", result.Card.Name);
+			Assert.AreEqual (9, result.Card.ExpirationMonth);
+			Assert.AreEqual (2017, result.Card.ExpirationYear);
+			Assert.AreEqual ("123", result.Card.Fingerprint);
+			Assert.AreEqual ("/customers/123/cards/123", result.Card.Location);
+			Assert.IsNullOrEmpty (result.Card.Country);
+			Assert.IsNullOrEmpty (result.Card.City);
+			Assert.IsNullOrEmpty (result.Card.PostalCode);
+			Assert.IsNullOrEmpty (result.Card.Financing);
+			Assert.AreEqual (Brand.Visa, result.Card.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 7, 39, 50), result.Card.CreatedAt);
+			Assert.False (result.Card.LiveMode);
+			Assert.AreEqual ("/charges/123", result.Location);
 		}
 
 		[Test]
@@ -277,8 +320,25 @@ namespace Omise.Net.NUnit.Test
 					}");
 			var result = client.ChargeService.CreateCharge (charge);
 			Assert.IsNotNull (result);
-			Assert.AreEqual (charge.Amount, result.Amount);
-			Assert.AreEqual("4242", result.Card.LastDigits);
+			Assert.AreEqual ("123", result.Id);
+			Assert.AreEqual (10000, result.Amount);
+			Assert.AreEqual ("thb", result.Currency);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 7, 53, 10), result.CreatedAt);
+			Assert.IsNotNull (result.Card);
+			Assert.AreEqual ("4242", result.Card.LastDigits);
+			Assert.AreEqual ("test card", result.Card.Name);
+			Assert.AreEqual (9, result.Card.ExpirationMonth);
+			Assert.AreEqual (2017, result.Card.ExpirationYear);
+			Assert.AreEqual ("123", result.Card.Fingerprint);
+			Assert.AreEqual ("/customers/123/cards/123", result.Card.Location);
+			Assert.IsNullOrEmpty (result.Card.Country);
+			Assert.IsNullOrEmpty (result.Card.City);
+			Assert.IsNullOrEmpty (result.Card.PostalCode);
+			Assert.IsNullOrEmpty (result.Card.Financing);
+			Assert.AreEqual (Brand.Visa, result.Card.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 5, 25, 10), result.Card.CreatedAt);
+			Assert.False (result.Card.LiveMode);
+			Assert.AreEqual ("/charges/123", result.Location);
 		}
 
 		[Test]
@@ -326,12 +386,31 @@ namespace Omise.Net.NUnit.Test
 			var updateResult = client.ChargeService.UpdateCharge(chargeUpdateInfo);
 			Assert.IsNotNull (updateResult);
 			Assert.AreEqual ("Test update description", updateResult.Description);
+			Assert.AreEqual ("123", updateResult.Id);
+			Assert.AreEqual (10000, updateResult.Amount);
+			Assert.AreEqual ("thb", updateResult.Currency);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 8, 8, 11), updateResult.CreatedAt);
+			Assert.IsNotNull (updateResult.Card);
+			Assert.AreEqual ("4242", updateResult.Card.LastDigits);
+			Assert.AreEqual ("test card", updateResult.Card.Name);
+			Assert.AreEqual (9, updateResult.Card.ExpirationMonth);
+			Assert.AreEqual (2017, updateResult.Card.ExpirationYear);
+			Assert.AreEqual ("123", updateResult.Card.Fingerprint);
+			Assert.IsNull (updateResult.Card.Location);
+			Assert.IsNullOrEmpty (updateResult.Card.Country);
+			Assert.IsNullOrEmpty (updateResult.Card.City);
+			Assert.IsNullOrEmpty (updateResult.Card.PostalCode);
+			Assert.IsNullOrEmpty (updateResult.Card.Financing);
+			Assert.AreEqual (Brand.Visa, updateResult.Card.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 8, 8, 11), updateResult.Card.CreatedAt);
+			Assert.False (updateResult.Card.LiveMode);
+			Assert.AreEqual ("/charges/123", updateResult.Location);
 		}
 
 		[Test]
 		public void TestCreateInvalidChargeAmount(){
 			var charge = new ChargeCreateInfo ();
-			charge.Amount = -1;//100 THB,=> 10000 Satangs
+			charge.Amount = -1;
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
@@ -348,7 +427,7 @@ namespace Omise.Net.NUnit.Test
 		[Test]
 		public void TestCreateInvalidCurrencyCharge(){
 			var charge = new ChargeCreateInfo ();
-			charge.Amount = 10000000;//100 THB,=> 10000 Satangs
+			charge.Amount = 10000000;
 			charge.Currency = "THBs";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";

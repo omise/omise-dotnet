@@ -116,16 +116,18 @@ namespace Omise
 		/// <summary>
 		/// Deletes the Omise card.
 		/// </summary>
+		/// <returns>The result of deleting the object</returns>
 		/// <param name="customerId">Customer Id</param>
 		/// <param name="cardId">Card Id</param>
-		public void DeleteCard (string customerId, string cardId)
+		public DeleteResponseObject DeleteCard (string customerId, string cardId)
 		{
 			if (string.IsNullOrEmpty (customerId))
 				throw new ArgumentNullException ("customerId is required.");
 			if (string.IsNullOrEmpty (cardId))
 				throw new ArgumentNullException ("cardId is required.");
 			string url = string.Format ("/customers/{0}/cards/{1}", customerId, cardId);
-			requester.ExecuteRequest (url, "DELETE", null);
+			var result = requester.ExecuteRequest (url, "DELETE", null);
+			return JsonConvert.DeserializeObject<DeleteResponseObject> (result);
 		}
 	}
 }

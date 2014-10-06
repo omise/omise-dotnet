@@ -39,6 +39,7 @@ namespace Omise.Net.NUnit.Test
 			Assert.IsNotNull (transactions);
 			Assert.AreEqual(20, transactions.Limit);
 			Assert.AreEqual(0, transactions.Offset);
+			Assert.AreEqual(2, transactions.Total);
 			Assert.AreEqual(2, transactions.Collection.Count);
 		}
 
@@ -55,9 +56,11 @@ namespace Omise.Net.NUnit.Test
 
 			var transaction = client.TransactionService.GetTransaction ("123");
 			Assert.IsNotNull (transaction);
-			Assert.IsNotNull (transaction.Currency);
-			Assert.IsNotNullOrEmpty (transaction.Type);
-			Assert.GreaterOrEqual (transaction.Amount, 0);
+			Assert.AreEqual ("123", transaction.Id);
+			Assert.AreEqual ("THB", transaction.Currency);
+			Assert.AreEqual ("credit", transaction.Type);
+			Assert.AreEqual (9635, transaction.Amount);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 10, 27, 0), transaction.CreatedAt);
 		}
 	}
 }

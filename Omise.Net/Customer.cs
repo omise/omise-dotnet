@@ -22,7 +22,7 @@ namespace Omise
 		public string DefaultCardId{ get; set;}
 
 		[JsonIgnore]
-		public ICollection<Card> Cards{ get; set; }
+		public CollectionResponseObject<Card> CardCollection{ get; set; }
 	}
 }
 

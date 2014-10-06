@@ -86,6 +86,7 @@
     <Compile Include="ChargeCreateInfo.cs" />
     <Compile Include="CardCreateInfo.cs" />
     <Compile Include="CustomerInfo.cs" />
+    <Compile Include="DeleteResponseObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

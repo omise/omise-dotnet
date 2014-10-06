@@ -32,8 +32,8 @@ namespace Omise.Net.NUnit.Test
 				'id': '123',
 				'livemode': false,
 				'location': '/customers/123/cards/123',
-				'country': '',
-				'city': null,
+				'country': 'Thailand',
+				'city': 'Bangkok',
 				'postal_code': null,
 				'financing': '',
 				'last_digits': '4242',
@@ -51,12 +51,12 @@ namespace Omise.Net.NUnit.Test
 			Assert.AreEqual (card.ExpirationMonth, result.ExpirationMonth);
 			Assert.AreEqual (card.ExpirationYear, result.ExpirationYear);
 			Assert.AreEqual (card.Name, result.Name);
-			Assert.IsNotNull (result.Brand);
-			Assert.IsNull (result.City);
-			Assert.IsEmpty (result.Country);
-			Assert.IsNotNullOrEmpty (result.Fingerprint);
-			Assert.IsNotNull (result.Id);
-			Assert.IsNotNull (result.CreatedAt);
+			Assert.AreEqual (Brand.Visa, result.Brand);
+			Assert.AreEqual ("Bangkok", result.City);
+			Assert.AreEqual ("Thailand", result.Country);
+			Assert.AreEqual ("123", result.Fingerprint);
+			Assert.AreEqual ("123", result.Id);
+			Assert.AreEqual (new DateTime(2014, 10, 2, 6, 9, 1), result.CreatedAt);
 		}
 
 		[Test]
@@ -73,8 +73,8 @@ namespace Omise.Net.NUnit.Test
 						    'id': '123',
 						    'livemode': false,
 						    'location': '/customers/123/cards/123',
-						    'country': '',
-						    'city': null,
+						    'country': 'Thailand',
+						    'city': 'Bangkok',
 						    'postal_code': null,
 						    'financing': '',
 						    'last_digits': '4242',
@@ -93,7 +93,15 @@ namespace Omise.Net.NUnit.Test
 			Assert.AreEqual ("My Test Card", updateResult.Name);
 			Assert.AreEqual (9, updateResult.ExpirationMonth);
 			Assert.AreEqual (2017, updateResult.ExpirationYear);
-			Assert.IsNotNullOrEmpty (updateResult.Fingerprint);
+			Assert.AreEqual ("123", updateResult.Fingerprint);
+			Assert.AreEqual ("/customers/123/cards/123", updateResult.Location);
+			Assert.AreEqual ("Thailand", updateResult.Country);
+			Assert.AreEqual ("Bangkok", updateResult.City);
+			Assert.IsNull (updateResult.PostalCode);
+			Assert.IsNullOrEmpty (updateResult.Financing);
+			Assert.AreEqual (Brand.Visa, updateResult.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 5, 25, 10), updateResult.CreatedAt);
+			Assert.False (updateResult.LiveMode);
 		}
 
 		[Test]
@@ -123,7 +131,15 @@ namespace Omise.Net.NUnit.Test
 			Assert.AreEqual ("Test Card", getCardResult.Name);
 			Assert.AreEqual (9, getCardResult.ExpirationMonth);
 			Assert.AreEqual (2017, getCardResult.ExpirationYear);
-			Assert.IsNotNullOrEmpty (getCardResult.Fingerprint);
+			Assert.AreEqual ("123", getCardResult.Fingerprint);
+			Assert.AreEqual ("/customers/123/cards/123", getCardResult.Location);
+			Assert.IsNullOrEmpty (getCardResult.Country);
+			Assert.IsNullOrEmpty (getCardResult.City);
+			Assert.IsNull (getCardResult.PostalCode);
+			Assert.IsNullOrEmpty (getCardResult.Financing);
+			Assert.AreEqual (Brand.Visa, getCardResult.Brand);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 6, 9, 1), getCardResult.CreatedAt);
+			Assert.False (getCardResult.LiveMode);
 		}
 
 		[Test]
@@ -136,7 +152,12 @@ namespace Omise.Net.NUnit.Test
 						}";
 
 			StubRequestWithResponse (json);
-			client.CardService.DeleteCard (customerId, "123");
+			var deleteResult = client.CardService.DeleteCard (customerId, "123");
+
+			Assert.AreEqual ("card", deleteResult.ObjectType);
+			Assert.AreEqual ("123", deleteResult.Id);
+			Assert.IsFalse (deleteResult.LiveMode);
+			Assert.IsTrue (deleteResult.Deleted);
 
 			StubExceptionThrow (new ApiException());
 			Assert.Throws<ApiException> (delegate {

@@ -66,16 +66,6 @@ namespace Omise
 			string result = requester.ExecuteRequest (url, "GET", null);
 			return chargeFactory.Create (result);
 		}
-
-		public Charge Authorize (ChargeCreateInfo charge)
-		{
-			return null;
-		}
-
-		public Charge Capture (ChargeCreateInfo charge)
-		{
-			return null;
-		}
 	}
 }
 

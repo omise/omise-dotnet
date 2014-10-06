@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Omise
 {
@@ -71,11 +72,13 @@ namespace Omise
 		/// <summary>
 		/// Deletes the customer.
 		/// </summary>
-		/// <param name="customerId">Customer Id.</param>
-		public void DeleteCustomer(string customerId){
+		/// <returns>The result of deleting the object</returns>
+		/// <param name="customerId">Customer Id</param>
+		public DeleteResponseObject DeleteCustomer(string customerId){
 			if (string.IsNullOrEmpty(customerId))
 				throw new ArgumentNullException ("customerId is required."); 
-			requester.ExecuteRequest ("/customers/" + customerId, "DELETE", null);
+			var result = requester.ExecuteRequest ("/customers/" + customerId, "DELETE", null);
+			return JsonConvert.DeserializeObject<DeleteResponseObject> (result);
 		}
 	}
 }

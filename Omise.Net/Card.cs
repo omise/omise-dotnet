@@ -6,6 +6,8 @@ namespace Omise
 	[JsonObject]
 	public class Card : ResponseObject
 	{
+		[JsonProperty("location")]
+		public string Location{ get; set; }
 		[JsonProperty("livemode")]
 		public bool LiveMode{ get; set; }
 		[JsonProperty("country")]
