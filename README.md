@@ -5,7 +5,7 @@ Omise.Net is a .Net library written in C# which provides the wrapper functions f
 
 Requirements
 ============
-The library requires .Net framework 2.0, 3.5, 4.0 and 4.5.
+The library requires .Net framework 2.0, 3.5, 4.0 or 4.5.
 
 Installation
 ============
@@ -22,9 +22,25 @@ The core of the library is the Client which contains all services to call the AP
 
 Creating a first charge
 -----------------------
-Omise Payment API provides convenient ways to create a charge. Note that the result of creating a charge is a Charge object.
+Creating a charge requires a valid card token, you can create a card token with the card information. If a card token has been used, it cannot be used again.
 
-Creating a charge with card informations. This way you can make a charge to any card even if the card's holder is not your customer.
+Creating a token
+----------------
+
+```c#
+var card = new CardCreateInfo ();
+card.Name="TestCard";
+card.Number="4242424242424242";
+card.ExpirationMonth = 9;
+card.ExpirationYear=2017;
+
+var token = new TokenInfo ();
+token.Card = card;
+
+var tokenResult = client.TokenService.CreateToken(token);
+```
+
+you can then use the tokenResult.Id to create a charge like below
 
  ```c#
 var charge = new ChargeCreateInfo ();
@@ -33,21 +49,10 @@ charge.Currency = "THB";
 charge.Description = "Test charge";
 charge.ReturnUri = "YOUR RETURN URI WHEN CHARGING IS COMPLETED";
 charge.Capture = true;
-
-var card = new CardCreateInfo ();
-card.ExpirationMonth = 9;
-card.ExpirationYear = 2017;
-card.Number = "4242424242424242";
-card.Name = "Test card";
-charge.Card = card;
+charge.CardId = tokenResult.Id
 		
 var chargeResult = client.ChargeService.CreateCharge (charge);
  ```
-
-Omise API also provides the following options for creating a charge 
-1. with a specific card id
-2. with a customer default card
-3. with a card token
 
 Creating a customer
 -------------------
