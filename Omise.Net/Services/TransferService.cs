@@ -10,7 +10,7 @@ namespace Omise
 		/// </summary>
 		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
-		public TransferService (string apiUrlBase, string apiKey): base(apiUrlBase, apiKey)
+		public TransferService (string apiKey): base(apiKey)
 		{
 		}
 
@@ -20,7 +20,7 @@ namespace Omise
 		/// <param name="requestManager">IRequestManager object</param>
 		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
-		public TransferService (IRequestManager requestManager, string apiUrlBase, string apiKey): base(requestManager, apiUrlBase, apiKey)
+		public TransferService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{
 		}
 

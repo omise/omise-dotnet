@@ -11,7 +11,7 @@ namespace Omise
 		/// </summary>
 		/// <param name="apiUrlBase">API base URL.</param>
 		/// <param name="apiKey">API key.</param>
-		public CustomerService (string apiUrlBase, string apiKey): base(apiUrlBase, apiKey)
+		public CustomerService (string apiKey): base(apiKey)
 		{
 		}
 
@@ -21,7 +21,7 @@ namespace Omise
 		/// <param name="requestManager">IRequestManager object.</param>
 		/// <param name="apiUrlBase">API base URL.</param>
 		/// <param name="apiKey">API key.</param>
-		public CustomerService (IRequestManager requestManager, string apiUrlBase, string apiKey): base(requestManager, apiUrlBase, apiKey)
+		public CustomerService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{
 		}
 

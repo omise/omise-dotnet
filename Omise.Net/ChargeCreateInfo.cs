@@ -60,16 +60,6 @@ namespace Omise
 			set{ reference = value; }
 		}
 
-		private CardCreateInfo card;
-		/// <summary>
-		/// Gets or sets the card
-		/// </summary>
-		/// <value>CardInfo object</value>
-		public CardCreateInfo Card { 
-			get{ return card; }
-			set{ card = value; }
-		}
-
 		private string cardId;
 		/// <summary>
 		/// Gets or sets the card Id
@@ -137,14 +127,13 @@ namespace Omise
 		/// <param name="returnUri">Return URI</param>
 		/// <param name="reference">Reference</param>
 		/// <param name="cardCreateInfo">Card information</param>
-		public ChargeCreateInfo (int amount, string currency, string description, string returnUri, string reference, CardCreateInfo cardCreateInfo)
+		public ChargeCreateInfo (int amount, string currency, string description, string returnUri, string reference)
 		{
 			this.amount = amount;
 			this.currency = currency;
 			this.description = description;
 			this.returnUri = returnUri;
 			this.reference = reference;
-			this.card = cardCreateInfo;
 		}
 
 		/// <summary>
@@ -184,13 +173,6 @@ namespace Omise
 
 			if (CardId != null) {
 				dict.Add ("card", CardId);
-			}
-
-			if (Card != null) {
-				dict.Add ("card[number]", Card.Number);
-				dict.Add ("card[expiration_month]", Card.ExpirationMonth.ToString ());
-				dict.Add ("card[expiration_year]", Card.ExpirationYear.ToString ());
-				dict.Add ("card[name]", Card.Name);
 			}
 
 			string result = "";
@@ -238,12 +220,10 @@ namespace Omise
 				errors.Add ("ReturnUri", "cannot be blank");
 			}
 
-			if (this.Card == null && this.CardId == null) {
-				if (this.CustomerId == null) {
-					errors.Add ("Card", "cannot be blank. You can use card id, card token or card hash. You can also pass CustomerId to use the customer's default card.");
+			if (string.IsNullOrEmpty(this.CardId)) {
+				if (string.IsNullOrEmpty(this.CustomerId)) {
+					errors.Add ("CardId", "cannot be blank. You can use card id or card token. You can also pass CustomerId to use the customer's default card.");
 				}
-			} else if (this.Card != null && !this.Card.Valid) {
-				errors.Add ("Card", "is invalid");
 			}
 		}
 	}

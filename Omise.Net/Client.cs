@@ -21,7 +21,7 @@ namespace Omise
 		public ChargeService ChargeService{ 
 			get{ 
 				if (chargeService == null)
-					chargeService = new ChargeService (requestManager, apiUrlBase, apiKey);
+					chargeService = new ChargeService (requestManager, apiKey);
 				return chargeService;
 			}
 		}
@@ -34,7 +34,7 @@ namespace Omise
 		public CardService CardService{ 
 			get{ 
 				if (cardService == null)
-					cardService = new CardService (requestManager, apiUrlBase, apiKey);
+					cardService = new CardService (requestManager, apiKey);
 				return cardService;
 			}
 		}
@@ -47,7 +47,7 @@ namespace Omise
 		public CustomerService CustomerService {
 			get {
 				if (customerService == null)
-					customerService = new CustomerService (requestManager, apiUrlBase, apiKey);
+					customerService = new CustomerService (requestManager, apiKey);
 				return customerService;
 			}
 		}
@@ -60,7 +60,7 @@ namespace Omise
 		public AccountService AccountService{ 
 			get{ 
 				if (accountService == null)
-					accountService = new AccountService (requestManager, apiUrlBase, apiKey);
+					accountService = new AccountService (requestManager, apiKey);
 				return accountService;
 			}
 		}
@@ -73,7 +73,7 @@ namespace Omise
 		public TokenService TokenService{
 			get{ 
 				if (tokenService == null)
-					tokenService = new TokenService (requestManager, apiUrlBase, apiKey);
+					tokenService = new TokenService (requestManager, apiKey);
 				return tokenService;
 			}
 		}
@@ -86,7 +86,7 @@ namespace Omise
 		public BalanceService BalanceService{
 			get{ 
 				if (balanceService == null)
-					balanceService = new BalanceService (requestManager, apiUrlBase, apiKey);
+					balanceService = new BalanceService (requestManager, apiKey);
 				return balanceService;
 			}
 		}
@@ -99,7 +99,7 @@ namespace Omise
 		public TransactionService TransactionService{
 			get{ 
 				if (transactionService == null)
-					transactionService = new TransactionService (requestManager, apiUrlBase, apiKey);
+					transactionService = new TransactionService (requestManager, apiKey);
 				return transactionService;
 			}
 		}
@@ -109,7 +109,7 @@ namespace Omise
 		/// </summary>
 		/// <param name="apiKey">API key.</param>
 		/// <param name="apiUrlBase">API base URL.</param>
-		public Client(string apiKey, string apiUrlBase)
+		public Client(string apiKey)
 		{
 			this.apiKey = apiKey;
 			this.apiUrlBase = apiUrlBase;
@@ -121,7 +121,7 @@ namespace Omise
 		/// <param name="requestManager">IRequestManager object</param>
 		/// <param name="apiKey">API key</param>
 		/// <param name="apiUrlBase">API base URL</param>
-		public Client(IRequestManager requestManager, string apiKey, string apiUrlBase)
+		public Client(IRequestManager requestManager, string apiKey)
 		{
 			this.requestManager = requestManager;
 			this.apiKey = apiKey;

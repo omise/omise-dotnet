@@ -4,11 +4,11 @@ namespace Omise
 {
 	public class UserService: ServiceBase
 	{
-		public UserService (string apiUrlBase, string apiKey): base(apiUrlBase, apiKey)
+		public UserService (string apiKey): base(apiKey)
 		{
 		}
 
-		public UserService (IRequestManager requestManager, string apiUrlBase, string apiKey): base(requestManager, apiUrlBase, apiKey)
+		public UserService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{
 		}
 	}

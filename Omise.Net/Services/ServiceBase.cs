@@ -14,10 +14,15 @@ namespace Omise
 		protected TransactionFactory transactionFactory;
 		protected TransferFactory transferFactory;
 
-		public ServiceBase (IRequestManager requestManager, string apiUrlBase, string apiKey)
+		protected virtual string ApiUrlBase
+		{
+			get{ return "https://api.omise.co"; }
+		}
+
+		public ServiceBase (IRequestManager requestManager, string apiKey)
 		{
 			if (requestManager == null) {
-				requester = new RequestManager (apiUrlBase, apiKey);
+				requester = new RequestManager (ApiUrlBase, apiKey);
 			} else {
 				requester = requestManager;
 			}
@@ -31,9 +36,9 @@ namespace Omise
 			transferFactory = new TransferFactory();
 		}
 
-		public ServiceBase (string apiUrlBase, string apiKey)
+		public ServiceBase (string apiKey)
 		{
-			requester = new RequestManager (apiUrlBase, apiKey);
+			requester = new RequestManager (ApiUrlBase, apiKey);
 			accountFactory = new AccountFactory();
 			balanceFactory = new BalanceFactory();
 			cardFactory = new CardFactory();

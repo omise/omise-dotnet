@@ -26,6 +26,16 @@ namespace Omise
 			set{ description = value;}
 		}
 
+		private string cardId;
+		/// <summary>
+		/// Gets or sets the card id or card token.
+		/// </summary>
+		/// <value>The card id or card token</value>
+		public string CardId{
+			get{ return cardId; }
+			set{ cardId = value; }
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
 		/// </summary>
@@ -71,6 +81,10 @@ namespace Omise
 			var dict = new Dictionary<string, string>();
 			dict.Add ("email", this.Email.ToString());
 			dict.Add ("description", this.Description);
+
+			if (!string.IsNullOrEmpty (this.cardId)) {
+				dict.Add ("card", this.cardId);
+			}
 
 			string result = "";
 

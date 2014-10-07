@@ -12,7 +12,7 @@ namespace Omise
 		/// </summary>
 		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
-		public CardService (string apiUrlBase, string apiKey) : base (apiUrlBase, apiKey)
+		public CardService (string apiKey) : base (apiKey)
 		{
 		}
 
@@ -22,7 +22,7 @@ namespace Omise
 		/// <param name="requestManager">Request manager.</param>
 		/// <param name="apiUrlBase">API base url.</param>
 		/// <param name="apiKey">API key.</param>
-		public CardService (IRequestManager requestManager, string apiUrlBase, string apiKey): base(requestManager, apiUrlBase, apiKey)
+		public CardService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{
 		}
 
@@ -84,11 +84,11 @@ namespace Omise
 			if (to.HasValue) {
 				parameters.Add ("to=" + DateTimeHelper.ToApiDateString(to.Value));
 			}
-			if (offset != null) {
-				parameters.Add ("offset=" + offset);
+			if (offset.HasValue) {
+				parameters.Add ("offset=" + offset.Value);
 			}
-			if (limit != null) {
-				parameters.Add ("limit=" + limit);
+			if (limit.HasValue) {
+				parameters.Add ("limit=" + limit.Value);
 			}
 
 			string url = string.Format ("/customers/{0}/cards" + (parameters.Count > 0 ? "?" + string.Join ("&", parameters.ToArray ()) : ""), customerId);

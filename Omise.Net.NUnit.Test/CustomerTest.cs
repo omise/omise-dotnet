@@ -53,6 +53,71 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
+		public void TestCreateCustomerWithCard(){
+			var customerInfo = new CustomerInfo ();
+			customerInfo.Email = "test2@localhost";
+			customerInfo.Description = "Test customer 2";
+			customerInfo.CardId = "123";
+
+			StubRequestWithResponse (@"{
+								    'object': 'customer',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/customers/123',
+								    'default_card': '123',
+								    'email': 'test2@localhost',
+								    'description': null,
+								    'created': '2014-10-02T08:12:12Z',
+								    'cards': {
+								        'object': 'list',
+								        'from': '1970-01-01T07:00:00+07:00',
+								        'to': '2014-10-02T15:12:12+07:00',
+								        'offset': 0,
+								        'limit': 20,
+								        'total': 1,
+								        'data': [
+											{
+											'object': 'card',
+										    'id': '123',
+										    'livemode': false,
+										    'location': '/customers/123/cards/123',
+										    'country': 'Thailand',
+										    'city': 'Bangkok',
+										    'postal_code': null,
+										    'financing': '',
+										    'last_digits': '4242',
+										    'brand': 'Visa',
+										    'expiration_month': 9,
+										    'expiration_year': 2017,
+										    'fingerprint': '123',
+										    'name': 'My Test Card',
+										    'created': '2014-10-02T05:25:10Z'
+											}
+										],
+								        'location': '/customers/123/cards'
+								    }
+								}");
+
+			var customerResult = client.CustomerService.CreateCustomer (customerInfo);
+			Assert.IsNotNull (customerResult);
+			Assert.AreEqual ("123", customerResult.Id);
+			Assert.AreEqual ("test2@localhost", customerResult.Email);
+			Assert.IsFalse (customerResult.LiveMode);
+			Assert.AreEqual ("/customers/123", customerResult.Location);
+			Assert.AreEqual ("123", customerResult.DefaultCardId);
+			Assert.IsNullOrEmpty (customerResult.Description);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 8, 12, 12), customerResult.CreatedAt);
+			Assert.IsNotNull (customerResult.CardCollection);
+			Assert.AreEqual (new DateTime (1970, 1, 1, 7, 0, 0), customerResult.CardCollection.From);
+			Assert.AreEqual (new DateTime (2014, 10, 2, 15, 12, 12), customerResult.CardCollection.To);
+			Assert.AreEqual (0, customerResult.CardCollection.Offset);
+			Assert.AreEqual (20, customerResult.CardCollection.Limit);
+			Assert.AreEqual (1, customerResult.CardCollection.Total);
+			Assert.AreEqual (1, customerResult.CardCollection.Collection.Count);
+			Assert.AreEqual ("/customers/123/cards", customerResult.CardCollection.Location);
+		}
+
+		[Test]
 		public void TestUpdateCustomer(){
 			var customerUpdateInfo = new CustomerInfo ();
 			customerUpdateInfo.Email = "test11@localhost";

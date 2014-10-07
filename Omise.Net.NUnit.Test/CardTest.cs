@@ -60,6 +60,42 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
+		public void TestCreateInvalidCardNumber(){
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 9;
+			card.ExpirationYear = 2017;
+			card.Number = "42424242424242";
+			card.Name = "Test card";
+			StubExceptionThrow (new ApiException ());
+			Assert.Throws<ApiException>(delegate { client.CardService.CreateCard ("123", card); } );
+		}
+
+		[Test]
+		public void TestCreateInvalidCardExpirationMonth(){
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 99;
+			card.ExpirationYear = 2017;
+			card.Number = "4242424242424242";
+			card.Name = "Test card";
+
+			Assert.Throws<InvalidCardException>(delegate { client.CardService.CreateCard ("123", card); } );
+
+			card.ExpirationMonth = -10;
+			Assert.Throws<InvalidCardException>(delegate { client.CardService.CreateCard ("123", card);} );
+		}
+
+		[Test]
+		public void TestCreateInvalidCardExpirationYear(){
+			var card = new CardCreateInfo ();
+			card.ExpirationMonth = 1;
+			card.ExpirationYear = 9999;
+			card.Number = "4242424242424242";
+			card.Name = "Test card";
+			StubExceptionThrow (new ApiException ());
+			Assert.Throws<ApiException>(delegate { client.CardService.CreateCard ("123", card); } );
+		}
+
+		[Test]
 		public void TestUpdateCard(){
 			var card = new CardCreateInfo ();
 			card.Id = "123";
