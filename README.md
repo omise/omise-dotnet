@@ -1,7 +1,7 @@
 omise-dotnet
 ============
 
-Omise.Net is a .Net library written in C# which provides the wrapper functions for Omise payment API calls.
+Omise.Net is a .Net library written in C# provides the wrapper functions for Omise payment API calls.
 
 Requirements
 ============
@@ -14,10 +14,10 @@ To use the library, simply add a reference to Omise.Net.dll and you are ready to
 Getting started
 ===============
 
-The core of the library is the Client which contains all services to call the APIs.To initialize the client, you need to have the api url and api secret key.
+The core of the library is the Client which contains all services to call the APIs.To initialize the client, you need to have the api secret key.
 
 ```c#
-  var client = new Omise.Client(YOUR_API_KEY, API_URL);
+  var client = new Omise.Client(YOUR_API_KEY);
 ```
 
 Creating a first charge
