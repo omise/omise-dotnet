@@ -137,7 +137,7 @@ namespace Omise
 			}
 		}
 
-		protected override void validate ()
+		private void validate ()
 		{
 			errors.Clear ();
 
@@ -153,7 +153,7 @@ namespace Omise
 				errors.Add ("ExpirationMonth", "must be between 1 to 12");
 			}
 
-			if (this.expirationYear <= 0) {
+			if (this.expirationYear <= 0 || this.expirationYear > DateTime.Now.AddYears(20).Year) {
 				errors.Add ("ExpirationYear", "is invalid.");
 			}
 		}

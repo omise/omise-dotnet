@@ -10,7 +10,6 @@ namespace Omise
 	public class Client
 	{
 		private string apiKey;
-		private string apiUrlBase;
 		private IRequestManager requestManager;
 
 		private ChargeService chargeService;
@@ -112,7 +111,6 @@ namespace Omise
 		public Client(string apiKey)
 		{
 			this.apiKey = apiKey;
-			this.apiUrlBase = apiUrlBase;
 		}
 
 		/// <summary>
@@ -125,7 +123,6 @@ namespace Omise
 		{
 			this.requestManager = requestManager;
 			this.apiKey = apiKey;
-			this.apiUrlBase = apiUrlBase;
 		}
 	}
 }

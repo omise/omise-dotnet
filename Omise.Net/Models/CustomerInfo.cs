@@ -53,7 +53,7 @@ namespace Omise
 			this.description = description;
 		}
 
-		protected override void validate ()
+		private void validate ()
 		{
 			errors.Clear ();
 			if (string.IsNullOrEmpty(Email)) {

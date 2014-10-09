@@ -13,11 +13,8 @@ namespace Omise
 		public string Id{ get; set;}
 		public virtual bool Valid{ get; set; }
 		public virtual Dictionary<string, string> Errors{ get; set; }
-		protected abstract void validate ();
-
-		public virtual string ToRequestParams(){
-			return this.ToString ();
-		}
+		//protected abstract void validate ();
+        public abstract string ToRequestParams();
 	}
 }
 

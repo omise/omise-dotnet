@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,17 +30,17 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net20\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Token.cs" />
-    <Compile Include="Transfer.cs" />
-    <Compile Include="Account.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="RequestManager.cs" />
     <Compile Include="Exceptions\InvalidCardException.cs" />
     <Compile Include="Utils\DictionaryHelper.cs" />
@@ -48,7 +48,7 @@
     <Compile Include="Exceptions\InvalidCredentialException.cs" />
     <Compile Include="IValidatable.cs" />
     <Compile Include="Enums\Brand.cs" />
-    <Compile Include="ApiErrorObject.cs" />
+    <Compile Include="Models\ApiErrorObject.cs" />
     <Compile Include="Services\CardService.cs" />
     <Compile Include="Services\ChargeService.cs" />
     <Compile Include="Services\CustomerService.cs" />
@@ -56,18 +56,18 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Charge.cs" />
-    <Compile Include="Card.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="Models\Charge.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Exceptions\InvalidCustomerException.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
-    <Compile Include="ChargeUpdateInfo.cs" />
+    <Compile Include="Models\ChargeUpdateInfo.cs" />
     <Compile Include="Services\TokenService.cs" />
-    <Compile Include="TokenInfo.cs" />
+    <Compile Include="Models\TokenInfo.cs" />
     <Compile Include="Services\BalanceService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Services\TransferService.cs" />
-    <Compile Include="Balance.cs" />
+    <Compile Include="Models\Balance.cs" />
     <Compile Include="Factories\GenericFactory.cs" />
     <Compile Include="Factories\CardFactory.cs" />
     <Compile Include="Factories\ChargeFactory.cs" />
@@ -76,24 +76,21 @@
     <Compile Include="Factories\CustomerFactory.cs" />
     <Compile Include="Factories\TokenFactory.cs" />
     <Compile Include="Factories\TransferFactory.cs" />
-    <Compile Include="RequestObject.cs" />
-    <Compile Include="ResponseObject.cs" />
-    <Compile Include="CollectionResponseObject.cs" />
+    <Compile Include="Models\RequestObject.cs" />
+    <Compile Include="Models\ResponseObject.cs" />
+    <Compile Include="Models\CollectionResponseObject.cs" />
     <Compile Include="Utils\DateTimeHelper.cs" />
     <Compile Include="IRequestManager.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Factories\TransactionFactory.cs" />
-    <Compile Include="ChargeCreateInfo.cs" />
-    <Compile Include="CardCreateInfo.cs" />
-    <Compile Include="CustomerInfo.cs" />
-    <Compile Include="DeleteResponseObject.cs" />
+    <Compile Include="Models\ChargeCreateInfo.cs" />
+    <Compile Include="Models\CardCreateInfo.cs" />
+    <Compile Include="Models\CustomerInfo.cs" />
+    <Compile Include="Models\DeleteResponseObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Services\" />
-    <Folder Include="Factories\" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -72,7 +72,7 @@ namespace Omise
 			}
 		}
 
-		protected override void validate ()
+		private void validate ()
 		{
 		}
 	}

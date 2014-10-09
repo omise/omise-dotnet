@@ -48,7 +48,7 @@ namespace Omise
 			}
 		}
 
-		protected override void validate ()
+		private void validate ()
 		{
 			errors.Clear ();
 			if (this.Card == null) {

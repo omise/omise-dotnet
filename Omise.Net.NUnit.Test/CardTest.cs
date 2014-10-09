@@ -91,8 +91,7 @@ namespace Omise.Net.NUnit.Test
 			card.ExpirationYear = 9999;
 			card.Number = "4242424242424242";
 			card.Name = "Test card";
-			StubExceptionThrow (new ApiException ());
-			Assert.Throws<ApiException>(delegate { client.CardService.CreateCard ("123", card); } );
+			Assert.Throws<InvalidCardException>(delegate { client.CardService.CreateCard ("123", card); } );
 		}
 
 		[Test]
