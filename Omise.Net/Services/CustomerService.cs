@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines methods for requesting Customer api
+    /// </summary>
 	public class CustomerService: ServiceBase
 	{
 		/// <summary>
@@ -35,7 +38,7 @@ namespace Omise
 			if (customer == null)
 				throw new ArgumentNullException ("Customer info is required.");
 			if (!customer.Valid)
-				throw new InvalidCardException (getObjectErrors(customer)); 
+				throw new InvalidCustomerException (getObjectErrors(customer)); 
 			string result = requester.ExecuteRequest ("/customers", "POST", customer.ToRequestParams ());
 			return customerFactory.Create (result);
 		}

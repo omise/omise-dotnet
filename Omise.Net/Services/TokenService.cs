@@ -6,7 +6,7 @@ namespace Omise
 	{
 		protected override string ApiUrlBase {
 			get {
-				return "https://vault.omise.co";
+                return "https://vault.omise.co";
 			}
 		}
 		/// <summary>

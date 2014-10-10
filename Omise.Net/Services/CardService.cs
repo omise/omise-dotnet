@@ -5,22 +5,23 @@ using System.Text;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines methods for requesting Card api
+    /// </summary>
 	public class CardService: ServiceBase
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.CardService"/> class with api url and api key. The service uses default request manager object.
+		/// Initializes a new instance of the <see cref="Omise.CardService"/> class with api key. The service uses default request manager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public CardService (string apiKey) : base (apiKey)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, api url and api key.
+		/// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object and api key.
 		/// </summary>
 		/// <param name="requestManager">Request manager.</param>
-		/// <param name="apiUrlBase">API base url.</param>
 		/// <param name="apiKey">API key.</param>
 		public CardService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

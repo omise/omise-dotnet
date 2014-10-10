@@ -5,6 +5,9 @@ using System.Net;
 
 namespace Omise
 {
+    /// <summary>
+    /// Represents the properties of API error information
+    /// </summary>
 	[Serializable]
 	public class ApiErrorObject
 	{
@@ -17,31 +20,35 @@ namespace Omise
 		public string Location{ 
 			get { return location; } 
 		}
-
-		/// <summary>
-		/// Error code
-		/// </summary>
+		
 		private string code;
+        /// <summary>
+        /// Error code
+        /// </summary>
 		public string Code{ 
 			get { return code; } 
 		}
-
-		/// <summary>
-		/// Error message
-		/// </summary>
+		
 		private string message;
+        /// <summary>
+        /// Error message
+        /// </summary>
 		public string Message{ 
 			get { return message; } 
 		}
-
-		/// <summary>
-		/// Raw error message
-		/// </summary>
+		
 		private string rawMessage;
+        /// <summary>
+        /// Raw error message
+        /// </summary>
 		public string RawMessage {
 			get { return rawMessage; }
 		}
 
+        /// <summary>
+        /// Initializes the ApiErrorObject object 
+        /// </summary>
+        /// <param name="resultString"></param>
 		public ApiErrorObject (string resultString)
 		{
 			rawMessage = resultString;
@@ -55,6 +62,10 @@ namespace Omise
 			}
 		}
 
+        /// <summary>
+        /// Returns a string representing the api error message
+        /// </summary>
+        /// <returns></returns>
 		public override string ToString ()
 		{
 			return message;

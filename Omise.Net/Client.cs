@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines all services to for requesting the api
+    /// </summary>
 	public class Client
 	{
 		private string apiKey;
@@ -107,7 +110,6 @@ namespace Omise
 		/// Initializes a new instance of the <see cref="Omise.Client"/> class with api key and api url. The client uses default IRequestManager object for all requests.
 		/// </summary>
 		/// <param name="apiKey">API key.</param>
-		/// <param name="apiUrlBase">API base URL.</param>
 		public Client(string apiKey)
 		{
 			this.apiKey = apiKey;
@@ -118,7 +120,6 @@ namespace Omise
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object</param>
 		/// <param name="apiKey">API key</param>
-		/// <param name="apiUrlBase">API base URL</param>
 		public Client(IRequestManager requestManager, string apiKey)
 		{
 			this.requestManager = requestManager;

@@ -2,6 +2,9 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// Brands of credit card
+    /// </summary>
 	public enum Brand
 	{
 		Visa,

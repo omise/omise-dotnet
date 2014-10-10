@@ -2,6 +2,9 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines the base class containing factories for each models
+    /// </summary>
 	public abstract class ServiceBase
 	{
 		protected IRequestManager requester;
@@ -14,11 +17,19 @@ namespace Omise
 		protected TransactionFactory transactionFactory;
 		protected TransferFactory transferFactory;
 
+        /// <summary>
+        /// The api base url for the service
+        /// </summary>
 		protected virtual string ApiUrlBase
 		{
-			get{ return "https://api.omise.co"; }
+            get { return "https://api.omise.co"; }
 		}
 
+        /// <summary>
+        /// Initializes the ServiceBase object
+        /// </summary>
+        /// <param name="requestManager">IRequestManager object</param>
+        /// <param name="apiKey">Api key</param>
 		public ServiceBase (IRequestManager requestManager, string apiKey)
 		{
 			if (requestManager == null) {
@@ -36,6 +47,10 @@ namespace Omise
 			transferFactory = new TransferFactory();
 		}
 
+        /// <summary>
+        /// Initializes the ServiceBase object
+        /// </summary>
+        /// <param name="apiKey">Api key</param>
 		public ServiceBase (string apiKey)
 		{
 			requester = new RequestManager (ApiUrlBase, apiKey);

@@ -2,6 +2,9 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines a method for requesting to Omise Api and return string result
+    /// </summary>
 	public interface IRequestManager
 	{
 		/// <summary>

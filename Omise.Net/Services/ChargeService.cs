@@ -2,12 +2,14 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines methods for requesting Charge api
+    /// </summary>
 	public class ChargeService: ServiceBase
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with api url and api key. The service uses default request manager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public ChargeService (string apiKey): base(apiKey)
 		{
@@ -17,7 +19,6 @@ namespace Omise
 		/// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with IRequestManager object, api url and api key.
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object</param>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public ChargeService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

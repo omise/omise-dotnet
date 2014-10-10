@@ -53,6 +53,19 @@ namespace Omise
 			this.description = description;
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        /// </summary>
+        /// <param name="email">Customer's email</param>
+        /// <param name="description">Description of the customer</param>
+        /// <param name="cardId">Card id or card token to attach to customer</param>
+        public CustomerInfo(string email, string description, string cardId)
+        {
+            this.email = email;
+            this.description = description;
+            this.cardId = cardId;
+        }
+
 		private void validate ()
 		{
 			errors.Clear ();
@@ -71,6 +84,18 @@ namespace Omise
 				return errors.Count==0;
 			}
 		}
+
+        /// <summary>
+        /// Gets the errors dictionary.
+        /// </summary>
+        /// <value>The errors dictionary object.</value>
+        public override Dictionary<string, string> Errors
+        {
+            get
+            {
+                return errors;
+            }
+        }
 
 		/// <summary>
 		/// Get the string representing the querystring parameters
