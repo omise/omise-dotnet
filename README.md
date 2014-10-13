@@ -23,7 +23,7 @@ The core of the library is the Client which contains all services to call the AP
 Creating a first charge
 -----------------------
 Creating a charge requires a valid card token, you can create a card token with the card information.
-We recommended you to create a token using Omise.JS library which runs on browser side, the client will directly send the card information to Omise gateway so that your server will now have to deal with card information at all. However, the library also provides way to create a card token as below example (create a card token on server side requires PCI compliance on your system)
+We recommended you to create a token using Omise.JS library which runs on browser side, the client will directly send the card information to Omise gateway so that your server doesn't have to deal with card information at all. However, the library also provides way to create a card token as below example (create a card token on server side requires PCI compliance on your system)
 
 Creating a token
 ----------------
