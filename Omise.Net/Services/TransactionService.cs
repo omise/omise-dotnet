@@ -3,12 +3,14 @@ using System.Collections.Generic;
 
 namespace Omise
 {
+    /// <summary>
+    /// A service class defines methods for requesting Transaction api
+    /// </summary>
 	public class TransactionService: ServiceBase
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with api url and api key. The service uses default IRequestManager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public TransactionService (string apiKey): base(apiKey)
 		{
@@ -18,7 +20,6 @@ namespace Omise
 		/// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with IRequestManager object, api url and api key.
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object</param>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public TransactionService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

@@ -2,27 +2,31 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// A service class defines methods for requesting Token api
+    /// </summary>
 	public class TokenService: ServiceBase
 	{
+        /// <summary>
+        /// Api base url
+        /// </summary>
 		protected override string ApiUrlBase {
 			get {
                 return "https://vault.omise.co";
 			}
 		}
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with api url and api key. The service uses default IRequestManager object.
+		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with api key. The service uses default IRequestManager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public TokenService (string apiKey): base(apiKey)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with IRequestManager object, api url and api key.
+		/// Initializes a new instance of the <see cref="Omise.TokenService"/> class with IRequestManager object and api key.
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object.</param>
-		/// <param name="apiUrlBase">API base URL</param>
 		/// <param name="apiKey">API key</param>
 		public TokenService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

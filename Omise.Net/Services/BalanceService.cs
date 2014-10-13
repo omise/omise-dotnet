@@ -2,12 +2,14 @@
 
 namespace Omise
 {
+    /// <summary>
+    /// A service class defines methods for requesting Balance api
+    /// </summary>
 	public class BalanceService: ServiceBase
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.BalanceService"/> class with api url and api key. The service uses default request manager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL.</param>
 		/// <param name="apiKey">API key.</param>
 		public BalanceService (string apiKey): base(apiKey)
 		{
@@ -17,7 +19,6 @@ namespace Omise
 		/// Initializes a new instance of the <see cref="Omise.BalanceService"/> class with IRequestManager object, api url and api key.
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object.</param>
-		/// <param name="apiUrlBase">API base url.</param>
 		/// <param name="apiKey">API key.</param>
 		public BalanceService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

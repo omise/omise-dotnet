@@ -4,12 +4,23 @@ using Newtonsoft.Json.Linq;
 
 namespace Omise
 {
+    /// <summary>
+    /// Factory object defines methods for creating token object from api response
+    /// </summary>
 	public class TokenFactory: GenericFactory<Token>
 	{
+        /// <summary>
+        /// Initialize the factory
+        /// </summary>
 		public TokenFactory ()
 		{
 		}
 
+        /// <summary>
+        /// Creates a Token object from json string
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
 		public override Token Create (string json)
 		{
 			if (string.IsNullOrEmpty (json))

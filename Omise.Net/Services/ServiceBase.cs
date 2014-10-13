@@ -7,14 +7,48 @@ namespace Omise
     /// </summary>
 	public abstract class ServiceBase
 	{
+        /// <summary>
+        /// IRequestManager object which is responsible for requesting the api
+        /// </summary>
 		protected IRequestManager requester;
+        /// <summary>
+        /// Account factory defines methods for creating Account object from api response
+        /// </summary>
 		protected AccountFactory accountFactory;
+
+        /// <summary>
+        /// Balance factory defines methods for creating Balance object from api response
+        /// </summary>
 		protected BalanceFactory balanceFactory;
+
+        /// <summary>
+        /// Card factory defines methods for creating Card object from api response
+        /// </summary>
 		protected CardFactory cardFactory;
+
+        /// <summary>
+        /// Charge factory defines methods for creating Charge object from api response
+        /// </summary>
 		protected ChargeFactory chargeFactory;
+
+        /// <summary>
+        /// Customer factory defines methods for creating Customer object from api response
+        /// </summary>
 		protected CustomerFactory customerFactory;
+
+        /// <summary>
+        /// Token factory defines methods for creating Token object from api response
+        /// </summary>
 		protected TokenFactory tokenFactory;
+
+        /// <summary>
+        /// Transaction factory defines methods for creating Transaction object from api response
+        /// </summary>
 		protected TransactionFactory transactionFactory;
+
+        /// <summary>
+        /// Transfer factory defines methods for creating Transfer object from api response
+        /// </summary>
 		protected TransferFactory transferFactory;
 
         /// <summary>
@@ -63,6 +97,11 @@ namespace Omise
 			transferFactory = new TransferFactory ();
 		}
 
+        /// <summary>
+        /// Converts the error dictionary to a string
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
 		protected string getObjectErrors(IValidatable obj)
 		{
 			return DictionaryHelper.ToString (obj.Errors);

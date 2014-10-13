@@ -5,8 +5,15 @@ using Newtonsoft.Json;
 
 namespace Omise
 {
+    /// <summary>
+    /// An abstract base class defines common behavior of the factory class for creating the object from api response
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
 	public abstract class GenericFactory<T> where T : class
 	{
+        /// <summary>
+        /// Initialize the object
+        /// </summary>
 		public GenericFactory ()
 		{
 		}

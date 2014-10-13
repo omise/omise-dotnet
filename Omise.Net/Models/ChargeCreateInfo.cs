@@ -5,6 +5,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines information for creating a charge
+    /// </summary>
 	public class ChargeCreateInfo : RequestObject
 	{
 		private Dictionary<string, string> errors = new Dictionary<string, string> ();
@@ -82,7 +85,7 @@ namespace Omise
 
 		private bool capture;
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="Omise.ChargeInfo"/> will be automatic capture
+        /// Gets or sets a value indicating whether this <see cref="Omise.ChargeCreateInfo"/> will be automatic capture
 		/// </summary>
 		/// <value><c>true</c> if capture; otherwise, <c>false</c></value>
 		public bool Capture {
@@ -91,7 +94,7 @@ namespace Omise
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.ChargeInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.ChargeCreateInfo"/> class.
 		/// </summary>
 		public ChargeCreateInfo ()
 		{
@@ -116,24 +119,6 @@ namespace Omise
 			this.reference = reference;
 			this.cardId = cardId;
 			this.customerId = customerId;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.ChargeCreateInfo"/> class with a custom card information.
-		/// </summary>
-		/// <param name="amount">Amount</param>
-		/// <param name="currency">Currency</param>
-		/// <param name="description">Description</param>
-		/// <param name="returnUri">Return URI</param>
-		/// <param name="reference">Reference</param>
-		/// <param name="cardCreateInfo">Card information</param>
-		public ChargeCreateInfo (int amount, string currency, string description, string returnUri, string reference)
-		{
-			this.amount = amount;
-			this.currency = currency;
-			this.description = description;
-			this.returnUri = returnUri;
-			this.reference = reference;
 		}
 
 		/// <summary>
@@ -185,7 +170,7 @@ namespace Omise
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="Omise.ChargeInfo"/> is valid.
+        /// Gets a value indicating whether this <see cref="Omise.ChargeCreateInfo"/> is valid.
 		/// </summary>
 		/// <value><c>true</c> if valid; otherwise, <c>false</c></value>
 		public override bool Valid {

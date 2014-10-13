@@ -16,6 +16,9 @@ namespace Omise
 		private static string defaultMessage = "There was an error requesting the API. {0}";
 		private WebException webException;
 		private ApiErrorObject apiErrorObject;
+        /// <summary>
+        /// Http status code
+        /// </summary>
 		public HttpStatusCode StatusCode{ get; set; }
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.ApiException"/> class.

@@ -12,7 +12,6 @@ namespace Omise
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with api url and api key. The service uses default IRequestManager object.
 		/// </summary>
-		/// <param name="apiUrlBase">API base URL.</param>
 		/// <param name="apiKey">API key.</param>
 		public CustomerService (string apiKey): base(apiKey)
 		{
@@ -22,7 +21,6 @@ namespace Omise
 		/// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with IRequestManager object, api url and api key.
 		/// </summary>
 		/// <param name="requestManager">IRequestManager object.</param>
-		/// <param name="apiUrlBase">API base URL.</param>
 		/// <param name="apiKey">API key.</param>
 		public CustomerService (IRequestManager requestManager, string apiKey): base(requestManager, apiKey)
 		{

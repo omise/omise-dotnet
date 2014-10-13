@@ -7,8 +7,17 @@ namespace Omise
     /// </summary>
 	public enum Brand
 	{
+        /// <summary>
+        /// Visa
+        /// </summary>
 		Visa,
+        /// <summary>
+        /// MasterCard
+        /// </summary>
 		MasterCard,
+        /// <summary>
+        /// JCB
+        /// </summary>
 		JCB
 	}
 }

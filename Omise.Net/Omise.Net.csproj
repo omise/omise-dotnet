@@ -46,7 +46,6 @@
     <Compile Include="Exceptions\InvalidCardException.cs" />
     <Compile Include="Utils\DictionaryHelper.cs" />
     <Compile Include="Exceptions\InvalidChargeException.cs" />
-    <Compile Include="Exceptions\InvalidCredentialException.cs" />
     <Compile Include="IValidatable.cs" />
     <Compile Include="Enums\Brand.cs" />
     <Compile Include="Models\ApiErrorObject.cs" />

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines information for creating a card
+    /// </summary>
 	public class CardCreateInfo : RequestObject
 	{
 		private Dictionary<string, string> errors = new Dictionary<string, string> ();
@@ -73,12 +76,12 @@ namespace Omise
 			set{ name = value; }
 		}
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.CardInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
 		/// </summary>
 		public CardCreateInfo (){}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Omise.CardInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
 		/// </summary>
 		/// <param name="name">Card holder's name</param>
 		/// <param name="number">Card number</param>

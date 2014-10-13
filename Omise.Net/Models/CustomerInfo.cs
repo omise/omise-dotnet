@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines information for creating a customer
+    /// </summary>
 	public class CustomerInfo: RequestObject
 	{
 		private Dictionary<string, string> errors = new Dictionary<string, string> ();

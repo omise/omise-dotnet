@@ -5,6 +5,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Omise
 {
+    /// <summary>
+    /// Defines the information for updating a charge
+    /// </summary>
 	public class ChargeUpdateInfo : RequestObject
 	{
 		private Dictionary<string, string> errors = new Dictionary<string, string> ();
