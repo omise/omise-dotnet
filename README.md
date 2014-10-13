@@ -54,6 +54,20 @@ charge.CardId = tokenResult.Id
 		
 var chargeResult = client.ChargeService.CreateCharge (charge);
  ```
+ 
+Getting a token
+---------------
+
+```c#
+var tokenResult = client.TokenService.GetToken("tkn_xxxxxxxxxxxx");
+```
+
+Getting a charge
+----------------
+
+```c#
+var chargeResult = client.ChargeService.GetCharge("12345");
+```
 
 Creating a customer
 -------------------
@@ -66,19 +80,3 @@ var customerResult = client.CustomerService.CreateCustomer(customer);
 ``` 
 
 With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
-
-Creating a card
----------------
-Creating a card requires an existing customer. Below is the sample code
-
-```c#
-var card = new CardCreateInfo ();
-card.Name="Test Card";
-card.Number = "4242424242424242";
-card.ExpirationMonth=9;
-card.ExpirationYear=2017;
-
-var createCardResult = client.CardService.CreateCard(YOUR_CUSTOMER_ID, card);
-```
-
-the result of creating a card is a Card object.
