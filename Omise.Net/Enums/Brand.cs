@@ -5,20 +5,20 @@ namespace Omise
     /// <summary>
     /// Brands of credit card
     /// </summary>
-	public enum Brand
-	{
+    public enum Brand
+    {
         /// <summary>
         /// Visa
         /// </summary>
-		Visa,
+        Visa,
         /// <summary>
         /// MasterCard
         /// </summary>
-		MasterCard,
+        MasterCard,
         /// <summary>
         /// JCB
         /// </summary>
-		JCB
-	}
+        JCB
+    }
 }
 
