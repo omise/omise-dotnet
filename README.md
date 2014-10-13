@@ -22,7 +22,8 @@ The core of the library is the Client which contains all services to call the AP
 
 Creating a first charge
 -----------------------
-Creating a charge requires a valid card token, you can create a card token with the card information. If a card token has been used, it cannot be used again.
+Creating a charge requires a valid card token, you can create a card token with the card information.
+We recommended you to create a token using Omise.JS library which runs on browser side, the client will directly send the card information to Omise gateway so that your server doesn't have to deal with card information at all. However, the library also provides way to create a card token as below example (create a card token on server side requires PCI compliance on your system)
 
 Creating a token
 ----------------
@@ -53,6 +54,20 @@ charge.CardId = tokenResult.Id
 		
 var chargeResult = client.ChargeService.CreateCharge (charge);
  ```
+ 
+Getting a token
+---------------
+
+```c#
+var tokenResult = client.TokenService.GetToken("tkn_xxxxxxxxxxxx");
+```
+
+Getting a charge
+----------------
+
+```c#
+var chargeResult = client.ChargeService.GetCharge("12345");
+```
 
 Creating a customer
 -------------------
@@ -65,19 +80,3 @@ var customerResult = client.CustomerService.CreateCustomer(customer);
 ``` 
 
 With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
-
-Creating a card
----------------
-Creating a card requires an existing customer. Below is the sample code
-
-```c#
-var card = new CardCreateInfo ();
-card.Name="Test Card";
-card.Number = "4242424242424242";
-card.ExpirationMonth=9;
-card.ExpirationYear=2017;
-
-var createCardResult = client.CardService.CreateCard(YOUR_CUSTOMER_ID, card);
-```
-
-the result of creating a card is a Card object.
