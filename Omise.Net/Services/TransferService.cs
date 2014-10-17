@@ -9,7 +9,7 @@ namespace Omise
     public class TransferService : ServiceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with api url and api key. The service uses default IRequestManager object.
+        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with api key. The service uses default IRequestManager object.
         /// </summary>
         /// <param name="apiKey">API key</param>
         public TransferService(string apiKey)
@@ -18,7 +18,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with IRequestManager object, api url and api key.
+        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with IRequestManager object and api key.
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
         /// <param name="apiKey">API key</param>
@@ -69,7 +69,7 @@ namespace Omise
         {
             if (string.IsNullOrEmpty(transferId))
                 throw new ArgumentNullException("Transfer id is required");
-            var result = requester.ExecuteRequest("/transfers/" + transferId, "GET", null);
+            string result = requester.ExecuteRequest("/transfers/" + transferId, "GET", null);
             return transferFactory.Create(result);
         }
     }

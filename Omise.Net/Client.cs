@@ -12,7 +12,8 @@ namespace Omise
     /// </summary>
     public class Client
     {
-        private string apiKey;
+        private string privateKey;
+        private string publicKey;
         private IRequestManager requestManager;
 
         private ChargeService chargeService;
@@ -25,7 +26,7 @@ namespace Omise
             get
             {
                 if (chargeService == null)
-                    chargeService = new ChargeService(requestManager, apiKey);
+                    chargeService = new ChargeService(requestManager, privateKey);
                 return chargeService;
             }
         }
@@ -40,7 +41,7 @@ namespace Omise
             get
             {
                 if (cardService == null)
-                    cardService = new CardService(requestManager, apiKey);
+                    cardService = new CardService(requestManager, privateKey, this.TokenService);
                 return cardService;
             }
         }
@@ -55,7 +56,7 @@ namespace Omise
             get
             {
                 if (customerService == null)
-                    customerService = new CustomerService(requestManager, apiKey);
+                    customerService = new CustomerService(requestManager, privateKey, this.TokenService);
                 return customerService;
             }
         }
@@ -70,7 +71,7 @@ namespace Omise
             get
             {
                 if (accountService == null)
-                    accountService = new AccountService(requestManager, apiKey);
+                    accountService = new AccountService(requestManager, privateKey);
                 return accountService;
             }
         }
@@ -85,7 +86,7 @@ namespace Omise
             get
             {
                 if (tokenService == null)
-                    tokenService = new TokenService(requestManager, apiKey);
+                    tokenService = new TokenService(requestManager, publicKey);
                 return tokenService;
             }
         }
@@ -100,7 +101,7 @@ namespace Omise
             get
             {
                 if (balanceService == null)
-                    balanceService = new BalanceService(requestManager, apiKey);
+                    balanceService = new BalanceService(requestManager, privateKey);
                 return balanceService;
             }
         }
@@ -115,29 +116,52 @@ namespace Omise
             get
             {
                 if (transactionService == null)
-                    transactionService = new TransactionService(requestManager, apiKey);
+                    transactionService = new TransactionService(requestManager, privateKey);
                 return transactionService;
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with api key and api url. The client uses default IRequestManager object for all requests.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with api keys. The client uses default IRequestManager object for all requests.
         /// </summary>
         /// <param name="apiKey">API key.</param>
         public Client(string apiKey)
         {
-            this.apiKey = apiKey;
+            this.privateKey = apiKey;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object, api key and api url.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with api keys. The client uses default IRequestManager object for all requests.
+        /// </summary>
+        /// <param name="apiKey">API key.</param>
+        public Client(string privateKey, string publicKey)
+        {
+            this.privateKey = privateKey;
+            this.publicKey = publicKey;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and api key.
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
-        /// <param name="apiKey">API key</param>
-        public Client(IRequestManager requestManager, string apiKey)
+        /// <param name="privateKey">API key</param>
+        public Client(IRequestManager requestManager, string privateKey)
         {
             this.requestManager = requestManager;
-            this.apiKey = apiKey;
+            this.privateKey = privateKey;
+        }
+
+       /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and api keys.
+       /// </summary>
+       /// <param name="requestManager"></param>
+       /// <param name="privateKey"></param>
+       /// <param name="publicKey"></param>
+        public Client(IRequestManager requestManager, string privateKey, string publicKey)
+        {
+            this.requestManager = requestManager;
+            this.privateKey = privateKey;
+            this.publicKey = publicKey;
         }
     }
 }

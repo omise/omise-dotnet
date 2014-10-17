@@ -7,13 +7,14 @@ namespace Omise.Net.NUnit.Test
 	public abstract class TestBase
 	{
 		protected string apiKey = "123456789";
+        protected string publicKey = "123456789";
 		protected Omise.Client client;
 		protected IRequestManager requestManager;
 
 		[SetUp]
 		public virtual void Setup(){
 			requestManager = MockRepository.GenerateStub<IRequestManager> ();
-			client = new Omise.Client (requestManager, this.apiKey);
+			client = new Omise.Client (requestManager, this.apiKey, this.publicKey);
 		}
 
 		[TearDown]
@@ -21,16 +22,24 @@ namespace Omise.Net.NUnit.Test
 			client = null;
 		}
 
-		protected void StubRequestWithResponse(string response){
-			requestManager.BackToRecord (BackToRecordOptions.All);
-			requestManager.Replay ();
-			requestManager.Stub (r => r.ExecuteRequest("","","")).Return (response).IgnoreArguments();
+		protected void StubRequestWithResponse(string response)
+        {
+            requestManager.Expect(r => r.ExecuteRequest("", "", "")).IgnoreArguments().Return(response).Repeat.Once();
 		}
 
-		protected void StubExceptionThrow(Exception ex){
-			requestManager.BackToRecord (BackToRecordOptions.All);
-			requestManager.Replay ();
-			requestManager.Stub (r => r.ExecuteRequest("","","")).Throw (ex).IgnoreArguments();
+        protected void StubRequestWithResponse(string path, string method, string response)
+        {
+            requestManager.Expect(r => r.ExecuteRequest(Arg<string>.Is.Equal(path), Arg<string>.Is.Equal(method), Arg<string>.Is.Anything)).Return(response).Repeat.Once();
+        }
+
+        protected void StubRequestWithResponse(string path, string method, string payload, string response)
+        {
+            requestManager.Expect(r => r.ExecuteRequest(path, method, payload)).Return(response).Repeat.Once();
+        }
+
+		protected void StubExceptionThrow(Exception ex)
+        {
+            requestManager.Expect(r => r.ExecuteRequest("", "", "")).Throw(ex).IgnoreArguments().Repeat.Once();
 		}
 	}
 }

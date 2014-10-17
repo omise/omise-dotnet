@@ -21,6 +21,10 @@ namespace Omise
         /// <param name="apiKey">API key</param>
         public RequestManager(string apiUrlBase, string apiKey)
         {
+            if (string.IsNullOrEmpty(apiUrlBase))
+                throw new ArgumentNullException("Api base url is required.");
+            if (string.IsNullOrEmpty(apiKey))
+                throw new ArgumentNullException("Api key is required.");
             this.apiUrlBase = apiUrlBase;
             this.apiKey = apiKey;
             this.encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(this.apiKey + ":"));

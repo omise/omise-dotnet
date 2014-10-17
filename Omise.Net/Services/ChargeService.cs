@@ -8,7 +8,7 @@ namespace Omise
     public class ChargeService : ServiceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with api url and api key. The service uses default request manager object.
+        /// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with api key. The service uses default request manager object.
         /// </summary>
         /// <param name="apiKey">API key</param>
         public ChargeService(string apiKey)
@@ -17,7 +17,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with IRequestManager object, api url and api key.
+        /// Initializes a new instance of the <see cref="Omise.ChargeService"/> class with IRequestManager object and api key.
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
         /// <param name="apiKey">API key</param>

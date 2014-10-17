@@ -10,23 +10,30 @@ namespace Omise
     /// </summary>
     public class CardService : ServiceBase
     {
+        private TokenService tokenService;
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with api key. The service uses default request manager object.
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with api key and TokenService object. The service uses default request manager object.
         /// </summary>
         /// <param name="apiKey">API key</param>
-        public CardService(string apiKey)
+        public CardService(string apiKey, TokenService tokenService)
             : base(apiKey)
         {
+            if (tokenService == null)
+                throw new ArgumentNullException("TokenService is required");
+            this.tokenService = tokenService;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object and api key.
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, api key and TokenService object.
         /// </summary>
         /// <param name="requestManager">Request manager.</param>
         /// <param name="apiKey">API key.</param>
-        public CardService(IRequestManager requestManager, string apiKey)
+        public CardService(IRequestManager requestManager, string apiKey, TokenService tokenService)
             : base(requestManager, apiKey)
         {
+            if (tokenService == null)
+                throw new ArgumentNullException("TokenService is required");
+            this.tokenService = tokenService;
         }
 
         /// <summary>
@@ -34,17 +41,40 @@ namespace Omise
         /// </summary>
         /// <returns>The created Omise card object</returns>
         /// <param name="customerId">Customer Id</param>
-        /// <param name="cardInfo">CardInfo object</param>
-        public Card CreateCard(string customerId, CardCreateInfo cardInfo)
+        /// <param name="cardCreateInfo">CardInfo object</param>
+        public Card CreateCard(string customerId, CardCreateInfo cardCreateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId is required.");
-            if (cardInfo == null)
+            if (cardCreateInfo == null)
                 throw new ArgumentNullException("card is required.");
-            if (!cardInfo.Valid)
-                throw new InvalidCardException(getObjectErrors(cardInfo));
+            if (!cardCreateInfo.Valid)
+                throw new InvalidCardException(getObjectErrors(cardCreateInfo));
+
+            var tokenResult = this.tokenService.CreateToken(new TokenInfo()
+            {
+                Card = cardCreateInfo
+            });
+
             string url = string.Format("/customers/{0}/cards", customerId);
-            string result = requester.ExecuteRequest(url, "POST", cardInfo.ToRequestParams());
+            string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", tokenResult.Id));
+            return cardFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Creates the credit card with customer id and card token
+        /// </summary>
+        /// <param name="customerId">Customer's Id</param>
+        /// <param name="cardToken">Card token</param>
+        /// <returns>Omise Card object</returns>
+        public Card CreateCard(string customerId, string cardToken)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException("customerId is required.");
+            if (string.IsNullOrEmpty(cardToken))
+                throw new ArgumentNullException("cardToken is required.");
+            string url = string.Format("/customers/{0}/cards", customerId);
+            string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", cardToken));
             return cardFactory.Create(result);
         }
 
@@ -133,7 +163,7 @@ namespace Omise
             if (string.IsNullOrEmpty(cardId))
                 throw new ArgumentNullException("cardId is required.");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
-            var result = requester.ExecuteRequest(url, "DELETE", null);
+            string result = requester.ExecuteRequest(url, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
         }
     }

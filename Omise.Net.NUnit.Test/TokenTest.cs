@@ -7,7 +7,8 @@ namespace Omise.Net.NUnit.Test
 	public class TokenTest: TestBase
 	{
 		[Test]
-		public void TestCreateToken(){
+		public void TestCreateToken()
+        {
 			var card = new CardCreateInfo ();
 			card.Name="TestCard";
 			card.Number="4242424242424242";
@@ -17,7 +18,30 @@ namespace Omise.Net.NUnit.Test
 			var token = new TokenInfo ();
 			token.Card = card;
 
-			StubRequestWithResponse (@"{ 								    'object': 'token', 								    'id': '123', 								    'livemode': false, 								    'location': '/tokens/123', 								    'used': false, 								    'card': { 								        'object': 'card', 								        'livemode': false, 								        'country': '', 								        'city': null, 								        'postal_code': null, 								        'financing': '', 								        'last_digits': '4242', 								        'brand': 'Visa', 								        'expiration_month': 9, 								        'expiration_year': 2017, 								        'fingerprint': '123', 								        'name': 'TestCard', 								        'created': '2014-10-02T07:27:30Z' 								    }, 								    'created': '2014-10-02T07:27:30Z' 								} 								");
+			StubRequestWithResponse (@"{
+								    'object': 'token',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/tokens/123',
+								    'used': false,
+								    'card': {
+								        'object': 'card',
+								        'livemode': false,
+								        'country': '',
+								        'city': null,
+								        'postal_code': null,
+								        'financing': '',
+								        'last_digits': '4242',
+								        'brand': 'Visa',
+								        'expiration_month': 9,
+								        'expiration_year': 2017,
+								        'fingerprint': '123',
+								        'name': 'TestCard',
+								        'created': '2014-10-02T07:27:30Z'
+								    },
+								    'created': '2014-10-02T07:27:30Z'
+								}
+								");
 			var resultToken = client.TokenService.CreateToken (token);
 			Assert.IsNotNull (resultToken);
 			Assert.AreEqual ("123", resultToken.Id);
@@ -39,7 +63,8 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestGetToken(){
+		public void TestGetToken()
+        {
 			StubRequestWithResponse(@"{
 								    'object': 'token',
 								    'id': '123',

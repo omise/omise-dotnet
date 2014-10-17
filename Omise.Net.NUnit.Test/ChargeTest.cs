@@ -8,14 +8,16 @@ namespace Omise.Net.NUnit.Test
 	public class ChargeTest:TestBase
 	{
 		[Test]
-		public void TestChargeAmountValidations(){
+		public void TestChargeAmountValidations()
+        {
 			var charge = new ChargeCreateInfo();
 			Assert.False (charge.Valid);
 			Assert.Contains(new KeyValuePair<string, string>("Amount", "must be greater than 0"), charge.Errors);
 		}
 
 		[Test]
-		public void TestChargeCurrencyValidations(){
+		public void TestChargeCurrencyValidations()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;
 			Assert.False (charge.Valid);
@@ -23,7 +25,8 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestGetCharge(){
+		public void TestGetCharge()
+        {
 			StubRequestWithResponse (@"{
 								    'object': 'charge',
 								    'id': '123',
@@ -82,14 +85,15 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestCreateChargeWithCardToken(){
+		public void TestCreateChargeWithCardToken()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = "123";
+			charge.CardToken = "123";
 			StubRequestWithResponse(@"{
 					    'object': 'charge',
 					    'id': '123',
@@ -148,14 +152,15 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestCreateChargeWithCardId(){
+		public void TestCreateChargeWithCardId()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = "123";
+			charge.CardToken = "123";
 			charge.CustomerId = "123";
 			StubRequestWithResponse(@"{
 					    'object': 'charge',
@@ -218,7 +223,8 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestCreateChargeWithCustomerDefaultCard(){
+		public void TestCreateChargeWithCustomerDefaultCard()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000;//100 THB,=> 10000 Satangs
 			charge.Currency = "THB";
@@ -286,7 +292,8 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestUpdateCharge(){
+		public void TestUpdateCharge()
+        {
 			var chargeUpdateInfo = new ChargeUpdateInfo();
 			chargeUpdateInfo.Id = "123";
 			chargeUpdateInfo.Description = "Test update description";
@@ -352,26 +359,28 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestCreateInvalidChargeAmount(){
+		public void TestCreateInvalidChargeAmount()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = -1;
 			charge.Currency = "THB";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = "123";
+			charge.CardToken = "123";
 			Assert.Throws<InvalidChargeException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
 		[Test]
-		public void TestCreateInvalidCurrencyCharge(){
+		public void TestCreateInvalidCurrencyCharge()
+        {
 			var charge = new ChargeCreateInfo ();
 			charge.Amount = 10000000;
 			charge.Currency = "THBs";
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardId = "123";
+			charge.CardToken = "123";
 			StubExceptionThrow (new ApiException ());
 			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}

@@ -9,23 +9,30 @@ namespace Omise
     /// </summary>
     public class CustomerService : ServiceBase
     {
+        private TokenService tokenService;
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with api url and api key. The service uses default IRequestManager object.
+        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with api key and TokenService object. The service uses default IRequestManager object.
         /// </summary>
         /// <param name="apiKey">API key.</param>
-        public CustomerService(string apiKey)
+        public CustomerService(string apiKey, TokenService tokenService)
             : base(apiKey)
         {
+            if (tokenService == null)
+                throw new ArgumentNullException("TokenService is required");
+            this.tokenService = tokenService;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with IRequestManager object, api url and api key.
+        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with IRequestManager object, api key and TokenService object.
         /// </summary>
         /// <param name="requestManager">IRequestManager object.</param>
         /// <param name="apiKey">API key.</param>
-        public CustomerService(IRequestManager requestManager, string apiKey)
+        public CustomerService(IRequestManager requestManager, string apiKey, TokenService tokenService)
             : base(requestManager, apiKey)
         {
+            if (tokenService == null)
+                throw new ArgumentNullException("TokenService is required");
+            this.tokenService = tokenService;
         }
 
         /// <summary>
@@ -39,6 +46,16 @@ namespace Omise
                 throw new ArgumentNullException("Customer info is required.");
             if (!customer.Valid)
                 throw new InvalidCustomerException(getObjectErrors(customer));
+            
+            if (customer.CardCreateInfo != null) {
+                var tokenResult = this.tokenService.CreateToken(new TokenInfo()
+                {
+                    Card = customer.CardCreateInfo
+                });
+
+                customer.CardToken = tokenResult.Id;
+            }
+
             string result = requester.ExecuteRequest("/customers", "POST", customer.ToRequestParams());
             return customerFactory.Create(result);
         }
@@ -70,7 +87,17 @@ namespace Omise
                 throw new ArgumentNullException("Customer info is required.");
             if (!customer.Valid)
                 throw new InvalidCustomerException("Customer is invalid.");
-            var result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customer.ToRequestParams());
+
+            if (customer.CardCreateInfo != null)
+            {
+                var tokenResult = this.tokenService.CreateToken(new TokenInfo()
+                {
+                    Card = customer.CardCreateInfo
+                });
+
+                customer.CardToken = tokenResult.Id;
+            }
+            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customer.ToRequestParams());
             return customerFactory.Create(result);
         }
 
@@ -83,7 +110,7 @@ namespace Omise
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId is required.");
-            var result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
+            string result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
         }
     }

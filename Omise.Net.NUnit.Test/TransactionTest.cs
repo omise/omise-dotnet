@@ -7,7 +7,8 @@ namespace Omise.Net.NUnit.Test
 	public class TransactionTest: TestBase
 	{
 		[Test]
-		public void TestGetAllTransactions(){
+		public void TestGetAllTransactions()
+        {
 			StubRequestWithResponse (@"{
 									    'object': 'list',
 									    'from': '1970-01-01T07:00:00+07:00',
@@ -44,7 +45,8 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestGetTransaction(){
+		public void TestGetTransaction()
+        {
 			StubRequestWithResponse(@"{
 								    'object': 'transaction',
 								    'id': '123',

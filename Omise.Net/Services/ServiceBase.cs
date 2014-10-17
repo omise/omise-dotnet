@@ -56,7 +56,8 @@ namespace Omise
         /// </summary>
         protected virtual string ApiUrlBase
         {
-            get { return "https://api.omise.co"; }
+            //get { return "https://api.omise.co"; }
+            get { return "http://api.lvh.me:3000"; }
         }
 
         /// <summary>

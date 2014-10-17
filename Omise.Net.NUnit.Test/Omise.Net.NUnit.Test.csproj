@@ -58,9 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Omise.Net\Omise.Net.csproj">
-      <Project>{75BC4F64-AEC4-43C8-9546-47830FFF25BA}</Project>
+      <Project>{75bc4f64-aec4-43c8-9546-47830fff25ba}</Project>
       <Name>Omise.Net</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
 </Project>

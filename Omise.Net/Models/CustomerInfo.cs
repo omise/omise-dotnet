@@ -31,15 +31,21 @@ namespace Omise
             set { description = value; }
         }
 
-        private string cardId;
+        private string cardToken;
         /// <summary>
         /// Gets or sets the card id or card token.
         /// </summary>
         /// <value>The card id or card token</value>
-        public string CardId
+        public string CardToken
         {
-            get { return cardId; }
-            set { cardId = value; }
+            get { return cardToken; }
+            set { cardToken = value; }
+        }
+
+        private CardCreateInfo cardCreateInfo;
+        public CardCreateInfo CardCreateInfo {
+            get { return cardCreateInfo; }
+            set { cardCreateInfo = value; }
         }
 
         /// <summary>
@@ -65,12 +71,24 @@ namespace Omise
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
-        /// <param name="cardId">Card id or card token to attach to customer</param>
+        /// <param name="cardId">Credit card id or card token to attach to customer</param>
         public CustomerInfo(string email, string description, string cardId)
         {
             this.email = email;
             this.description = description;
-            this.cardId = cardId;
+            this.cardToken = cardId;
+        }
+
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        /// </summary>
+        /// <param name="email">Customer's email</param>
+        /// <param name="description">Description of the customer</param>
+        /// <param name="cardCreateInfo">Credit card information to attach to customer</param>
+        public CustomerInfo(string email, string description, CardCreateInfo cardCreateInfo) {
+            this.email = email;
+            this.description = description;
+            this.cardCreateInfo = cardCreateInfo;
         }
 
         private void validate()
@@ -79,6 +97,17 @@ namespace Omise
             if (string.IsNullOrEmpty(Email))
             {
                 errors.Add("email", "cannot be blank");
+            }
+
+            if (!string.IsNullOrEmpty(this.cardToken) && cardCreateInfo != null)
+            {
+                errors.Add("card", "Specifying both card id and card dictionary is not allowed");
+            }
+
+            if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken)) {
+                if (!this.cardCreateInfo.Valid) {
+                    errors.Add("card", "Card information is invalid");
+                }
             }
         }
 
@@ -117,9 +146,9 @@ namespace Omise
             dict.Add("email", this.Email.ToString());
             dict.Add("description", this.Description);
 
-            if (!string.IsNullOrEmpty(this.cardId))
+            if (!string.IsNullOrEmpty(this.cardToken))
             {
-                dict.Add("card", this.cardId);
+                dict.Add("card", this.cardToken);
             }
 
             string result = "";

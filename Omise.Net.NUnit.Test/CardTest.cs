@@ -11,7 +11,7 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestGetAllCards(){
-			StubRequestWithResponse (TestHelper.GetJson("AllCards"));
+			StubRequestWithResponse (TestHelper.GetJson("AllCards.json"));
 			var cards = client.CardService.GetAllCards (customerId, DateTime.Now.AddDays(-5), null, 0, 20);
 			Assert.IsNotNull (cards);
 			Assert.AreEqual(20, cards.Limit);
@@ -27,7 +27,33 @@ namespace Omise.Net.NUnit.Test
 			card.ExpirationMonth=9;
 			card.ExpirationYear=2017;
 
-			string json = @"{
+            //Stub for internal TokenService call
+            StubRequestWithResponse("/tokens", "POST", @"{
+								    'object': 'token',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/tokens/123',
+								    'used': false,
+								    'card': {
+								        'object': 'card',
+								        'livemode': false,
+								        'country': '',
+								        'city': null,
+								        'postal_code': null,
+								        'financing': '',
+								        'last_digits': '4242',
+								        'brand': 'Visa',
+								        'expiration_month': 9,
+								        'expiration_year': 2017,
+								        'fingerprint': '123',
+								        'name': 'TestCard',
+								        'created': '2014-10-02T07:27:30Z'
+								    },
+								    'created': '2014-10-02T07:27:30Z'
+								}
+								");
+
+            StubRequestWithResponse(string.Format("/customers/{0}/cards", customerId), "POST", @"{
 				'object': 'card',
 				'id': '123',
 				'livemode': false,
@@ -43,9 +69,8 @@ namespace Omise.Net.NUnit.Test
 				'fingerprint': '123',
 				'name': 'Test Card',
 				'created': '2014-10-02T06:09:01Z'
-				}";
+				}");
 
-			StubRequestWithResponse (json);
 			var result = client.CardService.CreateCard(customerId, card);
 			Assert.AreEqual ("4242", result.LastDigits);
 			Assert.AreEqual (card.ExpirationMonth, result.ExpirationMonth);
@@ -58,6 +83,74 @@ namespace Omise.Net.NUnit.Test
 			Assert.AreEqual ("123", result.Id);
 			Assert.AreEqual (new DateTime(2014, 10, 2, 6, 9, 1), result.CreatedAt);
 		}
+
+        [Test]
+        public void TestCreateCardWithCardToken() {
+            var card = new CardCreateInfo();
+            card.Name = "Test Card";
+            card.Number = "4242424242424242";
+            card.ExpirationMonth = 9;
+            card.ExpirationYear = 2017;
+
+            var token = new TokenInfo();
+            token.Card = card;
+
+            StubRequestWithResponse(@"{
+								    'object': 'token',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/tokens/123',
+								    'used': false,
+								    'card': {
+								        'object': 'card',
+								        'livemode': false,
+								        'country': '',
+								        'city': null,
+								        'postal_code': null,
+								        'financing': '',
+								        'last_digits': '4242',
+								        'brand': 'Visa',
+								        'expiration_month': 9,
+								        'expiration_year': 2017,
+								        'fingerprint': '123',
+								        'name': 'TestCard',
+								        'created': '2014-10-02T07:27:30Z'
+								    },
+								    'created': '2014-10-02T07:27:30Z'
+								}
+								");
+            var resultToken = client.TokenService.CreateToken(token);
+
+            StubRequestWithResponse(@"{
+				'object': 'card',
+				'id': '123',
+				'livemode': false,
+				'location': '/customers/123/cards/123',
+				'country': 'Thailand',
+				'city': 'Bangkok',
+				'postal_code': null,
+				'financing': '',
+				'last_digits': '4242',
+				'brand': 'Visa',
+				'expiration_month': 9,
+				'expiration_year': 2017,
+				'fingerprint': '123',
+				'name': 'Test Card',
+				'created': '2014-10-02T06:09:01Z'
+				}");
+
+            var result = client.CardService.CreateCard(customerId, resultToken.Id);
+            Assert.AreEqual("4242", result.LastDigits);
+            Assert.AreEqual(card.ExpirationMonth, result.ExpirationMonth);
+            Assert.AreEqual(card.ExpirationYear, result.ExpirationYear);
+            Assert.AreEqual(card.Name, result.Name);
+            Assert.AreEqual(Brand.Visa, result.Brand);
+            Assert.AreEqual("Bangkok", result.City);
+            Assert.AreEqual("Thailand", result.Country);
+            Assert.AreEqual("123", result.Fingerprint);
+            Assert.AreEqual("123", result.Id);
+            Assert.AreEqual(new DateTime(2014, 10, 2, 6, 9, 1), result.CreatedAt);
+        }
 
 		[Test]
 		public void TestCreateInvalidCardNumber(){
@@ -103,7 +196,7 @@ namespace Omise.Net.NUnit.Test
 			card.ExpirationMonth=10;
 			card.ExpirationYear=2018;
 
-			string json = @"{
+			StubRequestWithResponse (@"{
 						    'object': 'card',
 						    'id': '123',
 						    'livemode': false,
@@ -119,9 +212,7 @@ namespace Omise.Net.NUnit.Test
 						    'fingerprint': '123',
 						    'name': 'My Test Card',
 						    'created': '2014-10-02T05:25:10Z'
-						}";
-
-			StubRequestWithResponse (json);
+						}");
 			var updateResult = client.CardService.UpdateCard (customerId, card);
 			Assert.IsNotNull (updateResult);
 			Assert.AreEqual ("4242", updateResult.LastDigits);
@@ -140,8 +231,9 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestGetCard(){
-			string json = @"{
+		public void TestGetCard()
+        {
+			StubRequestWithResponse (@"{
 				'object': 'card',
 				'id': '123',
 				'livemode': false,
@@ -157,9 +249,8 @@ namespace Omise.Net.NUnit.Test
 				'fingerprint': '123',
 				'name': 'Test Card',
 				'created': '2014-10-02T06:09:01Z'
-				}";
+				}");
 
-			StubRequestWithResponse (json);
 			var getCardResult = client.CardService.GetCard (customerId, "123");
 			Assert.IsNotNull (getCardResult);
 			Assert.AreEqual ("4242", getCardResult.LastDigits);
@@ -178,15 +269,14 @@ namespace Omise.Net.NUnit.Test
 		}
 
 		[Test]
-		public void TestDeleteCard(){
-			var json = @"{
+		public void TestDeleteCard()
+        {
+			StubRequestWithResponse (@"{
     					'object': 'card',
 					    'id': '123',
 					    'livemode': false,
 					    'deleted': true
-						}";
-
-			StubRequestWithResponse (json);
+						}");
 			var deleteResult = client.CardService.DeleteCard (customerId, "123");
 
 			Assert.AreEqual ("card", deleteResult.ObjectType);

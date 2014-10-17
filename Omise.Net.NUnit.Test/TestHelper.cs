@@ -19,7 +19,7 @@ namespace Omise.Net.NUnit.Test
 				return jsonDict [filename];
 
 			var output = new StringBuilder ();
-			string filePath = string.Format ("{0}/JsonFixtures/{1}.json", Directory.GetParent (Directory.GetCurrentDirectory ()).Parent.FullName, filename);
+			string filePath = string.Format ("{0}/JsonFixtures/{1}", Directory.GetParent (Directory.GetCurrentDirectory ()).Parent.FullName, filename);
 			using (StreamReader reader = new StreamReader (filePath)) {
 				string line;
 				while ((line = reader.ReadLine ()) != null) {
