@@ -13,7 +13,7 @@ namespace Omise
         /// Amount of the transfer
         /// </summary>
         [JsonProperty("amount")]
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
 
         /// <summary>
         /// Currency of the transfer

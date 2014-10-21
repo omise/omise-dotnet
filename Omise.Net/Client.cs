@@ -121,6 +121,16 @@ namespace Omise
             }
         }
 
+        private TransferService transferService;
+        public TransferService TransferService
+        {
+            get {
+                if (transferService == null)
+                    transferService = new TransferService(requestManager, privateKey);
+                return transferService;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with api keys. The client uses default IRequestManager object for all requests.
         /// </summary>

@@ -37,6 +37,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CustomerUpdateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Token.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="Factories\TransactionFactory.cs" />
     <Compile Include="Models\ChargeCreateInfo.cs" />
     <Compile Include="Models\CardCreateInfo.cs" />
-    <Compile Include="Models\CustomerInfo.cs" />
+    <Compile Include="Models\CustomerCreateInfo.cs" />
     <Compile Include="Models\DeleteResponseObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

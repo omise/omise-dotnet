@@ -84,7 +84,7 @@ namespace Omise
         /// <returns>The updated Omise card object</returns>
         /// <param name="customerId">Customer Id</param>
         /// <param name="cardInfo">CardInfo object</param>
-        public Card UpdateCard(string customerId, CardCreateInfo cardInfo)
+        public Card UpdateCard(string customerId, CardUpdateInfo cardInfo)
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId is required.");

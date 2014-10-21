@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Omise
 {
     /// <summary>
-    /// Defines information for creating a card
+    /// Defines information for updating a card
     /// </summary>
-    public class CardCreateInfo : RequestObject
+    public class CardUpdateInfo : RequestObject
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
 
@@ -90,7 +90,7 @@ namespace Omise
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
         /// </summary>
-        public CardCreateInfo() { }
+        public CardUpdateInfo() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
@@ -101,7 +101,7 @@ namespace Omise
         /// <param name="expirationYear">Card expiration year</param>
         /// <param name="city">Card city</param>
         /// <param name="postalCode">Card postal code</param>
-        public CardCreateInfo(string name, string number, int expirationMonth, int expirationYear, string city, string postalCode)
+        public CardUpdateInfo(string name, string number, int expirationMonth, int expirationYear, string city, string postalCode)
         {
             this.name = name;
             this.number = number;

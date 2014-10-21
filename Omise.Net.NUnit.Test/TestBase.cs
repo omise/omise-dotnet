@@ -4,28 +4,30 @@ using Rhino.Mocks;
 
 namespace Omise.Net.NUnit.Test
 {
-	public abstract class TestBase
-	{
-		protected string apiKey = "123456789";
+    public abstract class TestBase
+    {
+        protected string apiKey = "123456789";
         protected string publicKey = "123456789";
-		protected Omise.Client client;
-		protected IRequestManager requestManager;
+        protected Omise.Client client;
+        protected IRequestManager requestManager;
 
-		[SetUp]
-		public virtual void Setup(){
-			requestManager = MockRepository.GenerateStub<IRequestManager> ();
-			client = new Omise.Client (requestManager, this.apiKey, this.publicKey);
-		}
+        [SetUp]
+        public virtual void Setup()
+        {
+            requestManager = MockRepository.GenerateStub<IRequestManager>();
+            client = new Omise.Client(requestManager, this.apiKey, this.publicKey);
+        }
 
-		[TearDown]
-		public virtual void Teardown(){
-			client = null;
-		}
+        [TearDown]
+        public virtual void Teardown()
+        {
+            client = null;
+        }
 
-		protected void StubRequestWithResponse(string response)
+        protected void StubRequestWithResponse(string response)
         {
             requestManager.Expect(r => r.ExecuteRequest("", "", "")).IgnoreArguments().Return(response).Repeat.Once();
-		}
+        }
 
         protected void StubRequestWithResponse(string path, string method, string response)
         {
@@ -37,10 +39,10 @@ namespace Omise.Net.NUnit.Test
             requestManager.Expect(r => r.ExecuteRequest(path, method, payload)).Return(response).Repeat.Once();
         }
 
-		protected void StubExceptionThrow(Exception ex)
+        protected void StubExceptionThrow(Exception ex)
         {
             requestManager.Expect(r => r.ExecuteRequest("", "", "")).Throw(ex).IgnoreArguments().Repeat.Once();
-		}
-	}
+        }
+    }
 }
 

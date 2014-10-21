@@ -72,6 +72,27 @@ namespace Omise
             string result = requester.ExecuteRequest("/transfers/" + transferId, "GET", null);
             return transferFactory.Create(result);
         }
+
+        /// <summary>
+        /// Create a transfer request with amount
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public Transfer CreateTransfer(int amount) {
+            if (amount <= 0)
+                throw new ArgumentException("Amount must be greater than 0.");
+            string result = requester.ExecuteRequest("/transfers", "POST", "amount=" + amount.ToString());
+            return transferFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Create a transfer request with full available balance amount
+        /// </summary>
+        /// <returns></returns>
+        public Transfer CreateTransfer() {
+            string result = requester.ExecuteRequest("/transfers", "POST", null);
+            return transferFactory.Create(result);
+        }
     }
 }
 

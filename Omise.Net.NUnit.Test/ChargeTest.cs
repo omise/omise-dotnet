@@ -93,7 +93,7 @@ namespace Omise.Net.NUnit.Test
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardToken = "123";
+			charge.CardId = "123";
 			StubRequestWithResponse(@"{
 					    'object': 'charge',
 					    'id': '123',
@@ -160,7 +160,7 @@ namespace Omise.Net.NUnit.Test
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardToken = "123";
+			charge.CardId = "123";
 			charge.CustomerId = "123";
 			StubRequestWithResponse(@"{
 					    'object': 'charge',
@@ -367,7 +367,7 @@ namespace Omise.Net.NUnit.Test
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardToken = "123";
+			charge.CardId = "123";
 			Assert.Throws<InvalidChargeException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}
 
@@ -380,7 +380,7 @@ namespace Omise.Net.NUnit.Test
 			charge.Description = "Test charge";
 			charge.ReturnUri = "http://localhost:3000/";
 			charge.Capture = true;
-			charge.CardToken = "123";
+			charge.CardId = "123";
 			StubExceptionThrow (new ApiException ());
 			Assert.Throws<ApiException>(delegate { client.ChargeService.CreateCharge (charge); } );
 		}

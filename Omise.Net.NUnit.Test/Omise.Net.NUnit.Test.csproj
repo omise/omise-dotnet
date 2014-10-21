@@ -50,6 +50,7 @@
     <Compile Include="MockRequestManager.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="TransactionTest.cs" />
+    <Compile Include="TransferTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

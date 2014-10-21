@@ -40,7 +40,7 @@ namespace Omise
         /// </summary>
         /// <returns>Omise customer object</returns>
         /// <param name="customer">CustomerInfo object.</param>
-        public Customer CreateCustomer(CustomerInfo customer)
+        public Customer CreateCustomer(CustomerCreateInfo customer)
         {
             if (customer == null)
                 throw new ArgumentNullException("Customer info is required.");
@@ -79,7 +79,7 @@ namespace Omise
         /// <returns>Omise Customer object.</returns>
         /// <param name="customerId">Customer Id.</param>
         /// <param name="customer">CustomerInfo object.</param>
-        public Customer UpdateCustomer(string customerId, CustomerInfo customer)
+        public Customer UpdateCustomer(string customerId, CustomerUpdateInfo customer)
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId is required.");

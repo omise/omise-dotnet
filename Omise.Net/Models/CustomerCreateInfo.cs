@@ -6,7 +6,7 @@ namespace Omise
     /// <summary>
     /// Defines information for creating a customer
     /// </summary>
-    public class CustomerInfo : RequestObject
+    public class CustomerCreateInfo : RequestObject
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
         private string email;
@@ -33,9 +33,9 @@ namespace Omise
 
         private string cardToken;
         /// <summary>
-        /// Gets or sets the card id or card token.
+        /// Gets or sets the card token.
         /// </summary>
-        /// <value>The card id or card token</value>
+        /// <value>The card token</value>
         public string CardToken
         {
             get { return cardToken; }
@@ -49,30 +49,30 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.CustomerCreateInfo"/> class.
         /// </summary>
-        public CustomerInfo()
+        public CustomerCreateInfo()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.CustomerCreateInfo"/> class.
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
-        public CustomerInfo(string email, string description)
+        public CustomerCreateInfo(string email, string description)
         {
             this.email = email;
             this.description = description;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        /// Initializes a new instance of the <see cref="Omise.CustomerCreateInfo"/> class.
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
         /// <param name="cardId">Credit card id or card token to attach to customer</param>
-        public CustomerInfo(string email, string description, string cardId)
+        public CustomerCreateInfo(string email, string description, string cardId)
         {
             this.email = email;
             this.description = description;
@@ -80,12 +80,12 @@ namespace Omise
         }
 
         /// <summary>
-        ///  Initializes a new instance of the <see cref="Omise.CustomerInfo"/> class.
+        ///  Initializes a new instance of the <see cref="Omise.CustomerCreateInfo"/> class.
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
         /// <param name="cardCreateInfo">Credit card information to attach to customer</param>
-        public CustomerInfo(string email, string description, CardCreateInfo cardCreateInfo) {
+        public CustomerCreateInfo(string email, string description, CardCreateInfo cardCreateInfo) {
             this.email = email;
             this.description = description;
             this.cardCreateInfo = cardCreateInfo;
@@ -94,11 +94,6 @@ namespace Omise
         private void validate()
         {
             errors.Clear();
-            if (string.IsNullOrEmpty(Email))
-            {
-                errors.Add("email", "cannot be blank");
-            }
-
             if (!string.IsNullOrEmpty(this.cardToken) && cardCreateInfo != null)
             {
                 errors.Add("card", "Specifying both card id and card dictionary is not allowed");
@@ -112,7 +107,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="Omise.CustomerInfo"/> is valid.
+        /// Gets a value indicating whether this <see cref="Omise.CustomerCreateInfo"/> is valid.
         /// </summary>
         /// <value><c>true</c> if valid; otherwise, <c>false</c>.</value>
         public override bool Valid

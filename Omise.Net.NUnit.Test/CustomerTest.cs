@@ -10,7 +10,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomer()
         {
-            var customerInfo = new CustomerInfo();
+            var customerInfo = new CustomerCreateInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
 
@@ -57,7 +57,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomerWithCardInfo()
         {
-            var customerInfo = new CustomerInfo();
+            var customerInfo = new CustomerCreateInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
             customerInfo.CardCreateInfo = new CardCreateInfo()
@@ -156,7 +156,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomerWithCardToken()
         {
-            var customerInfo = new CustomerInfo();
+            var customerInfo = new CustomerCreateInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
             customerInfo.CardToken = "123";
@@ -222,7 +222,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomer()
         {
-            var customerUpdateInfo = new CustomerInfo();
+            var customerUpdateInfo = new CustomerUpdateInfo();
             customerUpdateInfo.Email = "test11@localhost";
             customerUpdateInfo.Description = "Test Customer 11 change email";
             StubRequestWithResponse(@"{
@@ -267,7 +267,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomerWithCardInfo()
         {
-            var customerUpdateInfo = new CustomerInfo();
+            var customerUpdateInfo = new CustomerUpdateInfo();
             customerUpdateInfo.Email = "test11@localhost";
             customerUpdateInfo.Description = "Test Customer 11 change email";
             customerUpdateInfo.CardCreateInfo = new CardCreateInfo()
@@ -364,7 +364,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomerWithCardToken()
         {
-            var customerUpdateInfo = new CustomerInfo();
+            var customerUpdateInfo = new CustomerUpdateInfo();
             customerUpdateInfo.Email = "test11@localhost";
             customerUpdateInfo.Description = "Test Customer 11 change email";
             customerUpdateInfo.CardToken = "123";

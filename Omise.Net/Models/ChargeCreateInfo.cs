@@ -68,15 +68,15 @@ namespace Omise
             set { reference = value; }
         }
 
-        private string cardToken;
+        private string cardId;
         /// <summary>
         /// Gets or sets the card Id
         /// </summary>
         /// <value>Card Id</value>
-        public string CardToken
+        public string CardId
         {
-            get { return cardToken; }
-            set { cardToken = value; }
+            get { return cardId; }
+            set { cardId = value; }
         }
 
         private string customerId;
@@ -125,7 +125,7 @@ namespace Omise
             this.description = description;
             this.returnUri = returnUri;
             this.reference = reference;
-            this.cardToken = cardId;
+            this.cardId = cardId;
             this.customerId = customerId;
         }
 
@@ -165,9 +165,9 @@ namespace Omise
                 dict.Add("customer", CustomerId);
             }
 
-            if (CardToken != null)
+            if (CardId != null)
             {
-                dict.Add("card", CardToken);
+                dict.Add("card", CardId);
             }
 
             string result = "";
@@ -223,7 +223,7 @@ namespace Omise
                 errors.Add("ReturnUri", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.CardToken))
+            if (string.IsNullOrEmpty(this.CardId))
             {
                 if (string.IsNullOrEmpty(this.CustomerId))
                 {

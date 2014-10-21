@@ -189,7 +189,7 @@ namespace Omise.Net.NUnit.Test
 
 		[Test]
 		public void TestUpdateCard(){
-			var card = new CardCreateInfo ();
+			var card = new CardUpdateInfo ();
 			card.Id = "123";
 			card.Name="My Test Card";
 			card.Number = "4242424242424242";
