@@ -60,9 +60,10 @@ namespace Omise
             return transferFactory.CreateCollection(result);
         }
 
-		public CollectionResponseObject<Transfer> GetAllTransfers(){
-			return GetAllTransfers (null, null, null, null);
-		}
+        public CollectionResponseObject<Transfer> GetAllTransfers()
+        {
+            return GetAllTransfers(null, null, null, null);
+        }
 
         /// <summary>
         /// Gets the transfer information.
@@ -72,7 +73,7 @@ namespace Omise
         public Transfer GetTransfer(string transferId)
         {
             if (string.IsNullOrEmpty(transferId))
-				throw new ArgumentNullException("transferId");
+                throw new ArgumentNullException("transferId");
             string result = requester.ExecuteRequest("/transfers/" + transferId, "GET", null);
             return transferFactory.Create(result);
         }
@@ -82,7 +83,8 @@ namespace Omise
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public Transfer CreateTransfer(int amount) {
+        public Transfer CreateTransfer(int amount)
+        {
             if (amount <= 0)
                 throw new ArgumentException("Amount must be greater than 0.");
             string result = requester.ExecuteRequest("/transfers", "POST", "amount=" + amount.ToString());
@@ -93,7 +95,8 @@ namespace Omise
         /// Create a transfer request with full available balance amount
         /// </summary>
         /// <returns></returns>
-        public Transfer CreateTransfer() {
+        public Transfer CreateTransfer()
+        {
             string result = requester.ExecuteRequest("/transfers", "POST", null);
             return transferFactory.Create(result);
         }

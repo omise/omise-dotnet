@@ -25,6 +25,7 @@ namespace Omise
         }
 
         private string currency;
+
         /// <summary>
         /// Gets or sets the currency
         /// </summary>
@@ -36,6 +37,7 @@ namespace Omise
         }
 
         private string description;
+
         /// <summary>
         /// Gets or sets the description
         /// </summary>
@@ -47,6 +49,7 @@ namespace Omise
         }
 
         private string returnUri;
+
         /// <summary>
         /// Gets or sets the return URI when charging is completed
         /// </summary>
@@ -58,6 +61,7 @@ namespace Omise
         }
 
         private string reference;
+
         /// <summary>
         /// Gets or sets the charge reference number
         /// </summary>
@@ -69,6 +73,7 @@ namespace Omise
         }
 
         private string cardId;
+
         /// <summary>
         /// Gets or sets the card Id
         /// </summary>
@@ -80,6 +85,7 @@ namespace Omise
         }
 
         private string customerId;
+
         /// <summary>
         /// Gets or sets the customer Id
         /// </summary>
@@ -91,6 +97,7 @@ namespace Omise
         }
 
         private bool capture;
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Omise.ChargeCreateInfo"/> will be automatic capture
         /// </summary>
@@ -162,12 +169,12 @@ namespace Omise
             dict.Add("capture", this.capture.ToString());
             if (this.customerId != null)
             {
-				dict.Add("customer", this.customerId);
+                dict.Add("customer", this.customerId);
             }
 
             if (this.cardId != null)
             {
-				dict.Add("card", this.cardId);
+                dict.Add("card", this.cardId);
             }
 
             string result = "";

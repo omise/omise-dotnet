@@ -24,7 +24,7 @@ namespace Omise
         public override Token Create(string json)
         {
             if (string.IsNullOrEmpty(json))
-				throw new ArgumentNullException (json);
+                throw new ArgumentNullException(json);
             var obj = JsonConvert.DeserializeObject<Token>(json);
             var jsonObject = JObject.Parse(json);
             obj.Card = jsonObject.SelectToken("card").ToObject<Card>();

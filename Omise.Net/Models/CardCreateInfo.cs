@@ -83,18 +83,23 @@ namespace Omise
         }
 
         private string securityCode;
-		/// <summary>
-		/// Gets or sets the security code.
-		/// </summary>
-		/// <value>The security code.</value>
-        public string SecurityCode {
+
+        /// <summary>
+        /// Gets or sets the security code.
+        /// </summary>
+        /// <value>The security code.</value>
+        public string SecurityCode
+        {
             get { return securityCode; }
             set { securityCode = value; }
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
         /// </summary>
-        public CardCreateInfo() { }
+        public CardCreateInfo()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CardCreateInfo"/> class.
@@ -111,10 +116,11 @@ namespace Omise
             this.number = number;
             this.expirationMonth = expirationMonth;
             this.expirationYear = expirationYear;
-			this.securityCode = securityCode;
+            this.securityCode = securityCode;
             this.city = city;
             this.postalCode = postalCode;
         }
+
         /// <summary>
         /// Get the string representing the querystring parameters
         /// </summary>
@@ -127,9 +133,10 @@ namespace Omise
             dict.Add("expiration_month", this.ExpirationMonth.ToString());
             dict.Add("expiration_year", this.ExpirationYear.ToString());
 
-			if (!string.IsNullOrEmpty (this.securityCode)) {
-				dict.Add ("security_code", this.securityCode);
-			}
+            if (!string.IsNullOrEmpty(this.securityCode))
+            {
+                dict.Add("security_code", this.securityCode);
+            }
 
             string result = "";
 

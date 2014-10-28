@@ -14,6 +14,7 @@ namespace Omise
         /// </summary>
         [JsonProperty("location")]
         public string Location { get; set; }
+
         /// <summary>
         /// Defines whether card object is live mode
         /// </summary>

@@ -23,6 +23,7 @@ namespace Omise
         }
 
         private string code;
+
         /// <summary>
         /// Error code
         /// </summary>
@@ -32,6 +33,7 @@ namespace Omise
         }
 
         private string message;
+
         /// <summary>
         /// Error message
         /// </summary>
@@ -41,6 +43,7 @@ namespace Omise
         }
 
         private string rawMessage;
+
         /// <summary>
         /// Raw error message
         /// </summary>
