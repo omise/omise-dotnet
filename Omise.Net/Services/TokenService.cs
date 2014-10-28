@@ -41,13 +41,13 @@ namespace Omise
         /// </summary>
         /// <returns>Omise Token object</returns>
         /// <param name="token">TokenInfo object</param>
-        public Token CreateToken(TokenInfo token)
+        public Token CreateToken(TokenInfo tokenInfo)
         {
-            if (token == null)
-                throw new ArgumentNullException("Token info is required.");
-            if (!token.Valid)
-                throw new InvalidCardException(getObjectErrors(token));
-            string result = requester.ExecuteRequest("/tokens", "POST", token.ToRequestParams());
+            if (tokenInfo == null)
+				throw new ArgumentNullException("tokenInfo");
+            if (!tokenInfo.Valid)
+                throw new InvalidCardException(getObjectErrors(tokenInfo));
+            string result = requester.ExecuteRequest("/tokens", "POST", tokenInfo.ToRequestParams());
             return tokenFactory.Create(result);
         }
 
@@ -59,7 +59,7 @@ namespace Omise
         public Token GetToken(string tokenId)
         {
             if (string.IsNullOrEmpty(tokenId))
-                throw new ArgumentNullException("Token id is required.");
+				throw new ArgumentNullException("tokenId");
             string result = requester.ExecuteRequest("/tokens/" + tokenId, "GET", null);
             return tokenFactory.Create(result);
         }

@@ -44,7 +44,7 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("description", this.Description);
+            dict.Add("description", this.description);
 
             string result = "";
 

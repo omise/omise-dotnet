@@ -60,6 +60,10 @@ namespace Omise
             return transactionFactory.CreateCollection(result);
         }
 
+		public CollectionResponseObject<Transaction> GetAllTransactions(){
+			return GetAllTransactions (null, null, null, null);
+		}
+
         /// <summary>
         /// Gets the transaction information.
         /// </summary>
@@ -68,7 +72,7 @@ namespace Omise
         public Transaction GetTransaction(string transactionId)
         {
             if (string.IsNullOrEmpty(transactionId))
-                throw new ArgumentNullException("Transaction id is required.");
+				throw new ArgumentNullException("transactionId");
             string result = requester.ExecuteRequest("/transactions/" + transactionId, "GET", null);
             return transactionFactory.Create(result);
         }

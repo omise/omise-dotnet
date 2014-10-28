@@ -31,13 +31,13 @@ namespace Omise
         /// </summary>
         /// <returns>The Omise charge object</returns>
         /// <param name="chargeInfo">ChargeInfo object</param>
-        public Charge CreateCharge(ChargeCreateInfo chargeInfo)
+        public Charge CreateCharge(ChargeCreateInfo chargeCreateInfo)
         {
-            if (chargeInfo == null)
-                throw new ArgumentNullException("Charge info is required.");
-            if (!chargeInfo.Valid)
-                throw new InvalidChargeException(getObjectErrors(chargeInfo));
-            string result = requester.ExecuteRequest("/charges", "POST", chargeInfo.ToRequestParams());
+            if (chargeCreateInfo == null)
+				throw new ArgumentNullException("chargeCreateInfo");
+            if (!chargeCreateInfo.Valid)
+                throw new InvalidChargeException(getObjectErrors(chargeCreateInfo));
+            string result = requester.ExecuteRequest("/charges", "POST", chargeCreateInfo.ToRequestParams());
             return chargeFactory.Create(result);
         }
 
@@ -49,9 +49,9 @@ namespace Omise
         public Charge UpdateCharge(ChargeUpdateInfo chargeUpdateInfo)
         {
             if (chargeUpdateInfo == null)
-                throw new ArgumentNullException("Charge update info is required.");
+				throw new ArgumentNullException("chargeUpdateInfo");
             if (!chargeUpdateInfo.Valid)
-                throw new ArgumentException("Charge Id is required.");
+				throw new InvalidChargeException(getObjectErrors(chargeUpdateInfo));
             string result = requester.ExecuteRequest("/charges/" + chargeUpdateInfo.Id, "PATCH", chargeUpdateInfo.ToRequestParams());
             return chargeFactory.Create(result);
         }
@@ -64,7 +64,7 @@ namespace Omise
         public Charge GetCharge(string chargeId)
         {
             if (string.IsNullOrEmpty(chargeId))
-                throw new ArgumentNullException("chargeId is required.");
+				throw new ArgumentNullException("chargeId");
 
             string url = string.Format("/charges/{0}", chargeId);
             string result = requester.ExecuteRequest(url, "GET", null);

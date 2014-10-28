@@ -18,7 +18,7 @@ namespace Omise
             : base(apiKey)
         {
             if (tokenService == null)
-                throw new ArgumentNullException("TokenService is required");
+				throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
@@ -31,7 +31,7 @@ namespace Omise
             : base(requestManager, apiKey)
         {
             if (tokenService == null)
-                throw new ArgumentNullException("TokenService is required");
+				throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
@@ -40,23 +40,23 @@ namespace Omise
         /// </summary>
         /// <returns>Omise customer object</returns>
         /// <param name="customer">CustomerInfo object.</param>
-        public Customer CreateCustomer(CustomerCreateInfo customer)
+        public Customer CreateCustomer(CustomerCreateInfo customerCreateInfo)
         {
-            if (customer == null)
-                throw new ArgumentNullException("Customer info is required.");
-            if (!customer.Valid)
-                throw new InvalidCustomerException(getObjectErrors(customer));
+            if (customerCreateInfo == null)
+				throw new ArgumentNullException("customerCreateInfo");
+            if (!customerCreateInfo.Valid)
+                throw new InvalidCustomerException(getObjectErrors(customerCreateInfo));
             
-            if (customer.CardCreateInfo != null) {
+            if (customerCreateInfo.CardCreateInfo != null) {
                 var tokenResult = this.tokenService.CreateToken(new TokenInfo()
                 {
-                    Card = customer.CardCreateInfo
+                    Card = customerCreateInfo.CardCreateInfo
                 });
 
-                customer.CardToken = tokenResult.Id;
+                customerCreateInfo.CardToken = tokenResult.Id;
             }
 
-            string result = requester.ExecuteRequest("/customers", "POST", customer.ToRequestParams());
+            string result = requester.ExecuteRequest("/customers", "POST", customerCreateInfo.ToRequestParams());
             return customerFactory.Create(result);
         }
 
@@ -68,7 +68,7 @@ namespace Omise
         public Customer GetCustomer(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             string result = requester.ExecuteRequest("/customers/" + customerId, "GET", null);
             return customerFactory.Create(result);
         }
@@ -79,25 +79,25 @@ namespace Omise
         /// <returns>Omise Customer object.</returns>
         /// <param name="customerId">Customer Id.</param>
         /// <param name="customer">CustomerInfo object.</param>
-        public Customer UpdateCustomer(string customerId, CustomerUpdateInfo customer)
+        public Customer UpdateCustomer(string customerId, CustomerUpdateInfo customerUpdateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
-            if (customer == null)
-                throw new ArgumentNullException("Customer info is required.");
-            if (!customer.Valid)
-                throw new InvalidCustomerException("Customer is invalid.");
+				throw new ArgumentNullException("customerId");
+            if (customerUpdateInfo == null)
+				throw new ArgumentNullException("customerUpdateInfo");
+            if (!customerUpdateInfo.Valid)
+				throw new InvalidCustomerException(getObjectErrors(customerUpdateInfo));
 
-            if (customer.CardCreateInfo != null)
+            if (customerUpdateInfo.CardCreateInfo != null)
             {
                 var tokenResult = this.tokenService.CreateToken(new TokenInfo()
                 {
-                    Card = customer.CardCreateInfo
+                    Card = customerUpdateInfo.CardCreateInfo
                 });
 
-                customer.CardToken = tokenResult.Id;
+                customerUpdateInfo.CardToken = tokenResult.Id;
             }
-            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customer.ToRequestParams());
+            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customerUpdateInfo.ToRequestParams());
             return customerFactory.Create(result);
         }
 
@@ -109,7 +109,7 @@ namespace Omise
         public DeleteResponseObject DeleteCustomer(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             string result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
         }

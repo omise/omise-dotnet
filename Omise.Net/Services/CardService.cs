@@ -19,7 +19,7 @@ namespace Omise
             : base(apiKey)
         {
             if (tokenService == null)
-                throw new ArgumentNullException("TokenService is required");
+				throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
@@ -32,7 +32,7 @@ namespace Omise
             : base(requestManager, apiKey)
         {
             if (tokenService == null)
-                throw new ArgumentNullException("TokenService is required");
+				throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
@@ -45,9 +45,9 @@ namespace Omise
         public Card CreateCard(string customerId, CardCreateInfo cardCreateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             if (cardCreateInfo == null)
-                throw new ArgumentNullException("card is required.");
+				throw new ArgumentNullException("cardCreateInfo");
             if (!cardCreateInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(cardCreateInfo));
 
@@ -70,9 +70,9 @@ namespace Omise
         public Card CreateCard(string customerId, string cardToken)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardToken))
-                throw new ArgumentNullException("cardToken is required.");
+				throw new ArgumentNullException("cardToken");
             string url = string.Format("/customers/{0}/cards", customerId);
             string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", cardToken));
             return cardFactory.Create(result);
@@ -84,16 +84,16 @@ namespace Omise
         /// <returns>The updated Omise card object</returns>
         /// <param name="customerId">Customer Id</param>
         /// <param name="cardInfo">CardInfo object</param>
-        public Card UpdateCard(string customerId, CardUpdateInfo cardInfo)
+        public Card UpdateCard(string customerId, CardUpdateInfo cardUpdateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
-            if (cardInfo == null)
-                throw new ArgumentNullException("card is required.");
-            if (!cardInfo.Valid)
-                throw new InvalidCardException(getObjectErrors(cardInfo));
-            string url = string.Format("/customers/{0}/cards/{1}", customerId, cardInfo.Id);
-            string result = requester.ExecuteRequest(url, "PATCH", cardInfo.ToRequestParams());
+				throw new ArgumentNullException("customerId");
+            if (cardUpdateInfo == null)
+				throw new ArgumentNullException("cardUpdateInfo");
+            if (!cardUpdateInfo.Valid)
+                throw new InvalidCardException(getObjectErrors(cardUpdateInfo));
+            string url = string.Format("/customers/{0}/cards/{1}", customerId, cardUpdateInfo.Id);
+            string result = requester.ExecuteRequest(url, "PATCH", cardUpdateInfo.ToRequestParams());
             return cardFactory.Create(result);
         }
 
@@ -109,7 +109,7 @@ namespace Omise
         public CollectionResponseObject<Card> GetAllCards(string customerId, DateTime? from, DateTime? to, int? offset, int? limit)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             var parameters = new List<string>();
             if (from.HasValue)
             {
@@ -133,6 +133,10 @@ namespace Omise
             return cardFactory.CreateCollection(result);
         }
 
+		public CollectionResponseObject<Card> GetAllCards(string customerId){
+			return GetAllCards (customerId, null, null, null, null);
+		}
+
         /// <summary>
         /// Gets the Omise card information.
         /// </summary>
@@ -142,9 +146,9 @@ namespace Omise
         public Card GetCard(string customerId, string cardId)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardId))
-                throw new ArgumentNullException("cardId is required.");
+				throw new ArgumentNullException("cardId");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return cardFactory.Create(result);
@@ -159,9 +163,9 @@ namespace Omise
         public DeleteResponseObject DeleteCard(string customerId, string cardId)
         {
             if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId is required.");
+				throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardId))
-                throw new ArgumentNullException("cardId is required.");
+				throw new ArgumentNullException("cardId");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
             string result = requester.ExecuteRequest(url, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);

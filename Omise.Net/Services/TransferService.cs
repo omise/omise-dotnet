@@ -60,6 +60,10 @@ namespace Omise
             return transferFactory.CreateCollection(result);
         }
 
+		public CollectionResponseObject<Transfer> GetAllTransfers(){
+			return GetAllTransfers (null, null, null, null);
+		}
+
         /// <summary>
         /// Gets the transfer information.
         /// </summary>
@@ -68,7 +72,7 @@ namespace Omise
         public Transfer GetTransfer(string transferId)
         {
             if (string.IsNullOrEmpty(transferId))
-                throw new ArgumentNullException("Transfer id is required");
+				throw new ArgumentNullException("transferId");
             string result = requester.ExecuteRequest("/transfers/" + transferId, "GET", null);
             return transferFactory.Create(result);
         }

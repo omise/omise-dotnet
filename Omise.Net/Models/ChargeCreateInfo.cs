@@ -155,19 +155,19 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("amount", this.Amount.ToString());
-            dict.Add("currency", this.Currency);
-            dict.Add("description", this.Description);
-            dict.Add("return_uri", this.ReturnUri);
-            dict.Add("capture", this.Capture.ToString());
-            if (CustomerId != null)
+            dict.Add("amount", this.amount.ToString());
+            dict.Add("currency", this.currency);
+            dict.Add("description", this.description);
+            dict.Add("return_uri", this.returnUri);
+            dict.Add("capture", this.capture.ToString());
+            if (this.customerId != null)
             {
-                dict.Add("customer", CustomerId);
+				dict.Add("customer", this.customerId);
             }
 
-            if (CardId != null)
+            if (this.cardId != null)
             {
-                dict.Add("card", CardId);
+				dict.Add("card", this.cardId);
             }
 
             string result = "";

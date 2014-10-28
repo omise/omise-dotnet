@@ -83,6 +83,10 @@ namespace Omise
         }
 
         private string securityCode;
+		/// <summary>
+		/// Gets or sets the security code.
+		/// </summary>
+		/// <value>The security code.</value>
         public string SecurityCode {
             get { return securityCode; }
             set { securityCode = value; }
@@ -101,12 +105,13 @@ namespace Omise
         /// <param name="expirationYear">Card expiration year</param>
         /// <param name="city">Card city</param>
         /// <param name="postalCode">Card postal code</param>
-        public CardUpdateInfo(string name, string number, int expirationMonth, int expirationYear, string city, string postalCode)
+		public CardUpdateInfo(string name, string number, int expirationMonth, int expirationYear, string securityCode, string city, string postalCode)
         {
             this.name = name;
             this.number = number;
             this.expirationMonth = expirationMonth;
             this.expirationYear = expirationYear;
+			this.securityCode = securityCode;
             this.city = city;
             this.postalCode = postalCode;
         }
@@ -117,11 +122,14 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("number", this.Number);
-            dict.Add("name", this.Name);
-            dict.Add("expiration_month", this.ExpirationMonth.ToString());
-            dict.Add("expiration_year", this.ExpirationYear.ToString());
-            dict.Add("security_code", this.SecurityCode.ToString());
+            dict.Add("number", this.number);
+            dict.Add("name", this.name);
+            dict.Add("expiration_month", this.expirationMonth.ToString());
+            dict.Add("expiration_year", this.expirationYear.ToString());
+
+			if (!string.IsNullOrEmpty (this.securityCode)) {
+				dict.Add ("security_code", this.securityCode);
+			}
 
             string result = "";
 

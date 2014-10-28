@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{75BC4F64-AEC4-43C8-9546-47830FFF25BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Omise.Net</RootNamespace>
@@ -88,6 +86,7 @@
     <Compile Include="Models\CardCreateInfo.cs" />
     <Compile Include="Models\CustomerCreateInfo.cs" />
     <Compile Include="Models\DeleteResponseObject.cs" />
+    <Compile Include="Models\CardUpdateInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

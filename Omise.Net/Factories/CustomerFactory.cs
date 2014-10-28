@@ -24,8 +24,8 @@ namespace Omise
         /// <returns></returns>
         public override Customer Create(string json)
         {
-            if (string.IsNullOrEmpty(json))
-                throw new InvalidOperationException("JSON Data is required for object mapping.");
+			if (string.IsNullOrEmpty (json))
+				throw new ArgumentNullException (json);
             var obj = JsonConvert.DeserializeObject<Customer>(json);
             var jsonObject = JObject.Parse(json);
             obj.CardCollection = new CardFactory().CreateCollection(jsonObject.SelectToken("cards").ToString());

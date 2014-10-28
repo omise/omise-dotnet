@@ -39,6 +39,7 @@ namespace Omise
                 dict.Add("card[expiration_month]", Card.ExpirationMonth.ToString());
                 dict.Add("card[expiration_year]", Card.ExpirationYear.ToString());
                 dict.Add("card[name]", Card.Name);
+				dict.Add("card[security_code]", Card.SecurityCode);
             }
 
             string result = "";
