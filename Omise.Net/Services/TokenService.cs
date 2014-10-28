@@ -17,6 +17,7 @@ namespace Omise
                 return "http://vault.lvh.me:3000";
             }
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.TokenService"/> class with api key. The service uses default IRequestManager object.
         /// </summary>
@@ -44,7 +45,7 @@ namespace Omise
         public Token CreateToken(TokenInfo tokenInfo)
         {
             if (tokenInfo == null)
-				throw new ArgumentNullException("tokenInfo");
+                throw new ArgumentNullException("tokenInfo");
             if (!tokenInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(tokenInfo));
             string result = requester.ExecuteRequest("/tokens", "POST", tokenInfo.ToRequestParams());
@@ -59,7 +60,7 @@ namespace Omise
         public Token GetToken(string tokenId)
         {
             if (string.IsNullOrEmpty(tokenId))
-				throw new ArgumentNullException("tokenId");
+                throw new ArgumentNullException("tokenId");
             string result = requester.ExecuteRequest("/tokens/" + tokenId, "GET", null);
             return tokenFactory.Create(result);
         }

@@ -17,6 +17,7 @@ namespace Omise
         private IRequestManager requestManager;
 
         private ChargeService chargeService;
+
         /// <summary>
         /// Gets the charge service.
         /// </summary>
@@ -32,6 +33,7 @@ namespace Omise
         }
 
         private CardService cardService;
+
         /// <summary>
         /// Gets the card service.
         /// </summary>
@@ -47,6 +49,7 @@ namespace Omise
         }
 
         private CustomerService customerService;
+
         /// <summary>
         /// Gets the customer service.
         /// </summary>
@@ -62,6 +65,7 @@ namespace Omise
         }
 
         private AccountService accountService;
+
         /// <summary>
         /// Gets the account service.
         /// </summary>
@@ -77,6 +81,7 @@ namespace Omise
         }
 
         private TokenService tokenService;
+
         /// <summary>
         /// Gets the token service.
         /// </summary>
@@ -92,6 +97,7 @@ namespace Omise
         }
 
         private BalanceService balanceService;
+
         /// <summary>
         /// Gets the balance service.
         /// </summary>
@@ -107,6 +113,7 @@ namespace Omise
         }
 
         private TransactionService transactionService;
+
         /// <summary>
         /// Gets the transaction service.
         /// </summary>
@@ -122,9 +129,11 @@ namespace Omise
         }
 
         private TransferService transferService;
+
         public TransferService TransferService
         {
-            get {
+            get
+            {
                 if (transferService == null)
                     transferService = new TransferService(requestManager, privateKey);
                 return transferService;
@@ -161,12 +170,12 @@ namespace Omise
             this.privateKey = privateKey;
         }
 
-       /// <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and api keys.
-       /// </summary>
-       /// <param name="requestManager"></param>
-       /// <param name="privateKey"></param>
-       /// <param name="publicKey"></param>
+        /// </summary>
+        /// <param name="requestManager"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="publicKey"></param>
         public Client(IRequestManager requestManager, string privateKey, string publicKey)
         {
             this.requestManager = requestManager;

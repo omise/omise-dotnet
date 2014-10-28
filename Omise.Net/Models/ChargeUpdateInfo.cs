@@ -13,6 +13,7 @@ namespace Omise
         private Dictionary<string, string> errors = new Dictionary<string, string>();
 
         private string description;
+
         /// <summary>
         /// Gets or sets the description of the charge
         /// </summary>
@@ -26,7 +27,9 @@ namespace Omise
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.ChargeUpdateInfo"/> class.
         /// </summary>
-        public ChargeUpdateInfo() { }
+        public ChargeUpdateInfo()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.ChargeUpdateInfo"/> class.

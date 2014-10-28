@@ -8,6 +8,7 @@ namespace Omise
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
         private string email;
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -19,6 +20,7 @@ namespace Omise
         }
 
         private string description;
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -30,6 +32,7 @@ namespace Omise
         }
 
         private string cardToken;
+
         /// <summary>
         /// Gets or sets the card token.
         /// </summary>
@@ -41,13 +44,17 @@ namespace Omise
         }
 
         private CardCreateInfo cardCreateInfo;
-        public CardCreateInfo CardCreateInfo {
+
+        public CardCreateInfo CardCreateInfo
+        {
             get { return cardCreateInfo; }
             set { cardCreateInfo = value; }
         }
 
         private string defaultCardId;
-        public string DefaultCardId {
+
+        public string DefaultCardId
+        {
             get { return defaultCardId; }
             set { defaultCardId = value; }
         }
@@ -104,8 +111,10 @@ namespace Omise
                 errors.Add("card", "Specifying both card token and card dictionary is not allowed");
             }
 
-            if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken)) {
-                if (!this.cardCreateInfo.Valid) {
+            if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken))
+            {
+                if (!this.cardCreateInfo.Valid)
+                {
                     errors.Add("card", "Card information is invalid");
                 }
             }

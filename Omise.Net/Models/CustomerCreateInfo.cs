@@ -10,6 +10,7 @@ namespace Omise
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
         private string email;
+
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
@@ -21,6 +22,7 @@ namespace Omise
         }
 
         private string description;
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -32,6 +34,7 @@ namespace Omise
         }
 
         private string cardToken;
+
         /// <summary>
         /// Gets or sets the card token.
         /// </summary>
@@ -43,7 +46,9 @@ namespace Omise
         }
 
         private CardCreateInfo cardCreateInfo;
-        public CardCreateInfo CardCreateInfo {
+
+        public CardCreateInfo CardCreateInfo
+        {
             get { return cardCreateInfo; }
             set { cardCreateInfo = value; }
         }
@@ -85,7 +90,8 @@ namespace Omise
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
         /// <param name="cardCreateInfo">Credit card information to attach to customer</param>
-        public CustomerCreateInfo(string email, string description, CardCreateInfo cardCreateInfo) {
+        public CustomerCreateInfo(string email, string description, CardCreateInfo cardCreateInfo)
+        {
             this.email = email;
             this.description = description;
             this.cardCreateInfo = cardCreateInfo;
@@ -99,8 +105,10 @@ namespace Omise
                 errors.Add("card", "Specifying both card id and card dictionary is not allowed");
             }
 
-            if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken)) {
-                if (!this.cardCreateInfo.Valid) {
+            if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken))
+            {
+                if (!this.cardCreateInfo.Valid)
+                {
                     errors.Add("card", "Card information is invalid");
                 }
             }

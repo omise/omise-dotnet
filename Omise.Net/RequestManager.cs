@@ -22,9 +22,9 @@ namespace Omise
         public RequestManager(string apiUrlBase, string apiKey)
         {
             if (string.IsNullOrEmpty(apiUrlBase))
-				throw new ArgumentNullException("apiUrlBase");
+                throw new ArgumentNullException("apiUrlBase");
             if (string.IsNullOrEmpty(apiKey))
-				throw new ArgumentNullException("apiKey");
+                throw new ArgumentNullException("apiKey");
             this.apiUrlBase = apiUrlBase;
             this.apiKey = apiKey;
             this.encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(this.apiKey + ":"));
