@@ -24,7 +24,7 @@ namespace Omise
         public virtual int Offset { get; set; }
 
         /// <summary>
-        /// Total numbers of records
+        /// Total numbers of records after filtered
         /// </summary>
         [JsonProperty("total")]
         public virtual int Total { get; set; }

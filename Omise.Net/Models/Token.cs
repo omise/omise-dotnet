@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 namespace Omise
 {
     /// <summary>
-    /// A Card token which can be safely transferred trough the API request. The token can only be used once.
+    /// A Card token which can be safely transferred through the Api request. The token can only be used once.
     /// </summary>
     [JsonObject]
     public class Token : ResponseObject

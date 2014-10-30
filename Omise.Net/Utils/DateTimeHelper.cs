@@ -3,11 +3,12 @@
 namespace Omise
 {
     /// <summary>
-    /// Defines helper methods for converting datetime to other types
+    /// Defines helper methods for datetime conversion
     /// </summary>
     public class DateTimeHelper
     {
         private static readonly string DateTimeFormat = "dd/MM/yyyy HH:mm:ss";
+
         /// <summary>
         /// Initialize the helper
         /// </summary>
@@ -18,7 +19,7 @@ namespace Omise
         /// <summary>
         /// Convert datetime object to datetime string which can be passed to the api
         /// </summary>
-        /// <param name="datetime"></param>
+        /// <param name="datetime">Datetime object</param>
         /// <returns></returns>
         public static string ToApiDateString(DateTime datetime)
         {

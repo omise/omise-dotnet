@@ -11,8 +11,9 @@ namespace Omise.Net.NUnit.Test
     public class TransferTest: TestBase
     {
         [Test]
-        public void TestCreateTransferWithFullAmount() {
-            StubRequestWithResponse(@"{
+        public void TestCreateTransferWithFullAmount()
+        {
+            stubResponse(@"{
                                         'object': 'transfer',
                                         'id': 'trsf_test_4xs5px8c36dsanuwztf',
                                         'amount': 50000,
@@ -27,13 +28,16 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateTransferWithInvalidAmount()
         {
-            Assert.Throws<ArgumentException>(delegate { client.TransferService.CreateTransfer(0); });
+            Assert.Throws<ArgumentException>(delegate
+                {
+                    client.TransferService.CreateTransfer(0);
+                });
         }
 
         [Test]
-        public void TestCreateTransferWithAmount() 
+        public void TestCreateTransferWithAmount()
         {
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
                                         'object': 'transfer',
                                         'id': 'trsf_test_4xs5px8c36dsanuwztf',
                                         'amount': 10000,
@@ -43,6 +47,64 @@ namespace Omise.Net.NUnit.Test
             var result = client.TransferService.CreateTransfer(10000);
             Assert.AreEqual(10000, result.Amount);
             Assert.AreEqual("THB", result.Currency);
+        }
+
+        [Test]
+        public void TestGetAllTransfers()
+        {
+            stubResponse(@"{
+                                        'object': 'list',
+                                        'from': '1970-01-01T07:00:00+07:00',
+                                        'to': '2014-10-29T11:15:32+07:00',
+                                        'offset': 0,
+                                        'limit': 20,
+                                        'total': 1,
+                                        'data': [
+                                            {
+                                                'object': 'transfer',
+                                                'id': 'trsf_test_4xuy4dcguo06a1vncmc',
+                                                'amount': 100025,
+                                                'currency': 'thb',
+                                                'created': '2014-10-27T07:02:54Z'
+                                            }
+                                        ]
+                                    }");
+
+            var transfers = client.TransferService.GetAllTransfers();
+            Assert.IsNotNull(transfers);
+            Assert.AreEqual(20, transfers.Limit);
+            Assert.AreEqual(0, transfers.Offset);
+            Assert.AreEqual(1, transfers.Total);
+            Assert.AreEqual(1, transfers.Collection.Count);
+        }
+
+        [Test]
+        public void TestGetAllTransfersWithPagination()
+        {
+            stubResponse(@"{
+                                        'object': 'list',
+                                        'from': '1970-01-01T07:00:00+07:00',
+                                        'to': '2014-10-29T11:15:32+07:00',
+                                        'offset': 0,
+                                        'limit': 20,
+                                        'total': 1,
+                                        'data': [
+                                            {
+                                                'object': 'transfer',
+                                                'id': 'trsf_test_4xuy4dcguo06a1vncmc',
+                                                'amount': 100025,
+                                                'currency': 'thb',
+                                                'created': '2014-10-27T07:02:54Z'
+                                            }
+                                        ]
+                                    }");
+
+            var transfers = client.TransferService.GetAllTransfers(null, null, 0, 20);
+            Assert.IsNotNull(transfers);
+            Assert.AreEqual(20, transfers.Limit);
+            Assert.AreEqual(0, transfers.Offset);
+            Assert.AreEqual(1, transfers.Total);
+            Assert.AreEqual(1, transfers.Collection.Count);
         }
     }
 }

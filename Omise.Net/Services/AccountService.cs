@@ -8,19 +8,19 @@ namespace Omise
     public class AccountService : ServiceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.AccountService"/> class with api key. The service uses default request manager object.
+        /// Initializes a new instance of the <see cref="Omise.AccountService"/> class with Api key. The service uses default request manager object.
         /// </summary>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public AccountService(string apiKey)
             : base(apiKey)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.AccountService"/> class with IRequestManager object and api key.
+        /// Initializes a new instance of the <see cref="Omise.AccountService"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object.</param>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public AccountService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
         {

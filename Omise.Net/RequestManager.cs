@@ -17,8 +17,8 @@ namespace Omise
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
         /// </summary>
-        /// <param name="apiUrlBase">API base URL</param>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiUrlBase">Api base URL</param>
+        /// <param name="apiKey">Api key</param>
         public RequestManager(string apiUrlBase, string apiKey)
         {
             if (string.IsNullOrEmpty(apiUrlBase))

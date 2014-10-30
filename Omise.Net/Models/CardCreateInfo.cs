@@ -108,6 +108,7 @@ namespace Omise
         /// <param name="number">Card number</param>
         /// <param name="expirationMonth">Card expiration month</param>
         /// <param name="expirationYear">Card expiration year</param>
+        /// <param name="securityCode">Security Code</param>
         /// <param name="city">Card city</param>
         /// <param name="postalCode">Card postal code</param>
         public CardCreateInfo(string name, string number, int expirationMonth, int expirationYear, string securityCode, string city, string postalCode)
@@ -128,10 +129,10 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("number", this.Number);
-            dict.Add("name", this.Name);
-            dict.Add("expiration_month", this.ExpirationMonth.ToString());
-            dict.Add("expiration_year", this.ExpirationYear.ToString());
+            dict.Add("number", this.number);
+            dict.Add("name", this.name);
+            dict.Add("expiration_month", this.expirationMonth.ToString());
+            dict.Add("expiration_year", this.expirationYear.ToString());
 
             if (!string.IsNullOrEmpty(this.securityCode))
             {

@@ -10,48 +10,50 @@ namespace Omise
     public class CustomerService : ServiceBase
     {
         private TokenService tokenService;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with api key and TokenService object. The service uses default IRequestManager object.
+        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with Api key and TokenService object. The service uses default IRequestManager object.
         /// </summary>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public CustomerService(string apiKey, TokenService tokenService)
             : base(apiKey)
         {
             if (tokenService == null)
-				throw new ArgumentNullException("tokenService");
+                throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with IRequestManager object, api key and TokenService object.
+        /// Initializes a new instance of the <see cref="Omise.CustomerService"/> class with IRequestManager object, Api key and TokenService object.
         /// </summary>
         /// <param name="requestManager">IRequestManager object.</param>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public CustomerService(IRequestManager requestManager, string apiKey, TokenService tokenService)
             : base(requestManager, apiKey)
         {
             if (tokenService == null)
-				throw new ArgumentNullException("tokenService");
+                throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
         /// <summary>
         /// Creates the customer.
         /// </summary>
-        /// <returns>Omise customer object</returns>
-        /// <param name="customer">CustomerInfo object.</param>
-        public Customer CreateCustomer(CustomerCreateInfo customerCreateInfo)
+        /// <returns>Customer object</returns>
+        /// <param name="customer">Customer information</param>
+        public Customer CreateCustomer(CustomerInfo customerCreateInfo)
         {
             if (customerCreateInfo == null)
-				throw new ArgumentNullException("customerCreateInfo");
+                throw new ArgumentNullException("customerCreateInfo");
             if (!customerCreateInfo.Valid)
                 throw new InvalidCustomerException(getObjectErrors(customerCreateInfo));
             
-            if (customerCreateInfo.CardCreateInfo != null) {
+            if (customerCreateInfo.CardCreateInfo != null)
+            {
                 var tokenResult = this.tokenService.CreateToken(new TokenInfo()
-                {
-                    Card = customerCreateInfo.CardCreateInfo
-                });
+                    {
+                        Card = customerCreateInfo.CardCreateInfo
+                    });
 
                 customerCreateInfo.CardToken = tokenResult.Id;
             }
@@ -63,12 +65,12 @@ namespace Omise
         /// <summary>
         /// Gets the customer.
         /// </summary>
-        /// <returns>Omise Customer object.</returns>
-        /// <param name="customerId">Customer Id.</param>
+        /// <returns>Customer object</returns>
+        /// <param name="customerId">Customer Id</param>
         public Customer GetCustomer(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             string result = requester.ExecuteRequest("/customers/" + customerId, "GET", null);
             return customerFactory.Create(result);
         }
@@ -76,28 +78,28 @@ namespace Omise
         /// <summary>
         /// Updates the customer.
         /// </summary>
-        /// <returns>Omise Customer object.</returns>
-        /// <param name="customerId">Customer Id.</param>
-        /// <param name="customer">CustomerInfo object.</param>
-        public Customer UpdateCustomer(string customerId, CustomerUpdateInfo customerUpdateInfo)
+        /// <returns>Customer object</returns>
+        /// <param name="customerId">Customer Id</param>
+        /// <param name="customer">Customer Information</param>
+        public Customer UpdateCustomer(string customerId, CustomerInfo customerInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
-            if (customerUpdateInfo == null)
-				throw new ArgumentNullException("customerUpdateInfo");
-            if (!customerUpdateInfo.Valid)
-				throw new InvalidCustomerException(getObjectErrors(customerUpdateInfo));
+                throw new ArgumentNullException("customerId");
+            if (customerInfo == null)
+                throw new ArgumentNullException("customerUpdateInfo");
+            if (!customerInfo.Valid)
+                throw new InvalidCustomerException(getObjectErrors(customerInfo));
 
-            if (customerUpdateInfo.CardCreateInfo != null)
+            if (customerInfo.CardCreateInfo != null)
             {
                 var tokenResult = this.tokenService.CreateToken(new TokenInfo()
-                {
-                    Card = customerUpdateInfo.CardCreateInfo
-                });
+                    {
+                        Card = customerInfo.CardCreateInfo
+                    });
 
-                customerUpdateInfo.CardToken = tokenResult.Id;
+                customerInfo.CardToken = tokenResult.Id;
             }
-            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customerUpdateInfo.ToRequestParams());
+            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customerInfo.ToRequestParams());
             return customerFactory.Create(result);
         }
 
@@ -109,7 +111,7 @@ namespace Omise
         public DeleteResponseObject DeleteCustomer(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             string result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
         }

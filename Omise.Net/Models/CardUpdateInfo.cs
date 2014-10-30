@@ -108,6 +108,7 @@ namespace Omise
         /// <param name="number">Card number</param>
         /// <param name="expirationMonth">Card expiration month</param>
         /// <param name="expirationYear">Card expiration year</param>
+        /// <param name="securityCode">Security code</param>
         /// <param name="city">Card city</param>
         /// <param name="postalCode">Card postal code</param>
         public CardUpdateInfo(string name, string number, int expirationMonth, int expirationYear, string securityCode, string city, string postalCode)

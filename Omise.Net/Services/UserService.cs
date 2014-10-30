@@ -8,7 +8,7 @@ namespace Omise
     public class UserService : ServiceBase
     {
         /// <summary>
-        /// Initialize the UserService instance with api key
+        /// Initialize the UserService instance with Api key
         /// </summary>
         /// <param name="apiKey"></param>
         public UserService(string apiKey)
@@ -17,7 +17,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initialize the UserService instance with IRequestManager object and api key
+        /// Initialize the UserService instance with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
         /// <param name="apiKey">Api key</param>

@@ -6,7 +6,7 @@ using System.Net;
 namespace Omise
 {
     /// <summary>
-    /// Represents the properties of API error information
+    /// Represents the properties of Api error information
     /// </summary>
     [Serializable]
     public class ApiErrorObject

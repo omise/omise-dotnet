@@ -24,22 +24,22 @@ namespace Omise.Net.NUnit.Test
             client = null;
         }
 
-        protected void StubRequestWithResponse(string response)
+        protected void stubResponse(string response)
         {
             requestManager.Expect(r => r.ExecuteRequest("", "", "")).IgnoreArguments().Return(response).Repeat.Once();
         }
 
-        protected void StubRequestWithResponse(string path, string method, string response)
+        protected void stubResponse(string path, string method, string response)
         {
             requestManager.Expect(r => r.ExecuteRequest(Arg<string>.Is.Equal(path), Arg<string>.Is.Equal(method), Arg<string>.Is.Anything)).Return(response).Repeat.Once();
         }
 
-        protected void StubRequestWithResponse(string path, string method, string payload, string response)
+        protected void stubResponse(string path, string method, string payload, string response)
         {
             requestManager.Expect(r => r.ExecuteRequest(path, method, payload)).Return(response).Repeat.Once();
         }
 
-        protected void StubExceptionThrow(Exception ex)
+        protected void stubException(Exception ex)
         {
             requestManager.Expect(r => r.ExecuteRequest("", "", "")).Throw(ex).IgnoreArguments().Repeat.Once();
         }

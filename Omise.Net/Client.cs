@@ -130,6 +130,10 @@ namespace Omise
 
         private TransferService transferService;
 
+        /// <summary>
+        /// Gets the transfer service.
+        /// </summary>
+        /// <value>The transfer service.</value>
         public TransferService TransferService
         {
             get
@@ -141,18 +145,18 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with api keys. The client uses default IRequestManager object for all requests.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public Client(string apiKey)
         {
             this.privateKey = apiKey;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with api keys. The client uses default IRequestManager object for all requests.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public Client(string privateKey, string publicKey)
         {
             this.privateKey = privateKey;
@@ -160,10 +164,10 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and api key.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
-        /// <param name="privateKey">API key</param>
+        /// <param name="privateKey">Api key</param>
         public Client(IRequestManager requestManager, string privateKey)
         {
             this.requestManager = requestManager;
@@ -171,7 +175,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and api keys.
+        /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and Api keys.
         /// </summary>
         /// <param name="requestManager"></param>
         /// <param name="privateKey"></param>

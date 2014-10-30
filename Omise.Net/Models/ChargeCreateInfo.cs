@@ -75,9 +75,9 @@ namespace Omise
         private string cardId;
 
         /// <summary>
-        /// Gets or sets the card Id
+        /// Gets or sets the card Id or card token
         /// </summary>
-        /// <value>Card Id</value>
+        /// <value>Card Id or Card Token</value>
         public string CardId
         {
             get { return cardId; }
@@ -89,7 +89,7 @@ namespace Omise
         /// <summary>
         /// Gets or sets the customer Id
         /// </summary>
-        /// <value>The customer identifier</value>
+        /// <value>The customer Id</value>
         public string CustomerId
         {
             get { return customerId; }
@@ -99,7 +99,7 @@ namespace Omise
         private bool capture;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Omise.ChargeCreateInfo"/> will be automatic capture
+        /// Gets or sets a value indicating whether this <see cref="Omise.ChargeCreateInfo"/> will be automaticaly captured
         /// </summary>
         /// <value><c>true</c> if capture; otherwise, <c>false</c></value>
         public bool Capture
@@ -215,26 +215,26 @@ namespace Omise
         private void validate()
         {
             errors.Clear();
-            if (this.Amount <= 0)
+            if (this.amount <= 0)
             {
                 errors.Add("Amount", "must be greater than 0");
             }
 
-            if (string.IsNullOrEmpty(this.Currency))
+            if (string.IsNullOrEmpty(this.currency))
             {
                 errors.Add("Currency", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.ReturnUri))
+            if (string.IsNullOrEmpty(this.returnUri))
             {
                 errors.Add("ReturnUri", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.CardId))
+            if (string.IsNullOrEmpty(this.cardId))
             {
-                if (string.IsNullOrEmpty(this.CustomerId))
+                if (string.IsNullOrEmpty(this.customerId))
                 {
-                    errors.Add("CardId", "cannot be blank. You can use card id or card token. You can also pass CustomerId to use the customer's default card.");
+                    errors.Add("CardId", "cannot be blank. You can use card id or card token. Using card Id you must also pass the customer Id. You could only pass CustomerId to use the customer's default card.");
                 }
             }
         }

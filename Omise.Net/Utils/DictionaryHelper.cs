@@ -9,7 +9,7 @@ namespace Omise
     public class DictionaryHelper
     {
         /// <summary>
-        /// Initialize a DictionaryHelper object
+        /// Initialize the helper
         /// </summary>
         public DictionaryHelper()
         {

@@ -10,11 +10,11 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomer()
         {
-            var customerInfo = new CustomerCreateInfo();
+            var customerInfo = new CustomerInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
 
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -57,7 +57,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomerWithCardInfo()
         {
-            var customerInfo = new CustomerCreateInfo();
+            var customerInfo = new CustomerInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
             customerInfo.CardCreateInfo = new CardCreateInfo()
@@ -69,7 +69,7 @@ namespace Omise.Net.NUnit.Test
             };
 
             //Stub for internal TokenService call
-            StubRequestWithResponse("/tokens", "POST", @"{
+            stubResponse("/tokens", "POST", @"{
 								    'object': 'token',
 								    'id': '123',
 								    'livemode': false,
@@ -94,7 +94,7 @@ namespace Omise.Net.NUnit.Test
 								}
 								");
 
-            StubRequestWithResponse("/customers", "POST", @"{
+            stubResponse("/customers", "POST", @"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -156,12 +156,12 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestCreateCustomerWithCardToken()
         {
-            var customerInfo = new CustomerCreateInfo();
+            var customerInfo = new CustomerInfo();
             customerInfo.Email = "test2@localhost";
             customerInfo.Description = "Test customer 2";
             customerInfo.CardToken = "123";
 
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -222,10 +222,10 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomer()
         {
-            var customerUpdateInfo = new CustomerUpdateInfo();
-            customerUpdateInfo.Email = "test11@localhost";
-            customerUpdateInfo.Description = "Test Customer 11 change email";
-            StubRequestWithResponse(@"{
+            var customerInfo = new CustomerInfo();
+            customerInfo.Email = "test11@localhost";
+            customerInfo.Description = "Test Customer 11 change email";
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -245,7 +245,7 @@ namespace Omise.Net.NUnit.Test
 								        'location': '/customers/123/cards'
 								    }
 								}");
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerUpdateInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
@@ -267,10 +267,10 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomerWithCardInfo()
         {
-            var customerUpdateInfo = new CustomerUpdateInfo();
-            customerUpdateInfo.Email = "test11@localhost";
-            customerUpdateInfo.Description = "Test Customer 11 change email";
-            customerUpdateInfo.CardCreateInfo = new CardCreateInfo()
+            var customerInfo = new CustomerInfo();
+            customerInfo.Email = "test11@localhost";
+            customerInfo.Description = "Test Customer 11 change email";
+            customerInfo.CardCreateInfo = new CardCreateInfo()
             {
                 Name = "Test card",
                 Number = "4242424242424242",
@@ -279,7 +279,7 @@ namespace Omise.Net.NUnit.Test
             };
 
             //Stub for internal TokenService call
-            StubRequestWithResponse("/tokens", "POST", @"{
+            stubResponse("/tokens", "POST", @"{
 								    'object': 'token',
 								    'id': '123',
 								    'livemode': false,
@@ -304,7 +304,7 @@ namespace Omise.Net.NUnit.Test
 								}
 								");
 
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -342,7 +342,7 @@ namespace Omise.Net.NUnit.Test
 								        'location': '/customers/123/cards'
 								    }
 								}");
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerUpdateInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
@@ -364,12 +364,12 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestUpdateCustomerWithCardToken()
         {
-            var customerUpdateInfo = new CustomerUpdateInfo();
-            customerUpdateInfo.Email = "test11@localhost";
-            customerUpdateInfo.Description = "Test Customer 11 change email";
-            customerUpdateInfo.CardToken = "123";
+            var customerInfo = new CustomerInfo();
+            customerInfo.Email = "test11@localhost";
+            customerInfo.Description = "Test Customer 11 change email";
+            customerInfo.CardToken = "123";
 
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,
@@ -408,7 +408,7 @@ namespace Omise.Net.NUnit.Test
 								    }
 								}");
 
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerUpdateInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
@@ -430,7 +430,7 @@ namespace Omise.Net.NUnit.Test
         [Test]
         public void TestDeleteCustomer()
         {
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
     					'object': 'customer',
 					    'id': '123',
 					    'livemode': false,
@@ -440,17 +440,17 @@ namespace Omise.Net.NUnit.Test
             var result = client.CustomerService.DeleteCustomer("123");
             Assert.AreEqual("123", result.Id);
             Assert.IsTrue(result.Deleted);
-            StubExceptionThrow(new ApiException());
+            stubException(new ApiException());
             Assert.Throws<ApiException>(delegate
-            {
-                client.CustomerService.GetCustomer("123");
-            });
+                {
+                    client.CustomerService.GetCustomer("123");
+                });
         }
 
         [Test]
         public void TestGetCustomerInfo()
         {
-            StubRequestWithResponse(@"{
+            stubResponse(@"{
 								    'object': 'customer',
 								    'id': '123',
 								    'livemode': false,

@@ -9,19 +9,19 @@ namespace Omise
     public class TransferService : ServiceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with api key. The service uses default IRequestManager object.
+        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with Api key. The service uses default IRequestManager object.
         /// </summary>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">Api key</param>
         public TransferService(string apiKey)
             : base(apiKey)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with IRequestManager object and api key.
+        /// Initializes a new instance of the <see cref="Omise.TransferService"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">Api key</param>
         public TransferService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
         {
@@ -60,6 +60,10 @@ namespace Omise
             return transferFactory.CreateCollection(result);
         }
 
+        /// <summary>
+        /// Gets all transfers.
+        /// </summary>
+        /// <returns>CollectionResponseObject of transfers.</returns>
         public CollectionResponseObject<Transfer> GetAllTransfers()
         {
             return GetAllTransfers(null, null, null, null);

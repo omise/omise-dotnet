@@ -30,12 +30,6 @@ namespace Omise
         public bool LiveMode { get; set; }
 
         /// <summary>
-        /// Defines whether the customer is deleted
-        /// </summary>
-        [JsonProperty("deleted")]
-        public bool Deleted { get; set; }
-
-        /// <summary>
         /// Defines the uri for getting the customer information
         /// </summary>
         [JsonProperty("location")]

@@ -9,19 +9,19 @@ namespace Omise
     public class TransactionService : ServiceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with api key. The service uses default IRequestManager object.
+        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with Api key. The service uses default IRequestManager object.
         /// </summary>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">Api key</param>
         public TransactionService(string apiKey)
             : base(apiKey)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with IRequestManager object and api key.
+        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">Api key</param>
         public TransactionService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
         {
@@ -60,6 +60,10 @@ namespace Omise
             return transactionFactory.CreateCollection(result);
         }
 
+        /// <summary>
+        /// Gets all transactions.
+        /// </summary>
+        /// <returns>CollectionResponseObject of transactions.</returns>
         public CollectionResponseObject<Transaction> GetAllTransactions()
         {
             return GetAllTransactions(null, null, null, null);

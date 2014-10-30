@@ -13,7 +13,7 @@ namespace Omise
     [Serializable]
     public sealed class ApiException : Exception
     {
-        private static string defaultMessage = "There was an error requesting the API. {0}";
+        private static string defaultMessage = "There was an error requesting the Api. {0}";
         private WebException webException;
         private ApiErrorObject apiErrorObject;
 
@@ -55,9 +55,9 @@ namespace Omise
         }
 
         /// <summary>
-        /// Gets the API error object.
+        /// Gets the Api error object.
         /// </summary>
-        /// <value>The API error object.</value>
+        /// <value>The Api error object.</value>
         public ApiErrorObject ApiErrorObject
         {
             get { return apiErrorObject; }

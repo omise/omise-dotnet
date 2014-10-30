@@ -6,7 +6,7 @@ namespace Omise
     /// <summary>
     /// Defines information for creating a customer
     /// </summary>
-    public class CustomerCreateInfo : RequestObject
+    public class CustomerInfo : RequestObject
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
         private string email;
@@ -56,7 +56,7 @@ namespace Omise
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CustomerCreateInfo"/> class.
         /// </summary>
-        public CustomerCreateInfo()
+        public CustomerInfo()
         {
         }
 
@@ -65,7 +65,7 @@ namespace Omise
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
-        public CustomerCreateInfo(string email, string description)
+        public CustomerInfo(string email, string description)
         {
             this.email = email;
             this.description = description;
@@ -76,12 +76,12 @@ namespace Omise
         /// </summary>
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
-        /// <param name="cardId">Credit card id or card token to attach to customer</param>
-        public CustomerCreateInfo(string email, string description, string cardId)
+        /// <param name="cardToken">Credit card token to attach to customer</param>
+        public CustomerInfo(string email, string description, string cardToken)
         {
             this.email = email;
             this.description = description;
-            this.cardToken = cardId;
+            this.cardToken = cardToken;
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Omise
         /// <param name="email">Customer's email</param>
         /// <param name="description">Description of the customer</param>
         /// <param name="cardCreateInfo">Credit card information to attach to customer</param>
-        public CustomerCreateInfo(string email, string description, CardCreateInfo cardCreateInfo)
+        public CustomerInfo(string email, string description, CardCreateInfo cardCreateInfo)
         {
             this.email = email;
             this.description = description;
@@ -102,7 +102,7 @@ namespace Omise
             errors.Clear();
             if (!string.IsNullOrEmpty(this.cardToken) && cardCreateInfo != null)
             {
-                errors.Add("card", "Specifying both card id and card dictionary is not allowed");
+                errors.Add("card", "Specifying both card token and card dictionary is not allowed");
             }
 
             if (this.cardCreateInfo != null && string.IsNullOrEmpty(this.cardToken))

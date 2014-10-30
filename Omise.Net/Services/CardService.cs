@@ -11,50 +11,51 @@ namespace Omise
     public class CardService : ServiceBase
     {
         private TokenService tokenService;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with api key and TokenService object. The service uses default request manager object.
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with Api key and TokenService object. The service uses default request manager object.
         /// </summary>
-        /// <param name="apiKey">API key</param>
+        /// <param name="apiKey">Api key</param>
         public CardService(string apiKey, TokenService tokenService)
             : base(apiKey)
         {
             if (tokenService == null)
-				throw new ArgumentNullException("tokenService");
+                throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, api key and TokenService object.
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, Api key and TokenService object.
         /// </summary>
         /// <param name="requestManager">Request manager.</param>
-        /// <param name="apiKey">API key.</param>
+        /// <param name="apiKey">Api key</param>
         public CardService(IRequestManager requestManager, string apiKey, TokenService tokenService)
             : base(requestManager, apiKey)
         {
             if (tokenService == null)
-				throw new ArgumentNullException("tokenService");
+                throw new ArgumentNullException("tokenService");
             this.tokenService = tokenService;
         }
 
         /// <summary>
         /// Creates the credit card.
         /// </summary>
-        /// <returns>The created Omise card object</returns>
+        /// <returns>Omise card object</returns>
         /// <param name="customerId">Customer Id</param>
-        /// <param name="cardCreateInfo">CardInfo object</param>
+        /// <param name="cardCreateInfo">Card information</param>
         public Card CreateCard(string customerId, CardCreateInfo cardCreateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             if (cardCreateInfo == null)
-				throw new ArgumentNullException("cardCreateInfo");
+                throw new ArgumentNullException("cardCreateInfo");
             if (!cardCreateInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(cardCreateInfo));
 
             var tokenResult = this.tokenService.CreateToken(new TokenInfo()
-            {
-                Card = cardCreateInfo
-            });
+                {
+                    Card = cardCreateInfo
+                });
 
             string url = string.Format("/customers/{0}/cards", customerId);
             string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", tokenResult.Id));
@@ -64,15 +65,15 @@ namespace Omise
         /// <summary>
         /// Creates the credit card with customer id and card token
         /// </summary>
-        /// <param name="customerId">Customer's Id</param>
+        /// <param name="customerId">Customer Id</param>
         /// <param name="cardToken">Card token</param>
-        /// <returns>Omise Card object</returns>
+        /// <returns>Omise card object</returns>
         public Card CreateCard(string customerId, string cardToken)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardToken))
-				throw new ArgumentNullException("cardToken");
+                throw new ArgumentNullException("cardToken");
             string url = string.Format("/customers/{0}/cards", customerId);
             string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", cardToken));
             return cardFactory.Create(result);
@@ -81,15 +82,15 @@ namespace Omise
         /// <summary>
         /// Updates the credit card.
         /// </summary>
-        /// <returns>The updated Omise card object</returns>
+        /// <returns>Omise card object</returns>
         /// <param name="customerId">Customer Id</param>
-        /// <param name="cardInfo">CardInfo object</param>
+        /// <param name="cardUpdateInfo">Card information</param>
         public Card UpdateCard(string customerId, CardUpdateInfo cardUpdateInfo)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             if (cardUpdateInfo == null)
-				throw new ArgumentNullException("cardUpdateInfo");
+                throw new ArgumentNullException("cardUpdateInfo");
             if (!cardUpdateInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(cardUpdateInfo));
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardUpdateInfo.Id);
@@ -109,7 +110,7 @@ namespace Omise
         public CollectionResponseObject<Card> GetAllCards(string customerId, DateTime? from, DateTime? to, int? offset, int? limit)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             var parameters = new List<string>();
             if (from.HasValue)
             {
@@ -133,9 +134,15 @@ namespace Omise
             return cardFactory.CreateCollection(result);
         }
 
-		public CollectionResponseObject<Card> GetAllCards(string customerId){
-			return GetAllCards (customerId, null, null, null, null);
-		}
+        /// <summary>
+        /// Gets all cards belongs to a customer.
+        /// </summary>
+        /// <returns>CollectionResponseObject of cards</returns>
+        /// <param name="customerId">Customer Id.</param>
+        public CollectionResponseObject<Card> GetAllCards(string customerId)
+        {
+            return GetAllCards(customerId, null, null, null, null);
+        }
 
         /// <summary>
         /// Gets the Omise card information.
@@ -146,9 +153,9 @@ namespace Omise
         public Card GetCard(string customerId, string cardId)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardId))
-				throw new ArgumentNullException("cardId");
+                throw new ArgumentNullException("cardId");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return cardFactory.Create(result);
@@ -163,9 +170,9 @@ namespace Omise
         public DeleteResponseObject DeleteCard(string customerId, string cardId)
         {
             if (string.IsNullOrEmpty(customerId))
-				throw new ArgumentNullException("customerId");
+                throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardId))
-				throw new ArgumentNullException("cardId");
+                throw new ArgumentNullException("cardId");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
             string result = requester.ExecuteRequest(url, "DELETE", null);
             return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
