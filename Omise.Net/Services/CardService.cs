@@ -167,7 +167,7 @@ namespace Omise
         /// <returns>The result of deleting the object</returns>
         /// <param name="customerId">Customer Id</param>
         /// <param name="cardId">Card Id</param>
-        public DeleteResponseObject DeleteCard(string customerId, string cardId)
+        public Card DeleteCard(string customerId, string cardId)
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId");
@@ -175,7 +175,7 @@ namespace Omise
                 throw new ArgumentNullException("cardId");
             string url = string.Format("/customers/{0}/cards/{1}", customerId, cardId);
             string result = requester.ExecuteRequest(url, "DELETE", null);
-            return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
+            return cardFactory.Create(result);
         }
     }
 }

@@ -108,12 +108,12 @@ namespace Omise
         /// </summary>
         /// <returns>The result of deleting the object</returns>
         /// <param name="customerId">Customer Id</param>
-        public DeleteResponseObject DeleteCustomer(string customerId)
+        public Customer DeleteCustomer(string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
                 throw new ArgumentNullException("customerId");
             string result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
-            return JsonConvert.DeserializeObject<DeleteResponseObject>(result);
+            return customerFactory.Create(result);
         }
     }
 }

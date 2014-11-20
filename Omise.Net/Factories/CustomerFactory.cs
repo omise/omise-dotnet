@@ -28,7 +28,11 @@ namespace Omise
                 throw new ArgumentNullException(json);
             var obj = JsonConvert.DeserializeObject<Customer>(json);
             var jsonObject = JObject.Parse(json);
-            obj.CardCollection = new CardFactory().CreateCollection(jsonObject.SelectToken("cards").ToString());
+            var cardsJson = jsonObject.SelectToken("cards");
+            if (cardsJson != null)
+            {
+                obj.CardCollection = new CardFactory().CreateCollection(cardsJson.ToString());
+            }
             return obj;
         }
     }

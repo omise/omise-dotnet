@@ -440,11 +440,6 @@ namespace Omise.Net.NUnit.Test
             var result = client.CustomerService.DeleteCustomer("123");
             Assert.AreEqual("123", result.Id);
             Assert.IsTrue(result.Deleted);
-            stubException(new ApiException());
-            Assert.Throws<ApiException>(delegate
-                {
-                    client.CustomerService.GetCustomer("123");
-                });
         }
 
         [Test]

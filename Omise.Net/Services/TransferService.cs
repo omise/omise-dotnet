@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Omise
 {
@@ -92,6 +93,35 @@ namespace Omise
             if (amount <= 0)
                 throw new ArgumentException("Amount must be greater than 0.");
             string result = requester.ExecuteRequest("/transfers", "POST", "amount=" + amount.ToString());
+            return transferFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Updates the transfer.
+        /// </summary>
+        /// <returns>The transfer.</returns>
+        /// <param name="transferId">Transfer id</param>
+        /// <param name="amount">Amount</param>
+        public Transfer UpdateTransfer(string transferId, int amount)
+        {
+            if (string.IsNullOrEmpty(transferId))
+                throw new ArgumentNullException("transferId");
+            if (amount <= 0)
+                throw new ArgumentException("Amount must be greater than 0.");
+            string result = requester.ExecuteRequest("/transfers/" + transferId, "PATCH", "amount=" + amount.ToString());
+            return transferFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Deletes the transfer.
+        /// </summary>
+        /// <returns>The result of deleting the object</returns>
+        /// <param name="transferId">Transfer id</param>
+        public Transfer DeleteTransfer(string transferId)
+        {
+            if (string.IsNullOrEmpty(transferId))
+                throw new ArgumentNullException("transferId");
+            string result = requester.ExecuteRequest("/transfers/" + transferId, "DELETE", null);
             return transferFactory.Create(result);
         }
 

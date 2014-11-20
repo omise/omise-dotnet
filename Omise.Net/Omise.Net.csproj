@@ -83,9 +83,17 @@
     <Compile Include="Factories\TransactionFactory.cs" />
     <Compile Include="Models\ChargeCreateInfo.cs" />
     <Compile Include="Models\CardCreateInfo.cs" />
-    <Compile Include="Models\DeleteResponseObject.cs" />
     <Compile Include="Models\CardUpdateInfo.cs" />
     <Compile Include="Models\CustomerInfo.cs" />
+    <Compile Include="Models\Recipient.cs" />
+    <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Services\RecipientService.cs" />
+    <Compile Include="Factories\RecipientFactory.cs" />
+    <Compile Include="Factories\BankAccountFactory.cs" />
+    <Compile Include="Models\RecipientInfo.cs" />
+    <Compile Include="Models\BankAccountInfo.cs" />
+    <Compile Include="Exceptions\InvalidRecipientException.cs" />
+    <Compile Include="Enums\RecipientType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

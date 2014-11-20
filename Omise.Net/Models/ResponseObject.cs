@@ -15,6 +15,13 @@ namespace Omise
         public virtual string Id { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the object is deleted.
+        /// </summary>
+        /// <value><c>true</c> if deleted; otherwise, <c>false</c>.</value>
+        [JsonProperty("deleted")]
+        public virtual bool Deleted{ get; set; }
+
+        /// <summary>
         /// Specify the creation datetime of the object
         /// </summary>
         [JsonProperty("created")]

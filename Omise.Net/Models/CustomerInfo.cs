@@ -146,8 +146,8 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("email", this.Email.ToString());
-            dict.Add("description", this.Description);
+            dict.Add("email", this.email);
+            dict.Add("description", this.description);
 
             if (!string.IsNullOrEmpty(this.cardToken))
             {

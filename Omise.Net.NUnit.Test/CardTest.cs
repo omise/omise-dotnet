@@ -298,7 +298,6 @@ namespace Omise.Net.NUnit.Test
 						}");
             var deleteResult = client.CardService.DeleteCard(customerId, "123");
 
-            Assert.AreEqual("card", deleteResult.ObjectType);
             Assert.AreEqual("123", deleteResult.Id);
             Assert.IsFalse(deleteResult.LiveMode);
             Assert.IsTrue(deleteResult.Deleted);

@@ -22,6 +22,11 @@ namespace Omise
         protected BalanceFactory balanceFactory;
 
         /// <summary>
+        /// BankAccount factory defines methods for creating BankAccount object from api response
+        /// </summary>
+        protected BankAccountFactory bankAccountFactory;
+
+        /// <summary>
         /// Card factory defines methods for creating Card object from api response
         /// </summary>
         protected CardFactory cardFactory;
@@ -35,6 +40,11 @@ namespace Omise
         /// Customer factory defines methods for creating Customer object from api response
         /// </summary>
         protected CustomerFactory customerFactory;
+
+        /// <summary>
+        /// Recipient factory defines methods for creating Recipient object from api response
+        /// </summary>
+        protected RecipientFactory recipientFactory;
 
         /// <summary>
         /// Token factory defines methods for creating Token object from api response
@@ -77,9 +87,11 @@ namespace Omise
             }
             accountFactory = new AccountFactory();
             balanceFactory = new BalanceFactory();
+            bankAccountFactory = new BankAccountFactory();
             cardFactory = new CardFactory();
             chargeFactory = new ChargeFactory();
             customerFactory = new CustomerFactory();
+            recipientFactory = new RecipientFactory();
             tokenFactory = new TokenFactory();
             transactionFactory = new TransactionFactory();
             transferFactory = new TransferFactory();
@@ -94,9 +106,11 @@ namespace Omise
             requester = new RequestManager(ApiUrlBase, apiKey);
             accountFactory = new AccountFactory();
             balanceFactory = new BalanceFactory();
+            bankAccountFactory = new BankAccountFactory();
             cardFactory = new CardFactory();
             chargeFactory = new ChargeFactory();
             customerFactory = new CustomerFactory();
+            recipientFactory = new RecipientFactory();
             tokenFactory = new TokenFactory();
             transferFactory = new TransferFactory();
         }

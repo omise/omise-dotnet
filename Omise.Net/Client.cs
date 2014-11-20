@@ -144,6 +144,18 @@ namespace Omise
             }
         }
 
+        private RecipientService recipientService;
+
+        public RecipientService RecipientService
+        {
+            get
+            { 
+                if (recipientService == null)
+                    recipientService = new RecipientService(requestManager, privateKey);
+                return recipientService;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>

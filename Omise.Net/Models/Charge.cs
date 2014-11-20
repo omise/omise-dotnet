@@ -58,6 +58,13 @@ namespace Omise
         public bool Captured { get; set; }
 
         /// <summary>
+        /// The transaction id
+        /// </summary>
+        /// <value>The transaction id</value>
+        [JsonProperty("transaction")]
+        public string TransactionId{ get; set; }
+
+        /// <summary>
         /// A uri which the gateway will redirect to after finish captured
         /// </summary>
         [JsonProperty("return_uri")]
@@ -74,6 +81,14 @@ namespace Omise
         /// </summary>
         [JsonProperty("authorize_uri")]
         public string AuthorizeUrl { get; set; }
+
+
+        [JsonProperty("failure_code")]
+        public string FailureCode{ get; set; }
+
+
+        [JsonProperty("failure_message")]
+        public string FailureMessage{ get; set; }
 
         /// <summary>
         /// A customer id whose a charge is applied

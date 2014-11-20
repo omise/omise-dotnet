@@ -20,6 +20,27 @@ namespace Omise
         /// </summary>
         [JsonProperty("currency")]
         public string Currency { get; set; }
+
+        [JsonProperty("sent")]
+        public bool Sent{ get; set; }
+
+        [JsonProperty("paid")]
+        public bool Paid{ get; set; }
+
+        [JsonProperty("failure_code")]
+        public string FailureCode{ get; set; }
+
+        [JsonProperty("failure_message")]
+        public string FailureMessage{ get; set; }
+
+        [JsonProperty("transaction")]
+        public string TransactionId{ get; set; }
+
+        [JsonProperty("livemode")]
+        public bool LiveMode { get; set; }
+
+        [JsonProperty("location")]
+        public string Location { get; set; }
     }
 }
 

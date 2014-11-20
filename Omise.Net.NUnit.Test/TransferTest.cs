@@ -106,5 +106,67 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1, transfers.Total);
             Assert.AreEqual(1, transfers.Collection.Count);
         }
+
+        [Test]
+        public void TestUpdateTransfer()
+        {
+            stubResponse(@"{
+                            'object': 'transfer',
+                            'id': 'trsf_test_4xs5px8c36dsanuwztf',
+                            'amount': 50000,
+                            'currency': 'THB',
+                            'created': '2014-10-20T03:55:08Z'
+                           }");
+
+            var result = client.TransferService.UpdateTransfer("trsf_test_4xs5px8c36dsanuwztf", 50000);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("trsf_test_4xs5px8c36dsanuwztf", result.Id);
+            Assert.AreEqual(50000, result.Amount);
+            Assert.AreEqual("THB", result.Currency);
+            Assert.AreEqual(new DateTime(2014, 10, 20, 3, 55, 8), result.CreatedAt);
+        }
+
+        [Test]
+        public void TestUpdateTransferWithInvalidAmount()
+        {
+            Assert.Throws<ArgumentException>(delegate
+                {
+                    client.TransferService.UpdateTransfer("trsf_test_4xs5px8c36dsanuwztf", -5);
+                });
+        }
+
+        [Test]
+        public void TestDeleteTransfer()
+        {
+            stubResponse(@"{
+                        'object': 'transfer',
+                        'id': 'trsf_test_4xs5px8c36dsanuwztf',
+                        'livemode': false,
+                        'deleted': true
+                        }");
+
+            var result = client.TransferService.DeleteTransfer("trsf_test_4xs5px8c36dsanuwztf");
+            Assert.AreEqual("trsf_test_4xs5px8c36dsanuwztf", result.Id);
+            Assert.IsTrue(result.Deleted);
+        }
+
+        [Test]
+        public void TestGetTransfer()
+        {
+            stubResponse(@"{
+                            'object': 'transfer',
+                            'id': 'trsf_test_4xs5px8c36dsanuwztf',
+                            'amount': 50000,
+                            'currency': 'THB',
+                            'created': '2014-10-20T03:55:08Z'
+                           }");
+
+            var result = client.TransferService.GetTransfer("trsf_test_4xs5px8c36dsanuwztf");
+            Assert.IsNotNull(result);
+            Assert.AreEqual("trsf_test_4xs5px8c36dsanuwztf", result.Id);
+            Assert.AreEqual(50000, result.Amount);
+            Assert.AreEqual("THB", result.Currency);
+            Assert.AreEqual(new DateTime(2014, 10, 20, 3, 55, 8), result.CreatedAt);
+        }
     }
 }
