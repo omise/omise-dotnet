@@ -81,10 +81,8 @@ namespace Omise
         /// <returns>Customer object</returns>
         /// <param name="customerId">Customer Id</param>
         /// <param name="customer">Customer Information</param>
-        public Customer UpdateCustomer(string customerId, CustomerInfo customerInfo)
+        public Customer UpdateCustomer(CustomerInfo customerInfo)
         {
-            if (string.IsNullOrEmpty(customerId))
-                throw new ArgumentNullException("customerId");
             if (customerInfo == null)
                 throw new ArgumentNullException("customerUpdateInfo");
             if (!customerInfo.Valid)
@@ -99,7 +97,7 @@ namespace Omise
 
                 customerInfo.CardToken = tokenResult.Id;
             }
-            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", customerInfo.ToRequestParams());
+            string result = requester.ExecuteRequest("/customers/" + customerInfo.Id, "PATCH", customerInfo.ToRequestParams());
             return customerFactory.Create(result);
         }
 

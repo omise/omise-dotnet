@@ -14,7 +14,7 @@ namespace Omise
         {
             get
             {
-                return "http://vault.lvh.me:3000";
+                return "https://vault.omise.co";
             }
         }
 

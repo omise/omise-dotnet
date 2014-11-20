@@ -223,6 +223,7 @@ namespace Omise.Net.NUnit.Test
         public void TestUpdateCustomer()
         {
             var customerInfo = new CustomerInfo();
+            customerInfo.Id = "123";
             customerInfo.Email = "test11@localhost";
             customerInfo.Description = "Test Customer 11 change email";
             stubResponse(@"{
@@ -245,7 +246,7 @@ namespace Omise.Net.NUnit.Test
 								        'location': '/customers/123/cards'
 								    }
 								}");
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer(customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
@@ -268,6 +269,7 @@ namespace Omise.Net.NUnit.Test
         public void TestUpdateCustomerWithCardInfo()
         {
             var customerInfo = new CustomerInfo();
+            customerInfo.Id = "123";
             customerInfo.Email = "test11@localhost";
             customerInfo.Description = "Test Customer 11 change email";
             customerInfo.CardCreateInfo = new CardCreateInfo()
@@ -342,7 +344,7 @@ namespace Omise.Net.NUnit.Test
 								        'location': '/customers/123/cards'
 								    }
 								}");
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer(customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
@@ -365,6 +367,7 @@ namespace Omise.Net.NUnit.Test
         public void TestUpdateCustomerWithCardToken()
         {
             var customerInfo = new CustomerInfo();
+            customerInfo.Id = "123";
             customerInfo.Email = "test11@localhost";
             customerInfo.Description = "Test Customer 11 change email";
             customerInfo.CardToken = "123";
@@ -408,7 +411,7 @@ namespace Omise.Net.NUnit.Test
 								    }
 								}");
 
-            var customerUpdateResult = client.CustomerService.UpdateCustomer("123", customerInfo);
+            var customerUpdateResult = client.CustomerService.UpdateCustomer(customerInfo);
             Assert.IsNotNull(customerUpdateResult);
             Assert.AreEqual("123", customerUpdateResult.Id);
             Assert.AreEqual("test11@localhost", customerUpdateResult.Email);
