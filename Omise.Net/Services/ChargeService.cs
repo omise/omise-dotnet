@@ -57,7 +57,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Gets the charge.
+        /// Gets a charge.
         /// </summary>
         /// <returns>Charge object</returns>
         /// <param name="chargeId">Charge Id</param>
@@ -69,6 +69,56 @@ namespace Omise
             string url = string.Format("/charges/{0}", chargeId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return chargeFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Creates a refund.
+        /// </summary>
+        /// <returns>The refund.</returns>
+        /// <param name="chargeId">Charge id</param>
+        /// <param name="amount">Amount</param>
+        public Refund CreateRefund(string chargeId, int amount)
+        {
+            if (string.IsNullOrEmpty(chargeId))
+                throw new ArgumentNullException("chargeId");
+
+            if (amount <= 0)
+                throw new ArgumentException("amount must be greater than 0");
+
+            string url = string.Format("/charges/{0}/refunds", chargeId);
+            string result = requester.ExecuteRequest(url, "POST", "amount=" + amount);
+            return refundFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Gets the refund detail
+        /// </summary>
+        /// <returns>The refund.</returns>
+        /// <param name="chargeId">Charge id</param>
+        /// <param name="refundId">Refund id</param>
+        public Refund GetRefund(string chargeId, string refundId)
+        {
+            if (string.IsNullOrEmpty(chargeId))
+                throw new ArgumentNullException("chargeId");
+
+            string url = string.Format("/charges/{0}/refunds/{1}", chargeId, refundId);
+            string result = requester.ExecuteRequest(url, "GET", null);
+            return refundFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Gets the refunds of the charge
+        /// </summary>
+        /// <returns>CollectionResponseObject of refund</returns>
+        /// <param name="chargeId">Charge id</param>
+        public CollectionResponseObject<Refund> GetRefunds(string chargeId)
+        {
+            if (string.IsNullOrEmpty(chargeId))
+                throw new ArgumentNullException("chargeId");
+
+            string url = string.Format("/charges/{0}/refunds", chargeId);
+            string result = requester.ExecuteRequest(url, "GET", null);
+            return refundFactory.CreateCollection(result);
         }
     }
 }

@@ -47,6 +47,11 @@ namespace Omise
         protected RecipientFactory recipientFactory;
 
         /// <summary>
+        /// Refund factory defines methods for creating Refund object from api response
+        /// </summary>
+        protected RefundFactory refundFactory;
+
+        /// <summary>
         /// Token factory defines methods for creating Token object from api response
         /// </summary>
         protected TokenFactory tokenFactory;
@@ -91,6 +96,7 @@ namespace Omise
             chargeFactory = new ChargeFactory();
             customerFactory = new CustomerFactory();
             recipientFactory = new RecipientFactory();
+            refundFactory = new RefundFactory();
             tokenFactory = new TokenFactory();
             transactionFactory = new TransactionFactory();
             transferFactory = new TransferFactory();
@@ -110,6 +116,7 @@ namespace Omise
             chargeFactory = new ChargeFactory();
             customerFactory = new CustomerFactory();
             recipientFactory = new RecipientFactory();
+            refundFactory = new RefundFactory();
             tokenFactory = new TokenFactory();
             transferFactory = new TransferFactory();
         }

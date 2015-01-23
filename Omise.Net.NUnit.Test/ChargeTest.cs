@@ -66,6 +66,7 @@ namespace Omise.Net.NUnit.Test
             Assert.IsNotNullOrEmpty(result.Id);
             Assert.AreEqual(10000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
+            Assert.IsFalse(result.Captured);
             Assert.AreEqual(new DateTime(2014, 10, 2, 8, 8, 11), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);
@@ -153,7 +154,7 @@ namespace Omise.Net.NUnit.Test
 
         [Test]
         public void TestCreateChargeWithCardId()
-        {
+        {   
             var charge = new ChargeCreateInfo();
             charge.Amount = 10000;//100 THB,=> 10000 Satangs
             charge.Currency = "THB";
@@ -389,6 +390,91 @@ namespace Omise.Net.NUnit.Test
                 {
                     client.ChargeService.CreateCharge(charge);
                 });
+        }
+
+        [Test]
+        public void TestCreateZeroRefund()
+        {
+            Assert.Throws<ArgumentException>(delegate
+                {
+                    client.ChargeService.CreateRefund("chrg_test_4ypu0hc0ubm3sujb1g6", 0);
+                });
+        }
+
+        [Test]
+        public void TestCreateRefund()
+        {
+            stubResponse(@"{
+                'object': 'refund',
+                'id': 'rfnd_test_4ytdj6mfxqx6lqoyg50',
+                'location': '/charges/chrg_test_4ypu0hc0ubm3sujb1g6/refunds/rfnd_test_4ytdj6mfxqx6lqoyg50',
+                'amount': 100,
+                'currency': 'thb',
+                'charge': 'chrg_test_4ypu0hc0ubm3sujb1g6',
+                'transaction': 'trxn_test_4ytdj6mmjdejo4yogx6',
+                'created': '2015-01-23T07:34:04Z'
+            }");
+
+            var refund = client.ChargeService.CreateRefund("chrg_test_4ypu0hc0ubm3sujb1g6", 100);
+            Assert.AreEqual(100, refund.Amount);
+            Assert.AreEqual("thb", refund.Currency);
+            Assert.AreEqual("chrg_test_4ypu0hc0ubm3sujb1g6", refund.ChargeId);
+            Assert.AreEqual("trxn_test_4ytdj6mmjdejo4yogx6", refund.TransactionId);
+            Assert.AreEqual("rfnd_test_4ytdj6mfxqx6lqoyg50", refund.Id);
+        }
+
+        public void TestGetRefund()
+        {
+            stubResponse(@"{
+                'object': 'refund',
+                'id': 'rfnd_test_4ytdj6mfxqx6lqoyg50',
+                'location': '/charges/chrg_test_4ypu0hc0ubm3sujb1g6/refunds/rfnd_test_4ytdj6mfxqx6lqoyg50',
+                'amount': 100,
+                'currency': 'thb',
+                'charge': 'chrg_test_4ypu0hc0ubm3sujb1g6',
+                'transaction': 'trxn_test_4ytdj6mmjdejo4yogx6',
+                'created': '2015-01-23T07:34:04Z'
+            }");
+
+            var refund = client.ChargeService.GetRefund("chrg_test_4ypu0hc0ubm3sujb1g6", "rfnd_test_4ytdj6mfxqx6lqoyg50");
+            Assert.AreEqual(100, refund.Amount);
+            Assert.AreEqual("thb", refund.Currency);
+            Assert.AreEqual("chrg_test_4ypu0hc0ubm3sujb1g6", refund.ChargeId);
+            Assert.AreEqual("trxn_test_4ytdj6mmjdejo4yogx6", refund.TransactionId);
+            Assert.AreEqual("rfnd_test_4ytdj6mfxqx6lqoyg50", refund.Id);
+        }
+
+        public void TestGetRefunds()
+        {
+            stubResponse(@"{
+                'object': 'list',
+                'from': '1970-01-01T00:00:00+00:00',
+                'to': '2015-01-23T08:00:04+00:00',
+                'offset': 0,
+                'limit': 20,
+                'total': 1,
+                'data': [
+                    {
+                        'object': 'refund',
+                        'id': 'rfnd_test_4ytdj6mfxqx6lqoyg50',
+                        'location': '/charges/chrg_test_4ypu0hc0ubm3sujb1g6/refunds/rfnd_test_4ytdj6mfxqx6lqoyg50',
+                        'amount': 100,
+                        'currency': 'thb',
+                        'charge': 'chrg_test_4ypu0hc0ubm3sujb1g6',
+                        'transaction': 'trxn_test_4ytdj6mmjdejo4yogx6',
+                        'created': '2015-01-23T07:34:04Z'
+                    }
+                ],
+                'location': '/charges/chrg_test_4ypu0hc0ubm3sujb1g6/refunds'
+            }");
+
+
+            var refunds = client.ChargeService.GetRefunds("chrg_test_4ypu0hc0ubm3sujb1g6");
+            Assert.IsNotNull(refunds);
+            Assert.AreEqual(20, refunds.Limit);
+            Assert.AreEqual(0, refunds.Offset);
+            Assert.AreEqual(1, refunds.Collection.Count);
+            Assert.AreEqual("/charges/chrg_test_4ypu0hc0ubm3sujb1g6/refunds", refunds.Location);
         }
     }
 }

@@ -94,6 +94,8 @@
     <Compile Include="Models\BankAccountInfo.cs" />
     <Compile Include="Exceptions\InvalidRecipientException.cs" />
     <Compile Include="Enums\RecipientType.cs" />
+    <Compile Include="Models\Refund.cs" />
+    <Compile Include="Factories\RefundFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

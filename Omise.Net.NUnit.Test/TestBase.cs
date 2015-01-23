@@ -6,7 +6,7 @@ namespace Omise.Net.NUnit.Test
 {
     public abstract class TestBase
     {
-        protected string apiKey = "123456789";
+        protected string secretKey = "123456789";
         protected string publicKey = "123456789";
         protected Omise.Client client;
         protected IRequestManager requestManager;
@@ -15,7 +15,7 @@ namespace Omise.Net.NUnit.Test
         public virtual void Setup()
         {
             requestManager = MockRepository.GenerateStub<IRequestManager>();
-            client = new Omise.Client(requestManager, this.apiKey, this.publicKey);
+            client = new Omise.Client(requestManager, this.secretKey, this.publicKey);
         }
 
         [TearDown]
