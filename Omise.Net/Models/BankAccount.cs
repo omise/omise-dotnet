@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Omise
 {
+    /// <summary>
+    /// Omise Bank account object
+    /// </summary>
     [JsonObject]
     public class BankAccount: ResponseObject
     {

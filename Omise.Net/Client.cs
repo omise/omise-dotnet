@@ -12,7 +12,7 @@ namespace Omise
     /// </summary>
     public class Client
     {
-        private string privateKey;
+        private string secretKey;
         private string publicKey;
         private IRequestManager requestManager;
 
@@ -27,7 +27,7 @@ namespace Omise
             get
             {
                 if (chargeService == null)
-                    chargeService = new ChargeService(requestManager, privateKey);
+                    chargeService = new ChargeService(requestManager, secretKey);
                 return chargeService;
             }
         }
@@ -43,7 +43,7 @@ namespace Omise
             get
             {
                 if (cardService == null)
-                    cardService = new CardService(requestManager, privateKey, this.TokenService);
+                    cardService = new CardService(requestManager, secretKey, this.TokenService);
                 return cardService;
             }
         }
@@ -59,7 +59,7 @@ namespace Omise
             get
             {
                 if (customerService == null)
-                    customerService = new CustomerService(requestManager, privateKey, this.TokenService);
+                    customerService = new CustomerService(requestManager, secretKey, this.TokenService);
                 return customerService;
             }
         }
@@ -75,7 +75,7 @@ namespace Omise
             get
             {
                 if (accountService == null)
-                    accountService = new AccountService(requestManager, privateKey);
+                    accountService = new AccountService(requestManager, secretKey);
                 return accountService;
             }
         }
@@ -107,7 +107,7 @@ namespace Omise
             get
             {
                 if (balanceService == null)
-                    balanceService = new BalanceService(requestManager, privateKey);
+                    balanceService = new BalanceService(requestManager, secretKey);
                 return balanceService;
             }
         }
@@ -123,7 +123,7 @@ namespace Omise
             get
             {
                 if (transactionService == null)
-                    transactionService = new TransactionService(requestManager, privateKey);
+                    transactionService = new TransactionService(requestManager, secretKey);
                 return transactionService;
             }
         }
@@ -139,7 +139,7 @@ namespace Omise
             get
             {
                 if (transferService == null)
-                    transferService = new TransferService(requestManager, privateKey);
+                    transferService = new TransferService(requestManager, secretKey);
                 return transferService;
             }
         }
@@ -151,7 +151,7 @@ namespace Omise
             get
             { 
                 if (recipientService == null)
-                    recipientService = new RecipientService(requestManager, privateKey);
+                    recipientService = new RecipientService(requestManager, secretKey);
                 return recipientService;
             }
         }
@@ -159,19 +159,19 @@ namespace Omise
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>
-        /// <param name="apiKey">Api key</param>
-        public Client(string apiKey)
+        /// <param name="secretKey">Secret key</param>
+        public Client(string secretKey)
         {
-            this.privateKey = apiKey;
+            this.secretKey = secretKey;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>
-        /// <param name="apiKey">Api key</param>
-        public Client(string privateKey, string publicKey)
+        /// <param name="secretKey">Secret key</param>
+        public Client(string secretKey, string publicKey)
         {
-            this.privateKey = privateKey;
+            this.secretKey = secretKey;
             this.publicKey = publicKey;
         }
 
@@ -179,23 +179,23 @@ namespace Omise
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object</param>
-        /// <param name="privateKey">Api key</param>
-        public Client(IRequestManager requestManager, string privateKey)
+        /// <param name="secretKey">Secret key</param>
+        public Client(IRequestManager requestManager, string secretKey)
         {
             this.requestManager = requestManager;
-            this.privateKey = privateKey;
+            this.secretKey = secretKey;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with IRequestManager object and Api keys.
         /// </summary>
-        /// <param name="requestManager"></param>
-        /// <param name="privateKey"></param>
-        /// <param name="publicKey"></param>
-        public Client(IRequestManager requestManager, string privateKey, string publicKey)
+        /// <param name="requestManager">IRequestManager object</param>
+        /// <param name="secretKey">Secret key</param>
+        /// <param name="publicKey">Public key</param>
+        public Client(IRequestManager requestManager, string secretKey, string publicKey)
         {
             this.requestManager = requestManager;
-            this.privateKey = privateKey;
+            this.secretKey = secretKey;
             this.publicKey = publicKey;
         }
     }

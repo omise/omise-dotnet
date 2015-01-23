@@ -212,8 +212,8 @@ namespace Omise.Net.NUnit.Test
             card.Id = "123";
             card.Name = "My Test Card";
             card.Number = "4242424242424242";
-            card.ExpirationMonth = 10;
-            card.ExpirationYear = 2018;
+            card.ExpirationMonth = 9;
+            card.ExpirationYear = 2017;
 
             stubResponse(@"{
 						    'object': 'card',
@@ -301,12 +301,6 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual("123", deleteResult.Id);
             Assert.IsFalse(deleteResult.LiveMode);
             Assert.IsTrue(deleteResult.Deleted);
-
-            stubException(new ApiException());
-            Assert.Throws<ApiException>(delegate
-                {
-                    client.CardService.GetCard(customerId, "123");
-                });
         }
     }
 }
