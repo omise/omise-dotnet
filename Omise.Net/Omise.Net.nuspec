@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.0</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/omise/omise-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Supports basic Omise REST API features. Visit https://www.omise.co For more information.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Omise, C#, payment, payment gateway</tags>
+	<dependencies>
+		<dependency id="Newtonsoft.Json" version="6.0.5" />
+	</dependencies>
+  </metadata>
+</package>

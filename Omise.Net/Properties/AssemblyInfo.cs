@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("Omise.Net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Omise payment gateway .Net Api Wrapper library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("tommy")]
+[assembly: AssemblyCompany("Omise Co.,Ltd.")]
+[assembly: AssemblyProduct("Omise Payment Gateway .Net Library")]
+[assembly: AssemblyCopyright("Omise Co.,Ltd.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
