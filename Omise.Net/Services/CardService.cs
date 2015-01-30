@@ -74,9 +74,12 @@ namespace Omise
                 throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardToken))
                 throw new ArgumentNullException("cardToken");
-            string url = string.Format("/customers/{0}/cards", customerId);
-            string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", cardToken));
-            return cardFactory.Create(result);
+
+            var tokenInfo = tokenService.GetToken(cardToken);
+
+            string url = string.Format("/customers/{0}", customerId);
+            string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", cardToken));
+            return tokenInfo.Card;
         }
 
         /// <summary>
