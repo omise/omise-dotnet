@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,9 +10,9 @@
     <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Supports basic Omise REST API features. Visit https://www.omise.co For more information.</releaseNotes>
+    <releaseNotes>Fixed create customer card error, Add service method for setting a customer's default card</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Omise, C#, payment, payment gateway</tags>
+    <tags>Omise, C#, payment, gateway, credit card</tags>
 	<dependencies>
 		<dependency id="Newtonsoft.Json" version="6.0.5" />
 	</dependencies>
