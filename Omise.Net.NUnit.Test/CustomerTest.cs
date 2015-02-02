@@ -431,6 +431,52 @@ namespace Omise.Net.NUnit.Test
         }
 
         [Test]
+        public void TestSetCustomerDefaultCard()
+        {
+            stubResponse(@"{
+								    'object': 'customer',
+								    'id': '123',
+								    'livemode': false,
+								    'location': '/customers/123',
+								    'default_card': 'card_test_123',
+								    'email': 'test11@localhost',
+								    'description': 'Test Customer',
+								    'created': '2014-10-02T08:12:12Z',
+								    'cards': {
+								        'object': 'list',
+								        'from': '1970-01-01T07:00:00+07:00',
+								        'to': '2014-10-02T15:31:35+07:00',
+								        'offset': 0,
+								        'limit': 20,
+								        'total': 1,
+								        'data': [
+											{
+											'object': 'card',
+										    'id': 'card_test_123',
+										    'livemode': false,
+										    'location': '/customers/123/cards/card_test_123',
+										    'country': 'us',
+										    'city': null,
+										    'postal_code': null,
+										    'financing': '',
+										    'last_digits': '4242',
+										    'brand': 'Visa',
+										    'expiration_month': 9,
+										    'expiration_year': 2017,
+										    'fingerprint': '123',
+										    'name': 'My Test Card',
+										    'created': '2014-10-02T05:25:10Z'
+											}
+										],
+								        'location': '/customers/123/cards'
+								    }
+								}");
+
+            var customer = client.CustomerService.UpdateDefaultCard("123", "card_test_123");
+            Assert.AreEqual("card_test_123", customer.DefaultCardId);
+        }
+
+        [Test]
         public void TestDeleteCustomer()
         {
             stubResponse(@"{
