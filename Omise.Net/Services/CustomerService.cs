@@ -115,7 +115,7 @@ namespace Omise
         }
 
         /// <summary>
-        /// Update the customer's default card.
+        /// Update the customer's default card. Set the customer's default card to specified card id
         /// </summary>
         /// <returns>Customer object</returns>
         /// <param name="customerId">Customer Id</param>
