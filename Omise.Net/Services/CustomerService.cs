@@ -113,6 +113,23 @@ namespace Omise
             string result = requester.ExecuteRequest("/customers/" + customerId, "DELETE", null);
             return customerFactory.Create(result);
         }
+
+        /// <summary>
+        /// Update the customer's default card. Set the customer's default card to specified card id
+        /// </summary>
+        /// <returns>Customer object</returns>
+        /// <param name="customerId">Customer Id</param>
+        /// <param name="cardId">Card Id</param>
+        public Customer UpdateDefaultCard(string customerId, string cardId)
+        {
+            if (string.IsNullOrEmpty(customerId))
+                throw new ArgumentNullException("customerId");
+            if (string.IsNullOrEmpty(cardId))
+                throw new ArgumentNullException("cardId");
+
+            string result = requester.ExecuteRequest("/customers/" + customerId, "PATCH", string.Format("default_card={0}", cardId));
+            return customerFactory.Create(result);
+        }
     }
 }
 

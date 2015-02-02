@@ -52,14 +52,35 @@ namespace Omise
             if (!cardCreateInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(cardCreateInfo));
 
-            var tokenResult = this.tokenService.CreateToken(new TokenInfo()
+            var tokenInfo = this.tokenService.CreateToken(new TokenInfo()
                 {
                     Card = cardCreateInfo
                 });
 
-            string url = string.Format("/customers/{0}/cards", customerId);
-            string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", tokenResult.Id));
-            return cardFactory.Create(result);
+            string url = string.Format("/customers/{0}", customerId);
+            string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", tokenInfo.Id));
+            var customer = customerFactory.Create(result);
+
+            //Verify that the card has been successfully added to the customer and return the card
+
+            Card foundCard = null;
+            foreach (var card in customer.CardCollection.Collection)
+            {
+                if (card.Id == tokenInfo.Card.Id)
+                {
+                    foundCard = card;
+                    break;
+                }
+            }
+
+            if (foundCard != null)
+            {
+                return foundCard;
+            }
+            else
+            {
+                throw new Exception("Unable to create a customer card. If problem persisted, please report to Omise.");
+            }
         }
 
         /// <summary>
@@ -74,9 +95,33 @@ namespace Omise
                 throw new ArgumentNullException("customerId");
             if (string.IsNullOrEmpty(cardToken))
                 throw new ArgumentNullException("cardToken");
-            string url = string.Format("/customers/{0}/cards", customerId);
-            string result = requester.ExecuteRequest(url, "POST", string.Format("card={0}", cardToken));
-            return cardFactory.Create(result);
+
+            var tokenInfo = tokenService.GetToken(cardToken);
+
+            string url = string.Format("/customers/{0}", customerId);
+            string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", cardToken));
+            var customer = customerFactory.Create(result);
+
+            //Verify that the card has been successfully added to the customer and return the card
+
+            Card foundCard = null;
+            foreach (var card in customer.CardCollection.Collection)
+            {
+                if (card.Id == tokenInfo.Card.Id)
+                {
+                    foundCard = card;
+                    break;
+                }
+            }
+
+            if (foundCard != null)
+            {
+                return foundCard;
+            }
+            else
+            {
+                throw new Exception("Unable to create a customer card. If problem persisted, please report to Omise.");
+            }
         }
 
         /// <summary>
