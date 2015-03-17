@@ -7,8 +7,7 @@ namespace Omise.Net.NUnit.Test
     [TestFixture]
     public class CardTest:TestBase
     {
-        private string customerId = "123";
-
+        private const string customerId = "cust_test_1";
         [Test]
         public void TestGetAllCards()
         {
@@ -45,7 +44,7 @@ namespace Omise.Net.NUnit.Test
                                 'city': null,
                                 'postal_code': null,
                                 'financing': '',
-                                'last_digits': '1111',
+                                'last_digits': '4242',
                                 'brand': 'Visa',
                                 'expiration_month': 9,
                                 'expiration_year': 2017,
@@ -260,7 +259,7 @@ namespace Omise.Net.NUnit.Test
             stubException(new ApiException());
             Assert.Throws<ApiException>(delegate
                 {
-                    client.CardService.CreateCard("123", card);
+                    client.CardService.CreateCard(customerId, card);
                 });
         }
 
@@ -275,13 +274,13 @@ namespace Omise.Net.NUnit.Test
 
             Assert.Throws<InvalidCardException>(delegate
                 {
-                    client.CardService.CreateCard("123", card);
+                    client.CardService.CreateCard(customerId, card);
                 });
 
             card.ExpirationMonth = -10;
             Assert.Throws<InvalidCardException>(delegate
                 {
-                    client.CardService.CreateCard("123", card);
+                    client.CardService.CreateCard(customerId, card);
                 });
         }
 
@@ -295,7 +294,7 @@ namespace Omise.Net.NUnit.Test
             card.Name = "Test card";
             Assert.Throws<InvalidCardException>(delegate
                 {
-                    client.CardService.CreateCard("123", card);
+                    client.CardService.CreateCard(customerId, card);
                 });
         }
 
@@ -313,7 +312,7 @@ namespace Omise.Net.NUnit.Test
 						    'object': 'card',
 						    'id': '123',
 						    'livemode': false,
-						    'location': '/customers/123/cards/123',
+						    'location': '/customers/cust_test_1/cards/123',
 						    'country': 'Thailand',
 						    'city': 'Bangkok',
 						    'postal_code': null,
@@ -333,7 +332,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(9, updateResult.ExpirationMonth);
             Assert.AreEqual(2017, updateResult.ExpirationYear);
             Assert.AreEqual("123", updateResult.Fingerprint);
-            Assert.AreEqual("/customers/123/cards/123", updateResult.Location);
+            Assert.AreEqual("/customers/cust_test_1/cards/123", updateResult.Location);
             Assert.AreEqual("Thailand", updateResult.Country);
             Assert.AreEqual("Bangkok", updateResult.City);
             Assert.IsNull(updateResult.PostalCode);

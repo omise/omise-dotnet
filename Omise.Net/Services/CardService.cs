@@ -52,35 +52,16 @@ namespace Omise
             if (!cardCreateInfo.Valid)
                 throw new InvalidCardException(getObjectErrors(cardCreateInfo));
 
-            var tokenInfo = this.tokenService.CreateToken(new TokenInfo()
+            var tokenInfo = tokenService.CreateToken(new TokenInfo()
                 {
                     Card = cardCreateInfo
                 });
 
             string url = string.Format("/customers/{0}", customerId);
             string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", tokenInfo.Id));
-            var customer = customerFactory.Create(result);
 
-            //Verify that the card has been successfully added to the customer and return the card
-
-            Card foundCard = null;
-            foreach (var card in customer.CardCollection.Collection)
-            {
-                if (card.Id == tokenInfo.Card.Id)
-                {
-                    foundCard = card;
-                    break;
-                }
-            }
-
-            if (foundCard != null)
-            {
-                return foundCard;
-            }
-            else
-            {
-                throw new Exception("Unable to create a customer card. If problem persisted, please report to Omise.");
-            }
+            tokenInfo.Card.Location = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
+            return tokenInfo.Card;
         }
 
         /// <summary>
@@ -100,28 +81,9 @@ namespace Omise
 
             string url = string.Format("/customers/{0}", customerId);
             string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", cardToken));
-            var customer = customerFactory.Create(result);
 
-            //Verify that the card has been successfully added to the customer and return the card
-
-            Card foundCard = null;
-            foreach (var card in customer.CardCollection.Collection)
-            {
-                if (card.Id == tokenInfo.Card.Id)
-                {
-                    foundCard = card;
-                    break;
-                }
-            }
-
-            if (foundCard != null)
-            {
-                return foundCard;
-            }
-            else
-            {
-                throw new Exception("Unable to create a customer card. If problem persisted, please report to Omise.");
-            }
+            tokenInfo.Card.Location = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
+            return tokenInfo.Card;
         }
 
         /// <summary>
