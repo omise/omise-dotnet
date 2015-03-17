@@ -10,7 +10,7 @@
             'object': 'card',
             'id': 'card_test_4xl55afndajv9yhepfh',
             'livemode': false,
-            'location': '/customers/cust_test_4xl54swemkocy39ukvi/cards/card_test_4xl55afndajv9yhepfh',
+            'location': '/customers/cust_test_1/cards/card_test_4xl55afndajv9yhepfh',
             'country': '',
             'city': null,
             'postal_code': null,
@@ -21,13 +21,14 @@
             'expiration_year': 2017,
             'fingerprint': '49a9cuu1qB1ReKd9fcPVZB+HNPy3vTi5/Jcxl0wZaUU=',
             'name': 'test card',
+            'security_code_check': true,
             'created': '2014-10-02T05:25:10Z'
         },
         {
             'object': 'card',
             'id': 'card_test_4xl55bjyyhq5a5ud8j0',
             'livemode': false,
-            'location': '/customers/cust_test_4xl54swemkocy39ukvi/cards/card_test_4xl55bjyyhq5a5ud8j0',
+            'location': '/customers/cust_test_1/cards/card_test_4xl55bjyyhq5a5ud8j0',
             'country': '',
             'city': null,
             'postal_code': null,
@@ -38,6 +39,7 @@
             'expiration_year': 2017,
             'fingerprint': '49a9cuu1qB1ReKd9fcPVZB+HNPy3vTi5/Jcxl0wZaUU=',
             'name': 'test card 2',
+            'security_code_check': true,
             'created': '2014-10-02T05:25:16Z'
         }
     ]

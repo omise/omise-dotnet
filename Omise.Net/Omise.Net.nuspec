@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixed incorrect assembly version</releaseNotes>
+    <releaseNotes>Fix create customer card, Make ReturnUri not mandatory when creating a charge</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Omise, C#, payment, gateway, credit card</tags>
 	<dependencies>

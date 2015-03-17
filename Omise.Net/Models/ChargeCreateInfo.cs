@@ -225,11 +225,6 @@ namespace Omise
                 errors.Add("Currency", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.returnUri))
-            {
-                errors.Add("ReturnUri", "cannot be blank");
-            }
-
             if (string.IsNullOrEmpty(this.cardId))
             {
                 if (string.IsNullOrEmpty(this.customerId))
