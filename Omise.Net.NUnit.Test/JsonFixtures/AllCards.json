@@ -21,6 +21,7 @@
             'expiration_year': 2017,
             'fingerprint': '49a9cuu1qB1ReKd9fcPVZB+HNPy3vTi5/Jcxl0wZaUU=',
             'name': 'test card',
+            'security_code_check': true,
             'created': '2014-10-02T05:25:10Z'
         },
         {
@@ -38,6 +39,7 @@
             'expiration_year': 2017,
             'fingerprint': '49a9cuu1qB1ReKd9fcPVZB+HNPy3vTi5/Jcxl0wZaUU=',
             'name': 'test card 2',
+            'security_code_check': true,
             'created': '2014-10-02T05:25:16Z'
         }
     ]

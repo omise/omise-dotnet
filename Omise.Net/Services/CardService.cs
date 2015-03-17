@@ -60,8 +60,10 @@ namespace Omise
             string url = string.Format("/customers/{0}", customerId);
             string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", tokenInfo.Id));
 
-            tokenInfo.Card.Location = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
-            return tokenInfo.Card;
+            string card_url = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
+            string card_result = requester.ExecuteRequest(card_url, "GET", null);
+            
+            return cardFactory.Create(card_result);
         }
 
         /// <summary>
@@ -82,8 +84,10 @@ namespace Omise
             string url = string.Format("/customers/{0}", customerId);
             string result = requester.ExecuteRequest(url, "PATCH", string.Format("card={0}", cardToken));
 
-            tokenInfo.Card.Location = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
-            return tokenInfo.Card;
+            string card_url = string.Format("/customers/{0}/cards/{1}", customerId, tokenInfo.Card.Id);
+            string card_result = requester.ExecuteRequest(card_url, "GET", null);
+
+            return cardFactory.Create(card_result);
         }
 
         /// <summary>
