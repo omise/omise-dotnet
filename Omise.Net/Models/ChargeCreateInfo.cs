@@ -165,7 +165,14 @@ namespace Omise
             dict.Add("amount", this.amount.ToString());
             dict.Add("currency", this.currency);
             dict.Add("description", this.description);
-            dict.Add("return_uri", this.returnUri);
+
+            if (this.returnUri != null) { this.returnUri = this.returnUri.Trim(); }
+
+            if (!string.IsNullOrEmpty(this.returnUri))
+            {
+                dict.Add("return_uri", this.returnUri);
+            }
+
             dict.Add("capture", this.capture.ToString());
             if (this.customerId != null)
             {

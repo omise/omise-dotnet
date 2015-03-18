@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fix create customer card, Make ReturnUri not mandatory when creating a charge</releaseNotes>
+    <releaseNotes>Fix create customer card exception, Make ReturnUri not mandatory when creating a charge</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Omise, C#, payment, gateway, credit card</tags>
 	<dependencies>
