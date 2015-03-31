@@ -101,6 +101,9 @@ namespace Omise
             if (string.IsNullOrEmpty(chargeId))
                 throw new ArgumentNullException("chargeId");
 
+            if (string.IsNullOrEmpty(refundId))
+                throw new ArgumentNullException("refundId");
+
             string url = string.Format("/charges/{0}/refunds/{1}", chargeId, refundId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return refundFactory.Create(result);
@@ -119,6 +122,21 @@ namespace Omise
             string url = string.Format("/charges/{0}/refunds", chargeId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return refundFactory.CreateCollection(result);
+        }
+
+        /// <summary>
+        /// Captures an authorized-only charge. The authorized-only charge is a charge that created with Capture = false.
+        /// </summary>
+        /// <param name="chargeId">Charge id</param>
+        /// <returns>Charge object</returns>
+        public Charge Capture(string chargeId)
+        {
+            if (string.IsNullOrEmpty(chargeId))
+                throw new ArgumentNullException("chargeId");
+
+            string url = string.Format("/charges/{0}/capture", chargeId);
+            string result = requester.ExecuteRequest(url, "POST", null);
+            return chargeFactory.Create(result);
         }
     }
 }
