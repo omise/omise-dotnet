@@ -101,6 +101,9 @@ namespace Omise
             if (string.IsNullOrEmpty(chargeId))
                 throw new ArgumentNullException("chargeId");
 
+            if (string.IsNullOrEmpty(refundId))
+                throw new ArgumentNullException("refundId");
+
             string url = string.Format("/charges/{0}/refunds/{1}", chargeId, refundId);
             string result = requester.ExecuteRequest(url, "GET", null);
             return refundFactory.Create(result);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace Omise
 {
@@ -12,6 +14,25 @@ namespace Omise
         /// </summary>
         public ChargeFactory()
         {
+        }
+
+        /// <summary>
+        /// Create a charge object from json string
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public override Charge Create(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                throw new ArgumentNullException(json);
+            var obj = JsonConvert.DeserializeObject<Charge>(json);
+            var jsonObject = JObject.Parse(json);
+            var refundsJson = jsonObject.SelectToken("refunds");
+            if (refundsJson != null)
+            {
+                obj.RefundCollection = new RefundFactory().CreateCollection(refundsJson.ToString());
+            }
+            return obj;
         }
     }
 }

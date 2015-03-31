@@ -106,6 +106,18 @@ namespace Omise
         /// Card object which the charge applied
         /// </summary>
         public Card Card { get; set; }
+
+
+        /// <summary>
+        /// Total refund amount
+        /// </summary>
+        [JsonProperty("refunded")]
+        public int Refunded { get; set; }
+
+        /// <summary>
+        ///  The CollectionResponseObject object representing refunds belong to the charge
+        /// </summary>
+        public CollectionResponseObject<Refund> RefundCollection { get; set; }
     }
 }
 
