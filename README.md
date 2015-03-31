@@ -9,7 +9,7 @@ The library requires .Net framework 2.0, 3.5, 4.0 or 4.5.
 
 Installation
 ============
-To use the library, simply add a reference to Omise.Net.dll and you are ready to go.
+To use the library, simply add a reference to Omise.Net.dll and you are ready to go. The library also available on nuget https://www.nuget.org/packages/Omise.Net/.
 
 Getting started
 ===============
