@@ -262,6 +262,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(new DateTime(2015, 1, 23, 7, 34, 4), refund.CreatedAt);
         }
 
+        [Test]
         public void TestGetRefund()
         {
             stubResponse(@"{
@@ -284,6 +285,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(new DateTime(2015, 1, 23, 7, 34, 4), refund.CreatedAt);
         }
 
+        [Test]
         public void TestGetRefunds()
         {
             stubResponse(@"{
@@ -315,6 +317,35 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(0, refunds.Offset);
             Assert.AreEqual(1, refunds.Collection.Count);
             Assert.AreEqual("/charges/chrg_test_4zgsgfb13gw8kwknmgy/refunds", refunds.Location);
+        }
+
+        [Test]
+        public void TestCapture() {
+            stubResponse(TestHelper.GetJson("Charge.json"));
+
+            var result = client.ChargeService.Capture("chrg_test_4zgsgfb13gw8kwknmgy");
+            Assert.AreEqual("chrg_test_4zgsgfb13gw8kwknmgy", result.Id);
+            Assert.AreEqual(1000000, result.Amount);
+            Assert.AreEqual("thb", result.Currency);
+            Assert.IsTrue(result.Captured);
+            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
+            Assert.IsNotNull(result.Card);
+            Assert.AreEqual("4242", result.Card.LastDigits);
+            Assert.AreEqual("Test card", result.Card.Name);
+            Assert.AreEqual(9, result.Card.ExpirationMonth);
+            Assert.AreEqual(2017, result.Card.ExpirationYear);
+            Assert.AreEqual("FK8mTeCO13cSIMMAGAm8BvoIiHPQgNpMuo+6s4VEI9U=", result.Card.Fingerprint);
+            Assert.IsNull(result.Card.Location);
+            Assert.IsNullOrEmpty(result.Card.Country);
+            Assert.IsNullOrEmpty(result.Card.City);
+            Assert.IsNullOrEmpty(result.Card.PostalCode);
+            Assert.IsNullOrEmpty(result.Card.Financing);
+            Assert.AreEqual(Brand.Visa, result.Card.Brand);
+            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 16, 31), result.Card.CreatedAt);
+            Assert.False(result.Card.LiveMode);
+            Assert.AreEqual("/charges/chrg_test_4zgsgfb13gw8kwknmgy", result.Location);
+            Assert.AreEqual(0, result.Refunded);
+            Assert.AreEqual(0, result.RefundCollection.Total);
         }
     }
 }

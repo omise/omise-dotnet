@@ -17,7 +17,8 @@ Getting started
 The core of the library is the Client which contains all services to call the APIs.To initialize the client, you need to have the api secret key.
 
 ```c#
-  var client = new Omise.Client(YOUR_API_KEY);
+  var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY]); 
+  //public key is optional which is required only if you want to create a token on the server side
 ```
 
 Creating a first charge
@@ -34,6 +35,7 @@ card.Name="TestCard";
 card.Number="4242424242424242";
 card.ExpirationMonth = 9;
 card.ExpirationYear=2017;
+card.SecurityCode = "123";
 
 var token = new TokenInfo ();
 token.Card = card;
@@ -48,12 +50,17 @@ var charge = new ChargeCreateInfo ();
 charge.Amount = 1000;
 charge.Currency = "THB";
 charge.Description = "Test charge";
-charge.ReturnUri = "YOUR RETURN URI WHEN CHARGING IS COMPLETED";
-charge.Capture = true;
-charge.CardId = tokenResult.Id
+charge.Capture = true; //TRUE means auto capture the charge, FALSE means authorize only. Default is FALSE
+charge.CardId = tokenResult.Id;
 		
 var chargeResult = client.ChargeService.CreateCharge (charge);
  ```
+
+Determine if charge success
+---------------------------
+
+In the charge result there is a bool property named 'Captured' which tells us that the money has been charged by the acquirer bank if the value is ```TRUE```, 
+otherwise there will be another factors making the charge not being captured. For more information, visit https://docs.omise.co/api/charges/
  
 Getting a token
 ---------------
