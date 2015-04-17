@@ -44,6 +44,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="RequestManager.cs" />
     <Compile Include="Exceptions\InvalidCardException.cs" />
+    <Compile Include="Utils\VersionInfo.cs" />
     <Compile Include="Utils\DictionaryHelper.cs" />
     <Compile Include="Exceptions\InvalidChargeException.cs" />
     <Compile Include="IValidatable.cs" />

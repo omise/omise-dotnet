@@ -42,8 +42,9 @@ namespace Omise
             StringBuilder result = new StringBuilder();
             path = path.StartsWith("/") ? path : "/" + path;
 
-            var request = WebRequest.Create(apiUrlBase + path);
+            var request = (HttpWebRequest)WebRequest.Create(apiUrlBase + path);
             request.Headers.Add("Authorization", "Basic " + this.encodedCredentials);
+            request.UserAgent = "Omise.Net/" + Omise.VersionInfo.ClientVersion;
             request.Method = method;
             request.ContentType = "application/x-www-form-urlencoded";
             if (payload != null)
