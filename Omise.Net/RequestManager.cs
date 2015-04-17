@@ -13,7 +13,6 @@ namespace Omise
         private string apiUrlBase;
         private string apiKey;
         private string encodedCredentials;
-        private readonly string clientVersion = "1.0.5";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
@@ -45,7 +44,7 @@ namespace Omise
 
             var request = (HttpWebRequest)WebRequest.Create(apiUrlBase + path);
             request.Headers.Add("Authorization", "Basic " + this.encodedCredentials);
-            request.UserAgent = "Omise.Net/" + clientVersion;
+            request.UserAgent = "Omise.Net/" + Omise.VersionInfo.ClientVersion;
             request.Method = method;
             request.ContentType = "application/x-www-form-urlencoded";
             if (payload != null)

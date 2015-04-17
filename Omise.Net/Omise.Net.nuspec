@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.5</version>
+    <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Adds the refunds detail to Charge model. Adds the Capture method to ChargeService to allow manually capture a charge.</releaseNotes>
+    <releaseNotes>Adds 'user-agent' http header to the request manager, Adds VersionInfo object for getting the version information</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Omise, C#, payment, gateway, credit card</tags>
 	<dependencies>
