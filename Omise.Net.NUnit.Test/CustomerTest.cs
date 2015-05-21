@@ -532,6 +532,19 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(0, customerShowResult.CardCollection.Collection.Count);
             Assert.AreEqual("/customers/123/cards", customerShowResult.CardCollection.Location);
         }
+
+        [Test]
+        public void TestGetAllCustomers()
+        {
+            stubResponse(TestHelper.GetJson("AllCustomers.json"));
+            var result = client.CustomerService.GetAllCustomers();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Total);
+            Assert.AreEqual(0, result.Offset);
+            Assert.AreEqual(20, result.Limit);
+            Assert.AreEqual(2, result.Collection.Count);
+        }
     }
 }
 

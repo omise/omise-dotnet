@@ -55,6 +55,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="JsonFixtures\AllCharges.json" />
+    <None Include="JsonFixtures\AllCustomers.json" />
     <None Include="JsonFixtures\ChargeUpdated.json" />
     <None Include="JsonFixtures\Charge.json" />
     <None Include="JsonFixtures\ChargeWithRefund.json" />

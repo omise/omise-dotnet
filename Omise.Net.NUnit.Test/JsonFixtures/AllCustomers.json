@@ -1,0 +1,50 @@
+﻿{
+    "object": "list",
+    "from": "1970-01-01T07:00:00+07:00",
+    "to": "2015-04-20T15:58:00+07:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 2,
+    "data": [
+        {
+            "object": "customer",
+            "id": "cust_test_4zrfcy9n24s7l6yt45r",
+            "livemode": false,
+            "location": "/customers/cust_test_4zrfcy9n24s7l6yt45r",
+            "default_card": null,
+            "email": null,
+            "description": null,
+            "created": "2015-04-20T08:56:00Z",
+            "cards": {
+                "object": "list",
+                "from": "1970-01-01T07:00:00+07:00",
+                "to": "2015-04-20T15:58:00+07:00",
+                "offset": 0,
+                "limit": 20,
+                "total": 0,
+                "data": [],
+                "location": "/customers/cust_test_4zrfcy9n24s7l6yt45r/cards"
+            }
+        },
+        {
+            "object": "customer",
+            "id": "cust_test_4zrfd9ktkg1kjgpwci4",
+            "livemode": false,
+            "location": "/customers/cust_test_4zrfd9ktkg1kjgpwci4",
+            "default_card": null,
+            "email": "testcust1@localhost",
+            "description": null,
+            "created": "2015-04-20T08:56:53Z",
+            "cards": {
+                "object": "list",
+                "from": "1970-01-01T07:00:00+07:00",
+                "to": "2015-04-20T15:58:00+07:00",
+                "offset": 0,
+                "limit": 20,
+                "total": 0,
+                "data": [],
+                "location": "/customers/cust_test_4zrfd9ktkg1kjgpwci4/cards"
+            }
+        }
+    ]
+}
