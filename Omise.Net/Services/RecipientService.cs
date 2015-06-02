@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Omise
 {
@@ -16,6 +17,35 @@ namespace Omise
 
         }
 
+        public CollectionResponseObject<Recipient> GetAllRecipients() {
+            return GetAllRecipients(null, null, null, null);
+        }
+
+        public CollectionResponseObject<Recipient> GetAllRecipients(DateTime? from, DateTime? to, int? offset, int? limit)
+        {
+            var parameters = new List<string>();
+            if (from.HasValue)
+            {
+                parameters.Add("from=" + DateTimeHelper.ToApiDateString(from.Value));
+            }
+            if (to.HasValue)
+            {
+                parameters.Add("to=" + DateTimeHelper.ToApiDateString(to.Value));
+            }
+            if (offset.HasValue)
+            {
+                parameters.Add("offset=" + offset.Value);
+            }
+            if (limit.HasValue)
+            {
+                parameters.Add("limit=" + limit.Value);
+            }
+
+            string url = "/recipients" + (parameters.Count > 0 ? "?" + string.Join("&", parameters.ToArray()) : "");
+            string result = requester.ExecuteRequest(url, "GET", null);
+            return recipientFactory.CreateCollection(result);
+        }
+
         public Recipient GetRecipient(string recipientId)
         {
             if (string.IsNullOrEmpty(recipientId))
@@ -27,35 +57,35 @@ namespace Omise
             return recipientFactory.Create(result);
         }
 
-        public Recipient CreateRecipient(RecipientInfo recipientInfo)
+        public Recipient CreateRecipient(RecipientCreateInfo recipientCreateInfo)
         {
-            if (recipientInfo == null)
+            if (recipientCreateInfo == null)
             {
-                throw new ArgumentNullException("recipientInfo");
+                throw new ArgumentNullException("recipientCreateInfo");
             }
 
-            if (!recipientInfo.Valid)
+            if (!recipientCreateInfo.Valid)
             {
-                throw new InvalidRecipientException(getObjectErrors(recipientInfo));
+                throw new InvalidRecipientException(getObjectErrors(recipientCreateInfo));
             }
 
-            string result = requester.ExecuteRequest("recipients/", "POST", recipientInfo.ToRequestParams());
+            string result = requester.ExecuteRequest("recipients/", "POST", recipientCreateInfo.ToRequestParams());
             return recipientFactory.Create(result);
         }
 
-        public Recipient UpdateRecipient(RecipientInfo recipientInfo)
+        public Recipient UpdateRecipient(RecipientUpdateInfo recipientUpdateInfo)
         {
-            if (recipientInfo == null)
+            if (recipientUpdateInfo == null)
             {
-                throw new ArgumentNullException("recipientInfo");
+                throw new ArgumentNullException("recipientUpdateInfo");
             }
 
-            if (!recipientInfo.Valid)
+            if (!recipientUpdateInfo.Valid)
             {
-                throw new InvalidRecipientException(getObjectErrors(recipientInfo));
+                throw new InvalidRecipientException(getObjectErrors(recipientUpdateInfo));
             }
 
-            string result = requester.ExecuteRequest("recipients/" + recipientInfo.Id, "PATCH", recipientInfo.ToRequestParams());
+            string result = requester.ExecuteRequest("recipients/" + recipientUpdateInfo.Id, "PATCH", recipientUpdateInfo.ToRequestParams());
             return recipientFactory.Create(result);
         }
 
@@ -65,30 +95,6 @@ namespace Omise
                 throw new ArgumentNullException("recipientId");
             string result = requester.ExecuteRequest("/recipients/" + recipientId, "DELETE", null);
             return recipientFactory.Create(result);
-        }
-
-        public BankAccount GetBankAccount(string recipientId, string bankAccountId)
-        {
-            var result = requester.ExecuteRequest(string.Format("recipients/{0}/bank_accounts/{1}", recipientId, bankAccountId), "GET", null);
-            return bankAccountFactory.Create(result);
-        }
-
-        public CollectionResponseObject<BankAccount> GetBankAccounts(string recipientId)
-        {
-            var result = requester.ExecuteRequest(string.Format("recipients/{0}/bank_accounts", recipientId), "GET", null);
-            return bankAccountFactory.CreateCollection(result);
-        }
-
-        public BankAccount UpdateBankAccount(string recipientId, BankAccountInfo bankAccountInfo)
-        {
-            var result = requester.ExecuteRequest(string.Format("recipients/{0}/bank_accounts/{1}", recipientId, bankAccountInfo.Id), "PATCH", bankAccountInfo.ToRequestParams());
-            return bankAccountFactory.Create(result);
-        }
-
-        public BankAccount DeleteBankAccount(string recipientId, string bankAccountId)
-        {
-            var result = requester.ExecuteRequest(string.Format("recipients/{0}/bank_accounts/{1}", recipientId, bankAccountId), "DELETE", null);
-            return bankAccountFactory.Create(result);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Omise
 {
-    public class RecipientInfo: RequestObject
+    public class RecipientUpdateInfo: RequestObject
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
 
@@ -39,14 +39,6 @@ namespace Omise
             set{ description = value; } 
         }
 
-        private string defaultBankAccountId;
-
-        public string DefaultBankAccountId
-        { 
-            get{ return defaultBankAccountId; } 
-            set{ defaultBankAccountId = value; } 
-        }
-
         private RecipientType recipientType;
 
         public RecipientType RecipientType
@@ -66,8 +58,16 @@ namespace Omise
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("name", this.name);
-            dict.Add("recipient_type", this.recipientType.ToString().ToLower());
+
+            if (!string.IsNullOrEmpty(this.name))
+            {
+                dict.Add("name", this.name);
+            }
+
+            if (this.recipientType!=null)
+            {
+                dict.Add("type", this.recipientType.ToString().ToLower());
+            }
 
             if (!string.IsNullOrEmpty(this.email))
             {
@@ -86,9 +86,9 @@ namespace Omise
 
             if (this.bankAccount != null)
             {
-                dict.Add("bank_account[bank_id]", this.bankAccount.BankId);
-                dict.Add("bank_account[bank_account_no]", this.bankAccount.BankAccountNumber);
-                dict.Add("bank_account[bank_account_name]", this.bankAccount.BankAccountName);
+                dict.Add("bank_account[brand]", this.bankAccount.Brand);
+                dict.Add("bank_account[number]", this.bankAccount.Number);
+                dict.Add("bank_account[name]", this.bankAccount.Name);
             }
 
             string result = "";
@@ -122,14 +122,9 @@ namespace Omise
         {
             errors.Clear();
 
-            if (string.IsNullOrEmpty(this.name))
+            if (this.bankAccount != null && !this.bankAccount.Valid)
             {
-                errors.Add("Name", "cannot be blank");
-            }
-
-            if (this.recipientType == null)
-            {
-                errors.Add("RecipientType", "cannot be blank");
+                errors.Add("BankAccount", "is invalid");
             }
         }
     }

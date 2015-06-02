@@ -1,0 +1,55 @@
+﻿{
+  "object": "list",
+  "from": "1970-01-01T00:00:00+00:00",
+  "to": "2015-06-02T10:33:40+00:00",
+  "offset": 0,
+  "limit": 20,
+  "total": 2,
+  "data": [
+    {
+      "object": "recipient",
+      "id": "recp_test_506zyyark420q0cjtui",
+      "livemode": false,
+      "location": "/recipients/recp_test_506zyyark420q0cjtui",
+      "verified": true,
+      "active": true,
+      "name": "John Doe",
+      "email": "john.doe@localhost",
+      "description": "Default recipient",
+      "type": "individual",
+      "tax_id": "",
+      "bank_account": {
+        "object": "bank_account",
+        "brand": "test",
+        "last_digits": "6789",
+        "name": "DEFAULT BANK ACCOUNT",
+        "created": "2015-05-30T04:28:09Z"
+      },
+      "failure_code": null,
+      "created": "2015-05-30T04:28:09Z"
+    },
+    {
+      "object": "recipient",
+      "id": "recp_test_5086lxnekvk2e6nawed",
+      "livemode": false,
+      "location": "/recipients/recp_test_5086lxnekvk2e6nawed",
+      "verified": false,
+      "active": false,
+      "name": "Test recipient individual",
+      "email": "test1@localhost",
+      "description": "Test recipient new description",
+      "type": "individual",
+      "tax_id": "abc123456789",
+      "bank_account": {
+        "object": "bank_account",
+        "brand": "test",
+        "last_digits": "7890",
+        "name": "test bank account",
+        "created": "2015-06-02T05:08:39Z"
+      },
+      "failure_code": null,
+      "created": "2015-06-02T05:08:39Z"
+    }
+  ],
+  "location": "/recipients"
+}

@@ -60,6 +60,10 @@
     <None Include="JsonFixtures\ChargeUpdated.json" />
     <None Include="JsonFixtures\Charge.json" />
     <None Include="JsonFixtures\ChargeWithRefund.json" />
+    <None Include="JsonFixtures\Recipient.json" />
+    <None Include="JsonFixtures\AllRecipients.json" />
+    <None Include="JsonFixtures\RecipientUpdatedBankAccount.json" />
+    <None Include="JsonFixtures\RecipientUpdated.json" />
     <None Include="packages.config" />
     <None Include="JsonFixtures\AllCards.json" />
   </ItemGroup>

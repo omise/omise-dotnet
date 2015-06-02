@@ -37,6 +37,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\RecipientUpdateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Token.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="Services\RecipientService.cs" />
     <Compile Include="Factories\RecipientFactory.cs" />
     <Compile Include="Factories\BankAccountFactory.cs" />
-    <Compile Include="Models\RecipientInfo.cs" />
+    <Compile Include="Models\RecipientCreateInfo.cs" />
     <Compile Include="Models\BankAccountInfo.cs" />
     <Compile Include="Exceptions\InvalidRecipientException.cs" />
     <Compile Include="Enums\RecipientType.cs" />
