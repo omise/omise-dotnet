@@ -148,11 +148,6 @@ namespace Omise.Net.NUnit.Test
         {
             var recipientUpdateInfo = new RecipientUpdateInfo();
             recipientUpdateInfo.Id = "recp_test_5086lxnekvk2e6nawed";
-            recipientUpdateInfo.Name = "Test recipient individual";
-            recipientUpdateInfo.Email = "test1@localhost";
-            recipientUpdateInfo.TaxId = "abc123456789";
-            recipientUpdateInfo.RecipientType = RecipientType.Individual;
-            recipientUpdateInfo.Description = "Test recipient new description";
             recipientUpdateInfo.BankAccount = new BankAccountInfo()
             {
                 Brand = "bbl",
