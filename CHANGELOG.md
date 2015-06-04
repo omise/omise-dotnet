@@ -2,9 +2,12 @@
 
 An [unreleased] version is not available on nuget and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
-## [1.0.6] 2015-05-22
+## [1.0.6] 2015-06-04
 
 - [Added] Add 'GetAllCustomers' and 'GetAllCharges'
+- [Added] Add Recipients api
+- [Added] Add Disputes api
+- [Added] Add Transfer to recipient
 
 ## [1.0.5] 2015-04-17
 

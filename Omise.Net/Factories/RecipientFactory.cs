@@ -25,14 +25,7 @@ namespace Omise
         {
             if (string.IsNullOrEmpty(json))
                 throw new ArgumentNullException("json");
-            var obj = JsonConvert.DeserializeObject<Recipient>(json);
-            var jsonObject = JObject.Parse(json);
-            //var bankAccountJson = jsonObject.SelectToken("bank_account");
-            //if (bankAccountJson != null)
-            //{
-            //    obj.BankAccount = new BankAccountFactory().Create(bankAccountJson.ToString());
-            //}
-            return obj;
+            return JsonConvert.DeserializeObject<Recipient>(json);
         }
 
         /// <summary>
