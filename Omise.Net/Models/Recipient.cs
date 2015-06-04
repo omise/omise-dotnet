@@ -18,11 +18,8 @@ namespace Omise
         [JsonProperty("description")]
         public string Description{ get; set; }
 
-        [JsonProperty("recipient_type")]
+        [JsonProperty("type")]
         public RecipientType RecipientType{ get; set; }
-
-        [JsonProperty("default_bank_account")]
-        public string DefaultBankAccountId{ get; set; }
 
         [JsonProperty("livemode")]
         public bool LiveMode { get; set; }
@@ -30,8 +27,17 @@ namespace Omise
         [JsonProperty("location")]
         public string Location { get; set; }
 
-        [JsonIgnore]
-        public CollectionResponseObject<BankAccount> BankAccountCollection{ get; set; }
+        [JsonProperty("verified")]
+        public bool Verified { get; set; }
+
+        [JsonProperty("active")]
+        public bool Active { get; set; }
+
+        [JsonProperty("failure_code")]
+        public string FailureCode { get; set; }
+
+        [JsonProperty("bank_account")]
+        public BankAccount BankAccount{ get; set; }
     }
 }
 

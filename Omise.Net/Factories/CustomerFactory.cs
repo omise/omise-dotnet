@@ -35,6 +35,31 @@ namespace Omise
             }
             return obj;
         }
+
+        /// <summary>
+        /// Creates customer collection from json string
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public override CollectionResponseObject<Customer> CreateCollection(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                throw new ArgumentNullException("json");
+            var jsonObject = JObject.Parse(json);
+            var obj = JsonConvert.DeserializeObject<CollectionResponseObject<Customer>>(json);
+            if (jsonObject.SelectToken("data") != null)
+            {
+                obj.Collection = new List<Customer>();
+                var dataObject = jsonObject.SelectToken("data");
+                foreach (var customerJson in dataObject)
+                {
+                    var customer = this.Create(customerJson.ToString());
+                    obj.Collection.Add(customer);
+                }
+            }
+
+            return obj;
+        }
     }
 }
 

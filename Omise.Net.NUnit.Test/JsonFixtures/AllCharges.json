@@ -1,0 +1,109 @@
+﻿{
+  "object": "list",
+  "from": "1970-01-01T07:00:00+07:00",
+  "to": "2015-04-23T17:41:42+07:00",
+  "offset": 0,
+  "limit": 20,
+  "total": 2,
+  "data": [
+    {
+      "object": "charge",
+      "id": "chrg_test_4zrqvi3ab9sq40z9pab",
+      "livemode": false,
+      "location": "/charges/chrg_test_4zrqvi3ab9sq40z9pab",
+      "amount": 125000,
+      "currency": "thb",
+      "description": null,
+      "capture": true,
+      "authorized": true,
+      "captured": true,
+      "transaction": "trxn_test_4zrqvi5bp01tlx3ijt3",
+      "refunded": 1000,
+      "refunds": {
+        "object": "list",
+        "total": 1,
+        "data": [
+          {
+            "object": "refund",
+            "id": "rfnd_test_4zsmky5is4xnjowqixg",
+            "location": "/charges/chrg_test_4zrqvi3ab9sq40z9pab/refunds/rfnd_test_4zsmky5is4xnjowqixg",
+            "amount": 1000,
+            "currency": "thb",
+            "charge": "chrg_test_4zrqvi3ab9sq40z9pab",
+            "transaction": "trxn_test_4zsmky67q6x6kbbl10f",
+            "created": "2015-04-23T10:36:12Z"
+          }
+        ],
+        "location": "/charges/chrg_test_4zrqvi3ab9sq40z9pab/refunds"
+      },
+      "failure_code": null,
+      "failure_message": null,
+      "card": {
+        "object": "card",
+        "id": "card_test_4zrqvbkudg1acy0u8bu",
+        "livemode": false,
+        "country": "",
+        "city": null,
+        "postal_code": null,
+        "financing": "",
+        "last_digits": "4242",
+        "brand": "Visa",
+        "expiration_month": 4,
+        "expiration_year": 2015,
+        "fingerprint": "rvqjUsf9CX+L788NUQS8nuZugOIncPbhh+4VpD6/q6U=",
+        "name": "Test card",
+        "security_code_check": true,
+        "created": "2015-04-21T04:33:07Z"
+      },
+      "customer": null,
+      "ip": null,
+      "dispute": null,
+      "created": "2015-04-21T04:33:38Z"
+    },
+    {
+      "object": "charge",
+      "id": "chrg_test_4zsmlh8xm3ec132xpnj",
+      "livemode": false,
+      "location": "/charges/chrg_test_4zsmlh8xm3ec132xpnj",
+      "amount": 150000,
+      "currency": "thb",
+      "description": null,
+      "capture": true,
+      "authorized": true,
+      "captured": true,
+      "transaction": "trxn_test_4zsmlhaf9p5mo87bi1h",
+      "refunded": 0,
+      "refunds": {
+        "object": "list",
+        "total": 0,
+        "data": [
+
+        ],
+        "location": "/charges/chrg_test_4zsmlh8xm3ec132xpnj/refunds"
+      },
+      "failure_code": null,
+      "failure_message": null,
+      "card": {
+        "object": "card",
+        "id": "card_test_4zsmld9i8mnyt1wxxay",
+        "livemode": false,
+        "country": "",
+        "city": null,
+        "postal_code": null,
+        "financing": "",
+        "last_digits": "4242",
+        "brand": "Visa",
+        "expiration_month": 4,
+        "expiration_year": 2015,
+        "fingerprint": "rvqjUsf9CX+L788NUQS8nuZugOIncPbhh+4VpD6/q6U=",
+        "name": "Test card",
+        "security_code_check": true,
+        "created": "2015-04-23T10:37:24Z"
+      },
+      "customer": null,
+      "ip": null,
+      "dispute": null,
+      "created": "2015-04-23T10:37:43Z"
+    }
+  ]
+}

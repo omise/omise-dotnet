@@ -9,14 +9,14 @@ namespace Omise
     [JsonObject]
     public class BankAccount: ResponseObject
     {
-        [JsonProperty("bank_id")]
-        public string BankId{ get; set; }
+        [JsonProperty("brand")]
+        public string Brand{ get; set; }
 
-        [JsonProperty("bank_account_no")]
-        public string BankAccountNumber{ get; set; }
-
-        [JsonProperty("bank_account_name")]
-        public string BankAccountName{ get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        
+        [JsonProperty("last_digits")]
+        public string LastDigits { get; set; }
     }
 }
 

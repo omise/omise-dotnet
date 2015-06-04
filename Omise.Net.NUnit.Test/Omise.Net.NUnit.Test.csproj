@@ -43,6 +43,7 @@
     <Compile Include="ChargeTest.cs" />
     <Compile Include="CardTest.cs" />
     <Compile Include="CustomerTest.cs" />
+    <Compile Include="DisputeTest.cs" />
     <Compile Include="TokenTest.cs" />
     <Compile Include="BalanceTest.cs" />
     <Compile Include="AccountTest.cs" />
@@ -55,9 +56,22 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="JsonFixtures\AllCharges.json" />
+    <None Include="JsonFixtures\AllClosedDisputes.json" />
+    <None Include="JsonFixtures\AllCustomers.json" />
+    <None Include="JsonFixtures\AllOpenDisputes.json" />
+    <None Include="JsonFixtures\AllPendingDisputes.json" />
     <None Include="JsonFixtures\ChargeUpdated.json" />
     <None Include="JsonFixtures\Charge.json" />
     <None Include="JsonFixtures\ChargeWithRefund.json" />
+    <None Include="JsonFixtures\AllDisputes.json" />
+    <None Include="JsonFixtures\Dispute.json" />
+    <None Include="JsonFixtures\DisputeUpdated.json" />
+    <None Include="JsonFixtures\Recipient.json" />
+    <None Include="JsonFixtures\AllRecipients.json" />
+    <None Include="JsonFixtures\RecipientUpdatedBankAccount.json" />
+    <None Include="JsonFixtures\RecipientUpdated.json" />
+    <None Include="JsonFixtures\TransferWithRecipient.json" />
     <None Include="packages.config" />
     <None Include="JsonFixtures\AllCards.json" />
   </ItemGroup>

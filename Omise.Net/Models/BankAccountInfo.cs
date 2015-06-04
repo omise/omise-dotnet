@@ -7,36 +7,36 @@ namespace Omise
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
 
-        private string bankId;
+        private string brand;
 
-        public string BankId
+        public string Brand
         { 
-            get { return bankId; } 
-            set { bankId = value; } 
+            get { return brand; } 
+            set { brand = value; } 
         }
 
-        private string bankAccountNumber;
+        private string number;
 
-        public string BankAccountNumber
+        public string Number
         { 
-            get { return bankAccountNumber; } 
-            set { bankAccountNumber = value; }
+            get { return number; } 
+            set { number = value; }
         }
 
-        private string bankAccountName;
+        private string name;
 
-        public string BankAccountName
+        public string Name
         { 
-            get { return bankAccountName; } 
-            set { bankAccountName = value; } 
+            get { return name; } 
+            set { name = value; } 
         }
 
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("bank_id", this.bankId);
-            dict.Add("bank_account_no", this.bankAccountNumber);
-            dict.Add("bank_account_name", this.bankAccountName);
+            dict.Add("brand", this.brand);
+            dict.Add("number", this.number);
+            dict.Add("name", this.name);
 
             string result = "";
 
@@ -69,19 +69,19 @@ namespace Omise
         {
             errors.Clear();
 
-            if (string.IsNullOrEmpty(this.bankId))
+            if (string.IsNullOrEmpty(this.brand))
             {
-                errors.Add("BankId", "cannot be blank");
+                errors.Add("Brand", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.bankAccountNumber))
+            if (string.IsNullOrEmpty(this.number))
             {
-                errors.Add("BankAccountNumber", "cannot be blank");
+                errors.Add("Number", "cannot be blank");
             }
 
-            if (string.IsNullOrEmpty(this.bankAccountName))
+            if (string.IsNullOrEmpty(this.name))
             {
-                errors.Add("BankAccountName", "cannot be blank");
+                errors.Add("Name", "cannot be blank");
             }
         }
     }

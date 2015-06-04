@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Omise
 {
@@ -24,13 +25,31 @@ namespace Omise
         {
             if (string.IsNullOrEmpty(json))
                 throw new ArgumentNullException("json");
-            var obj = JsonConvert.DeserializeObject<Recipient>(json);
+            return JsonConvert.DeserializeObject<Recipient>(json);
+        }
+
+        /// <summary>
+        /// Creates charge collection from json string
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public override CollectionResponseObject<Recipient> CreateCollection(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                throw new ArgumentNullException("json");
             var jsonObject = JObject.Parse(json);
-            var bankAccountsJson = jsonObject.SelectToken("bank_accounts");
-            if (bankAccountsJson != null)
+            var obj = JsonConvert.DeserializeObject<CollectionResponseObject<Recipient>>(json);
+            if (jsonObject.SelectToken("data") != null)
             {
-                obj.BankAccountCollection = new BankAccountFactory().CreateCollection(bankAccountsJson.ToString());
+                obj.Collection = new List<Recipient>();
+                var dataObject = jsonObject.SelectToken("data");
+                foreach (var recipientJson in dataObject)
+                {
+                    var recipient = this.Create(recipientJson.ToString());
+                    obj.Collection.Add(recipient);
+                }
             }
+
             return obj;
         }
     }

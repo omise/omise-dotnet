@@ -25,6 +25,30 @@ namespace Omise.Net.NUnit.Test
         }
 
         [Test]
+        public void TestGetAllCharges() {
+            stubResponse(TestHelper.GetJson("AllCharges.json"));
+            var result = client.ChargeService.GetAllCharges();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Total);
+            Assert.AreEqual(0, result.Offset);
+            Assert.AreEqual(20, result.Limit);
+            Assert.AreEqual(2, result.Collection.Count);
+            
+            var charges = (List<Charge>)result.Collection;
+
+            Assert.IsInstanceOf<Charge>(charges[0]);
+            Assert.IsInstanceOf<Charge>(charges[1]);
+
+            Assert.AreEqual(1000, charges[0].Refunded);
+            Assert.AreEqual(1, charges[0].RefundCollection.Total);
+
+            var refunds = (List<Refund>)charges[0].RefundCollection.Collection;
+            Assert.AreEqual(1000, refunds[0].Amount);
+            Assert.AreEqual("thb", refunds[0].Currency);
+        }
+
+        [Test]
         public void TestGetCharge()
         {
             stubResponse(TestHelper.GetJson("ChargeWithRefund.json"));

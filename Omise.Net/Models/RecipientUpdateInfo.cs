@@ -3,71 +3,78 @@ using System.Collections.Generic;
 
 namespace Omise
 {
-    public class RecipientInfo: RequestObject
+    public class RecipientUpdateInfo : RequestObject
     {
         private Dictionary<string, string> errors = new Dictionary<string, string>();
+
+        private string id;
+        public string Id 
+        { 
+            get { return id; } 
+            set { id = value; } 
+        }
 
         private string name;
 
         public string Name
-        { 
-            get{ return name; } 
-            set{ name = value; } 
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         private string taxId;
 
         public string TaxId
-        { 
-            get{ return taxId; } 
-            set{ taxId = value; } 
+        {
+            get { return taxId; }
+            set { taxId = value; }
         }
 
         private string email;
 
         public string Email
-        { 
-            get{ return email; } 
-            set{ email = value; } 
+        {
+            get { return email; }
+            set { email = value; }
         }
 
         private string description;
 
         public string Description
-        { 
-            get{ return description; } 
-            set{ description = value; } 
-        }
-
-        private string defaultBankAccountId;
-
-        public string DefaultBankAccountId
-        { 
-            get{ return defaultBankAccountId; } 
-            set{ defaultBankAccountId = value; } 
+        {
+            get { return description; }
+            set { description = value; }
         }
 
         private RecipientType recipientType;
 
         public RecipientType RecipientType
         {
-            get{ return recipientType; }
-            set{ recipientType = value; }
+            get { return recipientType; }
+            set { recipientType = value; }
         }
 
         private BankAccountInfo bankAccount;
 
         public BankAccountInfo BankAccount
         {
-            get{ return bankAccount; }
-            set{ bankAccount = value; }
+            get { return bankAccount; }
+            set { bankAccount = value; }
         }
 
         public override string ToRequestParams()
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("name", this.name);
-            dict.Add("recipient_type", this.recipientType.ToString().ToLower());
+
+            if (!string.IsNullOrEmpty(this.name))
+            {
+                dict.Add("name", this.name);
+            }
+
+            if (this.recipientType != null)
+            {
+                dict.Add("type", this.recipientType.ToString().ToLower());
+            }
 
             if (!string.IsNullOrEmpty(this.email))
             {
@@ -86,9 +93,9 @@ namespace Omise
 
             if (this.bankAccount != null)
             {
-                dict.Add("bank_account[bank_id]", this.bankAccount.BankId);
-                dict.Add("bank_account[bank_account_no]", this.bankAccount.BankAccountNumber);
-                dict.Add("bank_account[bank_account_name]", this.bankAccount.BankAccountName);
+                dict.Add("bank_account[brand]", this.bankAccount.Brand);
+                dict.Add("bank_account[number]", this.bankAccount.Number);
+                dict.Add("bank_account[name]", this.bankAccount.Name);
             }
 
             string result = "";
@@ -122,14 +129,13 @@ namespace Omise
         {
             errors.Clear();
 
-            if (string.IsNullOrEmpty(this.name))
-            {
-                errors.Add("Name", "cannot be blank");
+            if (string.IsNullOrEmpty(this.Id)) {
+                errors.Add("Id", "cannot be blank");
             }
 
-            if (this.recipientType == null)
+            if (this.bankAccount != null && !this.bankAccount.Valid)
             {
-                errors.Add("RecipientType", "cannot be blank");
+                errors.Add("BankAccount", "is invalid");
             }
         }
     }

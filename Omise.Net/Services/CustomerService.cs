@@ -63,6 +63,48 @@ namespace Omise
         }
 
         /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// <returns>CollectionResponseObject of customers.</returns>
+        public CollectionResponseObject<Customer> GetAllCustomers()
+        {
+            return GetAllCustomers(null, null, null, null);
+        }
+
+        /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// <returns>CollectionResponseObject of customers.</returns>
+        /// <param name="from">Start date of customer creation to scope the result</param>
+        /// <param name="to">End date of customer creation to scope the result</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="limit">Limit the numbers of return records</param>
+        public CollectionResponseObject<Customer> GetAllCustomers(DateTime? from, DateTime? to, int? offset, int? limit)
+        {
+            var parameters = new List<string>();
+            if (from.HasValue)
+            {
+                parameters.Add("from=" + DateTimeHelper.ToApiDateString(from.Value));
+            }
+            if (to.HasValue)
+            {
+                parameters.Add("to=" + DateTimeHelper.ToApiDateString(to.Value));
+            }
+            if (offset.HasValue)
+            {
+                parameters.Add("offset=" + offset.Value);
+            }
+            if (limit.HasValue)
+            {
+                parameters.Add("limit=" + limit.Value);
+            }
+
+            string url = "/customers" + (parameters.Count > 0 ? "?" + string.Join("&", parameters.ToArray()) : "");
+            string result = requester.ExecuteRequest(url, "GET", null);
+            return customerFactory.CreateCollection(result);
+        }
+
+        /// <summary>
         /// Gets the customer.
         /// </summary>
         /// <returns>Customer object</returns>

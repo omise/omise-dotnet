@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Omise
 {
@@ -54,6 +55,47 @@ namespace Omise
                 throw new InvalidChargeException(getObjectErrors(chargeUpdateInfo));
             string result = requester.ExecuteRequest("/charges/" + chargeUpdateInfo.Id, "PATCH", chargeUpdateInfo.ToRequestParams());
             return chargeFactory.Create(result);
+        }
+
+        /// <summary>
+        /// Gets all charges.
+        /// </summary>
+        /// <returns>CollectionResponseObject of charges.</returns>
+        public CollectionResponseObject<Charge> GetAllCharges() {
+            return GetAllCharges(null, null, null, null);
+        }
+
+        /// <summary>
+        /// Gets all charges.
+        /// </summary>
+        /// <returns>CollectionResponseObject of charges.</returns>
+        /// <param name="from">Start date of charge creation to scope the result</param>
+        /// <param name="to">End date of charge creation to scope the result</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="limit">Limit the numbers of return records</param>
+        public CollectionResponseObject<Charge> GetAllCharges(DateTime? from, DateTime? to, int? offset, int? limit)
+        {
+            var parameters = new List<string>();
+            if (from.HasValue)
+            {
+                parameters.Add("from=" + DateTimeHelper.ToApiDateString(from.Value));
+            }
+            if (to.HasValue)
+            {
+                parameters.Add("to=" + DateTimeHelper.ToApiDateString(to.Value));
+            }
+            if (offset.HasValue)
+            {
+                parameters.Add("offset=" + offset.Value);
+            }
+            if (limit.HasValue)
+            {
+                parameters.Add("limit=" + limit.Value);
+            }
+
+            string url = "/charges" + (parameters.Count > 0 ? "?" + string.Join("&", parameters.ToArray()) : "");
+            string result = requester.ExecuteRequest(url, "GET", null);
+            return chargeFactory.CreateCollection(result);
         }
 
         /// <summary>

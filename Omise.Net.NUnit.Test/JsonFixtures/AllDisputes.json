@@ -1,0 +1,22 @@
+﻿{
+    "object": "list",
+    "from": "1970-01-01T00:00:00+07:00",
+    "to": "2015-06-03T10:48:19+07:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "data": [
+        {
+            "object": "dispute",
+            "id": "dspt_test_508o0ag0fcucuwqjafg",
+            "livemode": false,
+            "location": "/disputes/dspt_test_508o0ag0fcucuwqjafg",
+            "amount": 41000,
+            "currency": "thb",
+            "status": "open",
+            "message": null,
+            "charge": "chrg_test_503jmu1xi3wkko1ziuy",
+            "created": "2015-06-03T10:47:59Z"
+        }
+    ]
+}
