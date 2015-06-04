@@ -27,6 +27,12 @@ namespace Omise
         [JsonProperty("paid")]
         public bool Paid{ get; set; }
 
+        [JsonProperty("recipient")]
+        public string RecipientId { get; set; }
+        
+        [JsonProperty("bank_account")]
+        public BankAccount BankAccount { get; set; }
+
         [JsonProperty("failure_code")]
         public string FailureCode{ get; set; }
 

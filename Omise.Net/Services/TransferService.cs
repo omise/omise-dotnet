@@ -88,11 +88,18 @@ namespace Omise
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public Transfer CreateTransfer(int amount)
+        public Transfer CreateTransfer(int amount, string recipientId = "")
         {
             if (amount <= 0)
                 throw new ArgumentException("Amount must be greater than 0.");
-            string result = requester.ExecuteRequest("/transfers", "POST", "amount=" + amount.ToString());
+
+            var parameters = "amount=" + amount.ToString();
+            if (!string.IsNullOrEmpty(recipientId))
+            {
+                parameters += "&recipient=" + recipientId;
+            }
+
+            string result = requester.ExecuteRequest("/transfers", "POST", parameters);
             return transferFactory.Create(result);
         }
 
@@ -129,9 +136,11 @@ namespace Omise
         /// Create a transfer request with full available balance amount
         /// </summary>
         /// <returns></returns>
-        public Transfer CreateTransfer()
+        public Transfer CreateTransfer(string recipientId = "")
         {
-            string result = requester.ExecuteRequest("/transfers", "POST", null);
+            var parameters = string.IsNullOrEmpty(recipientId) ? null : "recipient=" + recipientId;
+
+            string result = requester.ExecuteRequest("/transfers", "POST", parameters);
             return transferFactory.Create(result);
         }
     }

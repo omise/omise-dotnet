@@ -1,0 +1,12 @@
+﻿{
+    "object": "dispute",
+    "id": "dspt_test_508ykcub2caopy87asd",
+    "livemode": false,
+    "location": "/disputes/dspt_test_508ykcub2caopy87asd",
+    "amount": 15000,
+    "currency": "thb",
+    "status": "pending",
+    "message": "sample message",
+    "charge": "chrg_test_508ykb30i32xtnk1gth",
+    "created": "2015-06-04T04:47:39Z"
+}

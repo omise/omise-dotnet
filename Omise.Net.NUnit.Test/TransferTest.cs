@@ -14,12 +14,12 @@ namespace Omise.Net.NUnit.Test
         public void TestCreateTransferWithFullAmount()
         {
             stubResponse(@"{
-                                        'object': 'transfer',
-                                        'id': 'trsf_test_4xs5px8c36dsanuwztf',
-                                        'amount': 50000,
-                                        'currency': 'THB',
-                                        'created': '2014-10-20T03:55:08Z'
-                                    }");
+                            'object': 'transfer',
+                            'id': 'trsf_test_4xs5px8c36dsanuwztf',
+                            'amount': 50000,
+                            'currency': 'THB',
+                            'created': '2014-10-20T03:55:08Z'
+                           }");
             var result = client.TransferService.CreateTransfer();
             Assert.AreEqual(50000, result.Amount);
             Assert.AreEqual("THB", result.Currency);
@@ -38,37 +38,61 @@ namespace Omise.Net.NUnit.Test
         public void TestCreateTransferWithAmount()
         {
             stubResponse(@"{
-                                        'object': 'transfer',
-                                        'id': 'trsf_test_4xs5px8c36dsanuwztf',
-                                        'amount': 10000,
-                                        'currency': 'THB',
-                                        'created': '2014-10-20T03:55:08Z'
-                                    }");
+                            'object': 'transfer',
+                            'id': 'trsf_test_4xs5px8c36dsanuwztf',
+                            'amount': 10000,
+                            'currency': 'THB',
+                            'created': '2014-10-20T03:55:08Z'
+                           }");
             var result = client.TransferService.CreateTransfer(10000);
             Assert.AreEqual(10000, result.Amount);
             Assert.AreEqual("THB", result.Currency);
         }
 
         [Test]
+        public void TestCreateTransferWithAmountAndRecipient() 
+        {
+            stubResponse(TestHelper.GetJson("TransferWithRecipient.json"));
+            var result = client.TransferService.CreateTransfer(5000, "recp_test_508ac6ufgfzsi2wy345");
+            Assert.AreEqual(5000, result.Amount);
+            Assert.AreEqual("thb", result.Currency);
+            Assert.AreEqual("trsf_test_508n8tb8li55hwnaaqw", result.Id);
+            Assert.IsFalse(result.LiveMode);
+            Assert.AreEqual("/transfers/trsf_test_508n8tb8li55hwnaqw", result.Location);
+            Assert.AreEqual("recp_test_508ac6ufgfzsi2wy345", result.RecipientId);
+            Assert.IsNotNull(result.BankAccount);
+            Assert.AreEqual("test", result.BankAccount.Brand);
+            Assert.AreEqual("test bank account 2", result.BankAccount.Name);
+            Assert.AreEqual("7890", result.BankAccount.LastDigits);
+            Assert.AreEqual(new DateTime(2015,6,2,11,30,2), result.BankAccount.CreatedAt);
+            Assert.IsFalse(result.Sent);
+            Assert.IsFalse(result.Paid);
+            Assert.IsNull(result.FailureCode);
+            Assert.IsNull(result.FailureMessage);
+            Assert.IsNull(result.TransactionId);
+            Assert.AreEqual(new DateTime(2015, 6, 3, 9, 29, 56), result.CreatedAt);
+        }
+
+        [Test]
         public void TestGetAllTransfers()
         {
             stubResponse(@"{
-                                        'object': 'list',
-                                        'from': '1970-01-01T07:00:00+07:00',
-                                        'to': '2014-10-29T11:15:32+07:00',
-                                        'offset': 0,
-                                        'limit': 20,
-                                        'total': 1,
-                                        'data': [
-                                            {
-                                                'object': 'transfer',
-                                                'id': 'trsf_test_4xuy4dcguo06a1vncmc',
-                                                'amount': 100025,
-                                                'currency': 'thb',
-                                                'created': '2014-10-27T07:02:54Z'
-                                            }
-                                        ]
-                                    }");
+                            'object': 'list',
+                            'from': '1970-01-01T07:00:00+07:00',
+                            'to': '2014-10-29T11:15:32+07:00',
+                            'offset': 0,
+                            'limit': 20,
+                            'total': 1,
+                            'data': [
+                                {
+                                    'object': 'transfer',
+                                    'id': 'trsf_test_4xuy4dcguo06a1vncmc',
+                                    'amount': 100025,
+                                    'currency': 'thb',
+                                    'created': '2014-10-27T07:02:54Z'
+                                }
+                            ]
+                          }");
 
             var transfers = client.TransferService.GetAllTransfers();
             Assert.IsNotNull(transfers);
@@ -82,22 +106,22 @@ namespace Omise.Net.NUnit.Test
         public void TestGetAllTransfersWithPagination()
         {
             stubResponse(@"{
-                                        'object': 'list',
-                                        'from': '1970-01-01T07:00:00+07:00',
-                                        'to': '2014-10-29T11:15:32+07:00',
-                                        'offset': 0,
-                                        'limit': 20,
-                                        'total': 1,
-                                        'data': [
-                                            {
-                                                'object': 'transfer',
-                                                'id': 'trsf_test_4xuy4dcguo06a1vncmc',
-                                                'amount': 100025,
-                                                'currency': 'thb',
-                                                'created': '2014-10-27T07:02:54Z'
-                                            }
-                                        ]
-                                    }");
+                            'object': 'list',
+                            'from': '1970-01-01T07:00:00+07:00',
+                            'to': '2014-10-29T11:15:32+07:00',
+                            'offset': 0,
+                            'limit': 20,
+                            'total': 1,
+                            'data': [
+                                {
+                                    'object': 'transfer',
+                                    'id': 'trsf_test_4xuy4dcguo06a1vncmc',
+                                    'amount': 100025,
+                                    'currency': 'thb',
+                                    'created': '2014-10-27T07:02:54Z'
+                                }
+                            ]
+                          }");
 
             var transfers = client.TransferService.GetAllTransfers(null, null, 0, 20);
             Assert.IsNotNull(transfers);

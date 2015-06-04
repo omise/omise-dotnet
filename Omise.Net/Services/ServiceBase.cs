@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Omise
 {
@@ -67,6 +68,11 @@ namespace Omise
         protected TransferFactory transferFactory;
 
         /// <summary>
+        /// Dispute factory defines methods for creating Dispute object from api response
+        /// </summary>
+        protected DisputeFactory disputeFactory;
+
+        /// <summary>
         /// The api base url for the service
         /// </summary>
         protected virtual string ApiUrlBase
@@ -100,6 +106,7 @@ namespace Omise
             tokenFactory = new TokenFactory();
             transactionFactory = new TransactionFactory();
             transferFactory = new TransferFactory();
+            disputeFactory = new DisputeFactory();
         }
 
         /// <summary>
@@ -119,6 +126,7 @@ namespace Omise
             refundFactory = new RefundFactory();
             tokenFactory = new TokenFactory();
             transferFactory = new TransferFactory();
+            disputeFactory = new DisputeFactory();
         }
 
         /// <summary>
@@ -129,6 +137,29 @@ namespace Omise
         protected string getObjectErrors(IValidatable obj)
         {
             return DictionaryHelper.ToString(obj.Errors);
+        }
+
+        protected List<string> BuildPaginationParams(DateTime? from, DateTime? to, int? offset, int? limit)
+        {
+            var parameters = new List<string>();
+            if (from.HasValue)
+            {
+                parameters.Add("from=" + DateTimeHelper.ToApiDateString(from.Value));
+            }
+            if (to.HasValue)
+            {
+                parameters.Add("to=" + DateTimeHelper.ToApiDateString(to.Value));
+            }
+            if (offset.HasValue)
+            {
+                parameters.Add("offset=" + offset.Value);
+            }
+            if (limit.HasValue)
+            {
+                parameters.Add("limit=" + limit.Value);
+            }
+
+            return parameters;
         }
     }
 }

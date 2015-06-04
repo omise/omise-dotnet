@@ -156,6 +156,18 @@ namespace Omise
             }
         }
 
+        private DisputeService disputeService;
+
+        public DisputeService DisputeService
+        {
+            get
+            {
+                if (disputeService == null)
+                    disputeService = new DisputeService(requestManager, secretKey);
+                return disputeService;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
         /// </summary>

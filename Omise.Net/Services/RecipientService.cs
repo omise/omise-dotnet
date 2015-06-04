@@ -6,11 +6,19 @@ namespace Omise
 {
     public class RecipientService: ServiceBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RecipientService"/> class with Api key. The service uses default request manager object.
+        /// </summary>
+        /// <param name="apiKey"></param>
         public RecipientService(string apiKey)
             : base(apiKey)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RecipientService"/> class with IRequestManager object and Api key.
+        /// </summary>
+        /// <param name="apiKey"></param>
         public RecipientService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
         {
