@@ -87,3 +87,44 @@ var customerResult = client.CustomerService.CreateCustomer(customer);
 ``` 
 
 With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
+
+Creating a recipient
+--------------------
+
+```c#
+var recipientInfo = new RecipientCreateInfo();
+recipientInfo.Name = "Test recipient 1";
+recipientInfo.Email = "test1@localhost";
+recipientInfo.RecipientType = RecipientType.Corporation;
+recipientInfo.BankAccount = new BankAccountInfo()
+{
+Brand = "test",
+Number = "1234567890",
+Name = "test bank account"
+};
+
+var recipient = client.RecipientService.CreateRecipient(recipientInfo);
+```
+
+Support banks
+-------------
+
+Creating a recipient requires a bank account information. Below are banks that are supported by Omise
+
+|Brand|Full name|
+|---|---|
+|bbl|Bangkok Bank|
+|kbank|Kasikornbank|
+|ktb|Krungthai Bank|
+|tmb|TMB Bank|
+|scb|Siam Commercial Bank|
+|citi|Citibank|
+|cimb|CIMB Thai Bank|
+|uob|United Overseas Bank (Thai)|
+|bay|Bank of Ayudhya (Krungsri)|
+|tbank|Thanachart Bank|
+|ibank|Islamic Bank of Thailand|
+|lhb|Land and Houses Bank|
+
+
+in TEST mode, 'test' brand is also allowed to use.
