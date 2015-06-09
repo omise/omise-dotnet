@@ -88,8 +88,19 @@ var customerResult = client.CustomerService.CreateCustomer(customer);
 
 With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
 
+Transfer money to bank account
+------------------------------
+```c#
+var result = client.TransferService.CreateTransfer(10000);
+//transfer amount is in smallest unit of the currency, for THB the smallest unit is SATANG so here we are transfering 100 THB
+```
+
+The transfer will be made to default RECIPIENT which in TEST mode it has been automatically created once you signup to Omise.
+However, you have to complete the registration form in order to get LIVE account (with default LIVE recipient) activated. 
+
 Creating a recipient
 --------------------
+A transfer can also be made to a third-party recipient. The example below demonstrates how to create a recipient.
 
 ```c#
 var recipientInfo = new RecipientCreateInfo();
@@ -104,6 +115,12 @@ Name = "test bank account"
 };
 
 var recipient = client.RecipientService.CreateRecipient(recipientInfo);
+```
+
+Then to transfer to this recipient
+
+```c#
+ var result = client.TransferService.CreateTransfer(10000, recipient.Id);
 ```
 
 Support banks
@@ -128,3 +145,5 @@ Creating a recipient requires a bank account information. Below are banks that a
 
 
 in TEST mode, 'test' brand is also allowed to use.
+
+Full developer api documentation https://docs.omise.co
