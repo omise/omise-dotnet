@@ -61,6 +61,18 @@ Determine if charge success
 In the charge result there is a bool property named 'Captured' which tells us that the money has been charged by the acquirer bank if the value is ```TRUE```, 
 otherwise there will be another factors making the charge not being captured. For more information, visit https://docs.omise.co/api/charges/
 
+Creating a customer
+-------------------
+```c#
+var customer = new CustomerInfo();
+customer.Email = "test@localhost";
+customer.Description = "My test customer";
+
+var customerResult = client.CustomerService.CreateCustomer(customer);
+``` 
+
+With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
+
 Transfer money to bank account
 ------------------------------
 ```c#
