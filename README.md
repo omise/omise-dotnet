@@ -23,23 +23,27 @@ The core of the library is the Client which contains all services to call the AP
 
 Creating a token
 ----------------
-**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Omise from your servers directly.**
 
-The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you do and you are PCI-DSS compliant, sending card data from server requires a valid PCI-DSS certification.
-that said, you must achieve, maintain PCI ompliance at all times and do following a Security Best Practices https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf
+To create a token use [Omise.js](https://docs.omise.co/omise-js/) Javascript library.
+
+**Credit Card data should never go through your servers. That means, do not send the credit card data to Omise from your servers directly, do it from the user browser.**
+
+The token creation method in the library should only be used either with fake data in test mode, e.g.: quickly creating some test data or for testing our API from a terminal. You can send card data from the server only if you have a valid PCI-DSS license.
 
 Creating a token with Omise.js
 ------------------------------
-We recommended you to create a token using [Omise.JS](https://github.com/omise/omise.js) library which runs on browser side. It uses javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on.
+
+The [Omise.js](https://github.com/omise/omise.js) library runs on the user browser and sends card directly from the browser to our servers in HTTPS, as well collecting browser information in order to detect fraud. Omise will return a Token for the given card in which you must pass to your server to complete the charge. 
+Some examples and source code can be found here: [github.com/omise/omise.js](https://github.com/omise/omise.js)
 
 Simplify the integration with Card.js
 -------------------------------------
-[Card.js](https://docs.omise.co/card-js/), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-dotnet`.
 
+You can also use [Omise Card.js](https://docs.omise.co/card-js/), which creates a credit card payment html form for getting a card token from Omise, which you can use to make a charge with `omise-dotnet`.
 
-For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with card information at all and you don't need to deal with credit card data hassle, it reduces risk.
+For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with credit card information to prevent any risk.
 
-**Please read https://docs.omise.co/collecting-card-information/ regarding how to collecting card information.**
+Please read more about it here [Security Best Practices](https://docs.omise.co/security-best-practices/) and  [Collecting Card Information](https://docs.omise.co/collecting-card-information/)
 
 Creating a charge
 -----------------
