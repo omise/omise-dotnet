@@ -43,7 +43,7 @@ You can also use [Omise Card.js](https://docs.omise.co/card-js/), which creates 
 
 For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with credit card information to prevent any risk.
 
-Please read mode about it here [Security Best Practices](https://docs.omise.co/security-best-practices/) and  [Collecting Card Information](https://docs.omise.co/collecting-card-information/)
+Please read more about it here [Security Best Practices](https://docs.omise.co/security-best-practices/) and  [Collecting Card Information](https://docs.omise.co/collecting-card-information/)
 
 Creating a charge
 -----------------
