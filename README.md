@@ -21,6 +21,16 @@ The core of the library is the Client which contains all services to call the AP
   //public key is optional which is required only if you want to create a token on the server side
 ```
 
+or to specify the api version
+
+```c#
+var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY])
+{
+    ApiVersion = "2014-07-27"
+}; 
+  //public key is optional which is required only if you want to create a token on the server side
+```
+
 Creating a token
 ----------------
 

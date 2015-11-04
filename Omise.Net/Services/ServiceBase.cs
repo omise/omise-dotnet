@@ -80,6 +80,22 @@ namespace Omise
             get { return "https://api.omise.co"; }
         }
 
+        private void init()
+        {
+            accountFactory = new AccountFactory();
+            balanceFactory = new BalanceFactory();
+            bankAccountFactory = new BankAccountFactory();
+            cardFactory = new CardFactory();
+            chargeFactory = new ChargeFactory();
+            customerFactory = new CustomerFactory();
+            recipientFactory = new RecipientFactory();
+            refundFactory = new RefundFactory();
+            tokenFactory = new TokenFactory();
+            transactionFactory = new TransactionFactory();
+            transferFactory = new TransferFactory();
+            disputeFactory = new DisputeFactory();
+        }
+
         /// <summary>
         /// Initializes the ServiceBase object
         /// </summary>
@@ -96,18 +112,7 @@ namespace Omise
                 requester = requestManager;
             }
 
-            accountFactory = new AccountFactory();
-            balanceFactory = new BalanceFactory();
-            bankAccountFactory = new BankAccountFactory();
-            cardFactory = new CardFactory();
-            chargeFactory = new ChargeFactory();
-            customerFactory = new CustomerFactory();
-            recipientFactory = new RecipientFactory();
-            refundFactory = new RefundFactory();
-            tokenFactory = new TokenFactory();
-            transactionFactory = new TransactionFactory();
-            transferFactory = new TransferFactory();
-            disputeFactory = new DisputeFactory();
+            init();
         }
 
         /// <summary>
@@ -117,33 +122,13 @@ namespace Omise
         public ServiceBase(string apiKey)
         {
             requester = new RequestManager(ApiUrlBase, apiKey);
-            accountFactory = new AccountFactory();
-            balanceFactory = new BalanceFactory();
-            bankAccountFactory = new BankAccountFactory();
-            cardFactory = new CardFactory();
-            chargeFactory = new ChargeFactory();
-            customerFactory = new CustomerFactory();
-            recipientFactory = new RecipientFactory();
-            refundFactory = new RefundFactory();
-            tokenFactory = new TokenFactory();
-            transferFactory = new TransferFactory();
-            disputeFactory = new DisputeFactory();
+            init();
         }
 
         public ServiceBase(string apiKey, string apiVersion)
         {
             requester = new RequestManager(ApiUrlBase, apiKey, apiVersion);
-            accountFactory = new AccountFactory();
-            balanceFactory = new BalanceFactory();
-            bankAccountFactory = new BankAccountFactory();
-            cardFactory = new CardFactory();
-            chargeFactory = new ChargeFactory();
-            customerFactory = new CustomerFactory();
-            recipientFactory = new RecipientFactory();
-            refundFactory = new RefundFactory();
-            tokenFactory = new TokenFactory();
-            transferFactory = new TransferFactory();
-            disputeFactory = new DisputeFactory();
+            init();
         }
 
         public ServiceBase(IRequestManager requestManager, string apiKey, string apiVersion)
@@ -157,18 +142,7 @@ namespace Omise
                 requester = requestManager;
             }
 
-            accountFactory = new AccountFactory();
-            balanceFactory = new BalanceFactory();
-            bankAccountFactory = new BankAccountFactory();
-            cardFactory = new CardFactory();
-            chargeFactory = new ChargeFactory();
-            customerFactory = new CustomerFactory();
-            recipientFactory = new RecipientFactory();
-            refundFactory = new RefundFactory();
-            tokenFactory = new TokenFactory();
-            transactionFactory = new TransactionFactory();
-            transferFactory = new TransferFactory();
-            disputeFactory = new DisputeFactory();
+            init();
         }
 
         /// <summary>

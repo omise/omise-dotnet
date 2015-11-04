@@ -163,9 +163,7 @@ namespace Omise
             get
             {
                 if (disputeService == null)
-                {
                     disputeService = new DisputeService(requestManager, secretKey, ApiVersion);
-                }
                 
                 return disputeService;
             }

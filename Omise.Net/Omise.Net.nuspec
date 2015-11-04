@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Add Recipient Api, Add Dispute Api, Allow transfer to recipient</releaseNotes>
+    <releaseNotes>Add 'Paid' and 'Status' to Charge, Add 'Bank' to Card, Add ability to specify Api Version</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Omise, C#, payment, gateway, credit card</tags>
 	<dependencies>
