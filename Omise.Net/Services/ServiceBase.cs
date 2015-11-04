@@ -95,6 +95,7 @@ namespace Omise
             {
                 requester = requestManager;
             }
+
             accountFactory = new AccountFactory();
             balanceFactory = new BalanceFactory();
             bankAccountFactory = new BankAccountFactory();
@@ -125,6 +126,47 @@ namespace Omise
             recipientFactory = new RecipientFactory();
             refundFactory = new RefundFactory();
             tokenFactory = new TokenFactory();
+            transferFactory = new TransferFactory();
+            disputeFactory = new DisputeFactory();
+        }
+
+        public ServiceBase(string apiKey, string apiVersion)
+        {
+            requester = new RequestManager(ApiUrlBase, apiKey, apiVersion);
+            accountFactory = new AccountFactory();
+            balanceFactory = new BalanceFactory();
+            bankAccountFactory = new BankAccountFactory();
+            cardFactory = new CardFactory();
+            chargeFactory = new ChargeFactory();
+            customerFactory = new CustomerFactory();
+            recipientFactory = new RecipientFactory();
+            refundFactory = new RefundFactory();
+            tokenFactory = new TokenFactory();
+            transferFactory = new TransferFactory();
+            disputeFactory = new DisputeFactory();
+        }
+
+        public ServiceBase(IRequestManager requestManager, string apiKey, string apiVersion)
+        {
+            if (requestManager == null)
+            {
+                requester = new RequestManager(ApiUrlBase, apiKey, apiVersion);
+            }
+            else
+            {
+                requester = requestManager;
+            }
+
+            accountFactory = new AccountFactory();
+            balanceFactory = new BalanceFactory();
+            bankAccountFactory = new BankAccountFactory();
+            cardFactory = new CardFactory();
+            chargeFactory = new ChargeFactory();
+            customerFactory = new CustomerFactory();
+            recipientFactory = new RecipientFactory();
+            refundFactory = new RefundFactory();
+            tokenFactory = new TokenFactory();
+            transactionFactory = new TransactionFactory();
             transferFactory = new TransferFactory();
             disputeFactory = new DisputeFactory();
         }

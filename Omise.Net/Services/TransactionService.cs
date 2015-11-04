@@ -28,6 +28,25 @@ namespace Omise
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with Api key. The service uses default IRequestManager object.
+        /// </summary>
+        /// <param name="apiKey">Api key</param>
+        public TransactionService(string apiKey, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.TransactionService"/> class with IRequestManager object and Api key
+        /// </summary>
+        /// <param name="requestManager">IRequestManager object</param>
+        /// <param name="apiKey">Api key</param>
+        public TransactionService(IRequestManager requestManager, string apiKey, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
+        {
+        }
+
+        /// <summary>
         /// Gets all transactions.
         /// </summary>
         /// <returns>CollectionResponseObject of transactions.</returns>

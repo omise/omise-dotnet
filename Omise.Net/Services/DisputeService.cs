@@ -15,6 +15,11 @@ namespace Omise
         {
         }
 
+        public DisputeService(string apiKey, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.DisputeService"/> class with IRequestManager object and Api key.
         /// </summary>
@@ -22,6 +27,12 @@ namespace Omise
         /// <param name="apiKey"></param>
         public DisputeService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
+        {
+
+        }
+
+        public DisputeService(IRequestManager requestManager, string apiKey, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
         {
 
         }

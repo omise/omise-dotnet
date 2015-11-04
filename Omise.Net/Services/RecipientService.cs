@@ -25,6 +25,28 @@ namespace Omise
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RecipientService"/> class with Api key. The service uses default request manager object.
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="apiVersion"></param>
+        public RecipientService(string apiKey, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RecipientService"/> class with IRequestManager object and Api key.
+        /// </summary>
+        /// <param name="requestManager"></param>
+        /// <param name="apiKey"></param>
+        /// <param name="apiVersion"></param>
+        public RecipientService(IRequestManager requestManager, string apiKey, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
+        {
+
+        }
+
         public CollectionResponseObject<Recipient> GetAllRecipients() {
             return GetAllRecipients(null, null, null, null);
         }

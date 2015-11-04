@@ -12,6 +12,7 @@ namespace Omise
     {
         private string apiUrlBase;
         private string apiKey;
+        private string apiVersion;
         private string encodedCredentials;
 
         /// <summary>
@@ -31,6 +32,24 @@ namespace Omise
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
+        /// </summary>
+        /// <param name="apiUrlBase">Api base URL</param>
+        /// <param name="apiKey">Api key</param>
+        /// <param name="apiVersion">Api version</param>
+        public RequestManager(string apiUrlBase, string apiKey, string apiVersion)
+        {
+            if (string.IsNullOrEmpty(apiUrlBase))
+                throw new ArgumentNullException("apiUrlBase");
+            if (string.IsNullOrEmpty(apiKey))
+                throw new ArgumentNullException("apiKey");
+            this.apiUrlBase = apiUrlBase;
+            this.apiKey = apiKey;
+            this.apiVersion = apiVersion;
+            this.encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(this.apiKey + ":"));
+        }
+
+        /// <summary>
         /// Executes the request and return result string
         /// </summary>
         /// <returns>Response string</returns>
@@ -44,6 +63,7 @@ namespace Omise
 
             var request = (HttpWebRequest)WebRequest.Create(apiUrlBase + path);
             request.Headers.Add("Authorization", "Basic " + this.encodedCredentials);
+            request.Headers.Add("Omise-Version", this.apiVersion);
             request.UserAgent = "Omise.Net/" + Omise.VersionInfo.ClientVersion;
             request.Method = method;
             request.ContentType = "application/x-www-form-urlencoded";

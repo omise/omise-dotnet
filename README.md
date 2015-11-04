@@ -5,7 +5,7 @@ Omise.Net is a .Net library written in C# provides the wrapper functions for Omi
 
 Requirements
 ============
-The library requires .Net framework 2.0, 3.5, 4.0 or 4.5.
+The library works with .Net framework 2.0, 3.5, 4.0 or 4.5.
 
 Installation
 ============
@@ -119,7 +119,7 @@ Creating a recipient requires a bank account information. Below are banks that a
 
 |Brand|Full name|
 |---|---|
-|bbl|Bangkok Bank|
+|bbl|BANGKOK BANK|
 |kbank|Kasikornbank|
 |ktb|Krungthai Bank|
 |tmb|TMB Bank|

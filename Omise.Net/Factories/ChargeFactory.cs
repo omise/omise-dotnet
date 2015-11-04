@@ -28,6 +28,19 @@ namespace Omise
                 throw new ArgumentNullException(json);
             var obj = JsonConvert.DeserializeObject<Charge>(json);
             var jsonObject = JObject.Parse(json);
+
+            if (jsonObject["captured"] != null)
+            {
+                obj.Captured = jsonObject["captured"].ToObject<bool>();
+                obj.Paid = obj.Captured;
+            }
+
+            if (jsonObject["paid"] != null)
+            {
+                obj.Paid = jsonObject["paid"].ToObject<bool>();
+                obj.Captured = obj.Paid;
+            }
+            
             var refundsJson = jsonObject.SelectToken("refunds");
             if (refundsJson != null)
             {

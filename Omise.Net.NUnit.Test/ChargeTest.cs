@@ -58,6 +58,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1000000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
             Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
             Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);
@@ -96,6 +97,8 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1000000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
             Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
+            Assert.AreEqual("successful", result.Status);
             Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);
@@ -133,6 +136,8 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1000000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
             Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
+            Assert.AreEqual("successful", result.Status);
             Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);
@@ -168,6 +173,8 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1000000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
             Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
+            Assert.AreEqual("successful", result.Status);
             Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);
@@ -197,30 +204,32 @@ namespace Omise.Net.NUnit.Test
 
             stubResponse(TestHelper.GetJson("ChargeUpdated.json"));
 
-            var updateResult = client.ChargeService.UpdateCharge(chargeUpdateInfo);
+            var result = client.ChargeService.UpdateCharge(chargeUpdateInfo);
 
-            Assert.AreEqual(1000000, updateResult.Amount);
-            Assert.AreEqual("thb", updateResult.Currency);
-            Assert.IsTrue(updateResult.Captured);
-            Assert.AreEqual("Test update description", updateResult.Description);
-            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), updateResult.CreatedAt);
-            Assert.IsNotNull(updateResult.Card);
-            Assert.AreEqual("4242", updateResult.Card.LastDigits);
-            Assert.AreEqual("Test card", updateResult.Card.Name);
-            Assert.AreEqual(9, updateResult.Card.ExpirationMonth);
-            Assert.AreEqual(2017, updateResult.Card.ExpirationYear);
-            Assert.AreEqual("FK8mTeCO13cSIMMAGAm8BvoIiHPQgNpMuo+6s4VEI9U=", updateResult.Card.Fingerprint);
-            Assert.IsNull(updateResult.Card.Location);
-            Assert.IsNullOrEmpty(updateResult.Card.Country);
-            Assert.IsNullOrEmpty(updateResult.Card.City);
-            Assert.IsNullOrEmpty(updateResult.Card.PostalCode);
-            Assert.IsNullOrEmpty(updateResult.Card.Financing);
-            Assert.AreEqual(Brand.Visa, updateResult.Card.Brand);
-            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 16, 31), updateResult.Card.CreatedAt);
-            Assert.False(updateResult.Card.LiveMode);
-            Assert.AreEqual("/charges/chrg_test_4zgsgfb13gw8kwknmgy", updateResult.Location);
-            Assert.AreEqual(0, updateResult.Refunded);
-            Assert.AreEqual(0, updateResult.RefundCollection.Total);
+            Assert.AreEqual(1000000, result.Amount);
+            Assert.AreEqual("thb", result.Currency);
+            Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
+            Assert.AreEqual("successful", result.Status);
+            Assert.AreEqual("Test update description", result.Description);
+            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
+            Assert.IsNotNull(result.Card);
+            Assert.AreEqual("4242", result.Card.LastDigits);
+            Assert.AreEqual("Test card", result.Card.Name);
+            Assert.AreEqual(9, result.Card.ExpirationMonth);
+            Assert.AreEqual(2017, result.Card.ExpirationYear);
+            Assert.AreEqual("FK8mTeCO13cSIMMAGAm8BvoIiHPQgNpMuo+6s4VEI9U=", result.Card.Fingerprint);
+            Assert.IsNull(result.Card.Location);
+            Assert.IsNullOrEmpty(result.Card.Country);
+            Assert.IsNullOrEmpty(result.Card.City);
+            Assert.IsNullOrEmpty(result.Card.PostalCode);
+            Assert.IsNullOrEmpty(result.Card.Financing);
+            Assert.AreEqual(Brand.Visa, result.Card.Brand);
+            Assert.AreEqual(new DateTime(2015, 3, 24, 4, 16, 31), result.Card.CreatedAt);
+            Assert.False(result.Card.LiveMode);
+            Assert.AreEqual("/charges/chrg_test_4zgsgfb13gw8kwknmgy", result.Location);
+            Assert.AreEqual(0, result.Refunded);
+            Assert.AreEqual(0, result.RefundCollection.Total);
         }
 
         [Test]
@@ -352,6 +361,8 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual(1000000, result.Amount);
             Assert.AreEqual("thb", result.Currency);
             Assert.IsTrue(result.Captured);
+            Assert.IsTrue(result.Paid);
+            Assert.AreEqual("successful", result.Status);
             Assert.AreEqual(new DateTime(2015, 3, 24, 4, 17, 31), result.CreatedAt);
             Assert.IsNotNull(result.Card);
             Assert.AreEqual("4242", result.Card.LastDigits);

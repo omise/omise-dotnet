@@ -27,7 +27,7 @@ namespace Omise
             get
             {
                 if (chargeService == null)
-                    chargeService = new ChargeService(requestManager, secretKey);
+                    chargeService = new ChargeService(requestManager, secretKey, ApiVersion);
                 return chargeService;
             }
         }
@@ -43,7 +43,7 @@ namespace Omise
             get
             {
                 if (cardService == null)
-                    cardService = new CardService(requestManager, secretKey, this.TokenService);
+                    cardService = new CardService(requestManager, secretKey, this.TokenService, ApiVersion);
                 return cardService;
             }
         }
@@ -59,7 +59,7 @@ namespace Omise
             get
             {
                 if (customerService == null)
-                    customerService = new CustomerService(requestManager, secretKey, this.TokenService);
+                    customerService = new CustomerService(requestManager, secretKey, this.TokenService, ApiVersion);
                 return customerService;
             }
         }
@@ -75,7 +75,7 @@ namespace Omise
             get
             {
                 if (accountService == null)
-                    accountService = new AccountService(requestManager, secretKey);
+                    accountService = new AccountService(requestManager, secretKey, ApiVersion);
                 return accountService;
             }
         }
@@ -91,7 +91,7 @@ namespace Omise
             get
             {
                 if (tokenService == null)
-                    tokenService = new TokenService(requestManager, publicKey);
+                    tokenService = new TokenService(requestManager, publicKey, ApiVersion);
                 return tokenService;
             }
         }
@@ -107,7 +107,7 @@ namespace Omise
             get
             {
                 if (balanceService == null)
-                    balanceService = new BalanceService(requestManager, secretKey);
+                    balanceService = new BalanceService(requestManager, secretKey, ApiVersion);
                 return balanceService;
             }
         }
@@ -123,7 +123,7 @@ namespace Omise
             get
             {
                 if (transactionService == null)
-                    transactionService = new TransactionService(requestManager, secretKey);
+                    transactionService = new TransactionService(requestManager, secretKey, ApiVersion);
                 return transactionService;
             }
         }
@@ -139,7 +139,7 @@ namespace Omise
             get
             {
                 if (transferService == null)
-                    transferService = new TransferService(requestManager, secretKey);
+                    transferService = new TransferService(requestManager, secretKey, ApiVersion);
                 return transferService;
             }
         }
@@ -151,7 +151,7 @@ namespace Omise
             get
             { 
                 if (recipientService == null)
-                    recipientService = new RecipientService(requestManager, secretKey);
+                    recipientService = new RecipientService(requestManager, secretKey, ApiVersion);
                 return recipientService;
             }
         }
@@ -163,10 +163,15 @@ namespace Omise
             get
             {
                 if (disputeService == null)
-                    disputeService = new DisputeService(requestManager, secretKey);
+                {
+                    disputeService = new DisputeService(requestManager, secretKey, ApiVersion);
+                }
+                
                 return disputeService;
             }
         }
+
+        public string ApiVersion { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.Client"/> class with Api keys. The client uses default IRequestManager object for all requests.
