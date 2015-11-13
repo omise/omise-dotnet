@@ -1,7 +1,7 @@
 # Change Log
 
 An [unreleased] version is not available on nuget and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
-## [unreleased] 2015-11-04
+## [1.1.0] 2015-11-13
 
 - [Added] Ability to specify Api Version on Client
 - [Added] Add new "Status" string property to Charge. The possible values are Pending, Successful or Failed.
