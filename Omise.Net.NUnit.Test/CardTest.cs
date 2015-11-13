@@ -29,7 +29,7 @@ namespace Omise.Net.NUnit.Test
             card.ExpirationYear = 2017;
 
             //Stub for internal TokenService call
-            stubResponse("/tokens", "POST", 
+            stubResponse("/tokens", "POST",
                 @"{
                             'object': 'token',
                             'id': 'tokn_test_4yw4c9fa79ebj9ajisj',
@@ -44,6 +44,7 @@ namespace Omise.Net.NUnit.Test
                                 'city': null,
                                 'postal_code': null,
                                 'financing': '',
+                                'bank': 'TEST BANK',
                                 'last_digits': '4242',
                                 'brand': 'Visa',
                                 'expiration_month': 9,
@@ -82,6 +83,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '4242',
                             'brand': 'Visa',
                             'expiration_month': 9,
@@ -105,6 +107,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '4242',
                             'brand': 'Visa',
                             'expiration_month': 9,
@@ -127,6 +130,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual("card_test_122", result.Id);
             Assert.AreEqual("/customers/cust_test_1/cards/card_test_122", result.Location);
             Assert.AreEqual(new DateTime(2014, 12, 15, 8, 10, 4), result.CreatedAt);
+            Assert.AreEqual("TEST BANK", result.Bank);
         }
 
         [Test]
@@ -155,6 +159,7 @@ namespace Omise.Net.NUnit.Test
                                 'city': null,
                                 'postal_code': null,
                                 'financing': '',
+                                'bank': 'TEST BANK',
                                 'last_digits': '1111',
                                 'brand': 'Visa',
                                 'expiration_month': 12,
@@ -183,6 +188,7 @@ namespace Omise.Net.NUnit.Test
                                 'city': null,
                                 'postal_code': null,
                                 'financing': '',
+                                'bank': 'TEST BANK',
                                 'last_digits': '1111',
                                 'brand': 'Visa',
                                 'expiration_month': 12,
@@ -221,6 +227,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '4242',
                             'brand': 'Visa',
                             'expiration_month': 9,
@@ -239,6 +246,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '1111',
                             'brand': 'Visa',
                             'expiration_month': 12,
@@ -262,6 +270,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',    
                             'last_digits': '1111',
                             'brand': 'Visa',
                             'expiration_month': 12,
@@ -284,6 +293,7 @@ namespace Omise.Net.NUnit.Test
             Assert.AreEqual("card_test_123", result.Id);
             Assert.AreEqual("/customers/cust_test_1/cards/card_test_123", result.Location);
             Assert.AreEqual(new DateTime(2015, 1, 30, 7, 58, 52), result.CreatedAt);
+            Assert.AreEqual("TEST BANK", result.Bank);
         }
 
         [Test]
@@ -355,6 +365,7 @@ namespace Omise.Net.NUnit.Test
                             'city': 'Bangkok',
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '4242',
                             'brand': 'Visa',
                             'expiration_month': 9,
@@ -364,21 +375,22 @@ namespace Omise.Net.NUnit.Test
                             'security_code_check': true,
                             'created': '2014-10-02T05:25:10Z'
                            }");
-            var updateResult = client.CardService.UpdateCard(customerId, card);
-            Assert.IsNotNull(updateResult);
-            Assert.AreEqual("4242", updateResult.LastDigits);
-            Assert.AreEqual("My Test Card", updateResult.Name);
-            Assert.AreEqual(9, updateResult.ExpirationMonth);
-            Assert.AreEqual(2017, updateResult.ExpirationYear);
-            Assert.AreEqual("123", updateResult.Fingerprint);
-            Assert.AreEqual("/customers/cust_test_1/cards/123", updateResult.Location);
-            Assert.AreEqual("Thailand", updateResult.Country);
-            Assert.AreEqual("Bangkok", updateResult.City);
-            Assert.IsNull(updateResult.PostalCode);
-            Assert.IsNullOrEmpty(updateResult.Financing);
-            Assert.AreEqual(Brand.Visa, updateResult.Brand);
-            Assert.AreEqual(new DateTime(2014, 10, 2, 5, 25, 10), updateResult.CreatedAt);
-            Assert.False(updateResult.LiveMode);
+            var result = client.CardService.UpdateCard(customerId, card);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("4242", result.LastDigits);
+            Assert.AreEqual("My Test Card", result.Name);
+            Assert.AreEqual(9, result.ExpirationMonth);
+            Assert.AreEqual(2017, result.ExpirationYear);
+            Assert.AreEqual("123", result.Fingerprint);
+            Assert.AreEqual("/customers/cust_test_1/cards/123", result.Location);
+            Assert.AreEqual("Thailand", result.Country);
+            Assert.AreEqual("Bangkok", result.City);
+            Assert.IsNull(result.PostalCode);
+            Assert.IsNullOrEmpty(result.Financing);
+            Assert.AreEqual(Brand.Visa, result.Brand);
+            Assert.AreEqual(new DateTime(2014, 10, 2, 5, 25, 10), result.CreatedAt);
+            Assert.False(result.LiveMode);
+            Assert.AreEqual("TEST BANK", result.Bank);
         }
 
         [Test]
@@ -393,6 +405,7 @@ namespace Omise.Net.NUnit.Test
                             'city': null,
                             'postal_code': null,
                             'financing': '',
+                            'bank': 'TEST BANK',
                             'last_digits': '4242',
                             'brand': 'Visa',
                             'expiration_month': 9,
@@ -403,21 +416,22 @@ namespace Omise.Net.NUnit.Test
                             'created': '2014-10-02T06:09:01Z'
                            }");
 
-            var getCardResult = client.CardService.GetCard(customerId, "123");
-            Assert.IsNotNull(getCardResult);
-            Assert.AreEqual("4242", getCardResult.LastDigits);
-            Assert.AreEqual("Test Card", getCardResult.Name);
-            Assert.AreEqual(9, getCardResult.ExpirationMonth);
-            Assert.AreEqual(2017, getCardResult.ExpirationYear);
-            Assert.AreEqual("123", getCardResult.Fingerprint);
-            Assert.AreEqual("/customers/cust_test_1/cards/123", getCardResult.Location);
-            Assert.IsNullOrEmpty(getCardResult.Country);
-            Assert.IsNullOrEmpty(getCardResult.City);
-            Assert.IsNull(getCardResult.PostalCode);
-            Assert.IsNullOrEmpty(getCardResult.Financing);
-            Assert.AreEqual(Brand.Visa, getCardResult.Brand);
-            Assert.AreEqual(new DateTime(2014, 10, 2, 6, 9, 1), getCardResult.CreatedAt);
-            Assert.False(getCardResult.LiveMode);
+            var result = client.CardService.GetCard(customerId, "123");
+            Assert.IsNotNull(result);
+            Assert.AreEqual("4242", result.LastDigits);
+            Assert.AreEqual("Test Card", result.Name);
+            Assert.AreEqual(9, result.ExpirationMonth);
+            Assert.AreEqual(2017, result.ExpirationYear);
+            Assert.AreEqual("123", result.Fingerprint);
+            Assert.AreEqual("/customers/cust_test_1/cards/123", result.Location);
+            Assert.IsNullOrEmpty(result.Country);
+            Assert.IsNullOrEmpty(result.City);
+            Assert.IsNull(result.PostalCode);
+            Assert.IsNullOrEmpty(result.Financing);
+            Assert.AreEqual(Brand.Visa, result.Brand);
+            Assert.AreEqual(new DateTime(2014, 10, 2, 6, 9, 1), result.CreatedAt);
+            Assert.False(result.LiveMode);
+            Assert.AreEqual("TEST BANK", result.Bank);
         }
 
         [Test]
@@ -429,11 +443,11 @@ namespace Omise.Net.NUnit.Test
                             'livemode': false,
                             'deleted': true
                            }");
-            var deleteResult = client.CardService.DeleteCard(customerId, "123");
+            var result = client.CardService.DeleteCard(customerId, "123");
 
-            Assert.AreEqual("123", deleteResult.Id);
-            Assert.IsFalse(deleteResult.LiveMode);
-            Assert.IsTrue(deleteResult.Deleted);
+            Assert.AreEqual("123", result.Id);
+            Assert.IsFalse(result.LiveMode);
+            Assert.IsTrue(result.Deleted);
         }
     }
 }

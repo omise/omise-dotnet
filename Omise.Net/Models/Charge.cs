@@ -54,8 +54,12 @@ namespace Omise
         /// <summary>
         /// Defines whether a charge is captured
         /// </summary>
-        [JsonProperty("captured")]
         public bool Captured { get; set; }
+
+        /// <summary>
+        /// Defines whether a charge is paid
+        /// </summary>
+        public bool Paid { get; set; }
 
         /// <summary>
         /// The transaction id
@@ -106,6 +110,9 @@ namespace Omise
         /// Card object which the charge applied
         /// </summary>
         public Card Card { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
 
 
         /// <summary>

@@ -1,6 +1,12 @@
 # Change Log
 
 An [unreleased] version is not available on nuget and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
+## [1.1.0] 2015-11-13
+
+- [Added] Ability to specify Api Version on Client
+- [Added] Add new "Status" string property to Charge. The possible values are Pending, Successful or Failed.
+- [Added] Add new "Paid" boolean property to Charge. The value indicates that a charge was paid (or captured). 
+- [Added] Add new "Bank" string property to Card. The value represents the card issuer.
 
 ## [1.0.6] 2015-06-04
 

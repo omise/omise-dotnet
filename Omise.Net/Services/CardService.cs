@@ -25,12 +25,41 @@ namespace Omise
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with Api key and TokenService object. The service uses default request manager object.
+        /// </summary>
+        /// <param name="apiKey">Api key</param>
+        /// <param name="tokenService">TokenService object</param>
+        /// <param name="apiVersion">Api version</param>
+        public CardService(string apiKey, TokenService tokenService, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+            if (tokenService == null)
+                throw new ArgumentNullException("tokenService");
+            this.tokenService = tokenService;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, Api key and TokenService object.
         /// </summary>
         /// <param name="requestManager">Request manager.</param>
         /// <param name="apiKey">Api key</param>
         public CardService(IRequestManager requestManager, string apiKey, TokenService tokenService)
             : base(requestManager, apiKey)
+        {
+            if (tokenService == null)
+                throw new ArgumentNullException("tokenService");
+            this.tokenService = tokenService;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.CardService"/> class with IRequestManager object, Api key and TokenService object.
+        /// </summary>
+        /// <param name="requestManager">Request manager.</param>
+        /// <param name="apiKey">Api key</param>
+        /// <param name="tokenService">TokenService object</param>
+        /// <param name="apiVersion">Api version</param>
+        public CardService(IRequestManager requestManager, string apiKey, TokenService tokenService, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
         {
             if (tokenService == null)
                 throw new ArgumentNullException("tokenService");

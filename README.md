@@ -5,7 +5,7 @@ Omise.Net is a .Net library written in C# provides the wrapper functions for Omi
 
 Requirements
 ============
-The library requires .Net framework 2.0, 3.5, 4.0 or 4.5.
+The library works with .Net framework 2.0, 3.5, 4.0 or 4.5.
 
 Installation
 ============
@@ -18,6 +18,16 @@ The core of the library is the Client which contains all services to call the AP
 
 ```c#
   var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY]); 
+  //public key is optional which is required only if you want to create a token on the server side
+```
+
+or to specify the api version
+
+```c#
+var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY])
+{
+    ApiVersion = "2014-07-27"
+}; 
   //public key is optional which is required only if you want to create a token on the server side
 ```
 
@@ -119,7 +129,7 @@ Creating a recipient requires a bank account information. Below are banks that a
 
 |Brand|Full name|
 |---|---|
-|bbl|Bangkok Bank|
+|bbl|BANGKOK BANK|
 |kbank|Kasikornbank|
 |ktb|Krungthai Bank|
 |tmb|TMB Bank|

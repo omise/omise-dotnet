@@ -77,6 +77,12 @@ namespace Omise
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The issuer bank of the card
+        /// </summary>
+        [JsonProperty("bank")]
+        public string Bank { get; set; }
     }
 }
 

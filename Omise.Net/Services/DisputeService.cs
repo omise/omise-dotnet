@@ -16,12 +16,34 @@ namespace Omise
         }
 
         /// <summary>
+        ///  Initializes a new instance of the <see cref="Omise.DisputeService"/> class with Api key and Api version. The service uses default request manager object.
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="apiVersion"></param>
+        public DisputeService(string apiKey, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Omise.DisputeService"/> class with IRequestManager object and Api key.
         /// </summary>
         /// <param name="requestManager"></param>
         /// <param name="apiKey"></param>
         public DisputeService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
+        {
+
+        }
+
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="Omise.DisputeService"/> class with IRequestManager object, Api key and Api version.
+        /// </summary>
+        /// <param name="requestManager"></param>
+        /// <param name="apiKey"></param>
+        /// <param name="apiVersion"></param>
+        public DisputeService(IRequestManager requestManager, string apiKey, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
         {
 
         }

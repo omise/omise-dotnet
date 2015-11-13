@@ -28,12 +28,33 @@ namespace Omise
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.TokenService"/> class with Api key. The service uses default IRequestManager object.
+        /// </summary>
+        /// <param name="apiKey">Api key</param>
+        /// <param name="apiVersion">Api version</param>
+        public TokenService(string apiKey, string apiVersion)
+            : base(apiKey, apiVersion)
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Omise.TokenService"/> class with IRequestManager object and Api key
         /// </summary>
         /// <param name="requestManager">IRequestManager object.</param>
         /// <param name="apiKey">Api key</param>
         public TokenService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.TokenService"/> class with IRequestManager object and Api key
+        /// </summary>
+        /// <param name="requestManager">IRequestManager object.</param>
+        /// <param name="apiKey">Api key</param>
+        /// <param name="apiVersion">Api version</param>
+        public TokenService(IRequestManager requestManager, string apiKey, string apiVersion)
+            : base(requestManager, apiKey, apiVersion)
         {
         }
 
