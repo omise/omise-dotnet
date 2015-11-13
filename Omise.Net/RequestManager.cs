@@ -63,7 +63,12 @@ namespace Omise
 
             var request = (HttpWebRequest)WebRequest.Create(apiUrlBase + path);
             request.Headers.Add("Authorization", "Basic " + this.encodedCredentials);
-            request.Headers.Add("Omise-Version", this.apiVersion);
+            
+            if (!string.IsNullOrEmpty(this.apiVersion) && this.apiVersion.Trim().Length > 0)
+            {
+                request.Headers.Add("Omise-Version", this.apiVersion);
+            }
+
             request.UserAgent = "Omise.Net/" + Omise.VersionInfo.ClientVersion;
             request.Method = method;
             request.ContentType = "application/x-www-form-urlencoded";
