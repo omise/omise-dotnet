@@ -146,3 +146,22 @@ Creating a recipient requires a bank account information. Below are banks that a
 in TEST mode, 'test' brand is also allowed to use.
 
 Full developer api documentation https://docs.omise.co
+
+Develop
+=======
+
+This library project requires a compatible .NET runtime and an IDE that supports the
+standard Visual Studio project format.
+
+On Windows:
+
+* Microsoft Visual Studio 2013 (or later)
+* [NUnit](http://www.nunit.org) and [NUnit Test Adapter](https://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d)
+
+On Mac/Linux:
+
+* Latest [Mono Runtime](http://www.mono-project.com)
+* [Xamarin Studio](https://xamarin.com/studio)
+
+Additionally a `Makefile` is provided for development on *nix systems.
+
