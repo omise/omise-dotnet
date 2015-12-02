@@ -2,8 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Omise.Net;
 
 namespace Omise
 {
@@ -12,8 +11,7 @@ namespace Omise
     /// </summary>
     public class Client
     {
-        private string secretKey;
-        private string publicKey;
+        private Credentials credentials;
         private IRequestManager requestManager;
 
         private ChargeService chargeService;
@@ -27,7 +25,7 @@ namespace Omise
             get
             {
                 if (chargeService == null)
-                    chargeService = new ChargeService(requestManager, secretKey, ApiVersion);
+                    chargeService = new ChargeService(requestManager, credentials, ApiVersion);
                 return chargeService;
             }
         }
@@ -43,7 +41,7 @@ namespace Omise
             get
             {
                 if (cardService == null)
-                    cardService = new CardService(requestManager, secretKey, this.TokenService, ApiVersion);
+                    cardService = new CardService(requestManager, credentials, this.TokenService, ApiVersion);
                 return cardService;
             }
         }
@@ -59,7 +57,7 @@ namespace Omise
             get
             {
                 if (customerService == null)
-                    customerService = new CustomerService(requestManager, secretKey, this.TokenService, ApiVersion);
+                    customerService = new CustomerService(requestManager, credentials, this.TokenService, ApiVersion);
                 return customerService;
             }
         }
@@ -75,7 +73,7 @@ namespace Omise
             get
             {
                 if (accountService == null)
-                    accountService = new AccountService(requestManager, secretKey, ApiVersion);
+                    accountService = new AccountService(requestManager, credentials, ApiVersion);
                 return accountService;
             }
         }
@@ -91,7 +89,7 @@ namespace Omise
             get
             {
                 if (tokenService == null)
-                    tokenService = new TokenService(requestManager, publicKey, ApiVersion);
+                    tokenService = new TokenService(requestManager, credentials, ApiVersion);
                 return tokenService;
             }
         }
@@ -107,7 +105,7 @@ namespace Omise
             get
             {
                 if (balanceService == null)
-                    balanceService = new BalanceService(requestManager, secretKey, ApiVersion);
+                    balanceService = new BalanceService(requestManager, credentials, ApiVersion);
                 return balanceService;
             }
         }
@@ -123,7 +121,7 @@ namespace Omise
             get
             {
                 if (transactionService == null)
-                    transactionService = new TransactionService(requestManager, secretKey, ApiVersion);
+                    transactionService = new TransactionService(requestManager, credentials, ApiVersion);
                 return transactionService;
             }
         }
@@ -139,7 +137,7 @@ namespace Omise
             get
             {
                 if (transferService == null)
-                    transferService = new TransferService(requestManager, secretKey, ApiVersion);
+                    transferService = new TransferService(requestManager, credentials, ApiVersion);
                 return transferService;
             }
         }
@@ -151,7 +149,7 @@ namespace Omise
             get
             { 
                 if (recipientService == null)
-                    recipientService = new RecipientService(requestManager, secretKey, ApiVersion);
+                    recipientService = new RecipientService(requestManager, credentials, ApiVersion);
                 return recipientService;
             }
         }
@@ -163,7 +161,7 @@ namespace Omise
             get
             {
                 if (disputeService == null)
-                    disputeService = new DisputeService(requestManager, secretKey, ApiVersion);
+                    disputeService = new DisputeService(requestManager, credentials, ApiVersion);
                 
                 return disputeService;
             }
@@ -177,7 +175,7 @@ namespace Omise
         /// <param name="secretKey">Secret key</param>
         public Client(string secretKey)
         {
-            this.secretKey = secretKey;
+            this.credentials = new Credentials(null, secretKey);
         }
 
         /// <summary>
@@ -186,8 +184,7 @@ namespace Omise
         /// <param name="secretKey">Secret key</param>
         public Client(string secretKey, string publicKey)
         {
-            this.secretKey = secretKey;
-            this.publicKey = publicKey;
+            this.credentials = new Credentials(publicKey, secretKey);
         }
 
         /// <summary>
@@ -198,7 +195,7 @@ namespace Omise
         public Client(IRequestManager requestManager, string secretKey)
         {
             this.requestManager = requestManager;
-            this.secretKey = secretKey;
+            this.credentials = new Credentials(null, secretKey);
         }
 
         /// <summary>
@@ -210,8 +207,7 @@ namespace Omise
         public Client(IRequestManager requestManager, string secretKey, string publicKey)
         {
             this.requestManager = requestManager;
-            this.secretKey = secretKey;
-            this.publicKey = publicKey;
+            this.credentials = new Credentials(publicKey, secretKey);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Text;
+using Omise.Net;
 
 namespace Omise
 {
@@ -63,6 +64,15 @@ namespace Omise
         {
             if (tokenService == null)
                 throw new ArgumentNullException("tokenService");
+            this.tokenService = tokenService;
+        }
+
+        internal CardService(IRequestManager requestManager, Credentials credentials, TokenService tokenService, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
+        {
+            if (tokenService == null)
+                throw new ArgumentNullException("tokenService");
+            
             this.tokenService = tokenService;
         }
 

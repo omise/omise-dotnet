@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Omise.Net;
 
 namespace Omise
 {
@@ -46,6 +47,11 @@ namespace Omise
         /// <param name="apiVersion">Api version</param>
         public TransferService(IRequestManager requestManager, string apiKey, string apiVersion)
             : base(requestManager, apiKey, apiVersion)
+        {
+        }
+
+        internal TransferService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
         {
         }
 

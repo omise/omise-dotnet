@@ -1,4 +1,5 @@
 ﻿using System;
+using Omise.Net;
 
 namespace Omise
 {
@@ -23,6 +24,11 @@ namespace Omise
         /// <param name="apiKey">Api key</param>
         public UserService(IRequestManager requestManager, string apiKey)
             : base(requestManager, apiKey)
+        {
+        }
+
+        internal UserService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
         {
         }
     }

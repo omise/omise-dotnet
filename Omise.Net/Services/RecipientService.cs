@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Omise.Net;
 
 namespace Omise
 {
@@ -45,6 +46,11 @@ namespace Omise
             : base(requestManager, apiKey, apiVersion)
         {
 
+        }
+
+        internal RecipientService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
+        {
         }
 
         public CollectionResponseObject<Recipient> GetAllRecipients() {

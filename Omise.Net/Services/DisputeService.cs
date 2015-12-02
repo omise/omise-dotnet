@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Omise.Net;
 
 namespace Omise
 {
@@ -46,6 +47,11 @@ namespace Omise
             : base(requestManager, apiKey, apiVersion)
         {
 
+        }
+
+        internal DisputeService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
+        {
         }
 
         public Dispute GetDispute(string disputeId){

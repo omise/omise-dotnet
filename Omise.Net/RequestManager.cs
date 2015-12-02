@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using Omise.Net;
 
 namespace Omise
 {
@@ -10,10 +11,9 @@ namespace Omise
     /// </summary>
     public class RequestManager : IRequestManager
     {
-        private string apiUrlBase;
-        private string apiKey;
+        private Credentials credentials;
+        private Endpoint endpoint;
         private string apiVersion;
-        private string encodedCredentials;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
@@ -26,9 +26,13 @@ namespace Omise
                 throw new ArgumentNullException("apiUrlBase");
             if (string.IsNullOrEmpty(apiKey))
                 throw new ArgumentNullException("apiKey");
-            this.apiUrlBase = apiUrlBase;
-            this.apiKey = apiKey;
-            this.encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(this.apiKey + ":"));
+
+            var endpoint = Endpoint.From(apiUrlBase);
+            if (endpoint == null)
+                throw new ArgumentException("unrecognized endpoint.", "apiUrlBase");
+
+            this.credentials = new Credentials(null, skey: apiKey);
+            this.endpoint = endpoint;
         }
 
         /// <summary>
@@ -43,10 +47,32 @@ namespace Omise
                 throw new ArgumentNullException("apiUrlBase");
             if (string.IsNullOrEmpty(apiKey))
                 throw new ArgumentNullException("apiKey");
-            this.apiUrlBase = apiUrlBase;
-            this.apiKey = apiKey;
+
+            var endpoint = Endpoint.From(apiUrlBase);
+            if (endpoint == null)
+                throw new ArgumentException("unrecognized endpoint.", "apiUrlBase");
+
+            this.credentials = new Credentials(null, skey: apiKey);
+            this.endpoint = endpoint;
             this.apiVersion = apiVersion;
-            this.encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(this.apiKey + ":"));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Omise.RequestManager"/> class.
+        /// </summary>
+        /// <param name="endpoint">Endpoint.</param>
+        /// <param name="credentials">Credentials.</param>
+        /// <param name="apiVersion">API version.</param>
+        internal RequestManager(Endpoint endpoint, Credentials credentials, string apiVersion)
+        {
+            if (endpoint == null)
+                throw new ArgumentNullException("endpoint");
+            if (credentials == null)
+                throw new ArgumentNullException("credentials");
+            
+            this.endpoint = endpoint;
+            this.credentials = credentials;
+            this.apiVersion = apiVersion;
         }
 
         /// <summary>
@@ -58,12 +84,14 @@ namespace Omise
         /// <param name="payload">Request payload</param>
         public string ExecuteRequest(string path, string method, string payload)
         {
+            var key = endpoint.SelectKey(credentials);
+
             StringBuilder result = new StringBuilder();
             path = path.StartsWith("/") ? path : "/" + path;
 
-            var request = (HttpWebRequest)WebRequest.Create(apiUrlBase + path);
-            request.Headers.Add("Authorization", "Basic " + this.encodedCredentials);
-            
+            var request = (HttpWebRequest)WebRequest.Create(endpoint.Host + path);
+            request.Headers.Add("Authorization", key.AuthorizationHeader());
+
             if (!string.IsNullOrEmpty(this.apiVersion) && this.apiVersion.Trim().Length > 0)
             {
                 request.Headers.Add("Omise-Version", this.apiVersion);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Omise.Net;
 
 namespace Omise
 {
@@ -73,11 +74,12 @@ namespace Omise
         protected DisputeFactory disputeFactory;
 
         /// <summary>
-        /// The api base url for the service
+        /// The endpoint to use for the service.
         /// </summary>
-        protected virtual string ApiUrlBase
+        /// <value>The endpoint.</value>
+        internal virtual Endpoint Endpoint
         {
-            get { return "https://api.omise.co"; }
+            get { return Endpoint.API; }
         }
 
         private void init()
@@ -105,7 +107,7 @@ namespace Omise
         {
             if (requestManager == null)
             {
-                requester = new RequestManager(ApiUrlBase, apiKey);
+                requester = new RequestManager(Endpoint, new Credentials(null, apiKey), null);
             }
             else
             {
@@ -121,13 +123,13 @@ namespace Omise
         /// <param name="apiKey">Api key</param>
         public ServiceBase(string apiKey)
         {
-            requester = new RequestManager(ApiUrlBase, apiKey);
+            requester = new RequestManager(Endpoint, new Credentials(null, apiKey), null);
             init();
         }
 
         public ServiceBase(string apiKey, string apiVersion)
         {
-            requester = new RequestManager(ApiUrlBase, apiKey, apiVersion);
+            requester = new RequestManager(Endpoint, new Credentials(null, apiKey), apiVersion);
             init();
         }
 
@@ -135,7 +137,7 @@ namespace Omise
         {
             if (requestManager == null)
             {
-                requester = new RequestManager(ApiUrlBase, apiKey, apiVersion);
+                requester = new RequestManager(Endpoint, new Credentials(null, apiKey), apiVersion);
             }
             else
             {
@@ -143,6 +145,19 @@ namespace Omise
             }
 
             init();
+        }
+
+        internal ServiceBase(IRequestManager requestManager, Credentials credentials, string apiVersion)
+        {
+            if (credentials == null)
+                throw new ArgumentNullException("credentials");
+
+            if (requestManager == null)
+            {
+                requestManager = new RequestManager(Endpoint, credentials, apiVersion);
+            }
+
+            requester = requestManager;
         }
 
         /// <summary>

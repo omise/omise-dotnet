@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Omise.Net;
 
 namespace Omise
 {
@@ -89,6 +90,15 @@ namespace Omise
 
             string result = requester.ExecuteRequest("/customers", "POST", customerCreateInfo.ToRequestParams());
             return customerFactory.Create(result);
+        }
+
+        internal CustomerService(IRequestManager requestManager, Credentials credentials, TokenService tokenService, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
+        {
+            if (tokenService == null)
+                throw new ArgumentNullException("tokenService");
+
+            this.tokenService = tokenService;
         }
 
         /// <summary>

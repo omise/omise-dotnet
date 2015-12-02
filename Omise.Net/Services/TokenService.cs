@@ -1,4 +1,5 @@
 ﻿using System;
+using Omise.Net;
 
 namespace Omise
 {
@@ -7,14 +8,11 @@ namespace Omise
     /// </summary>
     public class TokenService : ServiceBase
     {
-        /// <summary>
-        /// Api base url
-        /// </summary>
-        protected override string ApiUrlBase
+        internal override Endpoint Endpoint
         {
             get
             {
-                return "https://vault.omise.co";
+                return Endpoint.Vault;
             }
         }
 
@@ -55,6 +53,11 @@ namespace Omise
         /// <param name="apiVersion">Api version</param>
         public TokenService(IRequestManager requestManager, string apiKey, string apiVersion)
             : base(requestManager, apiKey, apiVersion)
+        {
+        }
+
+        internal TokenService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
         {
         }
 

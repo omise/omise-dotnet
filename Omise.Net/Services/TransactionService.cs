@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Omise.Net;
 
 namespace Omise
 {
@@ -43,6 +44,11 @@ namespace Omise
         /// <param name="apiKey">Api key</param>
         public TransactionService(IRequestManager requestManager, string apiKey, string apiVersion)
             : base(requestManager, apiKey, apiVersion)
+        {
+        }
+
+        internal TransactionService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
         {
         }
 

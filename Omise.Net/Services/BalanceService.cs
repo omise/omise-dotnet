@@ -1,4 +1,5 @@
 ﻿using System;
+using Omise.Net;
 
 namespace Omise
 {
@@ -44,6 +45,11 @@ namespace Omise
         /// <param name="apiVersion">Api version</param>
         public BalanceService(IRequestManager requestManager, string apiKey, string apiVersion)
             : base(requestManager, apiKey, apiVersion)
+        {
+        }
+
+        internal BalanceService(IRequestManager requestManager, Credentials credentials, string apiVersion)
+            : base(requestManager, credentials, apiVersion)
         {
         }
 
