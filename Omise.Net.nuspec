@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Omise.Net</id>
+    <version>1.1.1.23682</version>
+    <title>Omise.Net</title>
+    <authors>Omise Co., Ltd.</authors>
+    <owners>Omise Co., Ltd.</owners>
+    <licenseUrl>https://github.com/omise/omise-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/omise/omise-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Omise payment gateway .Net API wrapper library.</description>
+    <releaseNotes>See CHANGELOG at https://github.com/omise/omise-dotnet/blob/master/CHANGELOG.md</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Omise, C#, payment, gateway, credit card</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Omise.Net/bin/Release/Omise.Net.dll" target="lib/net20" />
+    <file src="Omise.Net/bin/Release/Omise.Net.dll.mdb" target="lib/net20" />
+  </files>
+</package>

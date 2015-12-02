@@ -4,6 +4,7 @@
 # OS junk files
 [Tt]humbs.db
 *.DS_Store
+*.bak
 
 # User-specific files
 *.suo

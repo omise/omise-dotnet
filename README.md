@@ -163,5 +163,6 @@ On Mac/Linux:
 * Latest [Mono Runtime](http://www.mono-project.com)
 * [Xamarin Studio](https://xamarin.com/studio)
 
-Additionally a `Makefile` is provided for development on *nix systems.
-
+Additionally a `Makefile` is provided for development on *nix systems. The `nuget` command
+is also required on both systems if you plan to create a package. Uses `make
+CONFIG=Release clean package` to build a full package from scratch.
