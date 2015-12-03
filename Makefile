@@ -56,7 +56,7 @@ ifneq ($(CONFIG),Release)
 	@exit 1
 
 else
+	sed -i".bak" -e "s#<version>.*</version>#<version>$(VERSION)</version>#g" $(NUGET_SPEC_FILE)
 	$(NUGET) pack $(NUGET_SPEC_FILE)
 endif
 	
-
