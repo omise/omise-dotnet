@@ -34,6 +34,8 @@
       <Link>AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Key.cs" />
+    <Compile Include="Endpoint.cs" />
+    <Compile Include="Credentials.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

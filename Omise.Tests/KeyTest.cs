@@ -3,7 +3,7 @@ using Omise;
 
 namespace Omise.Tests {
     [TestFixture]
-    public class KeyTest {
+    public class KeyTest : OmiseTest {
         [Test]
         public void TestStringImplicitAssignable() {
             var s = "pkey_string_test";

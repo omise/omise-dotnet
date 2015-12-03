@@ -1,5 +1,5 @@
 ﻿namespace Omise {
-    struct Key {
+    public struct Key {
         string value;
 
         public bool IsTest { get { return value.Contains("_test_"); } }
