@@ -36,6 +36,20 @@
     <Compile Include="Key.cs" />
     <Compile Include="Endpoint.cs" />
     <Compile Include="Credentials.cs" />
+    <Compile Include="IRequester.cs" />
+    <Compile Include="Requester.cs" />
+    <Compile Include="IRoundtripper.cs" />
+    <Compile Include="DefaultRoundtripper.cs" />
+    <Compile Include="ErrorResult.cs" />
+    <Compile Include="ErrorResultException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

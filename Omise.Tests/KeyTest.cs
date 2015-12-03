@@ -22,6 +22,13 @@ namespace Omise.Tests {
         }
 
         [Test]
+        public void TestAuthorizationHeader() {
+            Key key = "asdf";
+            var result = key.EncodeForAuthorizationHeader();
+            Assert.AreEqual("Basic YXNkZjo=", result);
+        }
+
+        [Test]
         public void TestToString() {
             var s = "pkey_string_test";
             Key k = s;

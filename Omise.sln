@@ -42,7 +42,7 @@ Global
 		$3.MethodBraceStyle = EndOfLine
 		$3.ConstructorBraceStyle = EndOfLine
 		$3.DestructorBraceStyle = EndOfLine
-		$3.EmbeddedStatementPlacement = SameLine
+		$3.EmbeddedStatementPlacement = DoNotCare
 		$3.ArrayInitializerWrapping = DoNotChange
 		$3.ArrayInitializerBraceStyle = NextLine
 		$3.BeforeMethodDeclarationParentheses = False

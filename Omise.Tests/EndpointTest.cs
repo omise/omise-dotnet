@@ -1,6 +1,5 @@
-﻿using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
+﻿using System;
+using NUnit.Framework;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -18,6 +17,12 @@ namespace Omise.Tests {
             keySelector = Credentials.UsePublicKey;
             ep = new Endpoint(apiPrefix, keySelector);
             Assert.AreEqual(keySelector, ep.KeySelector);
+        }
+
+        [Test]
+        public void TestBuiltinEndpoint() {
+            Assert.AreEqual(Endpoint.Api.KeySelector, Credentials.UseSecretKey);
+            Assert.AreEqual(Endpoint.Vault.KeySelector, Credentials.UsePublicKey);
         }
     }
 }
