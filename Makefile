@@ -56,6 +56,7 @@ ifneq ($(CONFIG),Release)
 	@exit 1
 
 else
+	sed -i".bak" -e "s#<version>.*</version>#<version>$(VERSION)</version>#g" Omise.Net.nuspec
 	$(NUGET) pack $(NUGET_SPEC_FILE)
 endif
 	
