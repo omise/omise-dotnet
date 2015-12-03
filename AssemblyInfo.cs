@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("Omise.Net")]
+[assembly: AssemblyTitle("Omise")]
 [assembly: AssemblyDescription("Omise payment gateway .Net Api Wrapper library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Omise Co.,Ltd.")]
@@ -15,3 +15,4 @@ using System.Runtime.CompilerServices;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+[assembly: InternalsVisibleTo("Omise.Tests")]
