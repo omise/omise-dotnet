@@ -4,12 +4,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{48E844EB-9071-46A5-BD12-548CD45B008C}</ProjectGuid>
+    <ProjectGuid>{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Omise</RootNamespace>
-    <AssemblyName>Omise</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile147</TargetFrameworkProfile>
+    <RootNamespace>Omise.Tests</RootNamespace>
+    <AssemblyName>Omise.Tests</AssemblyName>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +34,22 @@
     <Compile Include="..\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="OmiseTest.cs" />
+    <Compile Include="MetaTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.0.1\lib\portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omise\Omise.csproj">
+      <Project>{48E844EB-9071-46A5-BD12-548CD45B008C}</Project>
+      <Name>Omise</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

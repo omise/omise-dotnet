@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise", "Omise\Omise.csproj", "{48E844EB-9071-46A5-BD12-548CD45B008C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{48E844EB-9071-46A5-BD12-548CD45B008C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48E844EB-9071-46A5-BD12-548CD45B008C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48E844EB-9071-46A5-BD12-548CD45B008C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
