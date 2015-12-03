@@ -36,6 +36,7 @@
     </Compile>
     <Compile Include="OmiseTest.cs" />
     <Compile Include="MetaTest.cs" />
+    <Compile Include="KeyTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
