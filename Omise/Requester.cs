@@ -1,19 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Omise {
     public class Requester : IRequester {
+        readonly string userAgent;
+
         internal IRoundtripper Roundtripper { get; set; }
-        
+
         public Credentials Credentials { get; private set; }
         public Serializer Serializer { get; private set; }
 
         public Requester(Credentials creds) {
             if (creds == null) throw new ArgumentNullException("creds");
 
+            var metadata = new Dictionary<string, string>
+            {
+                { "Omise.Net", new AssemblyName(Assembly.GetExecutingAssembly().FullName).Version.ToString() },
+                { ".Net", new AssemblyName(new Object().GetType().Assembly.FullName).Version.ToString() },
+            };
+
+            userAgent = metadata.Aggregate("", (acc, pair) => acc + " " + pair.Key + "/" + pair.Value).Trim();
             Credentials = creds;
             Roundtripper = new DefaultRoundtripper();
             Serializer = new Serializer();
@@ -40,6 +51,7 @@ namespace Omise {
             // creates initial request
             var request = Roundtripper.CreateRequest(endpoint.ApiPrefix + path);
             request.Method = method;
+            request.Headers["User-Agent"] = userAgent;
             request.Headers["Content-Type"] = "application/x-www-form-urlencoded";
             request.Headers["Authorization"] = key.EncodeForAuthorizationHeader();
 

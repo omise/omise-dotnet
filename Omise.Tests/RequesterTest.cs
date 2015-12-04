@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Tests.Util;
+using System.Reflection;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -19,13 +20,24 @@ namespace Omise.Tests {
         [Test, Timeout(1000)]
         public async void TestRequest() {
             var authHeader = DummyCredentials.SecretKey.EncodeForAuthorizationHeader();
-            var roundtripper = new MockRoundtripper((req) => Assert.AreEqual(authHeader, req.Headers["Authorization"]));
-            var requester = BuildRequester(roundtripper);
+            var roundtripper = new MockRoundtripper((req) => {
+                    Assert.AreEqual(authHeader, req.Headers["Authorization"]);
+
+                    var libVersion = new AssemblyName(typeof(Requester).Assembly.FullName).Version.ToString();
+                    var clrVersion = new AssemblyName(typeof(Object).Assembly.FullName).Version.ToString();
+
+                    var ua = req.Headers["User-Agent"];
+                    Assert.IsNotNull(ua);
+                    Assert.IsTrue(ua.Contains("Omise.Net/" + libVersion));
+                    Assert.IsTrue(ua.Contains(".Net/" + clrVersion));
+                });
                 
+            var requester = BuildRequester(roundtripper);
             await requester.Request<object>(Endpoint.Api, "GET", "/test");
+
             Assert.AreEqual(1, roundtripper.RoundtripCount);
         }
-
+            
         [Test, Timeout(1000)]
         public async void TestRequestWithPayload() {
             var encodedPayload = "Hello=Kitty&World=Collides";
@@ -44,8 +56,8 @@ namespace Omise.Tests {
                 });
 
             var requester = BuildRequester(roundtripper);
-
             await requester.Request<object, DummyPayload>(Endpoint.Api, "POST", "/test", payload);
+
             Assert.AreEqual(1, roundtripper.RoundtripCount);
         }
 
