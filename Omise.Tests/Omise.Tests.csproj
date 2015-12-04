@@ -46,6 +46,10 @@
     <Compile Include="Util\AsyncResult.cs" />
     <Compile Include="SerializerTest.cs" />
     <Compile Include="Util\StringMemoryStream.cs" />
+    <Compile Include="Resources\AccountResourceTest.cs" />
+    <Compile Include="Resources\ResourceTest.cs" />
+    <Compile Include="Util\MockRequester.cs" />
+    <Compile Include="Util\RequestAttempt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -82,5 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

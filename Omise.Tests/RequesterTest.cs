@@ -24,7 +24,7 @@ namespace Omise.Tests {
                     Assert.AreEqual(authHeader, req.Headers["Authorization"]);
 
                     var libVersion = new AssemblyName(typeof(Requester).Assembly.FullName).Version.ToString();
-                    var clrVersion = new AssemblyName(typeof(Object).Assembly.FullName).Version.ToString();
+                    var clrVersion = new AssemblyName(typeof(object).Assembly.FullName).Version.ToString();
 
                     var ua = req.Headers["User-Agent"];
                     Assert.IsNotNull(ua);

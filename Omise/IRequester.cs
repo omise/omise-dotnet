@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
 namespace Omise {
-
     public interface IRequester {
         Task<TResult> Request<TResult>(
             Endpoint endpoint,

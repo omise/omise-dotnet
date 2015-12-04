@@ -72,6 +72,10 @@
     <Compile Include="Models\DisputeStatus.cs" />
     <Compile Include="Models\RecipientType.cs" />
     <Compile Include="Serializer.cs" />
+    <Compile Include="Resources\IResource.cs" />
+    <Compile Include="Resources\BaseResource.cs" />
+    <Compile Include="Resources\IRetrievable.cs" />
+    <Compile Include="Resources\AccountResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -96,5 +100,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>
