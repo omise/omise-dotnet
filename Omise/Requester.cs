@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace Omise {
@@ -20,15 +19,15 @@ namespace Omise {
             JsonSerializer = new JsonSerializer();
         }
 
-        public Task<TResult> Request<TResult>(
+        public async Task<TResult> Request<TResult>(
             Endpoint endpoint,
             string method,
             string path)
             where TResult : class {
-            return Request<object, TResult>(endpoint, method, path, null);
+            return await Request<object, TResult>(endpoint, method, path, null);
         }
 
-        public Task<TResult> Request<TPayload, TResult>(
+        public async Task<TResult> Request<TPayload, TResult>(
             Endpoint endpoint,
             string method,
             string path,
@@ -37,68 +36,55 @@ namespace Omise {
             where TResult : class {
 
             var key = endpoint.KeySelector(Credentials);
-            var serializer = new JsonSerializer();
         
+            // creates initial request
             var request = Roundtripper.CreateRequest(endpoint.ApiPrefix + path);
             request.Method = method;
             request.Headers["Authorization"] = key.EncodeForAuthorizationHeader();
 
-            Task<WebRequest> requestTask;
-            if (payload == null) {
-                var source = new TaskCompletionSource<WebRequest>();
-                source.SetResult(request);
-                requestTask = source.Task;
-
-            } else {
-                requestTask = Task<Stream>.Factory.FromAsync(
-                    request.BeginGetRequestStream,
-                    request.EndGetRequestStream,
-                    null
-                ).ContinueWith<WebRequest>(task1 => {
-                        using (var requestStream = task1.Result)
-                        using (var sw = new StreamWriter(requestStream))
-                        using (var writer = new JsonTextWriter(sw)) {
-                            serializer.Serialize(writer, payload);
-                        }
-
-                        return request;
-                    });
+            if (payload != null) {
+                using (var requestStream = await Task.Factory.FromAsync<Stream>(
+                                               request.BeginGetRequestStream,
+                                               request.EndGetRequestStream,
+                                               null
+                                           )) {
+                    JsonSerialize(requestStream, payload);
+                }
             }
 
-            return requestTask
-                .ContinueWith<WebResponse>(task1 => Roundtripper.Roundtrip(task1.Result).Result)
-                .ContinueWith<WebResponse>(task3 => {
-                    var firstException = task3.Exception.Flatten().InnerException;
-                    var webException = firstException as WebException;
-                    if (webException == null) throw task3.Exception;
+            // roundtrips the request
+            try {
+                var response = await Roundtripper.Roundtrip(request);
+                using (var stream = response.GetResponseStream()) {
+                    return JsonDeserialize<TResult>(stream);
+                }
 
-                    using (var stream = webException.Response.GetResponseStream())
-                    using (var sr = new StreamReader(stream))
-                    using (var reader = new JsonTextReader(sr)) {
-                        var result = serializer.Deserialize<ErrorResult>(reader);
-                        var code = (HttpStatusCode)0;
+            } catch (WebException e) {
+                var errorResult = JsonDeserialize<ErrorResult>(e.Response.GetResponseStream());
+                var code = (HttpStatusCode)0;
 
-                        var httpResponse = webException.Response as HttpWebResponse;
-                        if (httpResponse != null) code = httpResponse.StatusCode;   
+                var httpResponse = e.Response as HttpWebResponse;
+                if (httpResponse != null) {
+                    code = httpResponse.StatusCode;
+                }
 
-                        throw new OmiseException(task3.Exception, code, result);
-                    }
-                }, TaskContinuationOptions.OnlyOnFaulted)
+                throw new OmiseException(e, code, errorResult);
+            }
+        }
 
-            // parse succesful responses.
-                .ContinueWith<Stream>(task => {
-                    var response = task.Result;
-                    if (response == null) return null;
 
-                    return response.GetResponseStream();
-                })
-                .ContinueWith<TResult>(task => {
-                    using (var stream = task.Result)
-                    using (var sr = new StreamReader(stream))
-                    using (var reader = new JsonTextReader(sr)) {
-                        return serializer.Deserialize<TResult>(reader);
-                    }
-                });
+        void JsonSerialize<T>(Stream target, T payload) where T: class {
+            using (var writer = new StreamWriter(target))
+            using (var jsonWriter = new JsonTextWriter(writer)) {
+                JsonSerializer.Serialize(jsonWriter, payload);
+            }
+        }
+
+        T JsonDeserialize<T>(Stream source) where T: class {
+            using (var reader = new StreamReader(source))
+            using (var jsonReader = new JsonTextReader(reader)) {
+                return JsonSerializer.Deserialize<T>(jsonReader);
+            }
         }
     }
 }
