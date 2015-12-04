@@ -28,14 +28,21 @@ namespace Omise.Tests {
 
         [Test, Timeout(1000)]
         public async void TestRequestWithPayload() {
-            var payload = new DummyPayload { Hello = "World" };
-            var payloadJson = "{\"Hello\":\"World\"}";
+            var encodedPayload = "Hello=Kitty&World=Collides";
+            var payload = new DummyPayload
+            {
+                Hello = "Kitty",
+                World = "Collides",
+            };
 
             var roundtripper = new MockRoundtripper((request) => {
                     var mockRequest = (MockWebRequest)request;
                     var bytes = mockRequest.RequestStream.ToArray();
-                    Assert.AreEqual(payloadJson, Encoding.UTF8.GetString(bytes, 0, bytes.Length));
+
+                    Assert.AreEqual("application/x-www-form-urlencoded", mockRequest.Headers["Content-Type"]);
+                    Assert.AreEqual(encodedPayload, Encoding.UTF8.GetString(bytes, 0, bytes.Length));
                 });
+
             var requester = BuildRequester(roundtripper);
 
             await requester.Request<object, DummyPayload>(Endpoint.Api, "POST", "/test", payload);
@@ -66,6 +73,7 @@ namespace Omise.Tests {
 
         class DummyPayload {
             public string Hello { get; set; }
+            public string World { get; set; }
         }
     }
 }
