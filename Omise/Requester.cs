@@ -20,8 +20,8 @@ namespace Omise {
 
             var metadata = new Dictionary<string, string>
             {
-                { "Omise.Net", new AssemblyName(Assembly.GetExecutingAssembly().FullName).Version.ToString() },
-                { ".Net", new AssemblyName(new Object().GetType().Assembly.FullName).Version.ToString() },
+                { "Omise.Net", new AssemblyName(GetType().Assembly.FullName).Version.ToString() },
+                { ".Net", new AssemblyName(typeof(Object).Assembly.FullName).Version.ToString() },
             };
 
             userAgent = metadata.Aggregate("", (acc, pair) => acc + " " + pair.Key + "/" + pair.Value).Trim();
