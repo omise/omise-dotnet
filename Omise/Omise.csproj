@@ -71,6 +71,7 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\DisputeStatus.cs" />
     <Compile Include="Models\RecipientType.cs" />
+    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
