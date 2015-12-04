@@ -2,9 +2,18 @@
 using Newtonsoft.Json;
 
 namespace Omise.Models {
-    public class ResponseObject {
+    public abstract class ModelBase {
+        [JsonProperty("object")]
+        public string Object { get; set; }
+
         [JsonProperty("id")]
         public string Id { get; set; }
+
+        [JsonProperty("livemode")]
+        public bool LiveMode { get; set; }
+
+        [JsonProperty("location")]
+        public string Location { get; set; }
 
         [JsonProperty("created")]
         public DateTime Created { get; set; }

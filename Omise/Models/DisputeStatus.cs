@@ -7,6 +7,7 @@ namespace Omise.Models {
         Open,
         Pending,
         Won,
-        Lost
+        Lost,
+        Closed
     }
 }

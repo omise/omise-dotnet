@@ -1,0 +1,90 @@
+﻿Account
+  Email string
+Balance
+  Available long
+  Total long
+  Currency string
+BankAccount
+  Brand string
+  Number string
+  LastDigits string last_digits
+  Name string
+Card
+  Country string
+  City string
+  Bank string
+  PostalCode string postal_code
+  Financing string
+  LastDigits string last_digits
+  Brand string
+  ExpirationMonth int expiration_month
+  ExpirationYear int expiration_year
+  Fingerprint string
+  Name string
+  SecurityCodeCheck bool security_code_check
+Charge
+  Status ChargeStatus
+  Amount long
+  Currency string
+  Description string
+  Capture bool
+  Captured bool
+  Authorized bool
+  Paid bool
+  Transaction string
+  Card Card
+  Refunded long
+  Refunds IList<Refund>
+  FailureCode string failure_code
+  FailureMessage string failure_message
+  Customer string customer
+  IP string
+  Dispute Dispute
+  ReturnURI string return_uri
+  AuthorizeURI string authorize_uri
+Customer
+  DefaultCard string default_card
+  Email string
+  Description string
+  Cards IList<Card>
+Dispute
+  Amount long
+  Currency string
+  Status DisputeStatus
+  Message string
+  Charge string
+Event<T>
+  Key string
+  Data T
+Recipient
+  Verified bool
+  Active bool
+  Name string
+  Email string
+  Description string
+  Type RecipientType
+  TaxID string
+  BankAccount BankAccount
+  FailureCode string failure_code
+Refund
+  Amount long
+  Currency string
+  Charge string
+  Transaction string
+Token
+  Used bool
+  Card Card
+Transaction
+  Amount long
+  Currency string
+  Type TransactionType
+Transfer
+  Recipient string
+  BankAccount BankAccount
+  Sent bool
+  Paid bool
+  Amount long
+  Currency string
+  FailureCode string failure_code
+  FailureMessage string failure_message
+  Transaction string

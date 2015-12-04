@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Omise {
     public sealed class Serializer {
@@ -10,6 +11,7 @@ namespace Omise {
 
         public Serializer() {
             jsonSerializer = new JsonSerializer();
+            jsonSerializer.Converters.Add(new StringEnumConverter());
         }
 
         public void FormSerialize<T>(Stream target, T payload) where T: class {
@@ -56,7 +58,7 @@ namespace Omise {
         }
 
 
-        string formatValue(object value) {
+        static string formatValue(object value) {
             if (value is DateTime) return ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
             if (value is string) return (string)value;
 
