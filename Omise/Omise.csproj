@@ -42,31 +42,27 @@
     <Compile Include="DefaultRoundtripper.cs" />
     <Compile Include="ErrorResult.cs" />
     <Compile Include="ErrorResultException.cs" />
-    <Compile Include="Models\BankAccountInfo.cs" />
-    <Compile Include="Models\CardCreateInfo.cs" />
-    <Compile Include="Models\CardUpdateInfo.cs" />
-    <Compile Include="Models\ChargeCreateInfo.cs" />
-    <Compile Include="Models\ChargeUpdateInfo.cs" />
-    <Compile Include="Models\CollectionResponseObject.cs" />
-    <Compile Include="Models\CustomerInfo.cs" />
-    <Compile Include="Models\CustomerUpdateInfo.cs" />
-    <Compile Include="Models\RecipientCreateInfo.cs" />
-    <Compile Include="Models\RecipientUpdateInfo.cs" />
-    <Compile Include="Models\RequestObject.cs" />
-    <Compile Include="Models\TokenInfo.cs" />
     <Compile Include="Models\DisputeStatus.cs" />
     <Compile Include="Models\RecipientType.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="Resources\IResource.cs" />
     <Compile Include="Resources\BaseResource.cs" />
-    <Compile Include="Resources\IRetrievable.cs" />
     <Compile Include="Resources\AccountResource.cs" />
     <Compile Include="Models\Models.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChargeStatus.cs" />
     <Compile Include="Models\TransactionType.cs" />
+    <Compile Include="Resources\BalanceResource.cs" />
+    <Compile Include="Resources\ChargesResource.cs" />
+    <Compile Include="Resources\Listables.cs" />
+    <Compile Include="Resources\Retrievables.cs" />
+    <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\CreateChargeRequest.cs" />
+    <Compile Include="Resources\Creatables.cs" />
+    <Compile Include="Models\UpdateChargeRequest.cs" />
+    <Compile Include="Resources\Updatables.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

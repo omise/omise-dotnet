@@ -12,7 +12,8 @@ namespace Omise.Tests.Resources {
             return requester;
         }
 
-        protected void AssertRequest(RequestAttempt attempt, string method, string uri) {
+        protected void AssertRequest(MockRequester requester, string method, string uri) {
+            var attempt = requester.LastRequest;
             Assert.AreEqual(attempt.Method, method);
             Assert.AreEqual(attempt.Endpoint.ApiPrefix + attempt.Path, uri);
         }

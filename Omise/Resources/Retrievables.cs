@@ -8,8 +8,8 @@ namespace Omise.Resources {
 
     public static class Retrievables {
         public static async Task<TResult> Get<TResult>(
-            this IRetrievable<TResult> resource)
-            where TResult: ModelBase {
+            this IRetrievable<TResult> resource
+        ) where TResult: ModelBase {
             return await resource.Requester.Request<TResult>(
                 resource.Endpoint,
                 "GET",

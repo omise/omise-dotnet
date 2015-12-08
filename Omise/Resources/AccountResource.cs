@@ -1,5 +1,6 @@
 ﻿using System;
 using Omise.Models;
+using System.Threading.Tasks;
 
 namespace Omise.Resources {
     public class AccountResource : BaseResource<Account>, IRetrievable<Account> {
