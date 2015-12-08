@@ -5,13 +5,15 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class AccountResourceTest : ResourceTest {
+    public class AccountResourceTest : ResourceTest<AccountResource> {
         [Test]
         public async void TestGet() {
-            var resource = new AccountResource(Requester);
-            await resource.Get();
-
+            await Resource.Get();
             AssertRequest("GET", "https://api.omise.co/account");
+        }
+
+        protected override AccountResource BuildResource(IRequester requester) {
+            return new AccountResource(requester);
         }
     }
 }

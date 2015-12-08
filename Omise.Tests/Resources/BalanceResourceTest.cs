@@ -4,13 +4,15 @@ using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class BalanceResourceTest : ResourceTest {
+    public class BalanceResourceTest : ResourceTest<BalanceResource> {
         [Test]
         public async void TestGet() {
-            var resource = new BalanceResource(Requester);
-            await resource.Get();
-
+            await Resource.Get();
             AssertRequest("GET", "https://api.omise.co/balance");
+        }
+
+        protected override BalanceResource BuildResource(IRequester requester) {
+            return new BalanceResource(requester);
         }
     }
 }

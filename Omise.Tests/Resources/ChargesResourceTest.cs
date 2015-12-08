@@ -5,26 +5,21 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class ChargesResourceTest : ResourceTest {
+    public class ChargesResourceTest : ResourceTest<ChargesResource> {
         [Test]
         public async void TestGetList() {
-            var resource = new ChargesResource(Requester);
-
-            await resource.GetList();
+            await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/charges");
         }
 
         [Test]
         public async void TestGet() {
-            var resource = new ChargesResource(Requester);
-
-            await resource.Get("xyz");
+            await Resource.Get("xyz");
             AssertRequest("GET", "https://api.omise.co/charges/xyz");
         }
 
         [Test]
         public async void TestCreate() {
-            var resource = new ChargesResource(Requester);
             var request = new CreateChargeRequest
             {
                 Customer = "cust_test_123",
@@ -33,28 +28,29 @@ namespace Omise.Tests.Resources {
                 Currency = "thb",
             };
                     
-            await resource.Create(request);
+            await Resource.Create(request);
             AssertRequest("POST", "https://api.omise.co/charges");
         }
 
         [Test]
         public async void TestUpdate() {
-            var resource = new ChargesResource(Requester);
             var request = new UpdateChargeRequest
             {
                 Description = "Hello charge",
             };
 
-            await resource.Update("chrg_test_123", request);
+            await Resource.Update("chrg_test_123", request);
             AssertRequest("PATCH", "https://api.omise.co/charges/chrg_test_123");
         }
 
         [Test]
         public async void TestCapture() {
-            var resource = new ChargesResource(Requester);
-
-            await resource.Capture("chrg_test_123");
+            await Resource.Capture("chrg_test_123");
             AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/capture");
+        }
+
+        protected override ChargesResource BuildResource(IRequester requester) {
+            return new ChargesResource(requester);
         }
     }
 }

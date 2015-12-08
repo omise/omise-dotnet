@@ -6,42 +6,42 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class DisputeResourceTest : ResourceTest {
+    public class DisputeResourceTest : ResourceTest<DisputeResource> {
         [Test]
         public async void TestGetList() {
-            var resource = new DisputeResource(Requester);
-            await resource.GetList();
+            await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/disputes");
         }
 
         [Test]
         public async void TestGetListByStatus() {
-            var resource = new DisputeResource(Requester);
-            await resource.OpenDisputes.GetList();
+            await Resource.OpenDisputes.GetList();
             AssertRequest("GET", "https://api.omise.co/disputes/open");
-            await resource.PendingDisputes.GetList();
+            await Resource.PendingDisputes.GetList();
             AssertRequest("GET", "https://api.omise.co/disputes/pending");
-            await resource.ClosedDisputes.GetList();
+            await Resource.ClosedDisputes.GetList();
             AssertRequest("GET", "https://api.omise.co/disputes/closed");
         }
 
         [Test]
         public async void TestGet() {
-            var resource = new DisputeResource(Requester);
-            await resource.Get("dspt_test_123");
+            await Resource.Get("dspt_test_123");
             AssertRequest("GET", "https://api.omise.co/disputes/dspt_test_123");
         }
 
         [Test]
         public async void TestUpdate() {
-            var resource = new DisputeResource(Requester);
             var request = new UpdateDisputeRequest
             {
                 Message = "Hello, This is definitely not ours.",
             };
             
-            await resource.Update("dspt_test_123", request);
+            await Resource.Update("dspt_test_123", request);
             AssertRequest("PATCH", "https://api.omise.co/disputes/dspt_test_123");
+        }
+
+        protected override DisputeResource BuildResource(IRequester requester) {
+            return new DisputeResource(requester);
         }
     }
 }

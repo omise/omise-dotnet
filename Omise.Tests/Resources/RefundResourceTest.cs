@@ -5,14 +5,7 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class RefundResourceTest : ResourceTest {
-        RefundResource Resource { get; set; }
-
-        [SetUp]
-        public void SetupResource() {
-            Resource = new RefundResource(Requester, "chrg_test_123");
-        }
-
+    public class RefundResourceTest : ResourceTest<RefundResource> {
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -30,6 +23,10 @@ namespace Omise.Tests.Resources {
             var request = new CreateRefundRequest { Amount = 300000 };
             await Resource.Create(request);
             AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/refunds");
+        }
+
+        protected override RefundResource BuildResource(IRequester requester) {
+            return new RefundResource(requester, "chrg_test_123");
         }
     }
 }

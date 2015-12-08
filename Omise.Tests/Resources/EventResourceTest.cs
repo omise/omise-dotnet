@@ -5,19 +5,21 @@ using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class EventResourceTest : ResourceTest {
+    public class EventResourceTest : ResourceTest<EventResource> {
         [Test]
         public async void TestGetList() {
-            var resource = new EventResource(Requester);
-            await resource.GetList();
+            await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/events");
         }
 
         [Test]
         public async void TestGet() {
-            var resource = new EventResource(Requester);
-            await resource.Get("evnt_test_123");
+            await Resource.Get("evnt_test_123");
             AssertRequest("GET", "https://api.omise.co/events/evnt_test_123");
+        }
+
+        protected override EventResource BuildResource(IRequester requester) {
+            return new EventResource(requester);
         }
     }
 }

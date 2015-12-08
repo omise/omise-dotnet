@@ -6,14 +6,7 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class RecipientResourceTest : ResourceTest {
-        RecipientResource Resource { get; set; }
-
-        [SetUp]
-        public void SetupResource() {
-            Resource = new RecipientResource(Requester);
-        }
-
+    public class RecipientResourceTest : ResourceTest<RecipientResource> {
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -64,6 +57,10 @@ namespace Omise.Tests.Resources {
         public async void TestDestroy() {
             await Resource.Destroy("recp_test_123");
             AssertRequest("DELETE", "https://api.omise.co/recipients/recp_test_123");
+        }
+
+        protected override RecipientResource BuildResource(IRequester requester) {
+            return new RecipientResource(requester);
         }
     }
 }
