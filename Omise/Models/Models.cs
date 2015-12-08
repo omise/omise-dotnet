@@ -53,7 +53,7 @@ namespace Omise.Models {
         [JsonProperty("refunds")] public IList<Refund> Refunds { get; set; }
         [JsonProperty("failure_code")] public string FailureCode { get; set; }
         [JsonProperty("failure_message")] public string FailureMessage { get; set; }
-        [JsonProperty("customer")] public string CustomerID { get; set; }
+        [JsonProperty("customer")] public string Customer { get; set; }
         [JsonProperty("ip")] public string IP { get; set; }
         [JsonProperty("dispute")] public Dispute Dispute { get; set; }
         [JsonProperty("return_uri")] public string ReturnURI { get; set; }
