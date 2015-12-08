@@ -4,7 +4,7 @@ using Omise.Models;
 namespace Omise.Resources {
     public class TransferResource : BaseResource<Transfer>,
     IListable<Transfer>,
-    IListRetrivable<Transfer>,
+    IListRetrievable<Transfer>,
     ICreatable<Transfer, CreateTransferRequest>,
     IUpdatable<Transfer, UpdateTransferRequest>,
     IDestroyable<Transfer> {

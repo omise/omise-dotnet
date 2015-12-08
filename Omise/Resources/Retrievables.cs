@@ -7,7 +7,7 @@ namespace Omise.Resources {
     public interface IRetrievable<TModel>: IResource<TModel> where TModel: ModelBase {
     }
 
-    public interface IListRetrivable<TModel> : IResource<TModel> where TModel: ModelBase {
+    public interface IListRetrievable<TModel> : IResource<TModel> where TModel: ModelBase {
     }
 
     public static class Retrievables {
@@ -22,7 +22,7 @@ namespace Omise.Resources {
         }
 
         public static async Task<TResult> Get<TResult>(
-            this IListRetrivable<TResult> resource,
+            this IListRetrievable<TResult> resource,
             string modelId
         ) where TResult: ModelBase {
             return await resource.Requester.Request<TResult>(

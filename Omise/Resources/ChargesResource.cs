@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Omise.Resources {
     public class ChargesResource : BaseResource<Charge>,
     IListable<Charge>,
-    IListRetrivable<Charge>,
+    IListRetrievable<Charge>,
     ICreatable<Charge, CreateChargeRequest>,
     IUpdatable<Charge, UpdateChargeRequest> {
         public ChargesResource(IRequester requester)

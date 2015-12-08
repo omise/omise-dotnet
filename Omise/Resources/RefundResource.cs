@@ -4,7 +4,7 @@ using Omise.Models;
 namespace Omise.Resources {
     public class RefundResource : BaseResource<Refund>,
     IListable<Refund>,
-    IListRetrivable<Refund>,
+    IListRetrievable<Refund>,
     ICreatable<Refund, CreateRefundRequest> {
         public RefundResource(IRequester requester, string chargeId)
             : base(requester, Endpoint.Api, basePathFor(chargeId)) {
