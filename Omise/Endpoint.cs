@@ -3,7 +3,7 @@
 namespace Omise {
     public sealed partial class Endpoint {
         public static readonly Endpoint Api = new Endpoint("https://api.omise.co", Credentials.UseSecretKey);
-        public static readonly Endpoint Vault = new Endpoint("https://api.omise.co", Credentials.UsePublicKey);
+        public static readonly Endpoint Vault = new Endpoint("https://vault.omise.co", Credentials.UsePublicKey);
     }
 
     public sealed partial class Endpoint {

@@ -21,8 +21,8 @@ namespace Omise.Tests.Resources {
             var mockRequester = (MockRequester)Requester;
 
             var attempt = mockRequester.LastRequest;
-            Assert.AreEqual(attempt.Method, method);
-            Assert.AreEqual(attempt.Endpoint.ApiPrefix + attempt.Path, uri);
+            Assert.AreEqual(method, attempt.Method, method);
+            Assert.AreEqual(uri, attempt.Endpoint.ApiPrefix + attempt.Path);
         }
     }
 }

@@ -76,6 +76,8 @@
     <Compile Include="Models\RecipientRequest.cs" />
     <Compile Include="Resources\RefundResource.cs" />
     <Compile Include="Models\CreateRefundRequest.cs" />
+    <Compile Include="Resources\TokenResource.cs" />
+    <Compile Include="Models\CreateTokenRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
