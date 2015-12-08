@@ -14,7 +14,7 @@ namespace Omise.Resources {
             return await resource.Requester.Request<TModel>(
                 resource.Endpoint,
                 "DELETE",
-                "/customers/" + modelId
+                resource.BasePath + "/" + modelId
             );
         }
     }

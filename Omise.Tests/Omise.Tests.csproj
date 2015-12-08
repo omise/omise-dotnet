@@ -56,6 +56,7 @@
     <Compile Include="Resources\DisputeResourceTest.cs" />
     <Compile Include="Resources\EventResourceTest.cs" />
     <Compile Include="Models\EventTest.cs" />
+    <Compile Include="Resources\RecipientResourceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

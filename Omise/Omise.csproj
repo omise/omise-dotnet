@@ -72,6 +72,8 @@
     <Compile Include="Resources\EventResource.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ModelTypes.cs" />
+    <Compile Include="Resources\RecipientResource.cs" />
+    <Compile Include="Models\RecipientRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
