@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Runtime.Versioning;
+using System.Text;
 
 namespace Omise {
     public sealed class Serializer {
@@ -54,6 +56,16 @@ namespace Omise {
             using (var reader = new StreamReader(target))
             using (var jsonReader = new JsonTextReader(reader)) {
                 return jsonSerializer.Deserialize<T>(jsonReader);
+            }
+        }
+
+        public void JsonPopulate(string json, object target) {
+            var buffer = Encoding.UTF8.GetBytes(json);
+
+            using (var stream = new MemoryStream(buffer))
+            using (var reader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(reader)) {
+                jsonSerializer.Populate(jsonReader, target);
             }
         }
 

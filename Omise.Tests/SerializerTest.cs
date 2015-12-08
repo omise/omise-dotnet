@@ -5,6 +5,8 @@ using System.IO;
 using Omise.Tests.Util;
 using System.Dynamic;
 using Newtonsoft.Json;
+using Omise.Models;
+using System.Reflection;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -16,14 +18,20 @@ namespace Omise.Tests {
             "James=Howlett&Scott=Summers&Johny=Mnemonic&" +
             "With=SPACES%20SPACES&Created=9999-12-31T23:59:59Z";
 
+        Serializer Serializer { get; set; }
+        SerializerTestDummy Dummy { get; set; }
+
+        [SetUp]
+        public void Setup() {
+            Serializer = new Serializer();
+            Dummy = new SerializerTestDummy();
+        }
+
         [Test]
         public void TestJsonSerialize() {
-            var serializer = new Serializer();
-            var dummy = new SerializerTestDummy();
-
             string result;
             using (var stream = new StringMemoryStream()) {
-                serializer.JsonSerialize(stream, dummy);
+                Serializer.JsonSerialize(stream, Dummy);
                 result = stream.ToDecodedString();
             }
 
@@ -32,28 +40,30 @@ namespace Omise.Tests {
 
         [Test]
         public void TestJsonDeserialize() {
-            var serializer = new Serializer();
-            var reference = new SerializerTestDummy();
             var json = DummyJson;
 
             SerializerTestDummy result;
             using (var stream = new StringMemoryStream(json)) {
-                result = serializer.JsonDeserialize<SerializerTestDummy>(stream);
+                result = Serializer.JsonDeserialize<SerializerTestDummy>(stream);
             }
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(reference.James, result.James);
-            Assert.AreEqual(reference.Scott, result.Scott);
+            Assert.AreEqual(Dummy.James, result.James);
+            Assert.AreEqual(Dummy.Scott, result.Scott);
+        }
+
+        [Test]
+        public void TestJsonPopulate() {
+            Serializer.JsonPopulate(DummyJson, Dummy);
+            Assert.AreEqual("Howlett", Dummy.James);
+            Assert.AreEqual("Summers", Dummy.Scott);
         }
 
         [Test]
         public void TestFormSerialize() {
-            var serializer = new Serializer();
-            var dummy = new SerializerTestDummy();
-
             string result;
             using (var stream = new StringMemoryStream()) {
-                serializer.FormSerialize(stream, dummy);
+                Serializer.FormSerialize(stream, Dummy);
                 result = stream.ToDecodedString();
             }
                 
