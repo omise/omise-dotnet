@@ -4,6 +4,7 @@ using Omise.Models;
 namespace Omise.Resources {
     public class RecipientResource : BaseResource<Recipient>,
     IListable<Recipient>,
+    IListRetrivable<Recipient>,
     ICreatable<Recipient, CreateRecipientRequest>,
     IUpdatable<Recipient, UpdateRecipientRequest>,
     IDestroyable<Recipient> {

@@ -5,6 +5,7 @@ using Omise.Models;
 namespace Omise.Resources {
     public class DisputeResource : BaseResource<Dispute>,
     IListable<Dispute>,
+    IListRetrivable<Dispute>,
     IUpdatable<Dispute, UpdateDisputeRequest> {
         public StatusSpecificDispute OpenDisputes { get; private set; }
         public StatusSpecificDispute PendingDisputes { get; private set; }

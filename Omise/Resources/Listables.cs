@@ -20,17 +20,6 @@ namespace Omise.Resources {
                 resource.BasePath
             );
         }
-
-        public static async Task<TResult> Get<TResult>(
-            this IListable<TResult> resource,
-            string modelId
-        ) where TResult: ModelBase {
-            return await resource.Requester.Request<TResult>(
-                resource.Endpoint,
-                "GET",
-                resource.BasePath + "/" + Uri.EscapeUriString(modelId)
-            );
-        }
     }
 }
 
