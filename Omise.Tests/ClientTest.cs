@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Omise.Models;
+using Omise.Resources;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -27,19 +28,26 @@ namespace Omise.Tests {
             {
                 client.Account,
                 client.Balance,
+                client.Cards,
                 client.Charges,
                 client.Customers,
                 client.Disputes,
                 client.Events,
                 client.Recipients,
+                client.Refunds,
                 client.Tokens,
                 client.Transactions,
                 client.Transfers,
             };
-
+                    
             foreach (var resource in resources) {
                 Assert.IsNotNull(resource);
             }
+
+            var cards = client.Cards.ByCustomer("cust_test_123");
+            Assert.IsNotNull(cards);
+            var refunds = client.Refunds.ByCharge("chrg_test_123");
+            Assert.IsNotNull(refunds);
         }
     }
 }

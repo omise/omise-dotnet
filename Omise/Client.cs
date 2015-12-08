@@ -9,13 +9,13 @@ namespace Omise {
 
         public readonly AccountResource Account;
         public readonly BalanceResource Balance;
-        //card
+        public readonly CardResourceShim Cards;
         public readonly ChargeResource Charges;
         public readonly CustomerResource Customers;
         public readonly DisputeResource Disputes;
         public readonly EventResource Events;
         public readonly RecipientResource Recipients;
-        //refunds
+        public readonly RefundResourceShim Refunds;
         public readonly TokenResource Tokens;
         public readonly TransactionResource Transactions;
         public readonly TransferResource Transfers;
@@ -32,11 +32,13 @@ namespace Omise {
 
             Account = new AccountResource(Requester);
             Balance = new BalanceResource(Requester);
+            Cards = new CardResourceShim(Requester);
             Charges = new ChargeResource(Requester);
             Customers = new CustomerResource(Requester);
             Disputes = new DisputeResource(Requester);
             Events = new EventResource(Requester);
             Recipients = new RecipientResource(Requester);
+            Refunds = new RefundResourceShim(Requester);
             Tokens = new TokenResource(Requester);
             Transactions = new TransactionResource(Requester);
             Transfers = new TransferResource(Requester);
