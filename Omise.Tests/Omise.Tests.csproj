@@ -51,7 +51,6 @@
     <Compile Include="Util\MockRequester.cs" />
     <Compile Include="Util\RequestAttempt.cs" />
     <Compile Include="Resources\BalanceResourceTest.cs" />
-    <Compile Include="Resources\ChargesResourceTest.cs" />
     <Compile Include="Resources\CustomerResourceTest.cs" />
     <Compile Include="Resources\DisputeResourceTest.cs" />
     <Compile Include="Resources\EventResourceTest.cs" />
@@ -63,6 +62,7 @@
     <Compile Include="Resources\TransferResourceTest.cs" />
     <Compile Include="Resources\CardResourceTest.cs" />
     <Compile Include="Resources\ListableTest.cs" />
+    <Compile Include="Resources\ChargeResourceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

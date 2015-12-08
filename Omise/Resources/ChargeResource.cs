@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 
 namespace Omise.Resources {
-    public class ChargesResource : BaseResource<Charge>,
+    public class ChargeResource : BaseResource<Charge>,
     IListable<Charge>,
     IListRetrievable<Charge>,
     ICreatable<Charge, CreateChargeRequest>,
     IUpdatable<Charge, UpdateChargeRequest> {
-        public ChargesResource(IRequester requester)
+        public ChargeResource(IRequester requester)
             : base(requester, Endpoint.Api, "/charges") {
         }
 

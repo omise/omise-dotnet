@@ -55,7 +55,6 @@
     <Compile Include="Models\ChargeStatus.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Resources\BalanceResource.cs" />
-    <Compile Include="Resources\ChargesResource.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\CreateChargeRequest.cs" />
     <Compile Include="Models\UpdateChargeRequest.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="Resources\CardResource.cs" />
     <Compile Include="Models\UpdateCardRequest.cs" />
     <Compile Include="Models\Ordering.cs" />
+    <Compile Include="Resources\ChargeResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

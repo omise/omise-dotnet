@@ -5,7 +5,7 @@ using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
-    public class ChargesResourceTest : ResourceTest<ChargesResource> {
+    public class ChargeResourceTest : ResourceTest<ChargeResource> {
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -49,8 +49,8 @@ namespace Omise.Tests.Resources {
             AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/capture");
         }
 
-        protected override ChargesResource BuildResource(IRequester requester) {
-            return new ChargesResource(requester);
+        protected override ChargeResource BuildResource(IRequester requester) {
+            return new ChargeResource(requester);
         }
     }
 }
