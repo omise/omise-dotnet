@@ -53,9 +53,9 @@ Dispute
   Status DisputeStatus
   Message string
   Charge string
-Event<T>
+Event
   Key string
-  Data T
+  Data object
 Recipient
   Verified bool
   Active bool
