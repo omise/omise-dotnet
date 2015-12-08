@@ -8,11 +8,10 @@ namespace Omise.Tests.Resources {
     public class AccountResourceTest : ResourceTest {
         [Test]
         public async void TestGet() {
-            var requester = BuildRequester();
-            var resource = new AccountResource(requester);
+            var resource = new AccountResource(Requester);
             await resource.Get();
 
-            AssertRequest(requester, "GET", "https://api.omise.co/account");
+            AssertRequest("GET", "https://api.omise.co/account");
         }
     }
 }

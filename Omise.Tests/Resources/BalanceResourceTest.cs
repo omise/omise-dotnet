@@ -7,11 +7,10 @@ namespace Omise.Tests.Resources {
     public class BalanceResourceTest : ResourceTest {
         [Test]
         public async void TestGet() {
-            var requester = BuildRequester();
-            var resource = new BalanceResource(requester);
+            var resource = new BalanceResource(Requester);
             await resource.Get();
 
-            AssertRequest(requester, "GET", "https://api.omise.co/balance");
+            AssertRequest("GET", "https://api.omise.co/balance");
         }
     }
 }

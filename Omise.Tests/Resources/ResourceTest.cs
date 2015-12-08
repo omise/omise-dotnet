@@ -6,14 +6,17 @@ using NUnit.Framework;
 
 namespace Omise.Tests.Resources {
     public abstract class ResourceTest : OmiseTest {
-        protected MockRequester BuildRequester(object responseObject = null) {
-            var requester = new MockRequester();
-            requester.ResponseObject = responseObject;
-            return requester;
+        protected IRequester Requester { get; private set; }
+
+        [SetUp]
+        public void Setup() {
+            Requester = new MockRequester();
         }
 
-        protected void AssertRequest(MockRequester requester, string method, string uri) {
-            var attempt = requester.LastRequest;
+        protected void AssertRequest(string method, string uri) {
+            var mockRequester = (MockRequester)Requester;
+
+            var attempt = mockRequester.LastRequest;
             Assert.AreEqual(attempt.Method, method);
             Assert.AreEqual(attempt.Endpoint.ApiPrefix + attempt.Path, uri);
         }

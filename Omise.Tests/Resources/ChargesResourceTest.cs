@@ -8,26 +8,23 @@ namespace Omise.Tests.Resources {
     public class ChargesResourceTest : ResourceTest {
         [Test]
         public async void TestGetList() {
-            var requester = BuildRequester();
-            var resource = new ChargesResource(requester);
+            var resource = new ChargesResource(Requester);
 
             await resource.GetList();
-            AssertRequest(requester, "GET", "https://api.omise.co/charges");
+            AssertRequest("GET", "https://api.omise.co/charges");
         }
 
         [Test]
         public async void TestGet() {
-            var requester = BuildRequester();
-            var resource = new ChargesResource(requester);
+            var resource = new ChargesResource(Requester);
 
             await resource.Get("xyz");
-            AssertRequest(requester, "GET", "https://api.omise.co/charges/xyz");
+            AssertRequest("GET", "https://api.omise.co/charges/xyz");
         }
 
         [Test]
         public async void TestCreate() {
-            var requester = BuildRequester();
-            var resource = new ChargesResource(requester);
+            var resource = new ChargesResource(Requester);
             var request = new CreateChargeRequest
             {
                 Customer = "cust_test_123",
@@ -37,29 +34,27 @@ namespace Omise.Tests.Resources {
             };
                     
             await resource.Create(request);
-            AssertRequest(requester, "POST", "https://api.omise.co/charges");
+            AssertRequest("POST", "https://api.omise.co/charges");
         }
 
         [Test]
         public async void TestUpdate() {
-            var requester = BuildRequester();
-            var resource = new ChargesResource(requester);
+            var resource = new ChargesResource(Requester);
             var request = new UpdateChargeRequest
             {
                 Description = "Hello charge",
             };
 
             await resource.Update("chrg_test_123", request);
-            AssertRequest(requester, "PATCH", "https://api.omise.co/charges/chrg_test_123");
+            AssertRequest("PATCH", "https://api.omise.co/charges/chrg_test_123");
         }
 
         [Test]
         public async void TestCapture() {
-            var requester = BuildRequester();
-            var resource = new ChargesResource(requester);
+            var resource = new ChargesResource(Requester);
 
             await resource.Capture("chrg_test_123");
-            AssertRequest(requester, "POST", "https://api.omise.co/charges/chrg_test_123/capture");
+            AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/capture");
         }
     }
 }

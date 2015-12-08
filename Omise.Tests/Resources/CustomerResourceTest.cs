@@ -10,26 +10,23 @@ namespace Omise.Tests.Resources {
     public class CustomerResourceTest : ResourceTest {
         [Test]
         public async void TestGetList() {
-            var requester = BuildRequester();
-            var resource = new CustomerResource(requester);
+            var resource = new CustomerResource(Requester);
 
             await resource.GetList();
-            AssertRequest(requester, "GET", "https://api.omise.co/customers");
+            AssertRequest("GET", "https://api.omise.co/customers");
         }
 
         [Test]
         public async void TestGet() {
-            var requester = BuildRequester();
-            var resource = new CustomerResource(requester);
+            var resource = new CustomerResource(Requester);
 
             await resource.Get("cust_test_123");
-            AssertRequest(requester, "GET", "https://api.omise.co/customers/cust_test_123");
+            AssertRequest("GET", "https://api.omise.co/customers/cust_test_123");
         }
 
         [Test]
         public async void TestCreate() {
-            var requester = BuildRequester();
-            var resource = new CustomerResource(requester);
+            var resource = new CustomerResource(Requester);
             var request = new CreateCustomerRequest
             {
                 Email = "support@omise.co",
@@ -38,13 +35,12 @@ namespace Omise.Tests.Resources {
             };
 
             await resource.Create(request);
-            AssertRequest(requester, "POST", "https://api.omise.co/customers");
+            AssertRequest("POST", "https://api.omise.co/customers");
         }
 
         [Test]
         public async void TestUpdate() {
-            var requester = BuildRequester();
-            var resource = new CustomerResource(requester);
+            var resource = new CustomerResource(Requester);
             var request = new UpdateCustomerRequest
             {
                 Email = "example@omise.co",
@@ -53,16 +49,15 @@ namespace Omise.Tests.Resources {
             };
 
             await resource.Update("cust_test_123", request);
-            AssertRequest(requester, "PATCH", "https://api.omise.co/customers/cust_test_123");
+            AssertRequest("PATCH", "https://api.omise.co/customers/cust_test_123");
         }
 
         [Test]
         public async void TestDestroy() {
-            var requester = BuildRequester();
-            var resource = new CustomerResource(requester);
+            var resource = new CustomerResource(Requester);
 
             await resource.Destroy("cust_test_123");
-            AssertRequest(requester, "DELETE", "https://api.omise.co/customers/cust_test_123");
+            AssertRequest("DELETE", "https://api.omise.co/customers/cust_test_123");
         }
     }
 }
