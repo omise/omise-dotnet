@@ -16,7 +16,7 @@ namespace Omise.Tests {
             "\"With\":\"SPACES SPACES\",\"Created\":\"9999-12-31T23:59:59.9999999\"}";
         const string DummyUrlEncoded =
             "James=Howlett&Scott=Summers&Johny=Mnemonic&" +
-            "With=SPACES%20SPACES&Created=9999-12-31T23:59:59Z";
+            "With=SPACES%20SPACES&Created=9999-12-31T23%3A59%3A59Z";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
