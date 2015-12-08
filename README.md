@@ -1,6 +1,8 @@
 omise-dotnet
 ============
 
+[![Build Status](https://travis-ci.org/omise/omise-dotnet.svg?branch=v2.0)](https://travis-ci.org/omise/omise-dotnet)
+
 Omise.Net is a .Net library written in C# provides the wrapper functions for Omise payment API calls.
 
 Requirements
