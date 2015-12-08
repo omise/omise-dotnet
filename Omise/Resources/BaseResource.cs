@@ -1,5 +1,8 @@
 ﻿using System;
 using Omise.Models;
+using System.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Omise.Resources {
     public class BaseResource<TModel> : IResource<TModel> where TModel: ModelBase {

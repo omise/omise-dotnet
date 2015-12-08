@@ -56,13 +56,17 @@
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Resources\BalanceResource.cs" />
     <Compile Include="Resources\ChargesResource.cs" />
-    <Compile Include="Resources\Listables.cs" />
-    <Compile Include="Resources\Retrievables.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\CreateChargeRequest.cs" />
-    <Compile Include="Resources\Creatables.cs" />
     <Compile Include="Models\UpdateChargeRequest.cs" />
+    <Compile Include="Resources\Listables.cs" />
     <Compile Include="Resources\Updatables.cs" />
+    <Compile Include="Resources\Retrievables.cs" />
+    <Compile Include="Resources\Creatables.cs" />
+    <Compile Include="Resources\CustomerResource.cs" />
+    <Compile Include="Models\CreateCustomerRequest.cs" />
+    <Compile Include="Models\UpdateCustomerRequest.cs" />
+    <Compile Include="Resources\IDestroyable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

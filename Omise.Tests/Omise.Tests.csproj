@@ -52,6 +52,7 @@
     <Compile Include="Util\RequestAttempt.cs" />
     <Compile Include="Resources\BalanceResourceTest.cs" />
     <Compile Include="Resources\ChargesResourceTest.cs" />
+    <Compile Include="Resources\CustomerResourceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

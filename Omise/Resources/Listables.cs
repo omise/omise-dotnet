@@ -1,8 +1,7 @@
 ﻿using System;
-using Omise.Models;
-using System.Threading.Tasks;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources {
     public interface IListable<TModel> : IResource<TModel>
