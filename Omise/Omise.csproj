@@ -84,6 +84,7 @@
     <Compile Include="Resources\CardResource.cs" />
     <Compile Include="Models\UpdateCardRequest.cs" />
     <Compile Include="Models\Ordering.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Resources\ChargeResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
