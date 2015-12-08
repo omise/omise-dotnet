@@ -78,6 +78,10 @@
     <Compile Include="Resources\TokenResource.cs" />
     <Compile Include="Models\CreateTokenRequest.cs" />
     <Compile Include="Resources\Destroyables.cs" />
+    <Compile Include="Resources\TransactionResource.cs" />
+    <Compile Include="Resources\TransferResource.cs" />
+    <Compile Include="Models\CreateTransferRequest.cs" />
+    <Compile Include="Models\UpdateTransferRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

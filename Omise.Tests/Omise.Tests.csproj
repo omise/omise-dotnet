@@ -59,6 +59,8 @@
     <Compile Include="Resources\RecipientResourceTest.cs" />
     <Compile Include="Resources\RefundResourceTest.cs" />
     <Compile Include="Resources\TokenResourceTest.cs" />
+    <Compile Include="Resources\TransactionResourceTest.cs" />
+    <Compile Include="Resources\TransferResourceTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
