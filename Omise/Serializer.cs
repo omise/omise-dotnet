@@ -39,8 +39,8 @@ namespace Omise {
                     writer.Write(name);
                     writer.Write("=");
 
-                    var value = formatValue(prop.GetValue(payload, null));
-                    writer.Write(Uri.EscapeUriString(value));
+                    var value = prop.GetValue(payload, null);
+                    writer.Write(EncodeFormValue(value));
                 }
             }
         }
@@ -70,11 +70,17 @@ namespace Omise {
         }
 
 
-        static string formatValue(object value) {
-            if (value is DateTime) return ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
-            if (value is string) return (string)value;
+        public static string EncodeFormValue(object value) {
+            string str;
+            if (value is DateTime) {
+                str = ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
+            } else if (value is string) {
+                str = (string)value;
+            } else {
+                str = value.ToString();
+            }
 
-            return value.ToString();
+            return Uri.EscapeDataString(str);
         }
     }
 }
