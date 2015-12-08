@@ -82,6 +82,8 @@
     <Compile Include="Resources\TransferResource.cs" />
     <Compile Include="Models\CreateTransferRequest.cs" />
     <Compile Include="Models\UpdateTransferRequest.cs" />
+    <Compile Include="Resources\CardResource.cs" />
+    <Compile Include="Models\UpdateCardRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
