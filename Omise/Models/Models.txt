@@ -4,7 +4,7 @@ Balance
   Available long
   Total long
   Currency string
-BankAccount
+BankAccount bank_account
   Brand string
   Number string
   LastDigits string last_digits
@@ -53,9 +53,6 @@ Dispute
   Status DisputeStatus
   Message string
   Charge string
-Event
-  Key string
-  Data object
 Recipient
   Verified bool
   Active bool
