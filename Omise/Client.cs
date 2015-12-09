@@ -5,7 +5,7 @@ using Omise.Resources;
 
 namespace Omise {
     public class Client {
-        IRequester Requester { get; set; }
+        readonly Requester requester;
 
         public readonly AccountResource Account;
         public readonly BalanceResource Balance;
@@ -20,28 +20,27 @@ namespace Omise {
         public readonly TransactionResource Transactions;
         public readonly TransferResource Transfers;
 
-        
+
         public Client(string pkey = null, string skey = null)
             : this(new Credentials(pkey, skey)) {
         }
 
         public Client(Credentials credentials) {
             if (credentials == null) throw new ArgumentNullException("credentials");
+            requester = new Requester(credentials);
 
-            Requester = new Requester(credentials);
-
-            Account = new AccountResource(Requester);
-            Balance = new BalanceResource(Requester);
-            Cards = new CardResourceShim(Requester);
-            Charges = new ChargeResource(Requester);
-            Customers = new CustomerResource(Requester);
-            Disputes = new DisputeResource(Requester);
-            Events = new EventResource(Requester);
-            Recipients = new RecipientResource(Requester);
-            Refunds = new RefundResourceShim(Requester);
-            Tokens = new TokenResource(Requester);
-            Transactions = new TransactionResource(Requester);
-            Transfers = new TransferResource(Requester);
+            Account = new AccountResource(requester);
+            Balance = new BalanceResource(requester);
+            Cards = new CardResourceShim(requester);
+            Charges = new ChargeResource(requester);
+            Customers = new CustomerResource(requester);
+            Disputes = new DisputeResource(requester);
+            Events = new EventResource(requester);
+            Recipients = new RecipientResource(requester);
+            Refunds = new RefundResourceShim(requester);
+            Tokens = new TokenResource(requester);
+            Transactions = new TransactionResource(requester);
+            Transfers = new TransferResource(requester);
         }
     }
 }

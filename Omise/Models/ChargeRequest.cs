@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Omise.Models;
-using System.Text.RegularExpressions;
+﻿using Omise.Models;
 
 namespace Omise.Models {
     public class CreateChargeRequest : Request {
@@ -18,5 +13,9 @@ namespace Omise.Models {
         public CreateChargeRequest() {
             Capture = true;
         }
+    }
+
+    public class UpdateChargeRequest : Request {
+        public string Description { get; set; }
     }
 }
