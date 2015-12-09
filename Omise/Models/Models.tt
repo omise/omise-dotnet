@@ -71,7 +71,7 @@ namespace Omise.Models {
 
             return base.Equals(obj) &&
 <# foreach (var field in model.Fields) { #>
-                this.<#= field.Name #> == another.<#= field.Name #> &&
+                object.Equals(this.<#= field.Name #>, another.<#= field.Name #>) &&
 <# } #>
                 true;
         }
