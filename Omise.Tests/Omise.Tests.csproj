@@ -10,6 +10,9 @@
     <AssemblyName>Omise.Tests</AssemblyName>
     <TargetFrameworkProfile>Profile147</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\creds\omise-dotnet-tests.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
-    <Compile Include="..\AssemblyInfo.cs">
-      <Link>AssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="OmiseTest.cs" />
     <Compile Include="MetaTest.cs" />
     <Compile Include="KeyTest.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="Resources\ListableTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="Resources\ChargeResourceTest.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
