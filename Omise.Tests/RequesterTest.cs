@@ -78,9 +78,7 @@ namespace Omise.Tests {
         }
 
         IRequester BuildRequester(IRoundtripper roundtripper) {
-            var requester = new Requester(DummyCredentials);
-            requester.Roundtripper = roundtripper;
-            return requester;
+            return new Requester(DummyCredentials, roundtripper);
         }
 
         class DummyPayload {

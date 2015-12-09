@@ -10,12 +10,12 @@ namespace Omise {
     public class Requester : IRequester {
         readonly string userAgent;
 
-        internal IRoundtripper Roundtripper { get; set; }
+        public IRoundtripper Roundtripper { get; private set; }
 
         public Credentials Credentials { get; private set; }
         public Serializer Serializer { get; private set; }
 
-        public Requester(Credentials creds) {
+        public Requester(Credentials creds, IRoundtripper roundtripper = null) {
             if (creds == null) throw new ArgumentNullException("creds");
 
             var metadata = new Dictionary<string, string>
@@ -26,7 +26,7 @@ namespace Omise {
 
             userAgent = metadata.Aggregate("", (acc, pair) => acc + " " + pair.Key + "/" + pair.Value).Trim();
             Credentials = creds;
-            Roundtripper = new DefaultRoundtripper();
+            Roundtripper = roundtripper ?? new DefaultRoundtripper();
             Serializer = new Serializer();
         }
 
