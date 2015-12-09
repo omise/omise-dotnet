@@ -17,7 +17,7 @@ namespace Omise.Tests.Util {
         public WebRequest Request { get; private set; }
 
         public MockWebResponse(MockRoundtripper roundtripper, WebRequest request) {
-            buffer = Encoding.Unicode.GetBytes(roundtripper.ResponseContent);
+            buffer = Encoding.UTF8.GetBytes(roundtripper.ResponseContent);
             contentType = roundtripper.ResponseContentType;
             contentLength = buffer.Length;
             responseUri = request.RequestUri;
@@ -26,7 +26,7 @@ namespace Omise.Tests.Util {
         }
 
         public override Stream GetResponseStream() {
-            return new MemoryStream(buffer);
+            return new MemoryStream(buffer, 0, buffer.Length, false);
         }
     }
 }

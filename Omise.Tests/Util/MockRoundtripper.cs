@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Omise.Tests.Util {
     public sealed class MockRoundtripper : IRoundtripper {

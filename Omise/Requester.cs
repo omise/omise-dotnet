@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text;
+using Omise.Models;
 
 namespace Omise {
     public class Requester : IRequester {
@@ -69,7 +71,13 @@ namespace Omise {
             try {
                 var response = await Roundtripper.Roundtrip(request);
                 using (var stream = response.GetResponseStream()) {
-                    return Serializer.JsonDeserialize<TResult>(stream);
+                    var result = Serializer.JsonDeserialize<TResult>(stream);
+                    var model = result as ModelBase;
+                    if (model != null) {
+                        model.Requester = this;
+                    }
+
+                    return result;
                 }
 
             } catch (WebException e) {

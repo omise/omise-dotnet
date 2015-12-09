@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Omise.Models {
     public abstract class ModelBase {
+        [JsonIgnore]
+        public IRequester Requester { get; internal set; }
+
         [JsonProperty("object")]
         public string Object { get; set; }
 

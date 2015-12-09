@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Tests.Util;
 using System.Reflection;
+using Omise.Models;
+using System.Runtime.Serialization;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -36,6 +38,20 @@ namespace Omise.Tests {
             await requester.Request<object>(Endpoint.Api, "GET", "/test");
 
             Assert.AreEqual(1, roundtripper.RoundtripCount);
+        }
+
+        [Test, Timeout(1000)]
+        public async void TestRequestWithResult() {
+            var roundtripper = new MockRoundtripper();
+            roundtripper.ResponseContent = "{\"id\":\"zxcv\"}";
+            roundtripper.ResponseContentType = "application/json";
+
+            var requester = BuildRequester(roundtripper);
+            var result = await requester.Request<DummyModel>(Endpoint.Api, "GET", "/test");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("zxcv", result.Id);
+            Assert.AreEqual(requester, result.Requester);
         }
             
         [Test, Timeout(1000)]
@@ -84,6 +100,10 @@ namespace Omise.Tests {
         class DummyPayload {
             public string Hello { get; set; }
             public string World { get; set; }
+        }
+
+        [DataContract]
+        class DummyModel : ModelBase {
         }
     }
 }
