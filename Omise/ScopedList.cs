@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Collections.ObjectModel;
-using System.Dynamic;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace Omise {
+    [JsonObject]
     public class ScopedList<T> : IEnumerable<T> {
         IList<T> data;
 
@@ -28,7 +27,7 @@ namespace Omise {
 
         // TODO: "total" JSON field?
         [JsonIgnore]
-        public int Count { get { return data?.Count; } }
+        public int Count { get { return data?.Count ?? 0; } }
 
         [JsonProperty("data")]
         public IList<T> Data {
