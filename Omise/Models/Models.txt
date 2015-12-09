@@ -34,7 +34,7 @@ Charge
   Transaction string
   Card Card
   Refunded long
-  Refunds IList<Refund>
+  Refunds ScopedList<Refund>
   FailureCode string failure_code
   FailureMessage string failure_message
   Customer string customer
@@ -46,7 +46,7 @@ Customer
   DefaultCard string default_card
   Email string
   Description string
-  Cards IList<Card>
+  Cards ScopedList<Card>
 Dispute
   Amount long
   Currency string

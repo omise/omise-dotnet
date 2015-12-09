@@ -23,6 +23,8 @@ namespace Omise.Models {
 
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
+
+        // TODO: Provide Task<T> Reload() functionality.
     }
 }
 

@@ -30,7 +30,7 @@ namespace Omise {
             }
         }
 
-        public static async Task<IList<TResult>> GetList<TResult>(
+        public static async Task<ScopedList<TResult>> GetList<TResult>(
             this IListable<TResult> resource,
             int? offset = null,
             int? limit = null,
@@ -59,7 +59,7 @@ namespace Omise {
             }
 
             // TODO: Actual list container type that can be re-requested and supports paging as well.
-            return await resource.Requester.Request<List<TResult>>(
+            return await resource.Requester.Request<ScopedList<TResult>>(
                 resource.Endpoint,
                 "GET",
                 path
