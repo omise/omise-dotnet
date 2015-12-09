@@ -31,13 +31,22 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestUpdate() {
-            var request = new UpdateDisputeRequest
+            await Resource.Update("dspt_test_123", BuildUpdateRequest());
+            AssertRequest("PATCH", "https://api.omise.co/disputes/dspt_test_123");
+        }
+
+        [Test]
+        public void TestUpdateDisputeRequest() {
+            AssertSerializedRequest(BuildUpdateRequest(),
+                "message=Hello%2C%20This%20is%20definitely%20not%20ours."
+            );
+        }
+
+        protected UpdateDisputeRequest BuildUpdateRequest() {
+            return new UpdateDisputeRequest
             {
                 Message = "Hello, This is definitely not ours.",
             };
-            
-            await Resource.Update("dspt_test_123", request);
-            AssertRequest("PATCH", "https://api.omise.co/disputes/dspt_test_123");
         }
 
         protected override DisputeResource BuildResource(IRequester requester) {

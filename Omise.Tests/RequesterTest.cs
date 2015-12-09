@@ -40,7 +40,7 @@ namespace Omise.Tests {
             
         [Test, Timeout(1000)]
         public async void TestRequestWithPayload() {
-            var encodedPayload = "Hello=Kitty&World=Collides";
+            var encodedPayload = "hello=Kitty&world=Collides";
             var payload = new DummyPayload
             {
                 Hello = "Kitty",

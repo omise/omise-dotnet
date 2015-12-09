@@ -7,16 +7,19 @@ using System.Dynamic;
 using Newtonsoft.Json;
 using Omise.Models;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Omise.Tests {
     [TestFixture]
     public class SerializerTest : OmiseTest {
         const string DummyJson =
-            "{\"James\":\"Howlett\",\"Scott\":\"Summers\",\"Johny\":\"Mnemonic\"," +
-            "\"With\":\"SPACES SPACES\",\"Created\":\"9999-12-31T23:59:59.9999999\"}";
+            "{\"james\":\"Howlett\",\"scott\":\"Summers\",\"johny\":\"Mnemonic\"," +
+            "\"with\":\"SPACES SPACES\",\"created\":\"9999-12-31T23:59:59.9999999\"," +
+            "\"checked\":true,\"enumer\":\"not_exactly_twice\",\"nested\":{\"field\":\"inner\"}}";
         const string DummyUrlEncoded =
-            "James=Howlett&Scott=Summers&Johny=Mnemonic&" +
-            "With=SPACES%20SPACES&Created=9999-12-31T23%3A59%3A59Z";
+            "james=Howlett&scott=Summers&Johny=Mnemonic&" +
+            "with=SPACES%20SPACES&created=9999-12-31T23%3A59%3A59Z&" +
+            "checked=true&enumer=not_exactly_twice&nested[field]=inner";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
@@ -75,12 +78,26 @@ namespace Omise.Tests {
         public string James { get; set; }
         public string Scott { get; set; }
 
-        [JsonProperty("Johny")]
+        [JsonProperty("Johny")] // NOTE: Not uppercased.
         public string Aliased { get; set; }
 
         public string With { get; set; }
         public DateTime Created { get; set; }
+        public bool Checked { get; set; }
+        public object FieldIsNull { get; set; }
+        public DummyEnum Enumer { get; set; }
+        public NestedKlass Nested { get; set; }
 
+        public enum DummyEnum {
+            Once,
+
+            [EnumMember(Value = "not_exactly_twice")]
+            Twice
+        }
+
+        public class NestedKlass {
+            public string Field { get; set; }
+        }
 
         public SerializerTestDummy() {
             James = "Howlett";
@@ -88,6 +105,10 @@ namespace Omise.Tests {
             With = "SPACES SPACES";
             Created = DateTime.MaxValue;
             Aliased = "Mnemonic";
+            Checked = true;
+            FieldIsNull = null;
+            Enumer = DummyEnum.Twice;
+            Nested = new NestedKlass { Field = "inner" };
         }
     }
 }

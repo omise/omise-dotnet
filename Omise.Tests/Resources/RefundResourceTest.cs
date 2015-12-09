@@ -20,9 +20,19 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestCreate() {
-            var request = new CreateRefundRequest { Amount = 300000 };
-            await Resource.Create(request);
+            await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/refunds");
+        }
+
+        [Test]
+        public void TestCreateRefundRequest() {
+            AssertSerializedRequest(BuildCreateRequest(),
+                "amount=300000"
+            );
+        }
+
+        protected CreateRefundRequest BuildCreateRequest() {
+            return new CreateRefundRequest { Amount = 300000 };
         }
 
         protected override RefundResource BuildResource(IRequester requester) {

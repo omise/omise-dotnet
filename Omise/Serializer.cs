@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Runtime.Versioning;
 using System.Text;
+using Newtonsoft.Json.Serialization;
+using System.Runtime.Serialization;
+using Newtonsoft.Json.Schema;
 
 namespace Omise {
     public sealed class Serializer {
@@ -13,33 +16,49 @@ namespace Omise {
 
         public Serializer() {
             jsonSerializer = new JsonSerializer();
-            jsonSerializer.Converters.Add(new StringEnumConverter());
+            jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonSerializer.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+            jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
         }
 
-        public void FormSerialize<T>(Stream target, T payload) where T: class {
+        public void FormSerialize(Stream target, object payload) {
             using (var writer = new StreamWriter(target)) {
-                var props = payload.GetType()
-                    .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                formSerialize(writer, payload, null);
+            }
+        }
 
-                var firstValue = true;
-                foreach (var prop in props) {
-                    if (firstValue) {
-                        firstValue = false;
-                    } else {
-                        writer.Write("&");
-                    }
+        void formSerialize(TextWriter writer, object payload, string prefix) {
+            var clrAsm = typeof(object).Assembly;
+            var props = payload
+                .GetType()
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-                    var name = prop.GetCustomAttributes(true)
+            var firstValue = prefix == null;
+            foreach (var prop in props) {
+                var value = prop.GetValue(payload, null);
+                if (value == null) continue;
+
+                var name = prop.GetCustomAttributes(true)
                         .Where(obj => obj is JsonPropertyAttribute)
                         .Cast<JsonPropertyAttribute>()
                         .Select(attr => attr.PropertyName)
                         .FirstOrDefault() ??
-                               prop.Name;
+                           prop.Name.ToLower();
                     
+                if (!string.IsNullOrEmpty(prefix)) {
+                    name = prefix + "[" + name + "]";
+                }
+
+                var type = value.GetType();
+                if (type.IsClass && type.Assembly != clrAsm) {
+                    formSerialize(writer, value, name);
+
+                } else {
+                    writer.Write(firstValue ? "" : "&");
+                    firstValue = false;
+
                     writer.Write(name);
                     writer.Write("=");
-
-                    var value = prop.GetValue(payload, null);
                     writer.Write(EncodeFormValue(value));
                 }
             }
@@ -71,11 +90,28 @@ namespace Omise {
 
 
         public static string EncodeFormValue(object value) {
+            if (value == null) throw new ArgumentNullException("value");
+
             string str;
+            Type type = value.GetType();
             if (value is DateTime) {
                 str = ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
+
             } else if (value is string) {
                 str = (string)value;
+
+            } else if (value is bool) {
+                str = value.ToString().ToLower();
+
+            } else if (type.IsEnum) {
+                var member = type.GetMember(value.ToString())[0];
+                var attributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), true);
+                if (attributes.Length > 0) {
+                    str = ((EnumMemberAttribute)attributes[0]).Value;
+                } else {
+                    str = value.ToString();
+                }
+
             } else {
                 str = value.ToString();
             }
