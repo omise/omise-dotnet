@@ -2,7 +2,7 @@
 using Omise.Models;
 using System.Threading.Tasks;
 
-namespace Omise.Resources {
+namespace Omise {
     public interface ICreatable<TModel, TRequest> : IResource<TModel>
         where TModel: ModelBase
         where TRequest: Request {

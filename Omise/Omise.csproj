@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,7 +46,6 @@
     <Compile Include="Models\RecipientType.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Serializer.cs" />
-    <Compile Include="Resources\IResource.cs" />
     <Compile Include="Resources\BaseResource.cs" />
     <Compile Include="Resources\AccountResource.cs" />
     <Compile Include="Models\Models.cs">
@@ -56,10 +55,6 @@
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Resources\BalanceResource.cs" />
     <Compile Include="Models\Request.cs" />
-    <Compile Include="Resources\Listables.cs" />
-    <Compile Include="Resources\Updatables.cs" />
-    <Compile Include="Resources\Retrievables.cs" />
-    <Compile Include="Resources\Creatables.cs" />
     <Compile Include="Resources\CustomerResource.cs" />
     <Compile Include="Resources\DisputeResource.cs" />
     <Compile Include="Resources\EventResource.cs" />
@@ -69,7 +64,6 @@
     <Compile Include="Models\RecipientRequest.cs" />
     <Compile Include="Resources\RefundResource.cs" />
     <Compile Include="Resources\TokenResource.cs" />
-    <Compile Include="Resources\Destroyables.cs" />
     <Compile Include="Resources\TransactionResource.cs" />
     <Compile Include="Resources\TransferResource.cs" />
     <Compile Include="Resources\CardResource.cs" />
@@ -83,6 +77,12 @@
     <Compile Include="Models\TokenRequest.cs" />
     <Compile Include="Models\TransferRequest.cs" />
     <Compile Include="Models\CardRequest.cs" />
+    <Compile Include="Creatables.cs" />
+    <Compile Include="Destroyables.cs" />
+    <Compile Include="Listables.cs" />
+    <Compile Include="Retrievables.cs" />
+    <Compile Include="Updatables.cs" />
+    <Compile Include="IResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

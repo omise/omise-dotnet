@@ -1,6 +1,6 @@
 ﻿using Omise.Models;
 
-namespace Omise.Resources {
+namespace Omise {
     public interface IResource<TModel> where TModel: ModelBase {
         IRequester Requester { get; }
 

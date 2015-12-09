@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Omise.Models;
 
-namespace Omise.Resources {
+namespace Omise {
     public interface IListable<TModel> : IResource<TModel>
         where TModel: ModelBase {
     }

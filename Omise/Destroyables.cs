@@ -2,7 +2,7 @@
 using Omise.Models;
 using System.Threading.Tasks;
 
-namespace Omise.Resources {
+namespace Omise {
     public interface IDestroyable<TModel> : IResource<TModel> where TModel: ModelBase {
     }
 
