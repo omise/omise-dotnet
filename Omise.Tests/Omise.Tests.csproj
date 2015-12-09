@@ -65,6 +65,10 @@
     <Compile Include="ClientTest.cs" />
     <Compile Include="Resources\ChargeResourceTest.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Models\JsonSerializationTest.cs" />
+    <Compile Include="TestData.cs">
+      <DependentUpon>TestData.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -98,6 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestData.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
