@@ -3,32 +3,36 @@ using Omise.Resources;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Tests.Util;
+using System.Reflection;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class CardResourceTest : ResourceTest<CardResource> {
+        const string CustomerId = "cust_test_4yq6txdpfadhbaqnwp3";
+        const string CardId = "card_test_4yq6tuucl9h4erukfl0";
+
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
-            AssertRequest("GET", "https://api.omise.co/customers/cust_test_123/cards");
+            AssertRequest("GET", "https://api.omise.co/customers/{0}/cards", CustomerId);
         }
         
         [Test]
         public async void TestGet() {
-            await Resource.Get("card_456");
-            AssertRequest("GET", "https://api.omise.co/customers/cust_test_123/cards/card_456");
+            await Resource.Get(CardId);
+            AssertRequest("GET", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
 
         [Test]
         public async void TestUpdate() {
-            await Resource.Update("card_test_456", BuildUpdateRequest());
-            AssertRequest("PATCH", "https://api.omise.co/customers/cust_test_123/cards/card_test_456");
+            await Resource.Update(CardId, BuildUpdateRequest());
+            AssertRequest("PATCH", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
 
         [Test]
         public async void TestDestroy() {
-            await Resource.Destroy("card_test_456");
-            AssertRequest("DELETE", "https://api.omise.co/customers/cust_test_123/cards/card_test_456");
+            await Resource.Destroy(CardId);
+            AssertRequest("DELETE", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
 
         [Test]
@@ -40,6 +44,37 @@ namespace Omise.Tests.Resources {
                 "expiration_month=12&" +
                 "expiration_year=2018"
             );
+        }
+            
+        [Test]
+        public async void TestFixturesGetList() {
+            var list = await Fixtures.GetList();
+            Assert.AreEqual(1, list.Count);
+
+            var card = list[0];
+            Assert.AreEqual(CardId, card.Id);
+            Assert.AreEqual("4242", card.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesGet() {
+            var card = await Fixtures.Get(CardId);
+            Assert.AreEqual(CardId, card.Id);
+            Assert.AreEqual("4242", card.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesUpdate() {
+            var card = await Fixtures.Update(CardId, new UpdateCardRequest());
+            Assert.AreEqual(CardId, card.Id);
+            Assert.AreEqual("JOHN W. DOE", card.Name);
+        }
+
+        [Test]
+        public async void TestFixturesDestroy() {
+            var card = await Fixtures.Destroy(CardId);
+            Assert.AreEqual(CardId, card.Id);
+            Assert.IsTrue(card.Deleted);
         }
             
         protected UpdateCardRequest BuildUpdateRequest() {
@@ -54,7 +89,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected override CardResource BuildResource(IRequester requester) {
-            return new CardResource(requester, "cust_test_123");
+            return new CardResource(requester, CustomerId);
         }
     }
 }

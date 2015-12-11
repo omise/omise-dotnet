@@ -64,7 +64,7 @@ Recipient
   Description string
   Type RecipientType
   TaxID string
-  BankAccount BankAccount
+  BankAccount BankAccount bank_account
   FailureCode string failure_code
 Refund
   Amount long

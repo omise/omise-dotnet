@@ -7,6 +7,8 @@ using Omise.Models;
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class RecipientResourceTest : ResourceTest<RecipientResource> {
+        const string RecipientId = "recp_test_50894vc13y8z4v51iuc";
+
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -15,8 +17,8 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestGet() {
-            await Resource.Get("recp_test_123");
-            AssertRequest("GET", "https://api.omise.co/recipients/recp_test_123");
+            await Resource.Get(RecipientId);
+            AssertRequest("GET", "https://api.omise.co/recipients/{0}", RecipientId);
         }
 
         [Test]
@@ -27,14 +29,14 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestUpdate() {
-            await Resource.Update("recp_test_123", BuildUpdateRequest());
-            AssertRequest("PATCH", "https://api.omise.co/recipients/recp_test_123");
+            await Resource.Update(RecipientId, BuildUpdateRequest());
+            AssertRequest("PATCH", "https://api.omise.co/recipients/{0}", RecipientId);
         }
 
         [Test]
         public async void TestDestroy() {
-            await Resource.Destroy("recp_test_123");
-            AssertRequest("DELETE", "https://api.omise.co/recipients/recp_test_123");
+            await Resource.Destroy(RecipientId);
+            AssertRequest("DELETE", "https://api.omise.co/recipients/{0}", RecipientId);
         }
 
         [Test]
@@ -63,6 +65,44 @@ namespace Omise.Tests.Resources {
                 "bank_account[number]=987654321&" +
                 "bank_account[name]=Accounts"
             );
+        }
+
+        [Test]
+        public async void TestFixturesGetList() {
+            var list = await Fixtures.GetList();
+            Assert.AreEqual(1, list.Count);
+
+            var recipient = list[0];
+            Assert.AreEqual(RecipientId, recipient.Id);
+            Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesGet() {
+            var recipient = await Fixtures.Get(RecipientId);
+            Assert.AreEqual(RecipientId, recipient.Id);
+            Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesCreate() {
+            var recipient = await Fixtures.Create(new CreateRecipientRequest());
+            Assert.AreEqual(RecipientId, recipient.Id);
+            Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesUpdate() {
+            var recipient = await Fixtures.Update(RecipientId, new UpdateRecipientRequest());
+            Assert.AreEqual(RecipientId, recipient.Id);
+            Assert.AreEqual("john@doe.com", recipient.Email);
+        }
+
+        [Test]
+        public async void TestFixturesDestroy() {
+            var recipient = await Fixtures.Destroy(RecipientId);
+            Assert.AreEqual(RecipientId, recipient.Id);
+            Assert.IsTrue(recipient.Deleted);
         }
 
         protected CreateRecipientRequest BuildCreateRequest() {

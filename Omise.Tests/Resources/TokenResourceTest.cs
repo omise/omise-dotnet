@@ -2,10 +2,14 @@
 using Omise.Resources;
 using Omise.Models;
 using NUnit.Framework;
+using System.Diagnostics.Contracts;
+using System.Dynamic;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class TokenResourceTest : ResourceTest<TokenResource> {
+        const string TokenId = "tokn_test_4yq8lbecl0q6dsjzxr5";
+
         [Test]
         public async void TestCreate() {
             await Resource.Create(BuildCreateRequest());
@@ -14,8 +18,8 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestGet() {
-            await Resource.Get("tok_test_789");
-            AssertRequest("GET", "https://vault.omise.co/tokens/tok_test_789");
+            await Resource.Get(TokenId);
+            AssertRequest("GET", "https://vault.omise.co/tokens/{0}", TokenId);
         }
 
         [Test]
@@ -29,6 +33,20 @@ namespace Omise.Tests.Resources {
                 "card[city]=Bangkok&" +
                 "card[postal_code]=43424"
             );
+        }
+
+        [Test]
+        public async void TestFixturesCreate() {
+            var token = await Fixtures.Create(new CreateTokenRequest());
+            Assert.AreEqual(TokenId, token.Id);
+            Assert.AreEqual("4242", token.Card.LastDigits);
+        }
+
+        [Test]
+        public async void TestFixturesGet() {
+            var token = await Fixtures.Get(TokenId);
+            Assert.AreEqual(TokenId, token.Id);
+            Assert.AreEqual("4242", token.Card.LastDigits);
         }
 
         protected CreateTokenRequest BuildCreateRequest() {

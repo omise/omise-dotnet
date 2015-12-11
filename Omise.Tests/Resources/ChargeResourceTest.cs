@@ -9,6 +9,8 @@ using Omise.Tests.Util;
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class ChargeResourceTest : ResourceTest<ChargeResource> {
+        const string ChargeId = "chrg_test_4yq7duw15p9hdrjp8oq";
+
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -17,8 +19,8 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestGet() {
-            await Resource.Get("xyz");
-            AssertRequest("GET", "https://api.omise.co/charges/xyz");
+            await Resource.Get(ChargeId);
+            AssertRequest("GET", "https://api.omise.co/charges/{0}", ChargeId);
         }
 
         [Test]
@@ -29,14 +31,14 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestUpdate() {
-            await Resource.Update("chrg_test_123", BuildUpdateRequest());
-            AssertRequest("PATCH", "https://api.omise.co/charges/chrg_test_123");
+            await Resource.Update(ChargeId, BuildUpdateRequest());
+            AssertRequest("PATCH", "https://api.omise.co/charges/{0}", ChargeId);
         }
 
         [Test]
         public async void TestCapture() {
-            await Resource.Capture("chrg_test_123");
-            AssertRequest("POST", "https://api.omise.co/charges/chrg_test_123/capture");
+            await Resource.Capture(ChargeId);
+            AssertRequest("POST", "https://api.omise.co/charges/{0}/capture", ChargeId);
         }
 
         [Test]
@@ -57,6 +59,36 @@ namespace Omise.Tests.Resources {
             AssertSerializedRequest(BuildUpdateRequest(),
                 "description=Charge%20was%20for%20testing."
             );
+        }
+
+        [Test]
+        public async void TestFixturesGetList() {
+            var list = await Fixtures.GetList();
+            Assert.AreEqual(1, list.Count);
+
+            var charge = list[0];
+            Assert.AreEqual(ChargeId, charge.Id);
+        }
+
+        [Test]
+        public async void TestFixturesGet() {
+            var charge = await Fixtures.Get(ChargeId);
+            Assert.AreEqual(ChargeId, charge.Id);
+            Assert.AreEqual(100000, charge.Amount);
+        }
+
+        [Test]
+        public async void TestFixturesCreate() {
+            var charge = await Fixtures.Create(new CreateChargeRequest());
+            Assert.AreEqual(ChargeId, charge.Id);
+            Assert.AreEqual(100000, charge.Amount);
+        }
+
+        [Test]
+        public async void TestFixturesUpdate() {
+            var charge = await Fixtures.Update(ChargeId, new UpdateChargeRequest());
+            Assert.AreEqual(ChargeId, charge.Id);
+            Assert.AreEqual("Charge for order 3947 (XXL)", charge.Description);
         }
 
         protected CreateChargeRequest BuildCreateRequest() {
