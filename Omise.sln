@@ -5,25 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise", "Omise\Omise.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testdata", "testdata", "{A5AEA8B8-38DD-48E8-8234-608F21E102C9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "objects", "objects", "{7181A051-6A0A-4A97-96FA-34B14C6B76BE}"
-	ProjectSection(SolutionItems) = preProject
-		testdata\objects\account_object.json = testdata\objects\account_object.json
-		testdata\objects\balance_object.json = testdata\objects\balance_object.json
-		testdata\objects\bank_account_object.json = testdata\objects\bank_account_object.json
-		testdata\objects\card_object.json = testdata\objects\card_object.json
-		testdata\objects\charge_object.json = testdata\objects\charge_object.json
-		testdata\objects\customer_object.json = testdata\objects\customer_object.json
-		testdata\objects\dispute_object.json = testdata\objects\dispute_object.json
-		testdata\objects\event_object.json = testdata\objects\event_object.json
-		testdata\objects\recipient_object.json = testdata\objects\recipient_object.json
-		testdata\objects\refund_object.json = testdata\objects\refund_object.json
-		testdata\objects\token_object.json = testdata\objects\token_object.json
-		testdata\objects\transaction_object.json = testdata\objects\transaction_object.json
-		testdata\objects\transfer_object.json = testdata\objects\transfer_object.json
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +19,6 @@ Global
 		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7181A051-6A0A-4A97-96FA-34B14C6B76BE} = {A5AEA8B8-38DD-48E8-8234-608F21E102C9}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
