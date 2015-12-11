@@ -1,5 +1,6 @@
 ---
 language: csharp
+sudo: false
 mono:
 - latest
 - 4.2.1
