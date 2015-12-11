@@ -53,6 +53,9 @@ Dispute
   Status DisputeStatus
   Message string
   Charge string
+Event
+  Key string
+  RawDataJson JRaw data
 Recipient
   Verified bool
   Active bool
