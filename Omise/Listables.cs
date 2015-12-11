@@ -51,10 +51,8 @@ namespace Omise {
                         
             var path = resource.BasePath;
             if (!opts.IsEmpty()) {
-                var formValues = serializer.ExtractFormValues(opts);
-                var query = new FormUrlEncodedContent(formValues);
-                var buffer = await query.ReadAsByteArrayAsync();
-                path += "?" + Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+                var content = serializer.ExtractFormValues(opts);
+                path += "?" + await content.ReadAsStringAsync();
             }
 
             // TODO: Actual list container type that can be re-requested and supports paging as well.

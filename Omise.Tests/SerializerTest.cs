@@ -61,8 +61,7 @@ namespace Omise.Tests {
             
         [Test]
         public async void TestExtractFormValues() {
-            var values = Serializer.ExtractFormValues(Dummy);
-            var content = new FormUrlEncodedContent(values);
+            var content = Serializer.ExtractFormValues(Dummy);
             var result = await content.ReadAsStringAsync();
             Assert.AreEqual(DummyUrlEncoded, result);
         }

@@ -8,6 +8,7 @@ using System.Text;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace Omise {
     public sealed class Serializer {
@@ -45,8 +46,9 @@ namespace Omise {
         }
 
 
-        public IEnumerable<KeyValuePair<string, string>> ExtractFormValues(object payload) {
-            return ExtractFormValues(payload, null);
+        public FormUrlEncodedContent ExtractFormValues(object payload) {
+            var values = ExtractFormValues(payload, null);
+            return new FormUrlEncodedContent(values);
         }
 
         IEnumerable<KeyValuePair<string, string>> ExtractFormValues(

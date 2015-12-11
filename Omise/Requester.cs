@@ -59,8 +59,7 @@ namespace Omise {
             request.Headers.Add("User-Agent", userAgent);
 
             if (payload != null) {
-                var formValues = Serializer.ExtractFormValues(payload);
-                request.Content = new FormUrlEncodedContent(formValues);
+                request.Content = Serializer.ExtractFormValues(payload);
             }
 
             // roundtrips the request

@@ -43,8 +43,7 @@ namespace Omise.Tests.Resources {
             TRequest request,
             string serialized
         ) where TRequest: Request {
-            var values = Serializer.ExtractFormValues(request);
-            var encoded = new FormUrlEncodedContent(values);
+            var encoded = Serializer.ExtractFormValues(request);
             var result = encoded.ReadAsStringAsync().Result;
 
             Assert.AreEqual(serialized, result);
