@@ -42,28 +42,28 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestCreateRecipientRequest() {
             AssertSerializedRequest(BuildCreateRequest(),
-                "name=John%20Doe&" +
+                "name=John+Doe&" +
                 "email=john.doe%40example.com&" +
                 "description=Waaat%3F&" +
                 "type=corporation&" +
                 "tax_id=123&" +
-                "bank_account[brand]=KBank&" +
-                "bank_account[number]=1234-567-89-0&" +
-                "bank_account[name]=Secret%20Stash"
+                "bank_account%5Bbrand%5D=KBank&" +
+                "bank_account%5Bnumber%5D=1234-567-89-0&" +
+                "bank_account%5Bname%5D=Secret+Stash"
             );
         }
 
         [Test]
         public void TestUpdateRecipientRequest() {
             AssertSerializedRequest(BuildUpdateRequest(),
-                "name=John%20Doe&" +
+                "name=John+Doe&" +
                 "email=john.doe%40example.com&" +
-                "description=I%27m%20up-to-date&" +
+                "description=I%27m+up-to-date&" +
                 "type=individual&" +
                 "tax_id=456&" +
-                "bank_account[brand]=BBL&" +
-                "bank_account[number]=987654321&" +
-                "bank_account[name]=Accounts"
+                "bank_account%5Bbrand%5D=BBL&" +
+                "bank_account%5Bnumber%5D=987654321&" +
+                "bank_account%5Bname%5D=Accounts"
             );
         }
 

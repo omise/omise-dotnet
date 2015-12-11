@@ -1,13 +1,10 @@
 ﻿using System;
+using System.Net.Http;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using Omise.Tests;
-using System.IO;
 using Omise.Tests.Util;
-using System.Dynamic;
-using Newtonsoft.Json;
-using Omise.Models;
-using System.Reflection;
-using System.Runtime.Serialization;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -18,8 +15,8 @@ namespace Omise.Tests {
             "\"checked\":true,\"enumer\":\"not_exactly_twice\",\"nested\":{\"field\":\"inner\"}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
-            "with=SPACES%20SPACES&created=9999-12-31T23%3A59%3A59Z&" +
-            "checked=true&enumer=not_exactly_twice&nested[field]=inner";
+            "with=SPACES+SPACES&created=9999-12-31T23%3A59%3A59Z&" +
+            "checked=true&enumer=not_exactly_twice&nested%5Bfield%5D=inner";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
@@ -61,15 +58,12 @@ namespace Omise.Tests {
             Assert.AreEqual("Howlett", Dummy.James);
             Assert.AreEqual("Summers", Dummy.Scott);
         }
-
+            
         [Test]
-        public void TestFormSerialize() {
-            string result;
-            using (var stream = new StringMemoryStream()) {
-                Serializer.FormSerialize(stream, Dummy);
-                result = stream.ToDecodedString();
-            }
-                
+        public async void TestExtractFormValues() {
+            var values = Serializer.ExtractFormValues(Dummy);
+            var content = new FormUrlEncodedContent(values);
+            var result = await content.ReadAsStringAsync();
             Assert.AreEqual(DummyUrlEncoded, result);
         }
     }

@@ -2,11 +2,13 @@
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 using NUnit.Framework;
 using Omise.Tests.Util;
 using System.Reflection;
 using Omise.Models;
 using System.Runtime.Serialization;
+using System.Net.Http;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -21,17 +23,17 @@ namespace Omise.Tests {
 
         [Test, Timeout(1000)]
         public async void TestRequest() {
-            var authHeader = DummyCredentials.SecretKey.EncodeForAuthorizationHeader();
+            var expectedAuthHeader = DummyCredentials.SecretKey.EncodeForAuthorizationHeader();
             var roundtripper = new MockRoundtripper((req) => {
-                    Assert.AreEqual(authHeader, req.Headers["Authorization"]);
+                    var authHeader = req.Headers.GetValues("Authorization").FirstOrDefault();
+                    Assert.AreEqual(expectedAuthHeader, authHeader);
 
                     var libVersion = new AssemblyName(typeof(Requester).Assembly.FullName).Version.ToString();
                     var clrVersion = new AssemblyName(typeof(object).Assembly.FullName).Version.ToString();
 
-                    var ua = req.Headers["User-Agent"];
-                    Assert.IsNotNull(ua);
-                    Assert.IsTrue(ua.Contains("Omise.Net/" + libVersion));
-                    Assert.IsTrue(ua.Contains(".Net/" + clrVersion));
+                    var userAgents = req.Headers.GetValues("User-Agent").ToList();
+                    Assert.Contains("Omise.Net/" + libVersion, userAgents);
+                    Assert.Contains(".Net/" + clrVersion, userAgents);
                 });
                 
             var requester = BuildRequester(roundtripper);
@@ -56,19 +58,20 @@ namespace Omise.Tests {
             
         [Test, Timeout(1000)]
         public async void TestRequestWithPayload() {
-            var encodedPayload = "hello=Kitty&world=Collides";
+            var expectedPayload = "hello=Kitty&world=Collides";
             var payload = new DummyPayload
             {
                 Hello = "Kitty",
                 World = "Collides",
             };
 
-            var roundtripper = new MockRoundtripper((request) => {
-                    var mockRequest = (MockWebRequest)request;
-                    var bytes = mockRequest.RequestStream.ToArray();
+            var roundtripper = new MockRoundtripper(async (request) => {
+                    var content = request.Content;
+                    var contentType = content.Headers.GetValues("Content-Type").FirstOrDefault();
+                    Assert.AreEqual("application/x-www-form-urlencoded", contentType);
 
-                    Assert.AreEqual("application/x-www-form-urlencoded", mockRequest.Headers["Content-Type"]);
-                    Assert.AreEqual(encodedPayload, Encoding.UTF8.GetString(bytes, 0, bytes.Length));
+                    var encodedPayload = await content.ReadAsStringAsync();
+                    Assert.AreEqual(expectedPayload, encodedPayload);
                 });
 
             var requester = BuildRequester(roundtripper);
@@ -80,7 +83,8 @@ namespace Omise.Tests {
         [Test, Timeout(1000)]
         public void TestRequestWithErrorResponse() {
             var roundtripper = new MockRoundtripper(responseInspector: (response) => {
-                    throw new WebException("Mock error", null, WebExceptionStatus.Success, response);
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Content = new StringContent("{\"code\":\"test_error\"}");
                 });
             var requester = BuildRequester(roundtripper);
 
@@ -90,7 +94,8 @@ namespace Omise.Tests {
             Assert.IsNotNull(task.Exception);
 
             var exception = task.Exception.Flatten().InnerException;
-            Assert.IsInstanceOf<OmiseException>(exception);
+            Assert.IsInstanceOf<OmiseError>(exception);
+            Assert.IsTrue(exception.ToString().Contains("test_error"));
         }
 
         IRequester BuildRequester(IRoundtripper roundtripper) {

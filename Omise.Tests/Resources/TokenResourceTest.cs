@@ -25,13 +25,13 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestCreateTokenRequest() {
             AssertSerializedRequest(BuildCreateRequest(),
-                "card[name]=VISA%20RichGuy&" +
-                "card[number]=4242424242424242&" +
-                "card[expiration_month]=12&" +
-                "card[expiration_year]=2099&" +
-                "card[security_code]=xyz&" +
-                "card[city]=Bangkok&" +
-                "card[postal_code]=43424"
+                "card%5Bname%5D=VISA+RichGuy&" +
+                "card%5Bnumber%5D=4242424242424242&" +
+                "card%5Bexpiration_month%5D=12&" +
+                "card%5Bexpiration_year%5D=2099&" +
+                "card%5Bsecurity_code%5D=xyz&" +
+                "card%5Bcity%5D=Bangkok&" +
+                "card%5Bpostal_code%5D=43424"
             );
         }
 

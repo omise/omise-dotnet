@@ -40,7 +40,7 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestUpdateDisputeRequest() {
             AssertSerializedRequest(BuildUpdateRequest(),
-                "message=Hello%2C%20This%20is%20definitely%20not%20ours."
+                "message=Hello%2C+This+is+definitely+not+ours."
             );
         }
 

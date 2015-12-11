@@ -23,9 +23,9 @@ namespace Omise.Tests {
 
         [Test]
         public void TestAuthorizationHeader() {
-            Key key = "asdf";
-            var result = key.EncodeForAuthorizationHeader();
-            Assert.AreEqual("Basic YXNkZjo=", result);
+            Key key = "skey_test_1234";
+            var result = "Basic c2tleV90ZXN0XzEyMzQ6";
+            Assert.AreEqual(result, key.EncodeForAuthorizationHeader());
         }
 
         [Test]

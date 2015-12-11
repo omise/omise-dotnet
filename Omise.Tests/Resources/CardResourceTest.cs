@@ -38,7 +38,7 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestUpdateCardRequest() {
             AssertSerializedRequest(BuildUpdateRequest(),
-                "name=MasterCard%20SmartPay&" +
+                "name=MasterCard+SmartPay&" +
                 "city=Bangkok&" +
                 "postal_code=12345&" +
                 "expiration_month=12&" +

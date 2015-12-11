@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Omise.Resources;
 using NUnit.Framework;
 using Omise.Models;
+using System.Net.Http;
 
 namespace Omise.Tests.Resources {
     public abstract class ResourceTest<TResource> : OmiseTest {
@@ -42,10 +43,11 @@ namespace Omise.Tests.Resources {
             TRequest request,
             string serialized
         ) where TRequest: Request {
-            var stream = new StringMemoryStream();
-            Serializer.FormSerialize(stream, request);
-            Assert.AreEqual(serialized, stream.ToDecodedString());
+            var values = Serializer.ExtractFormValues(request);
+            var encoded = new FormUrlEncodedContent(values);
+            var result = encoded.ReadAsStringAsync().Result;
+
+            Assert.AreEqual(serialized, result);
         }
     }
 }
-

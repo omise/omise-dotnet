@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text;
 
 namespace Omise.Tests.Util {
+    public delegate void RequestInspector(HttpRequestMessage request);
+    public delegate void ResponseInspector(HttpResponseMessage response);
+
     public sealed class MockRoundtripper : IRoundtripper {
         public string ResponseContentType { get; set; }
         public string ResponseContent { get; set; }
 
-        public Action<WebRequest> RequestInspector { get; set; }
-        public Action<WebResponse> ResponseInspector { get; set; }
+        public RequestInspector RequestInspector { get; set; }
+        public ResponseInspector ResponseInspector { get; set; }
 
         public int RoundtripCount { get; set; }
 
         public MockRoundtripper(
-            Action<WebRequest> requestInspector = null,
-            Action<WebResponse> responseInspector = null) {
+            RequestInspector requestInspector = null,
+            ResponseInspector responseInspector = null) {
             ResponseContent = "{}";
             ResponseContentType = "application/json";
             RequestInspector = requestInspector;
@@ -23,32 +28,32 @@ namespace Omise.Tests.Util {
             RoundtripCount = 0;
         }
 
-        public WebRequest CreateRequest(string uri) {
-            return new MockWebRequest(this, uri);
+        public HttpRequestMessage CreateRequest(string method, string uri) {
+            return new HttpRequestMessage(new HttpMethod(method), uri);
         }
 
-        public Task<WebResponse> Roundtrip(WebRequest request) {
+        public Task<HttpResponseMessage> Roundtrip(HttpRequestMessage request) {
             if (RequestInspector != null) {
                 RequestInspector(request);
             }
 
             RoundtripCount += 1;
-            var task = Task<WebResponse>.Factory.FromAsync(
-                           request.BeginGetResponse,
-                           request.EndGetResponse,
-                           null
-                       );
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = new StringContent(
+                ResponseContent,
+                Encoding.UTF8,
+                ResponseContentType
+            );
 
             if (ResponseInspector != null) {
-                task = task.ContinueWith<WebResponse>(task1 => {
-                        var response = task1.Result;
-                        ResponseInspector(response);
-                        return response;
-                    });
+                ResponseInspector(response);
             }
 
-            return task;
+            var source = new TaskCompletionSource<HttpResponseMessage>();
+            source.SetResult(response);
+            return source.Task;
         }
+
     }
 }
 

@@ -45,7 +45,7 @@ namespace Omise.Tests.Resources {
         public void TestCreateCustomerRequest() {
             AssertSerializedRequest(BuildCreateRequest(),
                 "email=support%40omise.co&" +
-                "description=Omise%20support&" +
+                "description=Omise+support&" +
                 "card=card_test_123"
             );
         }
@@ -54,7 +54,7 @@ namespace Omise.Tests.Resources {
         public void TestUpdateCustomerRequest() {
             AssertSerializedRequest(BuildUpdateRequest(),
                 "email=example%40omise.co&" +
-                "description=Omise%20example&" +
+                "description=Omise+example&" +
                 "card=card_test_456"
             );
         }

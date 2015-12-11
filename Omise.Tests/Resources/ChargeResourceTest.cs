@@ -44,11 +44,11 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestCreateChargeRequest() {
             AssertSerializedRequest(BuildCreateRequest(),
-                "customer=Omise%20Co.%2C%20Ltd.&" +
+                "customer=Omise+Co.%2C+Ltd.&" +
                 "card=card_test_123&" +
                 "amount=244884&" +
                 "currency=thb&" +
-                "description=Test%20Charge&" +
+                "description=Test+Charge&" +
                 "capture=false&" +
                 "return_uri=asdf"
             );
@@ -57,7 +57,7 @@ namespace Omise.Tests.Resources {
         [Test]
         public void TestUpdateChargeRequest() {
             AssertSerializedRequest(BuildUpdateRequest(),
-                "description=Charge%20was%20for%20testing."
+                "description=Charge+was+for+testing."
             );
         }
 
