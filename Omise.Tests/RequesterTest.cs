@@ -34,9 +34,12 @@ namespace Omise.Tests {
                     var userAgents = req.Headers.GetValues("User-Agent").ToList();
                     Assert.Contains("Omise.Net/" + libVersion, userAgents);
                     Assert.Contains(".Net/" + clrVersion, userAgents);
+
+                    var apiVersion = req.Headers.GetValues("Omise-Version").FirstOrDefault();
+                    Assert.AreEqual("2000-02-01", apiVersion);
                 });
                 
-            var requester = BuildRequester(roundtripper);
+            var requester = new Requester(DummyCredentials, roundtripper, "2000-02-01");
             await requester.Request<object>(Endpoint.Api, "GET", "/test");
 
             Assert.AreEqual(1, roundtripper.RoundtripCount);

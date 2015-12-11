@@ -14,12 +14,17 @@ namespace Omise {
     public class Requester : IRequester {
         readonly string userAgent;
 
-        public IRoundtripper Roundtripper { get; private set; }
-
         public Credentials Credentials { get; private set; }
+        public string APIVersion { get; set; }
+
+        public IRoundtripper Roundtripper { get; private set; }
         public Serializer Serializer { get; private set; }
 
-        public Requester(Credentials creds, IRoundtripper roundtripper = null) {
+        public Requester(
+            Credentials creds,
+            IRoundtripper roundtripper = null,
+            string apiVersion = null
+        ) {
             if (creds == null) throw new ArgumentNullException("creds");
 
             var metadata = new Dictionary<string, string>
@@ -29,7 +34,10 @@ namespace Omise {
             };
 
             userAgent = metadata.Aggregate("", (acc, pair) => acc + " " + pair.Key + "/" + pair.Value).Trim();
+
             Credentials = creds;
+            APIVersion = apiVersion;
+
             Roundtripper = roundtripper ?? new DefaultRoundtripper();
             Serializer = new Serializer();
         }
@@ -57,6 +65,9 @@ namespace Omise {
             var request = Roundtripper.CreateRequest(method, endpoint.ApiPrefix + path);
             request.Headers.Add("Authorization", key.EncodeForAuthorizationHeader());
             request.Headers.Add("User-Agent", userAgent);
+            if (!string.IsNullOrEmpty(APIVersion)) {
+                request.Headers.Add("Omise-Version", APIVersion);
+            }
 
             if (payload != null) {
                 request.Content = Serializer.ExtractFormValues(payload);
