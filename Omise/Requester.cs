@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Text;
 using Omise.Models;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Omise {
     public class Requester : IRequester {
@@ -51,45 +53,36 @@ namespace Omise {
             var key = endpoint.KeySelector(Credentials);
         
             // creates initial request
-            var request = Roundtripper.CreateRequest(endpoint.ApiPrefix + path);
-            request.Method = method;
-            request.Headers["User-Agent"] = userAgent;
-            request.Headers["Content-Type"] = "application/x-www-form-urlencoded";
-            request.Headers["Authorization"] = key.EncodeForAuthorizationHeader();
+            // TODO: Dispose request.
+            var request = Roundtripper.CreateRequest(method, endpoint.ApiPrefix + path);
+            request.Headers.Add("Authorization", key.EncodeForAuthorizationHeader());
+            request.Headers.Add("User-Agent", userAgent);
 
             if (payload != null) {
-                using (var requestStream = await Task.Factory.FromAsync<Stream>(
-                                               request.BeginGetRequestStream,
-                                               request.EndGetRequestStream,
-                                               null
-                                           )) {
-                    Serializer.FormSerialize(requestStream, payload);
-                }
+                var formValues = Serializer.ExtractFormValues(payload);
+                request.Content = new FormUrlEncodedContent(formValues);
             }
 
             // roundtrips the request
             try {
                 var response = await Roundtripper.Roundtrip(request);
-                using (var stream = response.GetResponseStream()) {
-                    var result = Serializer.JsonDeserialize<TResult>(stream);
-                    var model = result as ModelBase;
-                    if (model != null) {
-                        model.Requester = this;
-                    }
-
-                    return result;
+                var stream = await response.Content.ReadAsStreamAsync();
+                if (!response.IsSuccessStatusCode) {
+                    var error = Serializer.JsonDeserialize<ErrorResult>(stream);
+                    error.HttpStatusCode = response.StatusCode;
+                    throw new OmiseError(error, null);
                 }
 
-            } catch (WebException e) {
-                var errorResult = Serializer.JsonDeserialize<ErrorResult>(e.Response.GetResponseStream());
-                var code = (HttpStatusCode)0;
-
-                var httpResponse = e.Response as HttpWebResponse;
-                if (httpResponse != null) {
-                    code = httpResponse.StatusCode;
+                var result = Serializer.JsonDeserialize<TResult>(stream);
+                var model = result as ModelBase;
+                if (model != null) {
+                    model.Requester = this;
                 }
 
-                throw new OmiseException(e, code, errorResult);
+                return result;
+
+            } catch (HttpRequestException e) {
+                throw new OmiseException("Error while making HTTP request", e);
             }
         }
     }

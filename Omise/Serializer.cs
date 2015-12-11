@@ -4,11 +4,10 @@ using System.Reflection;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Runtime.Versioning;
 using System.Text;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.Serialization;
-using Newtonsoft.Json.Schema;
+using System.Collections.Generic;
 
 namespace Omise {
     public sealed class Serializer {
@@ -19,49 +18,6 @@ namespace Omise {
             jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonSerializer.Converters.Add(new StringEnumConverter { CamelCaseText = true });
             jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
-        }
-
-        public void FormSerialize(Stream target, object payload) {
-            using (var writer = new StreamWriter(target)) {
-                formSerialize(writer, payload, null);
-            }
-        }
-
-        void formSerialize(TextWriter writer, object payload, string prefix) {
-            var clrAsm = typeof(object).Assembly;
-            var props = payload
-                .GetType()
-                .GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-            var firstValue = prefix == null;
-            foreach (var prop in props) {
-                var value = prop.GetValue(payload, null);
-                if (value == null) continue;
-
-                var name = prop.GetCustomAttributes(true)
-                        .Where(obj => obj is JsonPropertyAttribute)
-                        .Cast<JsonPropertyAttribute>()
-                        .Select(attr => attr.PropertyName)
-                        .FirstOrDefault() ??
-                           prop.Name.ToLower();
-                    
-                if (!string.IsNullOrEmpty(prefix)) {
-                    name = prefix + "[" + name + "]";
-                }
-
-                var type = value.GetType();
-                if (type.IsClass && type.Assembly != clrAsm) {
-                    formSerialize(writer, value, name);
-
-                } else {
-                    writer.Write(firstValue ? "" : "&");
-                    firstValue = false;
-
-                    writer.Write(name);
-                    writer.Write("=");
-                    writer.Write(EncodeFormValue(value));
-                }
-            }
         }
 
         public void JsonSerialize<T>(Stream target, T payload) where T: class {
@@ -89,7 +45,48 @@ namespace Omise {
         }
 
 
-        public static string EncodeFormValue(object value) {
+        public IEnumerable<KeyValuePair<string, string>> ExtractFormValues(object payload) {
+            return ExtractFormValues(payload, null);
+        }
+
+        IEnumerable<KeyValuePair<string, string>> ExtractFormValues(
+            object payload,
+            string prefix
+        ) {
+            var clrAsm = typeof(object).Assembly;
+            var props = payload
+                .GetType()
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var prop in props) {
+                var value = prop.GetValue(payload, null);
+                if (value == null) continue;
+
+                var name = prop.GetCustomAttributes(true)
+                    .Where(obj => obj is JsonPropertyAttribute)
+                    .Cast<JsonPropertyAttribute>()
+                    .Select(attr => attr.PropertyName)
+                    .FirstOrDefault() ??
+                           prop.Name.ToLower();
+
+                if (!string.IsNullOrEmpty(prefix)) {
+                    name = prefix + "[" + name + "]";
+                }
+
+                var type = value.GetType();
+                if (type.IsClass && type.Assembly != clrAsm) {
+                    foreach (var result in ExtractFormValues(value, name)) {
+                        yield return result;
+                    }
+
+                } else {
+                    var encodedValue = EncodeFormValueToString(value);
+                    yield return new KeyValuePair<string, string>(name, encodedValue);
+                }
+            }
+        }
+
+        static string EncodeFormValueToString(object value) {
             if (value == null) throw new ArgumentNullException("value");
 
             string str;
@@ -116,7 +113,7 @@ namespace Omise {
                 str = value.ToString();
             }
 
-            return Uri.EscapeDataString(str);
+            return str;
         }
     }
 }

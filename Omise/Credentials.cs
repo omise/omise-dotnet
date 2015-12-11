@@ -4,8 +4,8 @@ namespace Omise {
     public delegate Key KeySelector(Credentials creds);
 
     public sealed partial class Credentials {
-        public static readonly KeySelector UsePublicKey = new KeySelector((creds) => creds.PublicKey);
-        public static readonly KeySelector UseSecretKey = new KeySelector((creds) => creds.SecretKey);
+        public static readonly KeySelector UsePublicKey = new KeySelector(creds => creds.PublicKey);
+        public static readonly KeySelector UseSecretKey = new KeySelector(creds => creds.SecretKey);
     }
 
     public sealed partial class Credentials {

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Net;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Omise {
     public class DefaultRoundtripper : IRoundtripper {
-        public WebRequest CreateRequest(string uri) {
-            return WebRequest.CreateHttp(uri);
+        readonly HttpClient client = new HttpClient();
+
+        public HttpRequestMessage CreateRequest(string method, string uri) {
+            return new HttpRequestMessage(new HttpMethod(method), uri);
         }
 
-        public Task<WebResponse> Roundtrip(WebRequest request) {
-            return Task<WebResponse>.Factory.FromAsync(
-                request.BeginGetResponse,
-                request.EndGetResponse,
-                null
-            );
+        public Task<HttpResponseMessage> Roundtrip(HttpRequestMessage request) {
+            return client.SendAsync(request);
         }
     }
 }

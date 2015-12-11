@@ -1,10 +1,11 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Omise {
     public interface IRoundtripper {
-        WebRequest CreateRequest(string uri);
-        Task<WebResponse> Roundtrip(WebRequest request);
+        HttpRequestMessage CreateRequest(string method, string uri);
+        Task<HttpResponseMessage> Roundtrip(HttpRequestMessage request);
     }
 }
 
