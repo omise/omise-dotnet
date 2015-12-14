@@ -12,7 +12,7 @@ VERSION = $(shell \
 
 # Commands aliases
 XBUILD := xbuild /property:Configuration=$(CONFIG)
-NUGET  := mono .nuget/Nuget.exe
+NUGET  := mono .nuget/NuGet.exe
 
 # Files
 SRC_FILES      := $(wildcard Omise.Net/**.cs)
