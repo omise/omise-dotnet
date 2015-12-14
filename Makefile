@@ -28,9 +28,14 @@ NUGET_PKG_FILE  := Omise.$(VERSION).nupkg
 # Runs (and builds) tests by default.
 default: test
 
+# Download dependencies.
+deps: packages
+packages:
+	$(NUGET) restore
+
 # Builds DLL files.
 build: $(DLL_FILE) $(TEST_DLL_FILE)
-$(DLL_FILE) $(TEST_DLL_FILE): $(SRC_FILES) $(TEST_SRC_FILES)
+$(DLL_FILE) $(TEST_DLL_FILE): $(SRC_FILES) $(TEST_SRC_FILES) packages
 	$(XBUILD)
 
 # Clean
@@ -41,7 +46,7 @@ clean:
 
 # Test with NUnit
 .PHONY: test
-test: $(TEST_DLL_FILE)
+test: $(TEST_DLL_FILE) packages
 ifeq ($(strip $(TEST)),)
 	nunit-console $(TEST_DLL_FILE)
 else
