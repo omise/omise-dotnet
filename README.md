@@ -1,150 +1,187 @@
-omise-dotnet
-============
+# OMISE-DOTNET
 
-[![Build Status](https://travis-ci.org/omise/omise-dotnet.svg?branch=v2.0)](https://travis-ci.org/omise/omise-dotnet)
+[![Build Status](https://travis-ci.org/omise/omise-dotnet.svg)](https://travis-ci.org/omise/omise-dotnet)
 
-Omise.Net is a .Net library written in C# provides the wrapper functions for Omise payment API calls.
+**This library has been updated to v2.0, check the v1 branch for the previous version.**
 
-Requirements
-============
-The library works with .Net framework 2.0, 3.5, 4.0 or 4.5.
+Omise.Net is a NuGet package for CLR platforms (.NET/Mono) written in C#. This package
+provides a set of bindings to the [Omise REST API](https://www.omise.co/docs).
 
-Installation
-============
-To use the library, simply add a reference to Omise.Net.dll and you are ready to go. The library also available on nuget https://www.nuget.org/packages/Omise.Net/.
+Please contact [chakrit@omise.co](mailto:chakrit@omise.co) or
+[support@omise.co](mailto:support@omise.co) if you have any question regarding this
+library and the functionality it provides.
 
-Getting started
-===============
+# REQUIREMENTS
 
-The core of the library is the Client which contains all services to call the APIs.To initialize the client, you need to have the api secret key.
+You will need to obtain the Omise public and secret API keys in order to use this package.
+You can obtain them by [registering on our website](https://dashboard.omise.co/signup).
 
-```c#
-  var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY]); 
-  //public key is optional which is required only if you want to create a token on the server side
+The library targets the Portable Class Library (PCL) 4.0 (Profile147) and should works on
+the following list of platforms:
+
+* .NET Framework 4.0.3 or later
+* Windows Phone 8 or later
+* Silverlight 5
+* Windows 8
+* Windows Phone Silverlight 8
+* Windows Store apps (Windows 8)
+* Xamarin.Android
+* Xamarin.iOS Classic
+* Xamarin.iOS Unified
+* Xamarin.Mac Unified
+
+# INSTALLATION
+
+### NuGet
+
+The easiest way to get going with this library is via NuGet packages:
+
+```
+> Install-Package omise
 ```
 
-or to specify the api version
+### Manually
+
+Or you can compile this library manually and add reference to Omise.Net.dll. The library
+also depends on the following packages/assemblies:
+
+* Microsoft.Threading.Tasks (via Microsoft.Async package)
+* System.Net.Http (via Microsoft.Net.Http package)
+
+# GETTING STARTED
+
+The core of the library is the Client which contains services to call the APIs.To
+initialize the client, you need to have the API keys. Visit the [Omise
+Dashboard](https://dashboard.omise.co/test/api-keys) to obtain your API keys.
 
 ```c#
-var client = new Omise.Client(YOUR_SECRET_KEY, [YOUR_PUBLIC_KEY])
-{
-    ApiVersion = "2014-07-27"
-}; 
-  //public key is optional which is required only if you want to create a token on the server side
+using Omise;
+
+var client = new Client([YOUR_PUBLIC_KEY], [YOUR_SECRET_KEY]);
 ```
 
-Creating a token
-----------------
+You must specify at least one key. Usually you will only need the secret key so a shorter
+form may be more preferrable:
 
-To create a token use [Omise.js](https://docs.omise.co/omise-js/) Javascript library.
-
-**Credit Card data should never go through your servers. That means, do not send the credit card data to Omise from your servers directly, do it from the user browser.**
-
-The token creation method in the library should only be used either with fake data in test mode, e.g.: quickly creating some test data or for testing our API from a terminal. You can send card data from the server only if you have a valid PCI-DSS license.
-
-Creating a token with Omise.js
-------------------------------
-
-The [Omise.js](https://github.com/omise/omise.js) library runs on the user browser and sends card directly from the browser to our servers in HTTPS, as well collecting browser information in order to detect fraud. Omise will return a Token for the given card in which you must pass to your server to complete the charge. 
-Some examples and source code can be found here: [github.com/omise/omise.js](https://github.com/omise/omise.js)
-
-Simplify the integration with Card.js
--------------------------------------
-
-You can also use [Omise Card.js](https://docs.omise.co/card-js/), which creates a credit card payment html form for getting a card token from Omise, which you can use to make a charge with `omise-dotnet`.
-
-For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with credit card information to prevent any risk.
-
-Please read more about it here [Security Best Practices](https://docs.omise.co/security-best-practices/) and  [Collecting Card Information](https://docs.omise.co/collecting-card-information/)
-
-Creating a charge
------------------
-
- ```c#
-var chargeInfo = new ChargeCreateInfo ();
-chargeInfo.Amount = 10000; //Create a charge with amount 100 THB, here we are passing with the smallest currency unit which is 10000 satangs
-chargeInfo.Currency = "THB";
-chargeInfo.Description = "Test charge";
-chargeInfo.Capture = true; //TRUE means auto capture the charge, FALSE means authorize only. Default is FALSE
-chargeInfo.CardId = token; //Token generated with Omise.js or Card.js
-
-var charge = client.ChargeService.CreateCharge(chargeInfo);
- ```
-
-Determine if charge success
----------------------------
-
-In the charge result there is a bool property named 'Captured' which tells us that the money has been charged by the acquirer bank if the value is ```TRUE```, 
-otherwise there will be another factors making the charge not being captured. For more information, visit https://docs.omise.co/api/charges/
-
-Creating a customer
--------------------
 ```c#
-var customer = new CustomerInfo();
-customer.Email = "test@localhost";
-customer.Description = "My test customer";
-
-var customerResult = client.CustomerService.CreateCustomer(customer);
-``` 
-
-With the customerResult, you can get access to the customer properties such Id, Email, Description and so on.
-
-Transfer money to bank account
-------------------------------
-```c#
-var result = client.TransferService.CreateTransfer(10000);
-//transfer amount is in smallest unit of the currency, for THB the smallest unit is SATANG so here we are transfering 100 THB
+var client = new Client(skey: "YOUR_SECRET_KEY");
 ```
 
-The transfer will be made to default RECIPIENT which in TEST mode it has been automatically created once you signup to Omise.
-However, you have to complete the registration form in order to get LIVE account (with default LIVE recipient) activated. 
-
-Creating a recipient
---------------------
-A transfer can also be made to a third-party recipient. The example below demonstrates how to create a recipient.
+You may also specify specific API version to use:
 
 ```c#
-var recipientInfo = new RecipientCreateInfo();
-recipientInfo.Name = "Test recipient 1";
-recipientInfo.Email = "test1@localhost";
-recipientInfo.RecipientType = RecipientType.Corporation;
-recipientInfo.BankAccount = new BankAccountInfo()
-{
-Brand = "test",
-Number = "1234567890",
-Name = "test bank account"
-};
-
-var recipient = client.RecipientService.CreateRecipient(recipientInfo);
+var client = new Omise.Client([YOUR_PUBLIC_KEY], [YOUR_SECRET_KEY]);
+client.APIVersion = "2014-07-27";
 ```
 
-Then to transfer to this recipient
+# DEVELOPMENT / TESTING
+
+All tests in this library are against fixture files. There is no network test implemented.
+Since we target the PCL even for the test code, the fixture data files are imported as
+C# byte slices via a T4 template.
+
+# TASKS
+
+Following is a list of example code for common tasks you can perform with this package.
+Note that, despite this library allowing you to do so, you should never need to transmit
+credit card data through your server directly. **Please read our [Security Best
+Practices](https://www.omise.co/security-best-practices) guideline before deploying
+production code using this package.**
+
+### Creating a Charge with a Token
 
 ```c#
- var result = client.TransferService.CreateTransfer(10000, recipient.Id);
+var token = GetToken();
+var charge = Client.Charges.Create(new CreateChargeRequest
+    {
+        Amount = 200000 // 2,000.00 THB
+        Currency = "thb",
+        Card = token.Id
+    })
+    .Result;
+
+Print("created charge: " + charge.Id);
 ```
 
-Support banks
--------------
+The API calls returns `Task<TResult>` so if your development platforms support C#'s
+`async` and `await`, you can also use it with this package:
 
-Creating a recipient requires a bank account information. Below are banks that are supported by Omise
+```c#
+var charge = await client.Charges.Create(new CreateChargeRequest { })
+```
 
-|Brand|Full name|
-|---|---|
-|bbl|BANGKOK BANK|
-|kbank|Kasikornbank|
-|ktb|Krungthai Bank|
-|tmb|TMB Bank|
-|scb|Siam Commercial Bank|
-|citi|Citibank|
-|cimb|CIMB Thai Bank|
-|uob|United Overseas Bank (Thai)|
-|bay|Bank of Ayudhya (Krungsri)|
-|tbank|Thanachart Bank|
-|ibank|Islamic Bank of Thailand|
-|lhb|Land and Houses Bank|
+### Creating a Customer, then a Charge
 
+```c#
+var token = GetToken();
+var customer = await Client.Customers.Create(new CreateCustomerRequest
+    {
+        Email = "customers_email@example.com",
+        Description = "customer#1234",
+        Card = token.Id
+    });
 
-in TEST mode, 'test' brand is also allowed to use.
+Print("created customer: {0}", customer.Id);
 
-Full developer api documentation https://docs.omise.co
+var charge = await Client.Charges.Create(new CreateChargeRequest
+    {
+        Customer = customer.Id,
+        Amount = 200000, // 2,000.00 THB
+        Currency = "thb"
+    });
+
+Print("created charge: {0}", charge.Id);
+```
+
+### Transferring money to the default Recipient.
+
+```c#
+var transfer = await Client.Transfers.Create(new CreateTransferRequest
+    {
+        Amount = 1000000 // 10,000.00 THB
+    });
+
+Print("created transfer: {0}", transfer.Id);
+```
+
+### Transferring money to a new Recipient.
+
+```c#
+var recipient = await Client.Recipients.Create(new CreateRecipientRequest
+    {
+        Name = "Merchant X Smith",
+        Email = "john.doe@example.com",
+        Description = "merchant#456",
+        Type = RecipientType.Individual,
+        BankAccount = new BankAccountRequest
+        {
+            Brand = "bank",
+            Number = "7777-777-777",
+            Name = "Smith X.",
+        }
+    });
+
+Print("created recipient: {0}", recipient.Id);
+
+var transfer = await Client.Transfers.Create(new CreateTransferRequest
+    {
+        Amount = 99900, // 999.00 THB
+        Recipient = recipient.Id
+    });
+
+Print("created transfer: {0}", transfer.Id);
+```
+
+# IMPORTANT NOTE ABOUT MERCHANT COMPLIANCE
+
+Card data should never transit through your server. This library provides means to create
+card tokens server-side but should only be used for testing or if you currently have valid
+PCI-DSS Attestation of Compliance (AoC) delivered by a certified QSA Auditor
+
+Instead we recommend that you follow our guide on how to safely [collect credit card
+information](https://www.omise.co/collecting-card-information)
+
+# LICENSE
+
+MIT, See [LICENSE](https://github.com/omise/omise-dotnet/blob/master/LICENSE)
+file for the full text.
