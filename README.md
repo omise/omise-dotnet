@@ -1,5 +1,7 @@
 # OMISE-DOTNET
 
+[![Join the chat at https://gitter.im/omise/omise-dotnet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/omise/omise-dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/omise/omise-dotnet.svg)](https://travis-ci.org/omise/omise-dotnet)
 
 **This library has been updated to v2.0, check the v1 branch for the previous version.**
