@@ -1,5 +1,6 @@
 ---
 language: csharp
+solution: Omise.sln
 sudo: false
 mono:
 - latest

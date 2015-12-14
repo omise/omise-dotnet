@@ -11,8 +11,9 @@ VERSION = $(shell \
 	tr -d " ")
 
 # Commands aliases
-XBUILD := xbuild /property:Configuration=$(CONFIG)
-NUGET  := mono .nuget/NuGet.exe
+XBUILD        := xbuild /property:Configuration=$(CONFIG)
+NUGET         := mono .nuget/NuGet.exe
+NUNIT_CONSOLE := mono packages/NUnit.Runners.2.6.3/tools/nunit-console.exe
 
 # Files
 SRC_FILES      := $(wildcard Omise.Net/**.cs)
@@ -48,9 +49,9 @@ clean:
 .PHONY: test
 test: $(TEST_DLL_FILE) packages
 ifeq ($(strip $(TEST)),)
-	nunit-console $(TEST_DLL_FILE)
+	$(NUNIT_CONSOLE) $(TEST_DLL_FILE)
 else
-	nunit-console $(TEST_DLL_FILE) -run=$(TEST)
+	$(NUNIT_CONSOLE) $(TEST_DLL_FILE) -run=$(TEST)
 endif
 
 # Create Nuget packages.
