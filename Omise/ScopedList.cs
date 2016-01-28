@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Omise.Models;
 
 namespace Omise {
     [JsonObject]
@@ -24,6 +25,12 @@ namespace Omise {
 
         [JsonProperty("limit")]
         public int Limit { get; set; }
+
+        [JsonProperty("total")]
+        public int Total { get; set; }
+
+        [JsonProperty("order")]
+        public Ordering Order { get; set; }
 
         // TODO: "total" JSON field?
         [JsonIgnore]

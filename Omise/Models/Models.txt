@@ -28,7 +28,6 @@ Charge
   Currency string
   Description string
   Capture bool
-  Captured bool
   Authorized bool
   Paid bool
   Transaction string
@@ -78,11 +77,14 @@ Transaction
   Amount long
   Currency string
   Type TransactionType
+  Source string
+  Transferable DateTime
 Transfer
   Recipient string
   BankAccount BankAccount
   Sent bool
   Paid bool
+  Fee long
   Amount long
   Currency string
   FailureCode string failure_code
