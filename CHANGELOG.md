@@ -1,6 +1,10 @@
 # CHANGE LOG
 
-# v2.0.0 - 2015-12-14
+# v2.0.1
+
+* Update new/removed model fields.
+
+# v2.0.0
 
 * Rewrite while maintaining similar API surface.
 * Drops pre-4.0 support. (v1.0 is still available for that.)

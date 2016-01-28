@@ -2,8 +2,8 @@
 <package>
   <metadata>
     <id>Omise</id>
-    <version>2.0.1.28461</version>
-    <title>Omise.Net</title>
+    <version>2.0.1.28568</version>
+    <title>Omise</title>
     <authors>Omise Co., Ltd.</authors>
     <owners>Omise Co., Ltd.</owners>
     <licenseUrl>https://github.com/omise/omise-dotnet/blob/master/LICENSE</licenseUrl>
