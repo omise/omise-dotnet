@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using Omise.Resources;
-using Omise;
 
 namespace Omise {
     public class OmiseException : Exception {
@@ -16,4 +13,3 @@ namespace Omise {
         }
     }
 }
-

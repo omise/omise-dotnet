@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net;
-using Newtonsoft.Json.Serialization;
+﻿using System.Net;
 using Newtonsoft.Json;
 
 namespace Omise {
@@ -18,4 +16,3 @@ namespace Omise {
         public string Message { get; protected internal set; }
     }
 }
-

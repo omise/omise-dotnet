@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace Omise.Models {
+﻿namespace Omise.Models {
     public enum TransactionType {
         Credit,
         Debit
     }
 }
-

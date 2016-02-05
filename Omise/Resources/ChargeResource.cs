@@ -1,5 +1,5 @@
-﻿using Omise.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources {
     public class ChargeResource : BaseResource<Charge>,
@@ -20,4 +20,3 @@ namespace Omise.Resources {
         }
     }
 }
-

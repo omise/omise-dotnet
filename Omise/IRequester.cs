@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using System.Diagnostics.Contracts;
+﻿using System.Threading.Tasks;
 
 namespace Omise {
     public interface IRequester {
@@ -19,4 +17,3 @@ namespace Omise {
             where TResult: class;
     }
 }
-

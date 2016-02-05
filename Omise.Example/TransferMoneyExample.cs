@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Omise.Models;
 
 namespace Omise.Example {
@@ -14,4 +13,3 @@ namespace Omise.Example {
         }
     }
 }
-

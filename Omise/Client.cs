@@ -1,6 +1,5 @@
 ﻿using System;
 using Omise;
-using Omise.Models;
 using Omise.Resources;
 
 namespace Omise {

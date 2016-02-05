@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace Omise.Models {
+﻿namespace Omise.Models {
     public class UpdateDisputeRequest : Request {
         public string Message { get; set; }
     }
 }
-

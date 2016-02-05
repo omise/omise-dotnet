@@ -1,6 +1,6 @@
 ﻿using System;
-using Omise.Models;
 using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Example {
     public abstract class Example {
@@ -39,4 +39,3 @@ namespace Omise.Example {
         }
     }
 }
-

@@ -8,4 +8,3 @@ namespace Omise {
         string BasePath { get; }
     }
 }
-

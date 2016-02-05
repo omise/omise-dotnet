@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System;
+﻿using System;
+using System.Text;
 
 namespace Omise {
     public struct Key {
@@ -26,4 +26,3 @@ namespace Omise {
         }
     }
 }
-

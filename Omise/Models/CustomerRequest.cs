@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Omise.Models {
+﻿namespace Omise.Models {
     public class CreateCustomerRequest : CustomerRequest {
     }
 
@@ -13,4 +11,3 @@ namespace Omise.Models {
         public string Card { get; set; }
     }
 }
-

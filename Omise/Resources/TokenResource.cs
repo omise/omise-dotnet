@@ -1,5 +1,4 @@
-﻿using System;
-using Omise.Models;
+﻿using Omise.Models;
 
 namespace Omise.Resources {
     public class TokenResource : BaseResource<Token>,
@@ -11,4 +10,3 @@ namespace Omise.Resources {
         }
     }
 }
-

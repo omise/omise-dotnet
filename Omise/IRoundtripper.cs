@@ -1,6 +1,5 @@
-﻿using System.Net;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using System.Net.Http;
 
 namespace Omise {
     public interface IRoundtripper {
@@ -8,4 +7,3 @@ namespace Omise {
         Task<HttpResponseMessage> Roundtrip(HttpRequestMessage request);
     }
 }
-

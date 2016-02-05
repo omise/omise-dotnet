@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Omise.Models;
-using System.Threading.Tasks;
 
 namespace Omise.Example {
     public class CreateCustomerThenChargeExample : Example {
@@ -26,4 +25,3 @@ namespace Omise.Example {
         }
     }
 }
-

@@ -1,6 +1,4 @@
-﻿using System;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Omise.Models {
     // TODO: Test request serialization.
@@ -23,4 +21,3 @@ namespace Omise.Models {
         public string PostalCode { get; set; }
     }
 }
-

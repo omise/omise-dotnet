@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Omise.Models;
-using System.Threading.Tasks;
 
 namespace Omise {
     public interface IUpdatable<TModel, TRequest> : IResource<TModel>
@@ -24,4 +23,3 @@ namespace Omise {
         }
     }
 }
-

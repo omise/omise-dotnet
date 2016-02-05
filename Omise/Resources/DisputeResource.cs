@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Omise.Models;
 
 namespace Omise.Resources {
@@ -43,4 +42,3 @@ namespace Omise.Resources {
         }
     }
 }
-

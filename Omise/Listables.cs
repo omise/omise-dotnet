@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using Omise.Models;
-using System.IO;
-using System.Text;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise {
     public interface IListable<TModel> : IResource<TModel>
@@ -64,4 +60,3 @@ namespace Omise {
         }
     }
 }
-

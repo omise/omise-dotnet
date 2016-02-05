@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Text;
 using Newtonsoft.Json.Serialization;
-using System.Runtime.Serialization;
-using System.Collections.Generic;
-using System.Net.Http;
 
 namespace Omise {
     public sealed class Serializer {
@@ -119,4 +119,3 @@ namespace Omise {
         }
     }
 }
-

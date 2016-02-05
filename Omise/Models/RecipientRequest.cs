@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Omise.Models {
     public class CreateRecipientRequest : RecipientRequest {
@@ -21,4 +20,3 @@ namespace Omise.Models {
         public BankAccountRequest BankAccount { get; set; }
     }
 }
-

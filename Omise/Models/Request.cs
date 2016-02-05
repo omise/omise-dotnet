@@ -1,7 +1,4 @@
-﻿using System;
-
-namespace Omise.Models {
+﻿namespace Omise.Models {
     public abstract class Request {
     }
 }
-

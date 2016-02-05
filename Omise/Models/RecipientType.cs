@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Omise.Models {
     public enum RecipientType {
@@ -11,4 +8,3 @@ namespace Omise.Models {
         Corporation
     }
 }
-

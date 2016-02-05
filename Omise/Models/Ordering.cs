@@ -10,4 +10,3 @@ namespace Omise.Models {
         ReverseChronological
     }
 }
-

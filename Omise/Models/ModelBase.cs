@@ -53,4 +53,3 @@ namespace Omise.Models {
         }
     }
 }
-

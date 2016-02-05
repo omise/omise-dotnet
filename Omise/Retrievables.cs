@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Omise.Models;
-using Omise.Resources;
 
 namespace Omise {
     public interface IRetrievable<TModel>: IResource<TModel> where TModel: ModelBase {
@@ -33,4 +31,3 @@ namespace Omise {
         }
     }
 }
-

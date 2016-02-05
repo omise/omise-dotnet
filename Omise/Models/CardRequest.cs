@@ -1,6 +1,4 @@
-﻿using System;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Omise.Models {
     public class UpdateCardRequest : Request {
@@ -12,4 +10,3 @@ namespace Omise.Models {
         [JsonProperty("expiration_year")] public int ExpirationYear { get; set ; }
     }
 }
-

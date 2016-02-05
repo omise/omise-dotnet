@@ -1,5 +1,4 @@
-﻿using System;
-using Omise.Models;
+﻿using Omise.Models;
 
 namespace Omise.Resources {
     public class BalanceResource : BaseResource<Balance>, IRetrievable<Balance> {
@@ -8,4 +7,3 @@ namespace Omise.Resources {
         }
     }
 }
-

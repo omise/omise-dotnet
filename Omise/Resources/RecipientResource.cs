@@ -1,5 +1,4 @@
-﻿using System;
-using Omise.Models;
+﻿using Omise.Models;
 
 namespace Omise.Resources {
     public class RecipientResource : BaseResource<Recipient>,

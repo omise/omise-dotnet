@@ -1,5 +1,4 @@
-﻿using System;
-using Omise.Models;
+﻿using Omise.Models;
 
 namespace Omise.Resources {
     public class CustomerResource : BaseResource<Customer>,
@@ -13,4 +12,3 @@ namespace Omise.Resources {
         }
     }
 }
-
