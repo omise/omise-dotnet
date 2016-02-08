@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.0.2
+
+* Fix wrong `order` parameter serialization.
+
 # v2.0.1
 
 * Update new/removed model fields.
