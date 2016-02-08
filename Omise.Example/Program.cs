@@ -3,7 +3,7 @@
 namespace Omise.Example {
     class MainClass {
         public static void Main(string[] args) {
-            var ex = new TransferMoneyToRecipientExample();
+            var ex = new AccountBalanceExample();
 
             try {
                 ex.Run().Wait();
