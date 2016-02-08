@@ -16,14 +16,14 @@ namespace Omise {
             public int? Limit { get; internal set; }
             public DateTime? From { get; internal set; }
             public DateTime? To { get; internal set; }
-            public Ordering? Ordering { get; internal set; }
+            public Ordering? Order { get; internal set; }
 
             public bool IsEmpty() {
                 return Offset == null &&
                 Limit == null &&
                 From == null &&
                 To == null &&
-                Ordering == null;
+                Order == null;
             }
         }
 
@@ -33,7 +33,7 @@ namespace Omise {
             int? limit = null,
             DateTime? from = null,
             DateTime? to = null,
-            Ordering? ordering = null
+            Ordering? order = null
         ) where TResult: ModelBase {
 
             var opts = new ListOptions
@@ -42,7 +42,7 @@ namespace Omise {
                 Limit = limit,
                 From = from,
                 To = to,
-                Ordering = ordering
+                Order = order
             };
                         
             var path = resource.BasePath;
