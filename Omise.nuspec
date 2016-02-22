@@ -14,7 +14,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>Omise, C#, payment, gateway, credit card</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="6.0.5" />
+      <dependency id="Newtonsoft.Json" version="8.0.2" />
     </dependencies>
   </metadata>
   <files>
