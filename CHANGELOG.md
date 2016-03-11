@@ -1,5 +1,13 @@
 # CHANGE LOG
 
+# v2.0.4
+
+* Correct dependency list in nuspec.
+
+# v2.0.3
+
+* Fix wrong `Newtonsoft.Json` dependency version.
+
 # v2.0.2
 
 * Fix wrong `order` parameter serialization.
