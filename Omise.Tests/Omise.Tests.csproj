@@ -73,12 +73,6 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
-    <ProjectReference Include="..\Omise\Omise.csproj">
-      <Project>{48E844EB-9071-46A5-BD12-548CD45B008C}</Project>
-      <Name>Omise</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -121,5 +115,11 @@
     <Folder Include="Util\" />
     <Folder Include="Resources\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omise\Omise.csproj">
+      <Project>{48E844EB-9071-46A5-BD12-548CD45B008C}</Project>
+      <Name>Omise</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
