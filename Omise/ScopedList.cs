@@ -14,6 +14,9 @@ namespace Omise {
         [JsonProperty("object")]
         public string Object { get; set; }
 
+        [JsonProperty("location")]
+        public string Location { get; set; }
+
         [JsonProperty("from")]
         public DateTime From { get; set; }
 
