@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+# v2.0.5
+
+* Upgrade Newtonsoft.JSON to 8.0.3
+* Adds missing `Client.APIVersion` setting (mistakenly left out).
+* Adds missing `ScopedList.Location` field.
+
 # v2.0.4
 
 * Correct dependency list in nuspec.
