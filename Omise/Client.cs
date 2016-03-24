@@ -1,6 +1,7 @@
 ﻿using System;
 using Omise;
 using Omise.Resources;
+using Omise.Models;
 
 namespace Omise {
     public class Client {
@@ -19,6 +20,14 @@ namespace Omise {
         public readonly TransactionResource Transactions;
         public readonly TransferResource Transfers;
 
+        public IRequester Requester {
+            get { return requester; }
+        }
+
+        public string APIVersion {
+            get { return requester.APIVersion; }
+            set { requester.APIVersion = value; }
+        }
 
         public Client(string pkey = null, string skey = null)
             : this(new Credentials(pkey, skey)) {
