@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.0.6
+
+* Adds new `Charge.reversed` field.
+
 # v2.0.5
 
 * Upgrade Newtonsoft.JSON to 8.0.3
