@@ -29,6 +29,7 @@ Charge
   Description string
   Capture bool
   Authorized bool
+  Reversed bool
   Paid bool
   Transaction string
   Card Card
