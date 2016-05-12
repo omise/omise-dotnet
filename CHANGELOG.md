@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.0.7
+
+* Adds new `client.Charges.Reverse` API method.
+
 # v2.0.6
 
 * Adds new `Charge.reversed` field.
