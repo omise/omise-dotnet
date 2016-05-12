@@ -18,5 +18,13 @@ namespace Omise.Resources {
                 BasePath + "/" + chargeId + "/capture"
             );
         }
+
+        public async Task<Charge> Reverse(string chargeId) {
+            return await Requester.Request<Charge>(
+                Endpoint,
+                "POST",
+                BasePath + "/" + chargeId + "/reverse"
+            );
+        }
     }
 }
