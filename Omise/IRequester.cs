@@ -6,14 +6,14 @@ namespace Omise {
             Endpoint endpoint,
             string method,
             string path)
-            where TResult: class;
+            where TResult : class;
 
         Task<TResult> Request<TPayload, TResult>(
             Endpoint endpoint,
             string method,
             string path,
             TPayload payload)
-            where TPayload: class
-            where TResult: class;
+            where TPayload : class
+            where TResult : class;
     }
 }

@@ -2,16 +2,16 @@
 using Omise.Models;
 
 namespace Omise {
-    public interface IRetrievable<TModel>: IResource<TModel> where TModel: ModelBase {
+    public interface IRetrievable<TModel> : IResource<TModel> where TModel : ModelBase {
     }
 
-    public interface IListRetrievable<TModel> : IResource<TModel> where TModel: ModelBase {
+    public interface IListRetrievable<TModel> : IResource<TModel> where TModel : ModelBase {
     }
 
     public static class Retrievables {
         public static async Task<TResult> Get<TResult>(
             this IRetrievable<TResult> resource
-        ) where TResult: ModelBase {
+        ) where TResult : ModelBase {
             return await resource.Requester.Request<TResult>(
                 resource.Endpoint,
                 "GET",
@@ -22,7 +22,7 @@ namespace Omise {
         public static async Task<TResult> Get<TResult>(
             this IListRetrievable<TResult> resource,
             string modelId
-        ) where TResult: ModelBase {
+        ) where TResult : ModelBase {
             return await resource.Requester.Request<TResult>(
                 resource.Endpoint,
                 "GET",

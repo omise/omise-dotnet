@@ -21,14 +21,14 @@ namespace Omise {
             jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
         }
 
-        public void JsonSerialize<T>(Stream target, T payload) where T: class {
+        public void JsonSerialize<T>(Stream target, T payload) where T : class {
             using (var writer = new StreamWriter(target))
             using (var jsonWriter = new JsonTextWriter(writer)) {
                 jsonSerializer.Serialize(jsonWriter, payload);
             }
         }
 
-        public T JsonDeserialize<T>(Stream target) where T: class {
+        public T JsonDeserialize<T>(Stream target) where T : class {
             using (var reader = new StreamReader(target))
             using (var jsonReader = new JsonTextReader(reader)) {
                 return jsonSerializer.Deserialize<T>(jsonReader);
@@ -81,7 +81,8 @@ namespace Omise {
                         yield return result;
                     }
 
-                } else {
+                }
+                else {
                     var encodedValue = EncodeFormValueToString(value);
                     yield return new KeyValuePair<string, string>(name, encodedValue);
                 }
@@ -96,22 +97,27 @@ namespace Omise {
             if (value is DateTime) {
                 str = ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ssZ");
 
-            } else if (value is string) {
+            }
+            else if (value is string) {
                 str = (string)value;
 
-            } else if (value is bool) {
+            }
+            else if (value is bool) {
                 str = value.ToString().ToLower();
 
-            } else if (type.IsEnum) {
+            }
+            else if (type.IsEnum) {
                 var member = type.GetMember(value.ToString())[0];
                 var attributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), true);
                 if (attributes.Length > 0) {
                     str = ((EnumMemberAttribute)attributes[0]).Value;
-                } else {
+                }
+                else {
                     str = value.ToString();
                 }
 
-            } else {
+            }
+            else {
                 str = value.ToString();
             }
 

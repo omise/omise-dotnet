@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Omise.Models;
 
 namespace Omise {
     public interface IListable<TModel> : IResource<TModel>
-        where TModel: ModelBase {
+        where TModel : ModelBase {
     }
 
     public static class Listables {
@@ -34,17 +33,16 @@ namespace Omise {
             DateTime? from = null,
             DateTime? to = null,
             Ordering? order = null
-        ) where TResult: ModelBase {
+        ) where TResult : ModelBase {
 
-            var opts = new ListOptions
-            {
+            var opts = new ListOptions {
                 Offset = offset,
                 Limit = limit,
                 From = from,
                 To = to,
                 Order = order
             };
-                        
+
             var path = resource.BasePath;
             if (!opts.IsEmpty()) {
                 var content = serializer.ExtractFormValues(opts);

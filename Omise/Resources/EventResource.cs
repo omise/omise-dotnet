@@ -1,5 +1,4 @@
 ﻿using Omise.Models;
-using Omise.Resources;
 
 namespace Omise.Resources {
     public class EventResource : BaseResource<Event>,

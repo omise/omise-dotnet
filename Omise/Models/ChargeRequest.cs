@@ -1,5 +1,4 @@
-﻿using Omise.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Omise.Models {
     public class CreateChargeRequest : Request {

@@ -1,7 +1,5 @@
 ﻿using System;
-using Omise;
 using Omise.Resources;
-using Omise.Models;
 
 namespace Omise {
     public class Client {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
@@ -56,7 +55,7 @@ namespace Omise {
             where TResult : class {
 
             var key = endpoint.KeySelector(Credentials);
-        
+
             // creates initial request
             // TODO: Dispose request.
             var request = Roundtripper.CreateRequest(method, endpoint.ApiPrefix + path);
@@ -88,7 +87,8 @@ namespace Omise {
 
                 return result;
 
-            } catch (HttpRequestException e) {
+            }
+            catch (HttpRequestException e) {
                 throw new OmiseException("Error while making HTTP request", e);
             }
         }
