@@ -33,7 +33,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="OmiseTest.cs" />
     <Compile Include="MetaTest.cs" />
     <Compile Include="KeyTest.cs" />

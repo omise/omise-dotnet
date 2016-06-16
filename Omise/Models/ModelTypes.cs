@@ -9,7 +9,7 @@ namespace Omise.Models {
         public static Type TypeFor(string name) {
             return lookup[name];
         }
-        i
+
         public static string NameFor<T>() {
             return NameFor(typeof(T));
         }

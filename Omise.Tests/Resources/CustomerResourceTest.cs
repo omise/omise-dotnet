@@ -1,10 +1,6 @@
-﻿using System;
-using NUnit.Framework;
-using Omise.Resources;
-using Newtonsoft.Json.Schema;
+﻿using NUnit.Framework;
 using Omise.Models;
-using System.Resources;
-using Newtonsoft.Json.Bson;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -98,8 +94,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected CreateCustomerRequest BuildCreateRequest() {
-            return new CreateCustomerRequest
-            {
+            return new CreateCustomerRequest {
                 Email = "support@omise.co",
                 Description = "Omise support",
                 Card = "card_test_123"
@@ -107,8 +102,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected UpdateCustomerRequest BuildUpdateRequest() {
-            return new UpdateCustomerRequest
-            {
+            return new UpdateCustomerRequest {
                 Email = "example@omise.co",
                 Description = "Omise example",
                 Card = "card_test_456"

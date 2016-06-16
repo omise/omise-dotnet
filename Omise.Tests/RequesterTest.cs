@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq;
-using NUnit.Framework;
-using Omise.Tests.Util;
-using System.Reflection;
-using Omise.Models;
-using System.Runtime.Serialization;
+using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Serialization;
+using NUnit.Framework;
+using Omise.Models;
+using Omise.Tests.Util;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -25,20 +23,20 @@ namespace Omise.Tests {
         public async void TestRequest() {
             var expectedAuthHeader = DummyCredentials.SecretKey.EncodeForAuthorizationHeader();
             var roundtripper = new MockRoundtripper((req) => {
-                    var authHeader = req.Headers.GetValues("Authorization").FirstOrDefault();
-                    Assert.AreEqual(expectedAuthHeader, authHeader);
+                var authHeader = req.Headers.GetValues("Authorization").FirstOrDefault();
+                Assert.AreEqual(expectedAuthHeader, authHeader);
 
-                    var libVersion = new AssemblyName(typeof(Requester).Assembly.FullName).Version.ToString();
-                    var clrVersion = new AssemblyName(typeof(object).Assembly.FullName).Version.ToString();
+                var libVersion = new AssemblyName(typeof(Requester).Assembly.FullName).Version.ToString();
+                var clrVersion = new AssemblyName(typeof(object).Assembly.FullName).Version.ToString();
 
-                    var userAgents = req.Headers.GetValues("User-Agent").ToList();
-                    Assert.Contains("Omise.Net/" + libVersion, userAgents);
-                    Assert.Contains(".Net/" + clrVersion, userAgents);
+                var userAgents = req.Headers.GetValues("User-Agent").ToList();
+                Assert.Contains("Omise.Net/" + libVersion, userAgents);
+                Assert.Contains(".Net/" + clrVersion, userAgents);
 
-                    var apiVersion = req.Headers.GetValues("Omise-Version").FirstOrDefault();
-                    Assert.AreEqual("2000-02-01", apiVersion);
-                });
-                
+                var apiVersion = req.Headers.GetValues("Omise-Version").FirstOrDefault();
+                Assert.AreEqual("2000-02-01", apiVersion);
+            });
+
             var requester = new Requester(DummyCredentials, roundtripper, "2000-02-01");
             await requester.Request<object>(Endpoint.Api, "GET", "/test");
 
@@ -58,24 +56,23 @@ namespace Omise.Tests {
             Assert.AreEqual("zxcv", result.Id);
             Assert.AreEqual(requester, result.Requester);
         }
-            
+
         [Test, Timeout(1000)]
         public async void TestRequestWithPayload() {
             var expectedPayload = "hello=Kitty&world=Collides";
-            var payload = new DummyPayload
-            {
+            var payload = new DummyPayload {
                 Hello = "Kitty",
                 World = "Collides",
             };
 
             var roundtripper = new MockRoundtripper(async (request) => {
-                    var content = request.Content;
-                    var contentType = content.Headers.GetValues("Content-Type").FirstOrDefault();
-                    Assert.AreEqual("application/x-www-form-urlencoded", contentType);
+                var content = request.Content;
+                var contentType = content.Headers.GetValues("Content-Type").FirstOrDefault();
+                Assert.AreEqual("application/x-www-form-urlencoded", contentType);
 
-                    var encodedPayload = await content.ReadAsStringAsync();
-                    Assert.AreEqual(expectedPayload, encodedPayload);
-                });
+                var encodedPayload = await content.ReadAsStringAsync();
+                Assert.AreEqual(expectedPayload, encodedPayload);
+            });
 
             var requester = BuildRequester(roundtripper);
             await requester.Request<object, DummyPayload>(Endpoint.Api, "POST", "/test", payload);
@@ -86,9 +83,9 @@ namespace Omise.Tests {
         [Test, Timeout(1000)]
         public void TestRequestWithErrorResponse() {
             var roundtripper = new MockRoundtripper(responseInspector: (response) => {
-                    response.StatusCode = HttpStatusCode.BadRequest;
-                    response.Content = new StringContent("{\"code\":\"test_error\"}");
-                });
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.Content = new StringContent("{\"code\":\"test_error\"}");
+            });
             var requester = BuildRequester(roundtripper);
 
             var task = requester.Request<object>(Endpoint.Api, "GET", "/test");

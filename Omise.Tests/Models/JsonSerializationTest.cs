@@ -1,32 +1,27 @@
 ﻿using System;
-using NUnit.Framework;
-using System.Collections;
-using Omise.Models;
-using Omise.Tests;
-using System.Collections.Generic;
-using Newtonsoft.Json.Schema;
 using System.IO;
+using NUnit.Framework;
+using Omise.Models;
 
 namespace Omise.Tests.Models {
     [TestFixture]
     public class JsonSerializationTest : OmiseTest {
-        static readonly Type[] modelTypes =
-            {
-                typeof(Account),
-                typeof(Balance),
-                typeof(BankAccount),
-                typeof(Card),
-                typeof(Charge),
-                typeof(Customer),
-                typeof(Dispute),
-                typeof(Event),
-                typeof(Recipient),
-                typeof(Refund),
-                typeof(Token),
-                typeof(Transaction),
-                typeof(Transfer)
-            };
-        
+        static readonly Type[] modelTypes = {
+            typeof(Account),
+            typeof(Balance),
+            typeof(BankAccount),
+            typeof(Card),
+            typeof(Charge),
+            typeof(Customer),
+            typeof(Dispute),
+            typeof(Event),
+            typeof(Recipient),
+            typeof(Refund),
+            typeof(Token),
+            typeof(Transaction),
+            typeof(Transfer)
+        };
+
         [Test]
         public void TestJsonSerialize() {
             var serializer = new Serializer();
@@ -47,7 +42,7 @@ namespace Omise.Tests.Models {
             foreach (var type in modelTypes) {
                 var method = serializer.GetType().GetMethod("JsonDeserialize");
                 method = method.MakeGenericMethod(type);
-               
+
                 var filename = "objects/" + ModelTypes.NameFor(type) + "_object.json";
                 if (!TestData.Files.ContainsKey(filename)) {
                     throw new Exception(filename);
@@ -57,7 +52,7 @@ namespace Omise.Tests.Models {
 
                 object result;
                 using (var ms = new MemoryStream(filedata)) {
-                    result = method.Invoke(serializer, new object[]{ ms });
+                    result = method.Invoke(serializer, new object[] { ms });
                 }
 
                 Assert.IsInstanceOf(type, result);

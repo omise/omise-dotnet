@@ -1,9 +1,6 @@
-﻿using System;
-using Omise.Resources;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Omise.Models;
-using Omise.Tests.Util;
-using System.Reflection;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -16,7 +13,7 @@ namespace Omise.Tests.Resources {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/customers/{0}/cards", CustomerId);
         }
-        
+
         [Test]
         public async void TestGet() {
             await Resource.Get(CardId);
@@ -45,7 +42,7 @@ namespace Omise.Tests.Resources {
                 "expiration_year=2018"
             );
         }
-            
+
         [Test]
         public async void TestFixturesGetList() {
             var list = await Fixtures.GetList();
@@ -76,10 +73,9 @@ namespace Omise.Tests.Resources {
             Assert.AreEqual(CardId, card.Id);
             Assert.IsTrue(card.Deleted);
         }
-            
+
         protected UpdateCardRequest BuildUpdateRequest() {
-            return new UpdateCardRequest
-            {
+            return new UpdateCardRequest {
                 Name = "MasterCard SmartPay",
                 City = "Bangkok",
                 PostalCode = "12345",

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
 using Omise.Resources;
-using NUnit.Framework;
 
 namespace Omise.Tests.Resources {
     [TestFixture]

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Omise;
-using NUnit.Framework;
 using System.IO;
 
 namespace Omise.Tests.Util {

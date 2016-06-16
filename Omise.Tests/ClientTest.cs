@@ -1,7 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Omise.Models;
-using Omise.Resources;
 
 namespace Omise.Tests {
     [TestFixture]
@@ -47,7 +45,7 @@ namespace Omise.Tests {
                 client.Transactions,
                 client.Transfers,
             };
-                    
+
             foreach (var resource in resources) {
                 Assert.IsNotNull(resource);
             }

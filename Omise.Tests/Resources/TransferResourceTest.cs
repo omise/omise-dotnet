@@ -1,14 +1,12 @@
-﻿using System;
-using Omise.Resources;
-using NUnit.Framework;
-using Omise.Tests.Resources;
+﻿using NUnit.Framework;
 using Omise.Models;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class TransferResourceTest : ResourceTest<TransferResource> {
         const string TransferId = "trsf_test_4yqacz8t3cbipcj766u";
-        
+
         [Test]
         public async void TestGetList() {
             await Resource.GetList();
@@ -93,8 +91,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected CreateTransferRequest BuildCreateRequest() {
-            return new CreateTransferRequest
-            {
+            return new CreateTransferRequest {
                 Recipient = "recp_test_123",
                 Amount = 300000,
             };

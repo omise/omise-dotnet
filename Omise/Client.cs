@@ -32,7 +32,7 @@ namespace Omise {
         }
 
         public Client(Credentials credentials) {
-            if (credentials == null) throw new ArgumentNullException("credentials");
+            if (credentials == null) throw new ArgumentNullException(nameof(credentials));
             requester = new Requester(credentials);
 
             Account = new AccountResource(requester);

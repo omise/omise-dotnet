@@ -46,20 +46,19 @@ namespace Omise.Tests {
             var card = await Client.Cards
                 .ByCustomer("cust_test_52ydv7e3ao0oqwjj97e")
                 .Get("card_test_52ydv7jkwu6rp6qt96m");
-            
+
             Assert.AreEqual("Visa", card.Brand);
             Assert.AreEqual("4242", card.LastDigits);
         }
 
         [Test]
         public async void CardsUpdateUpdate() {
-            var update = new UpdateCardRequest
-            {
+            var update = new UpdateCardRequest {
                 Name = "Somchai Prasert",
                 ExpirationMonth = 8,
                 ExpirationYear = 2017,
             };
-              
+
             var card = await Client.Cards
                 .ByCustomer("cust_test_52ydv7e3ao0oqwjj97e")
                 .Update("card_test_52ydv7jkwu6rp6qt96m", update);
@@ -76,8 +75,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void ChargesCreateCreateWithCard() {
-            var request = new CreateChargeRequest
-            {
+            var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
                 Customer = "cust_test_52ydv7e3ao0oqwjj97e",
@@ -90,8 +88,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void ChargesCreateCreateWithCustomer() {
-            var request = new CreateChargeRequest
-            {
+            var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
                 Customer = "cust_test_52ydv7e3ao0oqwjj97e",
@@ -103,8 +100,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void ChargesCreateCreateWithToken() {
-            var request = new CreateChargeRequest
-            {
+            var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
                 Card = "tokn_test_4xs9408a642a1htto8z",
@@ -132,19 +128,17 @@ namespace Omise.Tests {
 
         [Test]
         public async void ChargesUpdateUpdateDescription() {
-            var request = new UpdateChargeRequest
-            {
+            var request = new UpdateChargeRequest {
                 Description = "Updated Description",
             };
-            
+
             var charge = await Client.Charges.Update("chrg_test_52ydurgt5nhckrxbvxh", request);
             Assert.AreEqual(request.Description, charge.Description);
         }
 
         [Test]
         public async void CustomersCreateAttachCard() {
-            var request = new CreateCustomerRequest
-            {
+            var request = new CreateCustomerRequest {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
                 Card = "tokn_test_4xs9408a642a1htto8z",
@@ -156,8 +150,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void CustomersCreateCreateSimple() {
-            var request = new CreateCustomerRequest
-            {
+            var request = new CreateCustomerRequest {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
             };
@@ -189,8 +182,7 @@ namespace Omise.Tests {
         [Test]
         public async void CustomersUpdateAttachCard() {
             var customer = await Client.Customers.Get("cust_test_52ydv7e3ao0oqwjj97e");
-            var request = new UpdateCustomerRequest
-            {
+            var request = new UpdateCustomerRequest {
                 Card = "tokn_test_4xs9408a642a1htto8z",
             };
 
@@ -200,8 +192,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void CustomersUpdateUpdateSimple() {
-            var request = new UpdateCustomerRequest
-            {
+            var request = new UpdateCustomerRequest {
                 Email = "john.smith@example.com",
                 Description = "Updated Description",
             };
@@ -255,8 +246,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void DisputesUpdateUpdate() {
-            var request = new UpdateDisputeRequest
-            {
+            var request = new UpdateDisputeRequest {
                 Message = "Hello World!",
             };
 
@@ -266,13 +256,11 @@ namespace Omise.Tests {
 
         [Test]
         public async void RecipientsCreateCreate() {
-            var request = new CreateRecipientRequest
-            {
+            var request = new CreateRecipientRequest {
                 Name = "Somchai Prasert",
                 Email = "somchai.prasert@example.com",
                 Type = RecipientType.Individual,
-                BankAccount = new BankAccountRequest
-                {
+                BankAccount = new BankAccountRequest {
                     Brand = "bbl",
                     Number = "12345",
                     Name = "SOMCHAI PRASERT",
@@ -306,11 +294,9 @@ namespace Omise.Tests {
 
         [Test]
         public async void RecipientsUpdateUpdate() {
-            var request = new UpdateRecipientRequest
-            {
+            var request = new UpdateRecipientRequest {
                 Email = "somchai@prasert.com",
-                BankAccount = new BankAccountRequest
-                {
+                BankAccount = new BankAccountRequest {
                     Brand = "kbank",
                     Number = "1234567890",
                     Name = "SOMCHAI PRASERT",
@@ -323,8 +309,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void RefundsCreateCreate() {
-            var request = new CreateRefundRequest
-            {
+            var request = new CreateRefundRequest {
                 Amount = 100000, // THB 1,000.00
             };
 
@@ -356,8 +341,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void TokensCreateCreate() {
-            var request = new CreateTokenRequest
-            {
+            var request = new CreateTokenRequest {
                 Name = "Somchai Prasert",
                 Number = "4242424242424242",
                 ExpirationMonth = 10,
@@ -399,19 +383,17 @@ namespace Omise.Tests {
 
         [Test]
         public async void TransfersCreateCreate() {
-            var request = new CreateTransferRequest
-            {
+            var request = new CreateTransferRequest {
                 Amount = 100000
             };
-            
+
             var transfer = await Client.Transfers.Create(request);
             Assert.AreEqual(100000, transfer.Amount);
         }
 
         [Test]
         public async void TransfersCreateCreateWithRecipient() {
-            var request = new CreateTransferRequest
-            {
+            var request = new CreateTransferRequest {
                 Amount = 100000,
                 Recipient = "recp_test_52yeov3bkjqpun3b4sm",
             };
@@ -443,8 +425,7 @@ namespace Omise.Tests {
 
         [Test]
         public async void TransfersUpdateUpdate() {
-            var request = new UpdateTransferRequest
-            {
+            var request = new UpdateTransferRequest {
                 Amount = 50000, // THB 500.00
             };
 

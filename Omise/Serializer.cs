@@ -90,7 +90,7 @@ namespace Omise {
         }
 
         static string EncodeFormValueToString(object value) {
-            if (value == null) throw new ArgumentNullException("value");
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             string str;
             Type type = value.GetType();

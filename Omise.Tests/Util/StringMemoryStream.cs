@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using System.ServiceModel;
 
 namespace Omise.Tests.Util {
     public class StringMemoryStream : MemoryStream {
         public StringMemoryStream() : base() {
         }
-        
+
         public StringMemoryStream(string value)
             : base(Encoding.UTF8.GetBytes(value)) {
         }

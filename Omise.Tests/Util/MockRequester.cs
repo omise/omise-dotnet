@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.ServiceModel.Channels;
 
 namespace Omise.Tests.Util {
     public class MockRequester : IRequester {
@@ -19,7 +15,7 @@ namespace Omise.Tests.Util {
         public RequestAttempt LastRequest {
             get { return requestAttempts.Last(); }
         }
-        
+
         public MockRequester() {
             requestAttempts = new List<RequestAttempt>();
         }
@@ -37,16 +33,15 @@ namespace Omise.Tests.Util {
             string path,
             TPayload payload
         ) where TPayload : class where TResult : class {
-            requestAttempts.Add(new RequestAttempt
-                {
-                    Endpoint = endpoint,
-                    Method = method,
-                    Path = path,
-                    PayloadType = typeof(TPayload),
-                    ResultType = typeof(TResult),
-                    Payload = payload,
-                    Result = ResponseObject,
-                });
+            requestAttempts.Add(new RequestAttempt {
+                Endpoint = endpoint,
+                Method = method,
+                Path = path,
+                PayloadType = typeof(TPayload),
+                ResultType = typeof(TResult),
+                Payload = payload,
+                Result = ResponseObject,
+            });
 
             var source = new TaskCompletionSource<TResult>();
             source.SetResult((TResult)ResponseObject);

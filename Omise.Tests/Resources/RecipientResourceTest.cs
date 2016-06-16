@@ -1,8 +1,6 @@
-﻿using System;
-using NUnit.Framework;
-using Omise.Resources;
-using Newtonsoft.Json.Schema;
+﻿using NUnit.Framework;
 using Omise.Models;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -106,15 +104,13 @@ namespace Omise.Tests.Resources {
         }
 
         protected CreateRecipientRequest BuildCreateRequest() {
-            return new CreateRecipientRequest
-            {
+            return new CreateRecipientRequest {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "Waaat?",
                 Type = RecipientType.Corporation,
                 TaxID = "123",
-                BankAccount = new BankAccountRequest
-                {
+                BankAccount = new BankAccountRequest {
                     Brand = "KBank",
                     Name = "Secret Stash",
                     Number = "1234-567-89-0",
@@ -123,15 +119,13 @@ namespace Omise.Tests.Resources {
         }
 
         protected UpdateRecipientRequest BuildUpdateRequest() {
-            return new UpdateRecipientRequest
-            {
+            return new UpdateRecipientRequest {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "I'm up-to-date",
                 Type = RecipientType.Individual,
                 TaxID = "456",
-                BankAccount = new BankAccountRequest
-                {
+                BankAccount = new BankAccountRequest {
                     Brand = "BBL",
                     Name = "Accounts",
                     Number = "987654321",

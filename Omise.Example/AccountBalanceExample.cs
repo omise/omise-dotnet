@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Omise.Models;
 
 namespace Omise.Example {
     public class AccountBalanceExample : Example {

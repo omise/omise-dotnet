@@ -1,11 +1,6 @@
-﻿using System;
-using Omise;
-using Omise.Tests.Util;
-using System.Threading.Tasks;
-using Omise.Resources;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Omise.Models;
-using System.Net.Http;
+using Omise.Tests.Util;
 
 namespace Omise.Tests.Resources {
     public abstract class ResourceTest<TResource> : OmiseTest {
@@ -42,7 +37,7 @@ namespace Omise.Tests.Resources {
         protected void AssertSerializedRequest<TRequest>(
             TRequest request,
             string serialized
-        ) where TRequest: Request {
+        ) where TRequest : Request {
             var encoded = Serializer.ExtractFormValues(request);
             var result = encoded.ReadAsStringAsync().Result;
 

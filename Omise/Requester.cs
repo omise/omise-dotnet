@@ -21,7 +21,7 @@ namespace Omise {
             IRoundtripper roundtripper = null,
             string apiVersion = null
         ) {
-            if (creds == null) throw new ArgumentNullException("creds");
+            if (creds == null) throw new ArgumentNullException(nameof(creds));
 
             var metadata = new Dictionary<string, string>
             {

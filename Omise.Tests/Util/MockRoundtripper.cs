@@ -1,9 +1,7 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Omise.Tests.Util {
     public delegate void RequestInspector(HttpRequestMessage request);

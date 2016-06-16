@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Net.Http;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Omise.Tests;
 using Omise.Tests.Util;
 
 namespace Omise.Tests {
@@ -58,7 +56,7 @@ namespace Omise.Tests {
             Assert.AreEqual("Howlett", Dummy.James);
             Assert.AreEqual("Summers", Dummy.Scott);
         }
-            
+
         [Test]
         public async void TestExtractFormValues() {
             var content = Serializer.ExtractFormValues(Dummy);

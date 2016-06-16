@@ -1,8 +1,6 @@
-﻿using System;
-using NUnit.Framework;
-using Omise.Resources;
-using Newtonsoft.Json.Schema;
+﻿using NUnit.Framework;
 using Omise.Models;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -69,8 +67,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected UpdateDisputeRequest BuildUpdateRequest() {
-            return new UpdateDisputeRequest
-            {
+            return new UpdateDisputeRequest {
                 Message = "Hello, This is definitely not ours.",
             };
         }

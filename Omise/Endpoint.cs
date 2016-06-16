@@ -11,7 +11,7 @@ namespace Omise {
         public KeySelector KeySelector { get; private set; }
 
         public Endpoint(string apiPrefix, KeySelector keySelector = null) {
-            if (string.IsNullOrEmpty(apiPrefix)) throw new ArgumentNullException("apiPrefix");
+            if (string.IsNullOrEmpty(apiPrefix)) throw new ArgumentNullException(nameof(apiPrefix));
             if (keySelector == null) keySelector = Credentials.UseSecretKey;
 
             ApiPrefix = apiPrefix;

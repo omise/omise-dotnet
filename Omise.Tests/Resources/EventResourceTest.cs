@@ -1,14 +1,11 @@
-﻿using System;
-using Omise.Tests.Resources;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Omise.Resources;
-using Omise.Models;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class EventResourceTest : ResourceTest<EventResource> {
         const string EventId = "evnt_test_526yctupnje5mbldskd";
-            
+
         [Test]
         public async void TestGetList() {
             await Resource.GetList();

@@ -2,7 +2,7 @@
 using System.Threading;
 
 namespace Omise.Tests.Util {
-    public class AsyncResult<TResult> : IAsyncResult where TResult: class {
+    public class AsyncResult<TResult> : IAsyncResult where TResult : class {
         public object AsyncState { get { return null; } }
         public WaitHandle AsyncWaitHandle { get; private set; }
 

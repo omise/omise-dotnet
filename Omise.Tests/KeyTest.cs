@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Omise;
 
 namespace Omise.Tests {
     [TestFixture]

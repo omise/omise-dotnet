@@ -1,9 +1,6 @@
-﻿using System;
-using Omise.Resources;
+﻿using NUnit.Framework;
 using Omise.Models;
-using NUnit.Framework;
-using System.Diagnostics.Contracts;
-using System.Dynamic;
+using Omise.Resources;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -50,8 +47,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected CreateTokenRequest BuildCreateRequest() {
-            return new CreateTokenRequest
-            {
+            return new CreateTokenRequest {
                 Name = "VISA RichGuy",
                 Number = "4242424242424242",
                 ExpirationMonth = 12,

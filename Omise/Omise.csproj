@@ -130,14 +130,4 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <TextStylePolicy EolMarker="Windows" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
-          <CSharpFormattingPolicy IndentSwitchSection="True" NewLinesForBracesInTypes="False" NewLinesForBracesInMethods="False" NewLineForElse="True" NewLineForCatch="True" NewLineForFinally="True" NewLineForMembersInObjectInit="True" NewLineForMembersInAnonymousTypes="True" NewLineForClausesInQuery="True" SpacingAfterMethodDeclarationName="False" SpaceAfterMethodCallName="False" SpaceBeforeOpenSquareBracket="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
 </Project>

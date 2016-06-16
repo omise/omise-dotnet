@@ -7,7 +7,8 @@ namespace Omise.Example {
 
             try {
                 ex.Run().Wait();
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Console.Error.WriteLine(e);
             }
         }

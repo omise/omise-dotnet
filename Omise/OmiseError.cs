@@ -17,7 +17,7 @@ namespace Omise {
         }
 
         public override string ToString() {
-            return "(" + ((int)HttpStatusCode).ToString() + "/" + Code + ") " + Error.Message;
+            return "(" + ((int)HttpStatusCode) + "/" + Code + ") " + Error.Message;
         }
     }
 }
