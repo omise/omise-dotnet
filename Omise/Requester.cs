@@ -29,7 +29,7 @@ namespace Omise {
                 { ".Net", new AssemblyName(typeof(object).Assembly.FullName).Version.ToString() },
             };
 
-            userAgent = metadata.Aggregate("", (acc, pair) => acc + " " + pair.Key + "/" + pair.Value).Trim();
+            userAgent = metadata.Aggregate("", (acc, pair) => $"{acc} {pair.Key}/{pair.Value}").Trim();
 
             Credentials = creds;
             APIVersion = apiVersion;

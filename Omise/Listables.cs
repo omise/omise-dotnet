@@ -46,7 +46,7 @@ namespace Omise {
             var path = resource.BasePath;
             if (!opts.IsEmpty()) {
                 var content = serializer.ExtractFormValues(opts);
-                path += "?" + await content.ReadAsStringAsync();
+                path += $"?{await content.ReadAsStringAsync()}";
             }
 
             // TODO: Actual list container type that can be re-requested and supports paging as well.

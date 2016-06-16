@@ -13,7 +13,7 @@ namespace Omise {
             return await resource.Requester.Request<TModel>(
                 resource.Endpoint,
                 "DELETE",
-                resource.BasePath + "/" + modelId
+                $"{resource.BasePath}/{modelId}"
             );
         }
     }

@@ -17,7 +17,7 @@ namespace Omise {
             return await resource.Requester.Request<TRequest, TModel>(
                 resource.Endpoint,
                 "PATCH",
-                resource.BasePath + "/" + modelId,
+                $"{resource.BasePath}/{modelId}",
                 request
             );
         }

@@ -9,8 +9,8 @@ namespace Omise {
         public bool IsLive { get { return !IsTest; } }
 
         public string EncodeForAuthorizationHeader() {
-            var encoded = Encoding.GetEncoding("ISO-8859-1").GetBytes(value + ":");
-            return "Basic " + Convert.ToBase64String(encoded);
+            var encoded = Encoding.GetEncoding("ISO-8859-1").GetBytes($"{value}:");
+            return $"Basic {Convert.ToBase64String(encoded)}";
         }
 
         public static implicit operator Key(string value) {

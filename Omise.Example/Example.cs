@@ -33,7 +33,7 @@ namespace Omise.Example {
         }
 
         protected string Prompt(string message) {
-            Console.Write(message + ": ");
+            Console.Write($"message: {message}");
             return Console.ReadLine();
         }
     }

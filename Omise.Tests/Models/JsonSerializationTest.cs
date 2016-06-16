@@ -43,7 +43,7 @@ namespace Omise.Tests.Models {
                 var method = serializer.GetType().GetMethod("JsonDeserialize");
                 method = method.MakeGenericMethod(type);
 
-                var filename = "objects/" + ModelTypes.NameFor(type) + "_object.json";
+                var filename = $"objects/{ModelTypes.NameFor(type)}_object.json";
                 if (!TestData.Files.ContainsKey(filename)) {
                     throw new Exception(filename);
                 }

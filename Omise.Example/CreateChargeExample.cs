@@ -11,7 +11,7 @@ namespace Omise.Example {
                 Card = token.Id
             });
 
-            Print("created charge: " + charge.Id);
+            Print($"created charge: {charge.Id}");
         }
     }
 }

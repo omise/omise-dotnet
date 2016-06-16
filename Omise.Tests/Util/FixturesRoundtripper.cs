@@ -23,13 +23,13 @@ namespace Omise.Tests.Util {
             var host = request.RequestUri.Host;
             var path = request.RequestUri.AbsolutePath;
 
-            var filename = "fixtures/" + host + path + "-" + method + ".json";
+            var filename = $"fixtures/{host}{path}-{method}.json";
             if (!TestData.Files.ContainsKey(filename)) {
                 var segments = path.Split('/');
                 segments[segments.Length - 1] = "404";
 
                 response.StatusCode = HttpStatusCode.NotFound;
-                filename = "fixtures/" + host + string.Join("/", segments) + "-" + method + ".json";
+                filename = $"fixtures/{host}{string.Join("/", segments)}-{method}.json";
             }
 
             if (!TestData.Files.ContainsKey(filename)) {

@@ -30,8 +30,8 @@ namespace Omise.Tests {
                 var clrVersion = new AssemblyName(typeof(object).Assembly.FullName).Version.ToString();
 
                 var userAgents = req.Headers.GetValues("User-Agent").ToList();
-                Assert.Contains("Omise.Net/" + libVersion, userAgents);
-                Assert.Contains(".Net/" + clrVersion, userAgents);
+                Assert.Contains($"Omise.Net/{libVersion}", userAgents);
+                Assert.Contains($".Net/{clrVersion}", userAgents);
 
                 var apiVersion = req.Headers.GetValues("Omise-Version").FirstOrDefault();
                 Assert.AreEqual("2000-02-01", apiVersion);

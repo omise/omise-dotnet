@@ -26,7 +26,7 @@ namespace Omise {
             return await resource.Requester.Request<TResult>(
                 resource.Endpoint,
                 "GET",
-                resource.BasePath + "/" + modelId
+                $"{resource.BasePath}/{modelId}"
             );
         }
     }

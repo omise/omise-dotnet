@@ -23,7 +23,7 @@ namespace Omise.Resources {
         }
 
         static string basePathFor(string customerId) {
-            return "/customers/" + customerId + "/cards";
+            return $"/customers/{customerId}/cards";
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Omise {
                            prop.Name.ToLower();
 
                 if (!string.IsNullOrEmpty(prefix)) {
-                    name = prefix + "[" + name + "]";
+                    name = $"{prefix}[{name}]";
                 }
 
                 var type = value.GetType();

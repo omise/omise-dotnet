@@ -15,7 +15,7 @@ namespace Omise.Resources {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
-                BasePath + "/" + chargeId + "/capture"
+                $"{BasePath}/{chargeId}/capture"
             );
         }
 
@@ -23,7 +23,7 @@ namespace Omise.Resources {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
-                BasePath + "/" + chargeId + "/reverse"
+                $"{BasePath}/{chargeId}/reverse"
             );
         }
     }

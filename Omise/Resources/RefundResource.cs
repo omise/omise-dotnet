@@ -22,7 +22,7 @@ namespace Omise.Resources {
         }
 
         static string basePathFor(string chargeId) {
-            return "/charges/" + chargeId + "/refunds";
+            return $"/charges/{chargeId}/refunds";
         }
     }
 }
