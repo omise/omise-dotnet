@@ -6,9 +6,7 @@ namespace Omise.Models {
         ModelBase data;
 
         [JsonIgnore]
-        public ModelBase Data {
-            get { return data = data ?? DeserializeDataByKey(); }
-        }
+        public ModelBase Data => data = data ?? DeserializeDataByKey();
 
         ModelBase DeserializeDataByKey() {
             var parts = Key.Split('.');

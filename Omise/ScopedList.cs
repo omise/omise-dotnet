@@ -37,7 +37,7 @@ namespace Omise {
 
         // TODO: "total" JSON field?
         [JsonIgnore]
-        public int Count { get { return data?.Count ?? 0; } }
+        public int Count => data?.Count ?? 0;
 
         [JsonProperty("data")]
         public IList<T> Data {
@@ -50,12 +50,7 @@ namespace Omise {
             set { data[indexer] = value; }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return (Data ?? Enumerable.Empty<T>()).GetEnumerator();
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator() {
-            return (Data ?? Enumerable.Empty<T>()).GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => (Data ?? Enumerable.Empty<T>()).GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => (Data ?? Enumerable.Empty<T>()).GetEnumerator();
     }
 }

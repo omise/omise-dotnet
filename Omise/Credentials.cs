@@ -20,9 +20,5 @@ namespace Omise {
             PublicKey = pkey;
             SecretKey = skey;
         }
-
-        public override string ToString() {
-            return string.Format("[Credentials: PublicKey={0}, SecretKey={1}]", PublicKey, SecretKey);
-        }
     }
 }

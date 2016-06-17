@@ -16,8 +16,6 @@ namespace Omise {
             Error = result;
         }
 
-        public override string ToString() {
-            return $"({(int)HttpStatusCode}/{Code}) {Error.Message}";
-        }
+        public override string ToString() => $"({(int)HttpStatusCode}/{Code}) {Error.Message}";
     }
 }
