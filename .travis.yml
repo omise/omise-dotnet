@@ -4,6 +4,6 @@ solution: Omise.sln
 sudo: false
 mono:
 - latest
-- 4.2.1
+- 4.4.0
 script:
 - make CONFIG=Release
