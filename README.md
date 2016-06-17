@@ -1,5 +1,6 @@
 # OMISE-DOTNET
 
+[![NuGet](https://img.shields.io/nuget/v/Omise.svg?style=flat-square)](https://www.nuget.org/packages/Omise/)
 [![Build Status](https://img.shields.io/travis/omise/omise-dotnet.svg?style=flat-square)](https://travis-ci.org/omise/omise-dotnet)
 [![Join the chat at https://gitter.im/omise/omise-dotnet](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/omise/omise-dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
