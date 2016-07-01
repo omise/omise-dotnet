@@ -77,6 +77,43 @@ var client = new Omise.Client([YOUR_PUBLIC_KEY], [YOUR_SECRET_KEY]);
 client.APIVersion = "2014-07-27";
 ```
 
+### Using with ASP.NET Web Forms
+
+Since this library makes extensive use of the async/await C# language feature, you may
+want to check out Microsoft's guide on [Using Asynchronous Methods in ASP.NET
+4.5](http://www.asp.net/web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45)
+before you start using this library.
+
+In a nutshell, your ASP.NET Web Forms page that interacts with Omise API will needs an
+`Async="true"` setting on `@Page` directive:
+
+```aspx
+<%@ Page Async="true" ... %>
+```
+
+And methods that uses async/await must now be registered:
+
+```cs
+protected void Page_Load(object sender, EventArgs e)
+{
+    RegisterAsyncTask(new PageAsyncTask(createCharge));
+}
+
+private async Task createCharge()
+{
+    var omise = new Client(skey: "skey_test_123");
+
+    var charge = await omise.Charges.Create(new Omise.Models.CreateChargeRequest
+    {
+        Amount = 10025,
+        Currency = "THB",
+        Card = Request.Form["omiseToken"]
+    });
+
+    lblCharge.Text = charge.Id;
+}
+```
+
 # DEVELOPMENT / TESTING
 
 All tests in this library are against fixture files. There is no network test implemented.
