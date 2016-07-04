@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.0.8
+
+* Adds missing `void` parameter for Refund API.
+
 # v2.0.7
 
 * Adds new `client.Charges.Reverse` API method.
