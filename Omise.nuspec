@@ -24,5 +24,6 @@
   <files>
     <file src="Omise/bin/Release/Omise.dll" target="lib/net40" />
     <file src="Omise/bin/Release/Omise.dll.mdb" target="lib/net40" />
+    <file src="Omise/bin/Release/Omise.xml" target="lib/net40" />
   </files>
 </package>
