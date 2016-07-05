@@ -42,6 +42,12 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
+        public async void TestReverse() {
+            await Resource.Reverse(ChargeId);
+            AssertRequest("POST", "https://api.omise.co/charges/{0}/reverse", ChargeId);
+        }
+
+        [Test]
         public void TestCreateChargeRequest() {
             AssertSerializedRequest(BuildCreateRequest(),
                 "customer=Omise+Co.%2C+Ltd.&" +
@@ -92,8 +98,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected CreateChargeRequest BuildCreateRequest() {
-            return new CreateChargeRequest
-            {
+            return new CreateChargeRequest {
                 Customer = "Omise Co., Ltd.",
                 Card = "card_test_123",
                 Amount = 244884,
@@ -105,8 +110,7 @@ namespace Omise.Tests.Resources {
         }
 
         protected UpdateChargeRequest BuildUpdateRequest() {
-            return new UpdateChargeRequest
-            {
+            return new UpdateChargeRequest {
                 Description = "Charge was for testing."
             };
         }
