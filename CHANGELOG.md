@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.0.9
+
+* Adds missing `reversed` charge status.
+
 # v2.0.8
 
 * Adds missing `void` parameter for Refund API.
