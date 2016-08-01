@@ -2,6 +2,7 @@
     public enum ChargeStatus {
         Failed,
         Pending,
-        Successful
+        Successful,
+        Reversed
     }
 }
