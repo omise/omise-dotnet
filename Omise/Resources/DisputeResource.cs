@@ -5,10 +5,13 @@ namespace Omise.Resources {
     public class DisputeResource : BaseResource<Dispute>,
     IListable<Dispute>,
     IListRetrievable<Dispute>,
-    IUpdatable<Dispute, UpdateDisputeRequest> {
+    IUpdatable<Dispute, UpdateDisputeRequest>,
+    ISearchable<Dispute> {
         public StatusSpecificDispute OpenDisputes { get; private set; }
         public StatusSpecificDispute PendingDisputes { get; private set; }
         public StatusSpecificDispute ClosedDisputes { get; private set; }
+
+        public SearchScope Scope => SearchScope.Dispute;
 
         public DisputeResource(IRequester requester)
             : base(requester, Endpoint.Api, "/disputes") {

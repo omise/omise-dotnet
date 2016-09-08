@@ -6,7 +6,10 @@ namespace Omise.Resources {
     IListable<Charge>,
     IListRetrievable<Charge>,
     ICreatable<Charge, CreateChargeRequest>,
-    IUpdatable<Charge, UpdateChargeRequest> {
+    IUpdatable<Charge, UpdateChargeRequest>,
+    ISearchable<Charge> {
+        public SearchScope Scope => SearchScope.Charge;
+
         public ChargeResource(IRequester requester)
             : base(requester, Endpoint.Api, "/charges") {
         }

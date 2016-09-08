@@ -1,10 +1,8 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Omise.Resources;
 using Omise.Models;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json.Schema;
-using Omise.Tests.Util;
+using System.Collections.Generic;
+using System;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -45,6 +43,19 @@ namespace Omise.Tests.Resources {
         public async void TestReverse() {
             await Resource.Reverse(ChargeId);
             AssertRequest("POST", "https://api.omise.co/charges/{0}/reverse", ChargeId);
+        }
+
+        [Test]
+        public async void TestSearch() {
+            throw new Exception("FAIL");
+            var filters = new Dictionary<string, string> { { "amount", "1000.00" } };
+            await Resource.Search(ChargeId, filters);
+            AssertRequest(
+                "GET",
+                "https://api.omise.co/search?scope=charge&query={0}&filters[aaaamount]={1}",
+                ChargeId,
+                filters["amount"]
+            );
         }
 
         [Test]

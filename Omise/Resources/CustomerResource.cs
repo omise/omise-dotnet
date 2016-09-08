@@ -6,7 +6,10 @@ namespace Omise.Resources {
     IListRetrievable<Customer>,
     ICreatable<Customer, CreateCustomerRequest>,
     IUpdatable<Customer, UpdateCustomerRequest>,
-    IDestroyable<Customer> {
+    IDestroyable<Customer>,
+    ISearchable<Customer> {
+        public SearchScope Scope => SearchScope.Customer;
+
         public CustomerResource(IRequester requester)
             : base(requester, Endpoint.Api, "/customers") {
         }
