@@ -47,7 +47,6 @@ namespace Omise.Tests.Resources {
 
         [Test]
         public async void TestSearch() {
-            throw new Exception("FAIL");
             var filters = new Dictionary<string, string> { { "amount", "1000.00" } };
             await Resource.Search(ChargeId, filters);
             AssertRequest(

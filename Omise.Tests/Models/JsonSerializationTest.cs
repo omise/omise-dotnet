@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using NUnit.Framework;
 using Omise.Models;
 
@@ -26,7 +27,7 @@ namespace Omise.Tests.Models {
         public void TestJsonSerialize() {
             var serializer = new Serializer();
             foreach (var type in modelTypes) {
-                var method = serializer.GetType().GetMethod("JsonSerialize");
+                var method = serializer.GetType().GetTypeInfo().GetDeclaredMethod("JsonSerialize");
                 method = method.MakeGenericMethod(type);
 
                 using (var ms = new MemoryStream()) {
@@ -40,7 +41,7 @@ namespace Omise.Tests.Models {
         public void TestJsonDeserialize() {
             var serializer = new Serializer();
             foreach (var type in modelTypes) {
-                var method = serializer.GetType().GetMethod("JsonDeserialize");
+                var method = serializer.GetType().GetTypeInfo().GetDeclaredMethod("JsonDeserialize");
                 method = method.MakeGenericMethod(type);
 
                 var filename = $"objects/{ModelTypes.NameFor(type)}_object.json";

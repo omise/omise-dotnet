@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Omise.Models;
 
 namespace Omise.Tests {
-    [TestFixture, Ignore]
+    [TestFixture, Ignore("for documentation purposes only")]
     public class SiteExamples : OmiseTest {
         Client Client {
             get { return new Client(DummyCredentials); }

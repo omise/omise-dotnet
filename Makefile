@@ -12,8 +12,9 @@ VERSION = $(shell \
 
 # Commands aliases
 XBUILD        := xbuild /property:Configuration=$(CONFIG)
-NUGET         := mono .nuget/NuGet.exe
-NUNIT_CONSOLE := mono packages/NUnit.Runners.2.6.3/tools/nunit-console.exe
+MONO          := /usr/local/bin/mono
+NUGET         := .nuget/NuGet.exe
+NUNIT_CONSOLE := packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe
 
 # Files
 SRC_FILES      := $(wildcard Omise.Net/**.cs)
@@ -32,7 +33,11 @@ default: test
 # Download dependencies.
 deps: packages
 packages:
-	$(NUGET) restore
+	$(MONO) $(NUGET) restore
+
+deps-test: $(NUNIT_CONSOLE)
+$(NUNIT_CONSOLE):
+	$(MONO) $(NUGET) install NUnit.Runners -OutputDirectory packages
 
 # Builds DLL files.
 build: $(DLL_FILE) $(TEST_DLL_FILE)
@@ -47,11 +52,11 @@ clean:
 
 # Test with NUnit
 .PHONY: test
-test: $(TEST_DLL_FILE) packages
+test: $(TEST_DLL_FILE) packages $(NUNIT_CONSOLE)
 ifeq ($(strip $(TEST)),)
-	$(NUNIT_CONSOLE) $(TEST_DLL_FILE)
+	$(MONO) $(NUNIT_CONSOLE) $(TEST_DLL_FILE)
 else
-	$(NUNIT_CONSOLE) $(TEST_DLL_FILE) -run=$(TEST)
+	$(MONO) $(NUNIT_CONSOLE) $(TEST_DLL_FILE) -run=$(TEST)
 endif
 
 # Create Nuget packages.
@@ -63,6 +68,6 @@ ifneq ($(CONFIG),Release)
 
 else
 	sed -i".bak" -e "s#<version>.*</version>#<version>$(VERSION)</version>#g" $(NUGET_SPEC_FILE)
-	$(NUGET) pack $(NUGET_SPEC_FILE)
+	$(MONO) $(NUGET) pack $(NUGET_SPEC_FILE)
 endif
 	
