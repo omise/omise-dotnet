@@ -27,8 +27,8 @@ namespace Omise.Tests {
                 var authHeader = req.Headers.GetValues("Authorization").FirstOrDefault();
                 Assert.That(authHeader, Is.EqualTo(expectedAuthHeader));
 
-                var libAsm = typeof(Requester).GetTypeInfo().Assembly;
-                var clrAsm = typeof(object).GetTypeInfo().Assembly;
+                var libAsm = typeof(Requester).Assembly;
+                var clrAsm = typeof(object).Assembly;
 
                 var libVersion = libAsm.GetName().Version.ToString();
                 var clrVersion = clrAsm.GetName().Version.ToString();

@@ -27,7 +27,7 @@ namespace Omise.Tests.Models {
         public void TestJsonSerialize() {
             var serializer = new Serializer();
             foreach (var type in modelTypes) {
-                var method = serializer.GetType().GetTypeInfo().GetDeclaredMethod("JsonSerialize");
+                var method = serializer.GetType().GetMethod("JsonSerialize");
                 method = method.MakeGenericMethod(type);
 
                 using (var ms = new MemoryStream()) {
@@ -41,7 +41,7 @@ namespace Omise.Tests.Models {
         public void TestJsonDeserialize() {
             var serializer = new Serializer();
             foreach (var type in modelTypes) {
-                var method = serializer.GetType().GetTypeInfo().GetDeclaredMethod("JsonDeserialize");
+                var method = serializer.GetType().GetMethod("JsonDeserialize");
                 method = method.MakeGenericMethod(type);
 
                 var filename = $"objects/{ModelTypes.NameFor(type)}_object.json";

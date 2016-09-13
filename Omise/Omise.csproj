@@ -9,10 +9,10 @@
     <RootNamespace>Omise</RootNamespace>
     <AssemblyName>Omise</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile147</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
     <AssemblyOriginatorKeyFile>..\creds\omise-dotnet.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
