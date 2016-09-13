@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise", "Omise\Omise.csproj", "{48E844EB-9071-46A5-BD12-548CD45B008C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{511562A1-F80E-4DB0-ACB1-29A1BA43BA33}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Example", "Omise.Example\Omise.Example.csproj", "{E019488F-B710-4B1F-9865-E7C9F65C9057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{0C01C297-E321-4CEE-9809-833566E3C6F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +25,10 @@ Global
 		{E019488F-B710-4B1F-9865-E7C9F65C9057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E019488F-B710-4B1F-9865-E7C9F65C9057}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E019488F-B710-4B1F-9865-E7C9F65C9057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C01C297-E321-4CEE-9809-833566E3C6F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C01C297-E321-4CEE-9809-833566E3C6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C01C297-E321-4CEE-9809-833566E3C6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C01C297-E321-4CEE-9809-833566E3C6F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -32,11 +36,11 @@ Global
 		$1.DirectoryNamespaceAssociation = PrefixedFlat
 		$1.ResourceNamePolicy = FileFormatDefault
 		$0.TextStylePolicy = $2
-		$2.FileWidth = 100
+		$2.FileWidth = 90
 		$2.EolMarker = Windows
-		$2.inheritsSet = VisualStudio
+		$2.inheritsSet = null
 		$2.inheritsScope = text/plain
-		$2.scope = text/x-csharp
+		$2.scope = application/xml
 		$0.CSharpFormattingPolicy = $3
 		$3.IndentSwitchBody = True
 		$3.IndentBlocksInsideExpressions = True

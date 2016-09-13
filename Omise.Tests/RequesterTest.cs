@@ -13,6 +13,7 @@ namespace Omise.Tests {
     public class RequesterTest : OmiseTest {
         [Test]
         public void TestCtor() {
+            var x = new Requester(null);
             Assert.That(() => new Requester(null), Throws.ArgumentNullException);
 
             var req = new Requester(DummyCredentials);
