@@ -37,7 +37,7 @@ packages:
 
 deps-test: $(NUNIT_CONSOLE)
 $(NUNIT_CONSOLE):
-	$(MONO) $(NUGET) install NUnit.Runners -OutputDirectory packages
+	$(MONO) $(NUGET) install NUnit.Console -OutputDirectory packages
 
 # Builds DLL files.
 build: $(DLL_FILE) $(TEST_DLL_FILE)
