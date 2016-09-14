@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+# v2.1.0
+
+* Adds support for the newly released Search API.
+* Retarget to .NET 4.0 (previously 4.0.3)
+* Upgrade test suites to NUnit 3.4.1
+
 # v2.0.9
 
 * Adds missing `reversed` charge status.
