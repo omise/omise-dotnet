@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Tests.Util;
@@ -13,7 +14,6 @@ namespace Omise.Tests {
     public class RequesterTest : OmiseTest {
         [Test]
         public void TestCtor() {
-            var x = new Requester(null);
             Assert.That(() => new Requester(null), Throws.ArgumentNullException);
 
             var req = new Requester(DummyCredentials);
@@ -21,7 +21,7 @@ namespace Omise.Tests {
         }
 
         [Test, MaxTime(1000)]
-        public async void TestRequest() {
+        public async Task TestRequest() {
             var expectedAuthHeader = DummyCredentials.SecretKey.EncodeForAuthorizationHeader();
             var roundtripper = new MockRoundtripper((req) => {
                 var authHeader = req.Headers.GetValues("Authorization").FirstOrDefault();
@@ -48,7 +48,7 @@ namespace Omise.Tests {
         }
 
         [Test, MaxTime(1000)]
-        public async void TestRequestWithResult() {
+        public async Task TestRequestWithResult() {
             var roundtripper = new MockRoundtripper();
             roundtripper.ResponseContent = "{\"id\":\"zxcv\"}";
             roundtripper.ResponseContentType = "application/json";
@@ -66,7 +66,7 @@ namespace Omise.Tests {
         }
 
         [Test, MaxTime(1000)]
-        public async void TestRequestWithPayload() {
+        public async Task TestRequestWithPayload() {
             var expectedPayload = "hello=Kitty&world=Collides";
             var payload = new DummyPayload {
                 Hello = "Kitty",
@@ -103,7 +103,7 @@ namespace Omise.Tests {
 
             var exception = task.Exception.Flatten().InnerException;
             Assert.That(exception, Is.InstanceOf<OmiseError>());
-            Assert.That(exception.ToString(), Contains.Value("test_error"));
+            Assert.That(exception.ToString(), Contains.Substring("test_error"));
         }
 
         IRequester BuildRequester(IRoundtripper roundtripper) {
@@ -115,7 +115,6 @@ namespace Omise.Tests {
             public string World { get; set; }
         }
 
-        [DataContract]
         class DummyModel : ModelBase {
         }
     }

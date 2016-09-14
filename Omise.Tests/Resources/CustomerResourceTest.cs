@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -8,31 +9,31 @@ namespace Omise.Tests.Resources {
         const string CustomerId = "cust_test_4yq6txdpfadhbaqnwp3";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/customers");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(CustomerId);
             AssertRequest("GET", "https://api.omise.co/customers/{0}", CustomerId);
         }
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/customers");
         }
 
         [Test]
-        public async void TestUpdate() {
+        public async Task TestUpdate() {
             await Resource.Update(CustomerId, BuildUpdateRequest());
             AssertRequest("PATCH", "https://api.omise.co/customers/{0}", CustomerId);
         }
 
         [Test]
-        public async void TestDestroy() {
+        public async Task TestDestroy() {
             await Resource.Destroy(CustomerId);
             AssertRequest("DELETE", "https://api.omise.co/customers/{0}", CustomerId);
         }
@@ -56,7 +57,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);
 
@@ -66,28 +67,28 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var customer = await Fixtures.Get(CustomerId);
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var customer = await Fixtures.Create(new CreateCustomerRequest());
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
 
         [Test]
-        public async void TestFixturesUpdate() {
+        public async Task TestFixturesUpdate() {
             var customer = await Fixtures.Update(CustomerId, new UpdateCustomerRequest());
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
 
         [Test]
-        public async void TestFixturesDestroy() {
+        public async Task TestFixturesDestroy() {
             var customer = await Fixtures.Destroy(CustomerId);
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.IsTrue(customer.Deleted);

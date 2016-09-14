@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Resources;
 
 namespace Omise.Tests.Resources {
@@ -7,19 +8,19 @@ namespace Omise.Tests.Resources {
         const string EventId = "evnt_test_526yctupnje5mbldskd";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/events");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(EventId);
             AssertRequest("GET", "https://api.omise.co/events/{0}", EventId);
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(20, list.Count);
 
@@ -29,7 +30,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var ev = await Fixtures.Get(EventId);
             Assert.AreEqual(EventId, ev.Id);
             Assert.AreEqual("transfer.destroy", ev.Key);

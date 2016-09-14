@@ -2,18 +2,19 @@
 using Omise.Resources;
 using Omise.Models;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
     public class ListableTest : ResourceTest<DummyListableResource> {
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/dummy");
         }
 
         [Test]
-        public async void TestGetListWithOptions() {
+        public async Task TestGetListWithOptions() {
             await Resource.GetList(
                 offset: 2,
                 limit: 3,

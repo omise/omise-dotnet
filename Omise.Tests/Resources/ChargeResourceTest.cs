@@ -3,6 +3,7 @@ using Omise.Resources;
 using Omise.Models;
 using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
 
 namespace Omise.Tests.Resources {
     [TestFixture]
@@ -10,43 +11,43 @@ namespace Omise.Tests.Resources {
         const string ChargeId = "chrg_test_4yq7duw15p9hdrjp8oq";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/charges");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(ChargeId);
             AssertRequest("GET", "https://api.omise.co/charges/{0}", ChargeId);
         }
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/charges");
         }
 
         [Test]
-        public async void TestUpdate() {
+        public async Task TestUpdate() {
             await Resource.Update(ChargeId, BuildUpdateRequest());
             AssertRequest("PATCH", "https://api.omise.co/charges/{0}", ChargeId);
         }
 
         [Test]
-        public async void TestCapture() {
+        public async Task TestCapture() {
             await Resource.Capture(ChargeId);
             AssertRequest("POST", "https://api.omise.co/charges/{0}/capture", ChargeId);
         }
 
         [Test]
-        public async void TestReverse() {
+        public async Task TestReverse() {
             await Resource.Reverse(ChargeId);
             AssertRequest("POST", "https://api.omise.co/charges/{0}/reverse", ChargeId);
         }
 
         [Test]
-        public async void TestSearch() {
+        public async Task TestSearch() {
             var filters = new Dictionary<string, string> { { "amount", "1000.00" } };
             await Resource.Search(ChargeId, filters);
             AssertRequest(
@@ -78,7 +79,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);
 
@@ -87,21 +88,21 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var charge = await Fixtures.Get(ChargeId);
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual(100000, charge.Amount);
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var charge = await Fixtures.Create(new CreateChargeRequest());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual(100000, charge.Amount);
         }
 
         [Test]
-        public async void TestFixturesUpdate() {
+        public async Task TestFixturesUpdate() {
             var charge = await Fixtures.Update(ChargeId, new UpdateChargeRequest());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual("Charge for order 3947 (XXL)", charge.Description);

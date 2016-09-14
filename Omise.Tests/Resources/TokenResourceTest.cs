@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -8,13 +9,13 @@ namespace Omise.Tests.Resources {
         const string TokenId = "tokn_test_4yq8lbecl0q6dsjzxr5";
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://vault.omise.co/tokens");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(TokenId);
             AssertRequest("GET", "https://vault.omise.co/tokens/{0}", TokenId);
         }
@@ -33,14 +34,14 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var token = await Fixtures.Create(new CreateTokenRequest());
             Assert.AreEqual(TokenId, token.Id);
             Assert.AreEqual("4242", token.Card.LastDigits);
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var token = await Fixtures.Get(TokenId);
             Assert.AreEqual(TokenId, token.Id);
             Assert.AreEqual("4242", token.Card.LastDigits);

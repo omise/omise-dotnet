@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Omise.Tests.Util;
@@ -10,11 +11,11 @@ namespace Omise.Tests {
         const string DummyJson =
             "{\"james\":\"Howlett\",\"scott\":\"Summers\",\"johny\":\"Mnemonic\"," +
             "\"with\":\"SPACES SPACES\",\"created\":\"9999-12-31T23:59:59.9999999\"," +
-            "\"checked\":true,\"enumer\":\"not_exactly_twice\",\"nested\":{\"field\":\"inner\"}}";
+            "\"checked\":true,\"enumer\":\"twice_thrice\",\"nested\":{\"field\":\"inner\"}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
             "with=SPACES+SPACES&created=9999-12-31T23%3A59%3A59Z&" +
-            "checked=true&enumer=not_exactly_twice&nested%5Bfield%5D=inner";
+            "checked=true&enumer=twice_thrice&nested%5Bfield%5D=inner";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
@@ -58,7 +59,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TestExtractFormValues() {
+        public async Task TestExtractFormValues() {
             var content = Serializer.ExtractFormValues(Dummy);
             var result = await content.ReadAsStringAsync();
             Assert.AreEqual(DummyUrlEncoded, result);
@@ -81,9 +82,7 @@ namespace Omise.Tests {
 
         public enum DummyEnum {
             Once,
-
-            [EnumMember(Value = "not_exactly_twice")]
-            Twice
+            TwiceThrice,
         }
 
         public class NestedKlass {
@@ -98,7 +97,7 @@ namespace Omise.Tests {
             Aliased = "Mnemonic";
             Checked = true;
             FieldIsNull = null;
-            Enumer = DummyEnum.Twice;
+            Enumer = DummyEnum.TwiceThrice;
             Nested = new NestedKlass { Field = "inner" };
         }
     }

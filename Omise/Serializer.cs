@@ -13,11 +13,14 @@ using Newtonsoft.Json.Serialization;
 namespace Omise {
     public sealed class Serializer {
         readonly JsonSerializer jsonSerializer;
+        readonly SnakeCaseEnumConverter enumConverter;
 
         public Serializer() {
+            enumConverter = new SnakeCaseEnumConverter();
+
             jsonSerializer = new JsonSerializer();
             jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            jsonSerializer.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+            jsonSerializer.Converters.Add(enumConverter);
             jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
         }
 
@@ -89,7 +92,7 @@ namespace Omise {
             }
         }
 
-        static string EncodeFormValueToString(object value) {
+        string EncodeFormValueToString(object value) {
             if (value == null) throw new ArgumentNullException(nameof(value));
 
             string str;
@@ -107,14 +110,7 @@ namespace Omise {
 
             }
             else if (type.IsEnum) {
-                var member = type.GetMember(value.ToString())[0];
-                var attributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), true);
-                if (attributes.Length > 0) {
-                    str = ((EnumMemberAttribute)attributes[0]).Value;
-                }
-                else {
-                    str = value.ToString();
-                }
+                str = enumConverter.ToSerializedString(value);
 
             }
             else {

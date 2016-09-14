@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -9,25 +10,25 @@ namespace Omise.Tests.Resources {
         const string CardId = "card_test_4yq6tuucl9h4erukfl0";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/customers/{0}/cards", CustomerId);
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(CardId);
             AssertRequest("GET", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
 
         [Test]
-        public async void TestUpdate() {
+        public async Task TestUpdate() {
             await Resource.Update(CardId, BuildUpdateRequest());
             AssertRequest("PATCH", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
 
         [Test]
-        public async void TestDestroy() {
+        public async Task TestDestroy() {
             await Resource.Destroy(CardId);
             AssertRequest("DELETE", "https://api.omise.co/customers/{0}/cards/{1}", CustomerId, CardId);
         }
@@ -44,7 +45,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);
 
@@ -54,21 +55,21 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var card = await Fixtures.Get(CardId);
             Assert.AreEqual(CardId, card.Id);
             Assert.AreEqual("4242", card.LastDigits);
         }
 
         [Test]
-        public async void TestFixturesUpdate() {
+        public async Task TestFixturesUpdate() {
             var card = await Fixtures.Update(CardId, new UpdateCardRequest());
             Assert.AreEqual(CardId, card.Id);
             Assert.AreEqual("JOHN W. DOE", card.Name);
         }
 
         [Test]
-        public async void TestFixturesDestroy() {
+        public async Task TestFixturesDestroy() {
             var card = await Fixtures.Destroy(CardId);
             Assert.AreEqual(CardId, card.Id);
             Assert.IsTrue(card.Deleted);

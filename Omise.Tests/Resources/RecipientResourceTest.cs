@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -8,31 +9,31 @@ namespace Omise.Tests.Resources {
         const string RecipientId = "recp_test_50894vc13y8z4v51iuc";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/recipients");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(RecipientId);
             AssertRequest("GET", "https://api.omise.co/recipients/{0}", RecipientId);
         }
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/recipients");
         }
 
         [Test]
-        public async void TestUpdate() {
+        public async Task TestUpdate() {
             await Resource.Update(RecipientId, BuildUpdateRequest());
             AssertRequest("PATCH", "https://api.omise.co/recipients/{0}", RecipientId);
         }
 
         [Test]
-        public async void TestDestroy() {
+        public async Task TestDestroy() {
             await Resource.Destroy(RecipientId);
             AssertRequest("DELETE", "https://api.omise.co/recipients/{0}", RecipientId);
         }
@@ -66,7 +67,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);
 
@@ -76,28 +77,28 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var recipient = await Fixtures.Get(RecipientId);
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var recipient = await Fixtures.Create(new CreateRecipientRequest());
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
         }
 
         [Test]
-        public async void TestFixturesUpdate() {
+        public async Task TestFixturesUpdate() {
             var recipient = await Fixtures.Update(RecipientId, new UpdateRecipientRequest());
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.AreEqual("john@doe.com", recipient.Email);
         }
 
         [Test]
-        public async void TestFixturesDestroy() {
+        public async Task TestFixturesDestroy() {
             var recipient = await Fixtures.Destroy(RecipientId);
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.IsTrue(recipient.Deleted);

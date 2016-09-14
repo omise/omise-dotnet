@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Resources;
 
 namespace Omise.Tests.Resources {
@@ -7,19 +8,19 @@ namespace Omise.Tests.Resources {
         const string TransactionId = "trxn_test_4yq7duwb9jts1vxgqua";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/transactions");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(TransactionId);
             AssertRequest("GET", "https://api.omise.co/transactions/{0}", TransactionId);
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(2, list.Count);
 

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -9,19 +10,19 @@ namespace Omise.Tests.Resources {
         const string RefundId = "rfnd_test_4yqmv79ahghsiz23y3c";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/charges/{0}/refunds", ChargeId);
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(RefundId);
             AssertRequest("GET", "https://api.omise.co/charges/{0}/refunds/{1}", ChargeId, RefundId);
         }
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/charges/{0}/refunds", ChargeId);
         }
@@ -34,7 +35,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);
 
@@ -44,14 +45,14 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var refund = await Fixtures.Get(RefundId);
             Assert.AreEqual(RefundId, refund.Id);
             Assert.AreEqual(10000, refund.Amount);
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var refund = await Fixtures.Create(new CreateRefundRequest());
             Assert.AreEqual(RefundId, refund.Id);
             Assert.AreEqual(10000, refund.Amount);
