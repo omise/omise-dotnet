@@ -4,7 +4,7 @@
   "to": "2015-01-15T10:16:08+00:00",
   "offset": 0,
   "limit": 20,
-  "total": 1,
+  "total": 2,
   "order": "chronological",
   "location": "/transfers",
   "data": [
@@ -44,7 +44,6 @@
         "name": "JOHN DOE",
         "created": "2015-06-02T09:26:59Z"
       },
-      "created": "2015-01-15T10:04:47Z"
       "sent": false,
       "paid": false,
       "amount": 32100,
@@ -53,6 +52,7 @@
       "failure_code": null,
       "failure_message": null,
       "transaction": null,
+      "created": "2015-01-15T10:04:47Z"
     }
   ]
 }

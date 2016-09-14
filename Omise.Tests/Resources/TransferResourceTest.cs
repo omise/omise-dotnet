@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
 
@@ -8,31 +9,31 @@ namespace Omise.Tests.Resources {
         const string TransferId = "trsf_test_4yqacz8t3cbipcj766u";
 
         [Test]
-        public async void TestGetList() {
+        public async Task TestGetList() {
             await Resource.GetList();
             AssertRequest("GET", "https://api.omise.co/transfers");
         }
 
         [Test]
-        public async void TestGet() {
+        public async Task TestGet() {
             await Resource.Get(TransferId);
             AssertRequest("GET", "https://api.omise.co/transfers/{0}", TransferId);
         }
 
         [Test]
-        public async void TestCreate() {
+        public async Task TestCreate() {
             await Resource.Create(BuildCreateRequest());
             AssertRequest("POST", "https://api.omise.co/transfers");
         }
 
         [Test]
-        public async void TestUpdate() {
+        public async Task TestUpdate() {
             await Resource.Update(TransferId, BuildUpdateRequest());
             AssertRequest("PATCH", "https://api.omise.co/transfers/{0}", TransferId);
         }
 
         [Test]
-        public async void TestDestroy() {
+        public async Task TestDestroy() {
             await Resource.Destroy(TransferId);
             AssertRequest("DELETE", "https://api.omise.co/transfers/{0}", TransferId);
         }
@@ -53,9 +54,9 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGetList() {
+        public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(2, list.Count);
 
             var transfer = list[0];
             Assert.AreEqual(TransferId, transfer.Id);
@@ -63,28 +64,28 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var transfer = await Fixtures.Get(TransferId);
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.AreEqual(192188, transfer.Amount);
         }
 
         [Test]
-        public async void TestFixturesCreate() {
+        public async Task TestFixturesCreate() {
             var transfer = await Fixtures.Create(new CreateTransferRequest());
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.AreEqual(192188, transfer.Amount);
         }
 
         [Test]
-        public async void TestFixturesUpdate() {
+        public async Task TestFixturesUpdate() {
             var transfer = await Fixtures.Update(TransferId, new UpdateTransferRequest());
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.AreEqual(192189, transfer.Amount);
         }
 
         [Test]
-        public async void TestFixturesDestroy() {
+        public async Task TestFixturesDestroy() {
             var transfer = await Fixtures.Destroy(TransferId);
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.IsTrue(transfer.Deleted);

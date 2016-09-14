@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 
@@ -10,19 +11,19 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void AccountsRetrieveRetrieve() {
+        public async Task AccountsRetrieveRetrieve() {
             var account = await Client.Account.Get();
             Assert.AreEqual("omise@chakrit.net", account.Email);
         }
 
         [Test]
-        public async void BalancesRetrieveRetrieve() {
+        public async Task BalancesRetrieveRetrieve() {
             var balance = await Client.Balance.Get();
             Assert.AreEqual(16309324, balance.Available);
         }
 
         [Test]
-        public async void CardsDestroyDestroy() {
+        public async Task CardsDestroyDestroy() {
             var card = await Client.Cards
                 .ByCustomer("cust_test_52ydv7e3ao0oqwjj97e")
                 .Destroy("card_test_52ydv7hs189gc7pp752");
@@ -31,7 +32,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CardsListList() {
+        public async Task CardsListList() {
             var cards = await Client.Cards
                 .ByCustomer("cust_test_52ydv7e3ao0oqwjj97e")
                 .GetList();
@@ -42,7 +43,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CardsRetrieveRetrieve() {
+        public async Task CardsRetrieveRetrieve() {
             var card = await Client.Cards
                 .ByCustomer("cust_test_52ydv7e3ao0oqwjj97e")
                 .Get("card_test_52ydv7jkwu6rp6qt96m");
@@ -52,7 +53,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CardsUpdateUpdate() {
+        public async Task CardsUpdateUpdate() {
             var update = new UpdateCardRequest {
                 Name = "Somchai Prasert",
                 ExpirationMonth = 8,
@@ -68,13 +69,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void ChargesCaptureCapture() {
+        public async Task ChargesCaptureCapture() {
             var charge = await Client.Charges.Capture("chrg_test_52ydura2lmcryh1b15v");
             Assert.IsTrue(charge.Paid);
         }
 
         [Test]
-        public async void ChargesCreateCreateWithCard() {
+        public async Task ChargesCreateCreateWithCard() {
             var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
@@ -87,7 +88,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void ChargesCreateCreateWithCustomer() {
+        public async Task ChargesCreateCreateWithCustomer() {
             var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
@@ -99,7 +100,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void ChargesCreateCreateWithToken() {
+        public async Task ChargesCreateCreateWithToken() {
             var request = new CreateChargeRequest {
                 Amount = 100000, // THB 1,000.00
                 Currency = "THB",
@@ -111,7 +112,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void ChargesListList() {
+        public async Task ChargesListList() {
             var charges = await Client.Charges.GetList(order: Ordering.ReverseChronological);
 
             var charge = charges.First(c => c.Id == "chrg_test_52ydurgt5nhckrxbvxh");
@@ -120,14 +121,14 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void ChargesRetrieveRetrieve() {
+        public async Task ChargesRetrieveRetrieve() {
             var charge = await Client.Charges.Get("chrg_test_52ydurgt5nhckrxbvxh");
             Assert.AreEqual(409669, charge.Amount);
             Assert.IsTrue(charge.Paid);
         }
 
         [Test]
-        public async void ChargesUpdateUpdateDescription() {
+        public async Task ChargesUpdateUpdateDescription() {
             var request = new UpdateChargeRequest {
                 Description = "Updated Description",
             };
@@ -137,7 +138,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CustomersCreateAttachCard() {
+        public async Task CustomersCreateAttachCard() {
             var request = new CreateCustomerRequest {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
@@ -149,7 +150,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CustomersCreateCreateSimple() {
+        public async Task CustomersCreateCreateSimple() {
             var request = new CreateCustomerRequest {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
@@ -160,13 +161,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CustomersDestroyDestroy() {
+        public async Task CustomersDestroyDestroy() {
             var customer = await Client.Customers.Destroy("cust_test_52yefu1m9tvlzertvik");
             Assert.IsTrue(customer.Deleted);
         }
 
         [Test]
-        public async void CustomersListList() {
+        public async Task CustomersListList() {
             var customers = await Client.Customers.GetList(order: Ordering.ReverseChronological);
 
             var customer = customers.First(c => c.Email == "john.doe@example.com");
@@ -174,13 +175,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CustomersRetrieveRetrieve() {
+        public async Task CustomersRetrieveRetrieve() {
             var customer = await Client.Customers.Get("cust_test_52ydv7e3ao0oqwjj97e");
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
 
         [Test]
-        public async void CustomersUpdateAttachCard() {
+        public async Task CustomersUpdateAttachCard() {
             var customer = await Client.Customers.Get("cust_test_52ydv7e3ao0oqwjj97e");
             var request = new UpdateCustomerRequest {
                 Card = "tokn_test_4xs9408a642a1htto8z",
@@ -191,7 +192,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void CustomersUpdateUpdateSimple() {
+        public async Task CustomersUpdateUpdateSimple() {
             var request = new UpdateCustomerRequest {
                 Email = "john.smith@example.com",
                 Description = "Updated Description",
@@ -202,7 +203,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void DisputesClosedClosed() {
+        public async Task DisputesClosedClosed() {
             var disputes = await Client.Disputes.ClosedDisputes.GetList();
 
             var dispute = disputes.First(d => d.Id == "dspt_test_52yekjurvozldkqyegh");
@@ -211,7 +212,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void DisputesListList() {
+        public async Task DisputesListList() {
             var disputes = await Client.Disputes.GetList();
 
             var dispute = disputes.First(d => d.Id == "dspt_test_52yem1zeuw5nq8yrw29");
@@ -220,7 +221,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void DisputesOpenOpen() {
+        public async Task DisputesOpenOpen() {
             var disputes = await Client.Disputes.OpenDisputes.GetList();
 
             var dispute = disputes.First(d => d.Id == "dspt_test_52yem1zeuw5nq8yrw29");
@@ -229,7 +230,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void DisputesPendingPending() {
+        public async Task DisputesPendingPending() {
             var disputes = await Client.Disputes.PendingDisputes.GetList();
 
             var dispute = disputes.First(d => d.Id == "dspt_test_52yem1zeuw5nq8yrw29");
@@ -238,14 +239,14 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void DisputesRetrieveRetrieve() {
+        public async Task DisputesRetrieveRetrieve() {
             var dispute = await Client.Disputes.Get("dspt_test_52yem1zeuw5nq8yrw29");
             Assert.AreEqual(204842, dispute.Amount);
             Assert.AreEqual(DisputeStatus.Pending, dispute.Status);
         }
 
         [Test]
-        public async void DisputesUpdateUpdate() {
+        public async Task DisputesUpdateUpdate() {
             var request = new UpdateDisputeRequest {
                 Message = "Hello World!",
             };
@@ -255,7 +256,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RecipientsCreateCreate() {
+        public async Task RecipientsCreateCreate() {
             var request = new CreateRecipientRequest {
                 Name = "Somchai Prasert",
                 Email = "somchai.prasert@example.com",
@@ -273,13 +274,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RecipientsDestroyDestroy() {
+        public async Task RecipientsDestroyDestroy() {
             var recipient = await Client.Recipients.Destroy("recp_test_52yeozzqxjn3gak57rt");
             Assert.IsTrue(recipient.Deleted);
         }
 
         [Test]
-        public async void RecipientsListList() {
+        public async Task RecipientsListList() {
             var recipients = await Client.Recipients.GetList();
 
             var recipient = recipients.First(r => r.Id == "recp_test_52yeov3bkjqpun3b4sm");
@@ -287,13 +288,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RecipientsRetrieveRetrieve() {
+        public async Task RecipientsRetrieveRetrieve() {
             var recipient = await Client.Recipients.Get("recp_test_52yeov3bkjqpun3b4sm");
             Assert.AreEqual("Somchai Prasert", recipient.Name);
         }
 
         [Test]
-        public async void RecipientsUpdateUpdate() {
+        public async Task RecipientsUpdateUpdate() {
             var request = new UpdateRecipientRequest {
                 Email = "somchai@prasert.com",
                 BankAccount = new BankAccountRequest {
@@ -308,7 +309,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RefundsCreateCreate() {
+        public async Task RefundsCreateCreate() {
             var request = new CreateRefundRequest {
                 Amount = 100000, // THB 1,000.00
             };
@@ -321,7 +322,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RefundsListList() {
+        public async Task RefundsListList() {
             var refunds = await Client.Refunds
                 .ByCharge("chrg_test_52ye6ksqi1dacbw8wkx")
                 .GetList();
@@ -331,7 +332,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void RefundsRetrieveRetrieve() {
+        public async Task RefundsRetrieveRetrieve() {
             var refund = await Client.Refunds
                 .ByCharge("chrg_test_52ye6ksqi1dacbw8wkx")
                 .Get("rfnd_test_52yerwurrqdzlm7fkuz");
@@ -340,7 +341,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TokensCreateCreate() {
+        public async Task TokensCreateCreate() {
             var request = new CreateTokenRequest {
                 Name = "Somchai Prasert",
                 Number = "4242424242424242",
@@ -358,7 +359,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TokensRetrieveRetrieve() {
+        public async Task TokensRetrieveRetrieve() {
             var token = await Client.Tokens.Get("tokn_test_52yeu9ez3ybyogkirwj");
             Assert.AreEqual("4242", token.Card.LastDigits);
             Assert.AreEqual("Visa", token.Card.Brand);
@@ -366,7 +367,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TransactionsListList() {
+        public async Task TransactionsListList() {
             var transactions = await Client.Transactions.GetList();
 
             var transaction = transactions.First(t => t.Id == "trxn_test_52q4re5i1gjt13kavur");
@@ -375,14 +376,14 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TransactionsRetrieveRetrieve() {
+        public async Task TransactionsRetrieveRetrieve() {
             var transaction = await Client.Transactions.Get("trxn_test_52q4re5i1gjt13kavur");
             Assert.AreEqual(TransactionType.Credit, transaction.Type);
             Assert.AreEqual(196842, transaction.Amount);
         }
 
         [Test]
-        public async void TransfersCreateCreate() {
+        public async Task TransfersCreateCreate() {
             var request = new CreateTransferRequest {
                 Amount = 100000
             };
@@ -392,7 +393,7 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TransfersCreateCreateWithRecipient() {
+        public async Task TransfersCreateCreateWithRecipient() {
             var request = new CreateTransferRequest {
                 Amount = 100000,
                 Recipient = "recp_test_52yeov3bkjqpun3b4sm",
@@ -404,13 +405,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TransfersDestroyDestroy() {
+        public async Task TransfersDestroyDestroy() {
             var transfer = await Client.Transfers.Destroy("trsf_test_52yew5v158k3d4awmu2");
             Assert.IsTrue(transfer.Deleted);
         }
 
         [Test]
-        public async void TransfersListList() {
+        public async Task TransfersListList() {
             var transfers = await Client.Transfers.GetList();
 
             var transfer = transfers.First(t => t.Id == "trsf_test_52yew5v158k3d4awmu2");
@@ -418,13 +419,13 @@ namespace Omise.Tests {
         }
 
         [Test]
-        public async void TransfersRetrieveRetrieve() {
+        public async Task TransfersRetrieveRetrieve() {
             var transfer = await Client.Transfers.Get("trsf_test_52yew5v158k3d4awmu2");
             Assert.AreEqual(100000, transfer.Amount);
         }
 
         [Test]
-        public async void TransfersUpdateUpdate() {
+        public async Task TransfersUpdateUpdate() {
             var request = new UpdateTransferRequest {
                 Amount = 50000, // THB 500.00
             };

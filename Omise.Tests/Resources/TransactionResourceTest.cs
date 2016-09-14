@@ -30,7 +30,7 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
-        public async void TestFixturesGet() {
+        public async Task TestFixturesGet() {
             var tx = await Fixtures.Get(TransactionId);
             Assert.AreEqual(TransactionId, tx.Id);
             Assert.AreEqual(96094, tx.Amount);

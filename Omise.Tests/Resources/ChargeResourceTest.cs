@@ -52,7 +52,7 @@ namespace Omise.Tests.Resources {
             await Resource.Search(ChargeId, filters);
             AssertRequest(
                 "GET",
-                "https://api.omise.co/search?scope=charge&query={0}&filters[amount]={1}",
+                "https://api.omise.co/search?scope=charge&query={0}&filters%5Bamount%5D={1}",
                 ChargeId,
                 filters["amount"]
             );
