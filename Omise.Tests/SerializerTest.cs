@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -9,13 +9,15 @@ namespace Omise.Tests {
     [TestFixture]
     public class SerializerTest : OmiseTest {
         const string DummyJson =
-            "{\"james\":\"Howlett\",\"scott\":\"Summers\",\"johny\":\"Mnemonic\"," +
-            "\"with\":\"SPACES SPACES\",\"created\":\"9999-12-31T23:59:59.9999999\"," +
-            "\"checked\":true,\"enumer\":\"twice_thrice\",\"nested\":{\"field\":\"inner\"}}";
+            @"{""james"":""Howlett"",""scott"":""Summers"",""johny"":""Mnemonic""," +
+            @"""with"":""SPACES SPACES"",""created"":""9999-12-31T23:59:59.9999999""," +
+            @"""checked"":true,""enumer"":""twice_thrice"",""nested"":{""field"":""inner""," +
+            @"""filters"":{""dictionary"":""should works""}}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
             "with=SPACES+SPACES&created=9999-12-31T23%3A59%3A59Z&" +
-            "checked=true&enumer=twice_thrice&nested%5Bfield%5D=inner";
+            "checked=true&enumer=twice_thrice&nested%5Bfield%5D=inner&" +
+            "nested%5Bfilters%5D%5Bdictionary%5D=should+works";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
@@ -87,6 +89,7 @@ namespace Omise.Tests {
 
         public class NestedKlass {
             public string Field { get; set; }
+            public IDictionary<string, string> Filters { get; set; }
         }
 
         public SerializerTestDummy() {
@@ -98,7 +101,12 @@ namespace Omise.Tests {
             Checked = true;
             FieldIsNull = null;
             Enumer = DummyEnum.TwiceThrice;
-            Nested = new NestedKlass { Field = "inner" };
+            Nested = new NestedKlass {
+                Field = "inner",
+                Filters = new Dictionary<string, string> {
+                    { "dictionary", "should works" }
+                }
+            };
         }
     }
 }

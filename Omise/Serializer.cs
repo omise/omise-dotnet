@@ -59,6 +59,8 @@ namespace Omise {
             string prefix
         ) {
             var clrAsm = typeof(object).Assembly;
+            var stringDict = typeof(IDictionary<string, string>);
+
             var props = payload
                 .GetType()
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -84,6 +86,15 @@ namespace Omise {
                         yield return result;
                     }
 
+                }
+                else if (stringDict.IsAssignableFrom(type)) {
+                    var dict = (IDictionary<string, string>)value;
+                    foreach (var entry in dict) {
+                        yield return new KeyValuePair<string, string>(
+                            $"{name}[{entry.Key}]",
+                            EncodeFormValueToString(entry.Value)
+                        );
+                    }
                 }
                 else {
                     var encodedValue = EncodeFormValueToString(value);
