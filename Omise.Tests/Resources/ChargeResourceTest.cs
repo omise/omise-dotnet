@@ -108,6 +108,18 @@ namespace Omise.Tests.Resources {
             Assert.AreEqual("Charge for order 3947 (XXL)", charge.Description);
         }
 
+        [Test]
+        public async Task TestFixturesSearch() {
+            var result = await Fixtures.Search(filters: new Dictionary<string, string> {
+                { "amount", "4096.69" }
+            });
+
+            Assert.That(result.Total, Is.EqualTo(30));
+            Assert.That(result.TotalPages, Is.EqualTo(1));
+            Assert.That(result[0].Id, Is.EqualTo("chrg_test_558xxh0el72ust8ogda"));
+            Assert.That(result[0].Amount, Is.EqualTo(409669));
+        }
+
         protected CreateChargeRequest BuildCreateRequest() {
             return new CreateChargeRequest {
                 Customer = "Omise Co., Ltd.",

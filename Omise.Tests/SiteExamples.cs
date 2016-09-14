@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
@@ -125,6 +126,17 @@ namespace Omise.Tests {
             var charge = await Client.Charges.Get("chrg_test_52ydurgt5nhckrxbvxh");
             Assert.AreEqual(409669, charge.Amount);
             Assert.IsTrue(charge.Paid);
+        }
+
+        [Test]
+        public async Task ChargeSearchSearch() {
+            var result = await Client.Charges.Search(filters: new Dictionary<string, string> {
+                { "amount", "4096.69" }
+            });
+
+            Assert.That(result.Total, Is.GreaterThan(1));
+            Assert.That(result[0].Id, Is.EqualTo("chrg_test_558xxh0el72ust8ogda"));
+            Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
         [Test]
