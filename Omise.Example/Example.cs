@@ -7,8 +7,8 @@ namespace Omise.Example {
         protected Client Client { get; private set; }
 
         protected Example() {
-            var pkey = Environment.GetEnvironmentVariable("OMISE_PUBKEY") ?? Prompt("omise public key");
-            var skey = Environment.GetEnvironmentVariable("OMISE_KEY") ?? Prompt("omise secret key");
+            var pkey = Environment.GetEnvironmentVariable("OMISE_PKEY") ?? Prompt("omise public key");
+            var skey = Environment.GetEnvironmentVariable("OMISE_SKEY") ?? Prompt("omise secret key");
 
             Client = new Client(pkey, skey);
         }
