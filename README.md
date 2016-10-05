@@ -51,6 +51,23 @@ also depends on the following packages/assemblies:
 * Microsoft.Threading.Tasks (via Microsoft.Async package)
 * System.Net.Http (via Microsoft.Net.Http package)
 
+# TLS CONFIGURATION
+
+If you are using .NET 4.0 or 4.5 and found that Omise API constantly terminates the
+connection causing an exception to be raised., this may be because the platform is using
+an unsupported or insecure version of the TLS connection.
+
+You can workaround this by **upgrading to .NET 4.6** or add the following code to the
+start of your program:
+
+```csharp
+System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocol.Tls12;
+```
+
+If your target platform do not have the `ServicePointManager` class, then this library
+will not work for you and you will have to find other means of connecting to the Omise API
+securely.
+
 # GETTING STARTED
 
 The core of the library is the Client which contains services to call the APIs.To
