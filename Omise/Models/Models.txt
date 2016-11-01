@@ -56,6 +56,15 @@ Dispute
 Event
   Key string
   RawDataJson JRaw data
+Link
+  Amount long
+  Currency string
+  Used bool
+  Multiple bool
+  Title string
+  Description string
+  Charges ScopedList<Charge>
+  PaymentURI string payment_uri
 Recipient
   Verified bool
   Active bool

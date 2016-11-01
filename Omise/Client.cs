@@ -12,6 +12,7 @@ namespace Omise {
         public readonly CustomerResource Customers;
         public readonly DisputeResource Disputes;
         public readonly EventResource Events;
+        public readonly LinkResource Links;
         public readonly RecipientResource Recipients;
         public readonly RefundResourceShim Refunds;
         public readonly TokenResource Tokens;
@@ -42,6 +43,7 @@ namespace Omise {
             Customers = new CustomerResource(requester);
             Disputes = new DisputeResource(requester);
             Events = new EventResource(requester);
+            Links = new LinkResource(requester);
             Recipients = new RecipientResource(requester);
             Refunds = new RefundResourceShim(requester);
             Tokens = new TokenResource(requester);

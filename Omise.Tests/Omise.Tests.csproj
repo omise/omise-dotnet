@@ -111,6 +111,7 @@
     <Compile Include="Util\MockRoundtripper.cs" />
     <Compile Include="Util\RequestAttempt.cs" />
     <Compile Include="Util\StringMemoryStream.cs" />
+    <Compile Include="Resources\LinkResourceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
