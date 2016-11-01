@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+# v2.2.0
+
+* Adds support for the new Link API.
+* Upgrade test suites to NUnit 3.5
+
 # v2.1.0
 
 * Adds support for the newly released Search API.
