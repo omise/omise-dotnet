@@ -45,6 +45,16 @@ namespace Omise.Tests.Resources {
         }
 
         [Test]
+        public void TestUpdateCardRequest_NameOnly() {
+            var request = BuildUpdateRequest();
+            request.PostalCode = null;
+            request.ExpirationMonth = null;
+            request.ExpirationYear = null;
+
+            AssertSerializedRequest(request, "name=MasterCard+SmartPay&city=Bangkok");
+        }
+
+        [Test]
         public async Task TestFixturesGetList() {
             var list = await Fixtures.GetList();
             Assert.AreEqual(1, list.Count);

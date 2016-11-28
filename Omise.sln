@@ -33,10 +33,9 @@ Global
 		$1.ResourceNamePolicy = FileFormatDefault
 		$0.TextStylePolicy = $2
 		$2.FileWidth = 90
-		$2.EolMarker = Windows
 		$2.inheritsSet = null
 		$2.inheritsScope = text/plain
-		$2.scope = application/xml
+		$2.scope = application/config+xml
 		$0.CSharpFormattingPolicy = $3
 		$3.IndentSwitchBody = True
 		$3.IndentBlocksInsideExpressions = True

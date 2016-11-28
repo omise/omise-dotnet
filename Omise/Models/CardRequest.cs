@@ -8,8 +8,8 @@ namespace Omise.Models {
         public string PostalCode { get; set; }
 
         [JsonProperty("expiration_month")]
-        public int ExpirationMonth { get; set; }
+        public int? ExpirationMonth { get; set; }
         [JsonProperty("expiration_year")]
-        public int ExpirationYear { get; set; }
+        public int? ExpirationYear { get; set; }
     }
 }
