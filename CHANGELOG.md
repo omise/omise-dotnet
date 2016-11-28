@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.3.0
+
+* Allows `expiration_month` and `expiration_year` to be null.
+
 # v2.2.0
 
 * Adds support for the new Link API.
