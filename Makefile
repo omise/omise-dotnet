@@ -14,7 +14,7 @@ VERSION = $(shell \
 XBUILD        := xbuild /property:Configuration=$(CONFIG)
 MONO          := /usr/local/bin/mono
 NUGET         := .nuget/NuGet.exe
-NUNIT_CONSOLE := packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe
+NUNIT_CONSOLE := packages/NUnit.ConsoleRunner.3.5.0/tools/nunit3-console.exe
 
 # Files
 SRC_FILES      := $(wildcard Omise.Net/**.cs)
@@ -52,7 +52,7 @@ clean:
 
 # Test with NUnit
 .PHONY: test
-test: $(TEST_DLL_FILE) packages $(NUNIT_CONSOLE)
+test: $(TEST_DLL_FILE) packages deps-test
 ifeq ($(strip $(TEST)),)
 	$(MONO) $(NUNIT_CONSOLE) $(TEST_DLL_FILE)
 else
