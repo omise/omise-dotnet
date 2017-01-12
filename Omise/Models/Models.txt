@@ -32,6 +32,7 @@ Charge
   Reversed bool
   Paid bool
   Transaction string
+  SourceOfFund SourceOfFunds source_of_fund
   Card Card
   Refunded long
   Refunds ScopedList<Refund>
@@ -42,6 +43,7 @@ Charge
   Dispute Dispute
   ReturnURI string return_uri
   AuthorizeURI string authorize_uri
+  Offsite OffsiteTypes
 Customer
   DefaultCard string default_card
   Email string

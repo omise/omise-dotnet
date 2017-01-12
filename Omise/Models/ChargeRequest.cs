@@ -8,6 +8,7 @@ namespace Omise.Models {
         public string Currency { get; set; }
         public string Description { get; set; }
         public bool Capture { get; set; }
+        public OffsiteTypes Offsite { get; set; }
 
         [JsonProperty("return_uri")]
         public string ReturnUri { get; set; }

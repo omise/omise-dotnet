@@ -66,6 +66,7 @@ namespace Omise.Tests.Resources {
                 "currency=thb&" +
                 "description=Test+Charge&" +
                 "capture=false&" +
+                "offsite=internet_banking_bay&" +
                 "return_uri=asdf"
             );
         }
@@ -127,7 +128,8 @@ namespace Omise.Tests.Resources {
                 Currency = "thb",
                 Description = "Test Charge",
                 Capture = false,
-                ReturnUri = "asdf"
+                ReturnUri = "asdf",
+                Offsite = OffsiteTypes.InternetBankingBAY
             };
         }
 
