@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+# v2.4.0
+
+* Adds support for the new [Internet Banking](https://www.omise.co/internet-banking-is-now-live)
+  payment channel
+
 # v2.3.0
 
 * Allows `expiration_month` and `expiration_year` to be null.
