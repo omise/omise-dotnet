@@ -93,11 +93,11 @@
     <Compile Include="SearchResult.cs" />
     <Compile Include="Models\SearchScope.cs" />
     <Compile Include="Searchables.cs" />
-    <Compile Include="SnakeCaseEnumConverter.cs" />
     <Compile Include="Resources\LinkResource.cs" />
     <Compile Include="Models\LinkRequest.cs" />
     <Compile Include="Models\OffsiteTypes.cs" />
     <Compile Include="Models\SourceOfFunds.cs" />
+    <Compile Include="EnumValueConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

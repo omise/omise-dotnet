@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -11,13 +12,14 @@ namespace Omise.Tests {
         const string DummyJson =
             @"{""james"":""Howlett"",""scott"":""Summers"",""johny"":""Mnemonic""," +
             @"""with"":""SPACES SPACES"",""created"":""9999-12-31T23:59:59.9999999""," +
-            @"""checked"":true,""enumer"":""twice_thrice"",""nested"":{""field"":""inner""," +
+            @"""checked"":true,""enumer"":""twth"",""enumer2"":""once"",""nullEnum"":null," +
+            @"""nested"":{""field"":""inner""," +
             @"""filters"":{""dictionary"":""should works""}}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
             "with=SPACES+SPACES&created=9999-12-31T23%3A59%3A59Z&" +
-            "checked=true&enumer=twice_thrice&nested%5Bfield%5D=inner&" +
-            "nested%5Bfilters%5D%5Bdictionary%5D=should+works";
+            "checked=true&enumer=twth&enumer2=once&" +
+            "nested%5Bfield%5D=inner&nested%5Bfilters%5D%5Bdictionary%5D=should+works";
 
         Serializer Serializer { get; set; }
         SerializerTestDummy Dummy { get; set; }
@@ -80,10 +82,15 @@ namespace Omise.Tests {
         public bool Checked { get; set; }
         public object FieldIsNull { get; set; }
         public DummyEnum Enumer { get; set; }
+        public DummyEnum Enumer2 { get; set; }
+        public DummyEnum NullEnum { get; set; }
         public NestedKlass Nested { get; set; }
 
         public enum DummyEnum {
+            [EnumMember(Value=null)]
+            None,
             Once,
+            [EnumMember(Value="twth")]
             TwiceThrice,
         }
 
@@ -101,6 +108,8 @@ namespace Omise.Tests {
             Checked = true;
             FieldIsNull = null;
             Enumer = DummyEnum.TwiceThrice;
+            Enumer2 = DummyEnum.Once;
+            NullEnum = DummyEnum.None;
             Nested = new NestedKlass {
                 Field = "inner",
                 Filters = new Dictionary<string, string> {

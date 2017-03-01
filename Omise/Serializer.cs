@@ -4,20 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace Omise {
     public sealed class Serializer {
         readonly JsonSerializer jsonSerializer;
-        readonly SnakeCaseEnumConverter enumConverter;
+        readonly EnumValueConverter enumConverter;
 
         public Serializer() {
-            enumConverter = new SnakeCaseEnumConverter();
+            enumConverter = new EnumValueConverter();
 
+            // TODO: enumConverter will emit `null` for null values but in our case we are
+            //   using NullValueHandling.Ignore and [EnumMember] to handle null enums which
+            //   effectively fools JsonSerializer into thinking the field is not null.
+            //   There is no simple way to fix unless we roll our own complicated
+            //   IContractResolver implementation and whole shebangs related things.
             jsonSerializer = new JsonSerializer();
             jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonSerializer.Converters.Add(enumConverter);
@@ -98,7 +101,9 @@ namespace Omise {
                 }
                 else {
                     var encodedValue = EncodeFormValueToString(value);
-                    yield return new KeyValuePair<string, string>(name, encodedValue);
+                    if (encodedValue != null) {
+                        yield return new KeyValuePair<string, string>(name, encodedValue);
+                    }
                 }
             }
         }
@@ -121,7 +126,7 @@ namespace Omise {
 
             }
             else if (type.IsEnum) {
-                str = enumConverter.ToSerializedString(value);
+                str = enumConverter.ToSerializedString(value.GetType(), value);
 
             }
             else {
