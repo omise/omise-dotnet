@@ -12,7 +12,7 @@ VERSION = $(shell \
 
 # Commands aliases
 XBUILD        := xbuild /property:Configuration=$(CONFIG)
-MONO          := /usr/local/bin/mono
+MONO          := mono
 NUGET         := .nuget/NuGet.exe
 NUNIT_CONSOLE := packages/NUnit.ConsoleRunner.3.5.0/tools/nunit3-console.exe
 
