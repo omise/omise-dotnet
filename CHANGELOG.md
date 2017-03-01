@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.4.1
+
+* Fix enum serialization with `[EnumMember(Value=null)]` not working correctly as intended.
+
 # v2.4.0
 
 * Adds support for the new [Internet Banking](https://www.omise.co/internet-banking-is-now-live)
