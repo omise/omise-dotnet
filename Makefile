@@ -31,8 +31,8 @@ NUGET_PKG_FILE  := Omise.$(VERSION).nupkg
 default: test
 
 # Download dependencies.
-deps: packages
-packages:
+.PHONY: deps deps-test
+deps:
 	$(MONO) $(NUGET) restore
 
 deps-test: $(NUNIT_CONSOLE)
