@@ -85,7 +85,6 @@
     <Compile Include="OmiseTest.cs" />
     <Compile Include="RequesterTest.cs" />
     <Compile Include="SerializerTest.cs" />
-    <Compile Include="SiteExamples.cs" />
     <Compile Include="TestData.cs">
       <DependentUpon>TestData.tt</DependentUpon>
     </Compile>
