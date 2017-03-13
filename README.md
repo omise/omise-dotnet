@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Omise.svg?style=flat-square)](https://www.nuget.org/packages/Omise/)
 [![Build Status](https://img.shields.io/travis/omise/omise-dotnet.svg?style=flat-square)](https://travis-ci.org/omise/omise-dotnet)
-[![Join the chat at https://gitter.im/omise/omise-dotnet](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/omise/omise-dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/omise/omise-dotnet](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/omise/omise-dotnet)
 
 
 **This library has been updated to v2.0, check the v1 branch for the previous version.**
@@ -10,7 +10,7 @@
 Omise.Net is a NuGet package for CLR platforms (.NET/Mono) written in C#. This package
 provides a set of bindings to the [Omise REST API](https://www.omise.co/docs).
 
-Please contact [chakrit@omise.co](mailto:chakrit@omise.co) or
+Please pop onto our [gitter chat](https://gitter.im/omise/omise-dotnet) or contact
 [support@omise.co](mailto:support@omise.co) if you have any question regarding this
 library and the functionality it provides.
 
