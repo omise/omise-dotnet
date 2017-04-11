@@ -41,7 +41,7 @@ $(NUNIT_CONSOLE):
 
 # Builds DLL files.
 build: $(DLL_FILE) $(TEST_DLL_FILE)
-$(DLL_FILE) $(TEST_DLL_FILE): $(SRC_FILES) $(TEST_SRC_FILES) packages
+$(DLL_FILE) $(TEST_DLL_FILE): $(SRC_FILES) $(TEST_SRC_FILES) deps
 	$(XBUILD)
 
 # Clean
@@ -52,7 +52,7 @@ clean:
 
 # Test with NUnit
 .PHONY: test
-test: $(TEST_DLL_FILE) packages deps-test
+test: $(TEST_DLL_FILE) deps deps-test
 ifeq ($(strip $(TEST)),)
 	$(MONO) $(NUNIT_CONSOLE) $(TEST_DLL_FILE)
 else
