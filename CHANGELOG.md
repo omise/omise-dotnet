@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.4.2
+
+* Add newly available search scopes.
+
 # v2.4.1
 
 * Fix enum serialization with `[EnumMember(Value=null)]` not working correctly as intended.
