@@ -12,6 +12,12 @@ namespace Omise.Models {
         Customer,
         [EnumMember(Value = "recipient")]
         Recipient,
+        [EnumMember(Value = "refund")]
+        Refund,
+        [EnumMember(Value = "transfer")]
+        Transfer,
+        [EnumMember(Value = "link")]
+        Link,
     }
 }
 
