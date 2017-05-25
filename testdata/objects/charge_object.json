@@ -6,6 +6,9 @@
   "amount": 100000,
   "currency": "thb",
   "description": null,
+  "metadata": {
+    "hello": "world"
+  },
   "capture": true,
   "authorized": true,
   "paid": true,

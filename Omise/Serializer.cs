@@ -23,7 +23,7 @@ namespace Omise
             //   using NullValueHandling.Ignore and [EnumMember] to handle null enums which
             //   effectively fools JsonSerializer into thinking the field is not null.
             //   There is no simple way to fix unless we roll our own complicated
-            //   IContractResolver implementation and whole shebangs related things.
+            //   IContractResolver implementation and the whole shebangs that comes with it.
             jsonSerializer = new JsonSerializer();
             jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonSerializer.Converters.Add(enumConverter);

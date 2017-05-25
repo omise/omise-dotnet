@@ -6,6 +6,9 @@
   "default_card": "card_test_5086xl7amxfysl0ac5l",
   "email": "john.doe@example.com",
   "description": "John Doe (id: 30)",
+  "metadata": {
+    "hello": "world"
+  },
   "created": "2015-06-02T05:41:47Z",
   "cards": {
     "object": "list",

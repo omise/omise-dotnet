@@ -8,6 +8,7 @@ namespace Omise.Tests.Models
     [TestFixture]
     public class JsonSerializationTest : OmiseTest
     {
+        // TODO: Add Link, Schedule and other things.
         static readonly Type[] modelTypes = {
             typeof(Account),
             typeof(Balance),
