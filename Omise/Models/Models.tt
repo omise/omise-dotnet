@@ -81,7 +81,9 @@ namespace Omise.Models {
             unchecked {
                 int hash = 17;
 <# foreach (var field in model.Fields) { #>
-                hash = hash*23 + <#= field.Name #>.GetHashCode();
+                if (<#= field.Name #> != default(<#= field.Type #>)) {
+                    hash = hash*23 + <#= field.Name #>.GetHashCode();
+                }
 <# } #>
 
                 return hash;
