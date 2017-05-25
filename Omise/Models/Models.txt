@@ -28,6 +28,7 @@ Charge
   Amount long
   Currency string
   Description string
+  Metadata IDictionary<string,object>
   Capture bool
   Authorized bool
   Reversed bool
@@ -49,6 +50,7 @@ Customer
   DefaultCard string default_card
   Email string
   Description string
+  Metadata IDictionary<string,object>
   Cards ScopedList<Card>
 Dispute
   Amount long
