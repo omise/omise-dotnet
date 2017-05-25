@@ -1,4 +1,6 @@
-﻿namespace Omise.Models
+﻿using System.Collections.Generic;
+
+namespace Omise.Models
 {
     public class CreateCustomerRequest : CustomerRequest
     {
@@ -12,6 +14,7 @@
     {
         public string Email { get; set; }
         public string Description { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
         public string Card { get; set; }
     }
 }

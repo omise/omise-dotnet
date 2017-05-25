@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Omise.Models
 {
@@ -9,6 +10,7 @@ namespace Omise.Models
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Description { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
         public bool Capture { get; set; }
         public OffsiteTypes Offsite { get; set; }
 
@@ -24,5 +26,6 @@ namespace Omise.Models
     public class UpdateChargeRequest : Request
     {
         public string Description { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
     }
 }
