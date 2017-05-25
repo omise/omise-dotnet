@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise", "Omise\Omise.csproj", "{E8AB6A3F-B9F8-4C60-A5CF-3102EBF52588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{E0A27C26-C595-40F9-80B8-AE29D4BE0D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omise.Tests", "Omise.Tests\Omise.Tests.csproj", "{7F8F6A17-9038-4AB4-B90B-D6332434EF67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{E8AB6A3F-B9F8-4C60-A5CF-3102EBF52588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8AB6A3F-B9F8-4C60-A5CF-3102EBF52588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8AB6A3F-B9F8-4C60-A5CF-3102EBF52588}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0A27C26-C595-40F9-80B8-AE29D4BE0D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0A27C26-C595-40F9-80B8-AE29D4BE0D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0A27C26-C595-40F9-80B8-AE29D4BE0D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0A27C26-C595-40F9-80B8-AE29D4BE0D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8F6A17-9038-4AB4-B90B-D6332434EF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8F6A17-9038-4AB4-B90B-D6332434EF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8F6A17-9038-4AB4-B90B-D6332434EF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8F6A17-9038-4AB4-B90B-D6332434EF67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

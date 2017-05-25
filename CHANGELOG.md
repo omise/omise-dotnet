@@ -2,8 +2,13 @@
 
 # v2.5.0
 
-* **CHANGED** Now targets .NET Standard 1.2, making this libary no longer compatible with
-  .NET version 4.5.1 and below which are already obsoleted by Microsoft.
+* **CHANGED:** Library now targets .NET Standard 1.2 instead of the PCL.
+* **CHANGED:** Library is now built with Visual Studio for Mac 2017
+* **CHANGED:** Resources with parent-child relationship such as Refunds which are
+  Charge-specific are now accessed through a new `client.Charge("chrg_id")` method.
+* **NEW:** Schedules API.
+* **NEW:** Refund, Transfer and Link can now be searched.
+* **NEW:** Miscellaneous additions to existing APIs.
 
 # v2.4.2
 
