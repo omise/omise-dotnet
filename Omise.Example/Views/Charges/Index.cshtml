@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Charge ID</th>
+					<th>Amount</th>
+					<th>Currency</th>
+				</tr>
+			</thead>
+            <tbody>
+            @foreach (var charge in Model.Charges)
+            {
+                <tr>
+                    <td>@charge.Id</td>
+                    <td>@charge.Amount</td>
+					<td>@charge.Currency</td>
+				</tr>
+            }
+			</tbody>
+		</table>
+	</div>
+</div>
