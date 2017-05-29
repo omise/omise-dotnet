@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.5.1
+
+* **NEW:** `Schedule.charge.description` attribute.
+
 # v2.5.0
 
 * **CHANGED:** Library now targets .NET Standard 1.2 instead of the PCL.
@@ -9,6 +13,7 @@
   Charge-specific are now accessed through a new `client.Charge("chrg_id")` method.
 * **FIXED:** GetHashCode() on models now handles nulls correctly.
 * **NEW:** Schedules API.
+* **NEW:** Forex API.
 * **NEW:** Metadata API for Charge and Customer.
 * **NEW:** Refund, Transfer and Link can now be searched.
 * **NEW:** Miscellaneous additions to existing APIs.
