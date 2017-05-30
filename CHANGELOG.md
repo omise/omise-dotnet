@@ -3,6 +3,7 @@
 # v2.5.1
 
 * **NEW:** `Schedule.charge.description` attribute.
+* **NEW:** [Installments](https://www.omise.co/installment-payment).
 
 # v2.5.0
 

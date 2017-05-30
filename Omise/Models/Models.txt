@@ -46,6 +46,7 @@ Charge
   ReturnURI string return_uri
   AuthorizeURI string authorize_uri
   Offsite OffsiteTypes
+  InstallmentTerms int installment_terms
 Customer
   DefaultCard string default_card
   Email string
