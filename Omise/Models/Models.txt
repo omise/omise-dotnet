@@ -129,6 +129,7 @@ Transfer
   Fee long
   Amount long
   Currency string
+  FailFast bool fail_fast
   FailureCode string failure_code
   FailureMessage string failure_message
   Transaction string

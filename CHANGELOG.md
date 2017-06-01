@@ -4,6 +4,7 @@
 
 * **NEW:** `Schedule.charge.description` attribute.
 * **NEW:** [Installments](https://www.omise.co/installment-payment).
+* **NEW:** Fail-fast transfers.
 
 # v2.5.0
 
