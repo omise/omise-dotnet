@@ -14,7 +14,7 @@ namespace Omise.Models
         public bool Capture { get; set; }
         public OffsiteTypes Offsite { get; set; }
         [JsonProperty("installment_terms")]
-        public int InstallmentTerms { get; set; }
+        public int? InstallmentTerms { get; set; }
         [JsonProperty("return_uri")]
         public string ReturnUri { get; set; }
 

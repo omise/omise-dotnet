@@ -1,5 +1,14 @@
 # CHANGE LOG
 
+# v2.5.3
+
+* **FIXED:** `installment_terms` are sent as `0` when not set. It is now changed to a
+  nullable field.
+
+# v2.5.2
+
+Skipped to maintain parity with omise-java.
+
 # v2.5.1
 
 * **NEW:** `Schedule.charge.description` attribute.
