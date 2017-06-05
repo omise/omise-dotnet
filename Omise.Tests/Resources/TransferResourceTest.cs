@@ -51,7 +51,8 @@ namespace Omise.Tests.Resources
             AssertSerializedRequest(
                 BuildCreateRequest(),
                 @"{""amount"":300000," +
-                @"""recipient"":""recp_test_123""}"
+                @"""recipient"":""recp_test_123""," +
+                @"""fail_fast"":false}"
             );
         }
 
