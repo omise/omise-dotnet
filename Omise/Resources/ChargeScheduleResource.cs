@@ -3,7 +3,7 @@
 namespace Omise.Resources
 {
     public class ChargeScheduleResource : BaseResource<Schedule>,
-    IListable<Charge>
+    IListable<Schedule>
     {
         public ChargeScheduleResource(IRequester requester)
             : base(requester, Endpoint.Api, "/charges/schedules")
