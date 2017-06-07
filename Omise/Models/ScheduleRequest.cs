@@ -23,6 +23,7 @@ namespace Omise.Models
         [JsonProperty("end_date")]
         public DateTime? EndDate { get; set; }
         public ChargeScheduling Charge { get; set; }
+        public TransferScheduling Transfer { get; set; }
 
         public CreateScheduleRequest()
         {

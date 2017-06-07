@@ -11,6 +11,8 @@ namespace Omise.Resources
     IDestroyable<Transfer>,
     ISearchable<Transfer>
     {
+        public readonly TransferScheduleResource Schedules;
+
         public SearchScope Scope => SearchScope.Transfer;
 
         public TransferResource(IRequester requester)
