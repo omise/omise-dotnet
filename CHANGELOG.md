@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+# v2.5.5
+
+* **FIXED:** Calling `.Equals` on model objects to compare it with an object of
+  incompatible types will throw `InvalidCastException`.
+
 # v2.5.4
 
 * **NEW:** Transfer schedule APIs.
