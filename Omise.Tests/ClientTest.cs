@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Omise.Tests.Resources;
 
 namespace Omise.Tests
 {
