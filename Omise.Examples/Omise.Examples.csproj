@@ -91,9 +91,6 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Omise">
-      <HintPath>..\packages\Omise.2.5.4\lib\netstandard1.2\Omise.dll</HintPath>
-    </Reference>
     <Reference Include="Esent.Interop">
       <HintPath>..\packages\ManagedEsent.1.9.4\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
@@ -175,9 +172,16 @@
     <Compile Include="Balances.cs" />
     <Compile Include="Cards.cs" />
     <Compile Include="Charges.cs" />
+    <Compile Include="Charge_Schedules.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omise\Omise.csproj">
+      <Project>{E8AB6A3F-B9F8-4C60-A5CF-3102EBF52588}</Project>
+      <Name>Omise</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.248\build\NuGet.Build.Packaging.targets')" />

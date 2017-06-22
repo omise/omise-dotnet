@@ -18,6 +18,7 @@ namespace Omise.Examples
             new Balances(),
             new Cards(),
             new Charges(),
+            new Charge_Schedules(),
         };
 
         public static void Main(string[] args)
