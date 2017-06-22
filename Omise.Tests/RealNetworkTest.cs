@@ -46,6 +46,34 @@ namespace Omise.Tests
             WriteLine($"updated charge: ${charge.Id}");
         }
 
+        [Test]
+        public async Task TestGettingUsedToken()
+        {
+            var client = buildTestClient();
+            var token = await client.Tokens.Create(new CreateTokenRequest
+            {
+                Name = "Omise Co., Ltd.",
+                Number = "4242424242424242",
+                SecurityCode = "123",
+                ExpirationMonth = 10,
+                ExpirationYear = 2029,
+            });
+            WriteLine($"created token: {token.Id}");
+
+            token = await client.Tokens.Get(token.Id);
+            WriteLine($"retrieved token: {token.Id}");
+
+            var customer = await client.Customers.Create(new CreateCustomerRequest
+            {
+                Email = "test@omise.co",
+                Card = token.Id,
+            });
+            WriteLine($"created customer: {customer.Id}");
+
+            token = await client.Tokens.Get(token.Id);
+            WriteLine($"retrieved token again: {token.Id}");
+        }
+
         Client buildTestClient()
         {
             return new Client(pkey: PublicKey, skey: SecretKey);
