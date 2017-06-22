@@ -9,7 +9,7 @@ namespace Omise.Models
         public Weekdays[] Weekdays { get; set; }
         [JsonProperty("days_of_month")]
         public int[] DaysOfMonth { get; set; }
-        [JsonProperty("weekdays_of_month")]
+        [JsonProperty("weekday_of_month")]
         public String WeekdayOfMonth { get; set; }
     }
 
