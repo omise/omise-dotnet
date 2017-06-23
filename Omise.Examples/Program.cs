@@ -20,6 +20,7 @@ namespace Omise.Examples
             new Charges(),
             new Charge_Schedules(),
             new Customers(),
+            new Disputes(),
         };
 
         public static void Main(string[] args)
