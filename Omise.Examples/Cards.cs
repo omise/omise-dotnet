@@ -9,7 +9,7 @@ namespace Omise.Examples
     {
         public async Task List_List()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
+            var customerId = "cust_test_566l662pnj240tgz61k";
             var cards = await Client.Customer(customerId).Cards.GetList();
             foreach (var card in cards)
             {
@@ -19,16 +19,16 @@ namespace Omise.Examples
 
         public async Task Retrieve_Retrieve()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
-            var cardId = "card_test_566l6auu43iwkd8o802";
+            var customerId = "cust_test_566l662pnj240tgz61k";
+            var cardId = "card_test_566l661ty3h314lpl9e";
             var card = await Client.Customer(customerId).Cards.Get(cardId);
             Console.WriteLine($"last digits: {card.LastDigits}");
         }
 
         public async Task Update_Update()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
-            var cardId = "card_test_566l6auu43iwkd8o802";
+            var customerId = "cust_test_566l662pnj240tgz61k";
+            var cardId = "card_test_566l661ty3h314lpl9e";
             var card = await Client.Customer(customerId).Cards.Update(cardId, new UpdateCardRequest
             {
                 Name = "Somchai Prasert",

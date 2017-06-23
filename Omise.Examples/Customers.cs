@@ -15,7 +15,7 @@ namespace Omise.Examples
 
         public async Task Retrieve_Retrieve()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
+            var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Get(customerId);
             Console.WriteLine($"customer's email: {customer.Email}");
         }
@@ -54,7 +54,7 @@ namespace Omise.Examples
 
         public async Task Update_Update()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
+            var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
             {
                 Email = "john.smith@example.com",
@@ -72,7 +72,7 @@ namespace Omise.Examples
         {
             var token = await RetrieveToken();
 
-            var customerId = "cust_test_566l6avift4j5hsikc6";
+            var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
             {
                 Card = token.Id
@@ -83,9 +83,22 @@ namespace Omise.Examples
 
         public async Task Destroy_Destroy()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
-            var customer = await Client.Customers.Destroy(customerId);
+            var customer = RetrieveCustomer();
+            customer = await Client.Customers.Destroy(customer.Id);
             Console.WriteLine($"destroy customer: {customer.Id}");
+        }
+
+        protected Customer RetrieveCustomer()
+        {
+            return Client.Customers.Create(new CreateCustomerRequest
+            {
+                Email = "john.doe@example.com",
+                Description = "wat",
+                Metadata = new Dictionary<string, object>
+                {
+                    { "hello", "world" }
+                }
+            }).Result;
         }
     }
 }

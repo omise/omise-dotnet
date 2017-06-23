@@ -38,10 +38,10 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
-        public async Task Create_Cteate_With_Card()
+        public async Task Create_Create_With_Card()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
-            var cardId = "card_test_566l6auu43iwkd8o802";
+            var customerId = "cust_test_5665swqhhb3mioax1y7";
+            var cardId = "card_test_5665swpkm6tv47htmuv";
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,
@@ -55,7 +55,7 @@ namespace Omise.Examples
 
         public async Task Create_Create_With_Customer()
         {
-            var customerId = "cust_test_566l6avift4j5hsikc6";
+            var customerId = "cust_test_5665swqhhb3mioax1y7";
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,
