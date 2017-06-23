@@ -19,6 +19,7 @@ namespace Omise.Examples
             new Cards(),
             new Charges(),
             new Charge_Schedules(),
+            new Customers(),
         };
 
         public static void Main(string[] args)
@@ -64,7 +65,7 @@ namespace Omise.Examples
         static void extractExample(Example example)
         {
             var name = example.GetType().Name;
-            var filename = $"../../{name}.cs"; // pwd is ./bin/config/
+            var filename = $"../../{name}.cs"; // pwd is ./bin/Debug/ (or Release)
 
             Console.WriteLine($"extracting: {name}");
             var source = File.ReadAllText(filename);
