@@ -4,6 +4,7 @@
 
 * **FIXED:** Calling `.Equals` on model objects to compare it with an object of
   incompatible types will throw `InvalidCastException`.
+* **UPDATED:** Newtonsoft.JSON to 10.0.3 and NuGet.Build.Packaging to 0.1.323
 
 # v2.5.4
 
