@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Text.RegularExpressions;
+using Omise.Examples.Examples;
 
 namespace Omise.Examples
 {
@@ -21,6 +22,12 @@ namespace Omise.Examples
             new Charge_Schedules(),
             new Customers(),
             new Disputes(),
+            new Events(),
+            new Forex(),
+            new Links(),
+            new Occurrences(),
+            new Recipients(),
+            new Refunds(),
         };
 
         public static void Main(string[] args)
