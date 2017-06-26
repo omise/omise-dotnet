@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Text.RegularExpressions;
 using Omise.Examples.Examples;
 
 namespace Omise.Examples
@@ -28,6 +28,11 @@ namespace Omise.Examples
             new Occurrences(),
             new Recipients(),
             new Refunds(),
+            new Schedules(),
+            new Search(),
+            new Tokens(),
+            new Transactions(),
+            new Transfers(),
             new Transfer_Schedules(),
         };
 
