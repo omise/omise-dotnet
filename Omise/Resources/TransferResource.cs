@@ -18,6 +18,7 @@ namespace Omise.Resources
         public TransferResource(IRequester requester)
             : base(requester, Endpoint.Api, "/transfers")
         {
+            Schedules = new TransferScheduleResource(requester);
         }
     }
 }

@@ -7,6 +7,7 @@
 * **FIXED:** Forex API was added, but not bound to the `Client`.
 * **FIXED:** Occurrences listings on ScheduleSpecificResource has wrong listable type.
   Should implements `IListable`.
+* **FIXED:** Transfer schedule resource was not properly initialized on the base resource.
 * **UPDATED:** Newtonsoft.JSON to 10.0.3 and NuGet.Build.Packaging to 0.1.323
 
 # v2.5.4
