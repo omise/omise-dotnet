@@ -66,7 +66,7 @@ namespace Omise.Examples
         static void extractExample(Example example)
         {
             var name = example.GetType().Name;
-            var filename = $"../../{name}.cs"; // pwd is ./bin/Debug/ (or Release)
+            var filename = $"../../Examples/{name}.cs"; // pwd is ./bin/Debug/ (or Release)
 
             Console.WriteLine($"extracting: {name}");
             var source = File.ReadAllText(filename);
