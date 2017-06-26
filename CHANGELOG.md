@@ -4,10 +4,12 @@
 
 * **FIXED:** Calling `.Equals` on model objects to compare it with an object of
   incompatible types will throw `InvalidCastException`.
-* **FIXED:** Forex API was added, but not bound to the `Client`.
+* **FIXED:** Forex API was added, but not accessible from the `Client`.
 * **FIXED:** Occurrences listings on ScheduleSpecificResource has wrong listable type.
   Should implements `IListable`.
 * **FIXED:** Transfer schedule resource was not properly initialized on the base resource.
+* **FIXED:** Transfer schedule params send a default of 0.0 when not set. Amount and
+  PercentageOfBalance properties are now nullable.
 * **UPDATED:** Newtonsoft.JSON to 10.0.3 and NuGet.Build.Packaging to 0.1.323
 
 # v2.5.4

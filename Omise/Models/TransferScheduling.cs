@@ -7,8 +7,8 @@ namespace Omise.Models
     public class TransferScheduling
     {
         public string Recipient { get; set; }
-        public long Amount { get; set; }
+        public long? Amount { get; set; }
         [JsonProperty("percentage_of_balance")]
-        public float PercentageOfBalance { get; set; }
+        public float? PercentageOfBalance { get; set; }
     }
 }
