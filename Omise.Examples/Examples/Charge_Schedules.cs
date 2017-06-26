@@ -33,13 +33,13 @@ namespace Omise.Examples
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
-                Every = 2,
+                Every = 1,
                 Period = SchedulePeriod.Week,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
                 On = new ScheduleOnRequest
                 {
-                    Weekdays = new[] { Weekdays.Monday }
+                    Weekdays = new[] { Weekdays.Monday, Weekdays.Friday }
                 },
                 Charge = new ChargeScheduling
                 {
@@ -56,13 +56,13 @@ namespace Omise.Examples
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
-                Every = 2,
+                Every = 3,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
                 On = new ScheduleOnRequest
                 {
-                    DaysOfMonth = new[] { 1 }
+                    DaysOfMonth = new[] { 1, 10, 15 }
                 },
                 Charge = new ChargeScheduling
                 {
@@ -79,7 +79,7 @@ namespace Omise.Examples
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
-                Every = 2,
+                Every = 1,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
