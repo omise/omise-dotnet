@@ -28,6 +28,7 @@ namespace Omise.Examples
             new Occurrences(),
             new Recipients(),
             new Refunds(),
+            new Transfer_Schedules(),
         };
 
         public static void Main(string[] args)

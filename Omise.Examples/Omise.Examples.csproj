@@ -180,6 +180,7 @@
     <Compile Include="Examples\Occurrences.cs" />
     <Compile Include="Examples\Recipients.cs" />
     <Compile Include="Examples\Refunds.cs" />
+    <Compile Include="Examples\Transfer_Schedules.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
