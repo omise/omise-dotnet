@@ -14,6 +14,7 @@ namespace Omise
         public readonly CustomerResource Customers;
         public readonly DisputeResource Disputes;
         public readonly EventResource Events;
+        public readonly ForexResource Forex;
         public readonly LinkResource Links;
         public readonly OccurrenceResource Occurrences;
         public readonly RecipientResource Recipients;
@@ -50,6 +51,7 @@ namespace Omise
             Customers = new CustomerResource(requester);
             Disputes = new DisputeResource(requester);
             Events = new EventResource(requester);
+            Forex = new ForexResource(requester);
             Links = new LinkResource(requester);
             Occurrences = new OccurrenceResource(requester);
             Recipients = new RecipientResource(requester);
