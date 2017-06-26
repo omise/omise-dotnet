@@ -6,9 +6,30 @@ namespace Omise.Examples
 {
     public class Transfer_Schedules : Example
     {
-        public async Task Create_Create_Daily()
+        public async Task List_List()
+        {
+            var schedules = await Client
+                .Transfers
+                .Schedules
+                .GetList(order: Ordering.ReverseChronological);
+
+            Console.WriteLine($"total transfer schedules: {schedules.Total}");
+        }
+
+        public async Task List_Recipient_List()
         {
             var recipientId = "recp_test_58fkcajowtvy3pax0ak";
+            var schedules = await Client
+                .Recipient(recipientId)
+                .Schedules
+                .GetList(order: Ordering.ReverseChronological);
+
+            Console.WriteLine($"transfer schedule for recipients: {schedules.Total}");
+        }
+
+        public async Task Create_Create_Daily()
+        {
+            var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
                 Every = 2,
@@ -18,7 +39,7 @@ namespace Omise.Examples
                 Transfer = new TransferScheduling
                 {
                     Amount = 200000,
-                    Recipient = recipientId,
+                    Recipient = recipient.Id,
                 }
             });
 
@@ -27,7 +48,7 @@ namespace Omise.Examples
 
         public async Task Create_Create_Weekly()
         {
-            var recipientId = "recp_test_58fkcajowtvy3pax0ak";
+            var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
                 Every = 1,
@@ -41,7 +62,7 @@ namespace Omise.Examples
                 Transfer = new TransferScheduling
                 {
                     PercentageOfBalance = 75.0f,
-                    Recipient = recipientId,
+                    Recipient = recipient.Id,
                 }
             });
 
@@ -50,7 +71,7 @@ namespace Omise.Examples
 
         public async Task Create_Create_Monthly()
         {
-            var recipientId = "recp_test_58fkcajowtvy3pax0ak";
+            var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
                 Every = 3,
@@ -63,7 +84,7 @@ namespace Omise.Examples
                 },
                 Transfer = new TransferScheduling
                 {
-                    Recipient = recipientId,
+                    Recipient = recipient.Id,
                 }
             });
 
@@ -72,7 +93,7 @@ namespace Omise.Examples
 
         public async Task Create_Create_Monthly_By_Week()
         {
-            var recipientId = "recp_test_58fkcajowtvy3pax0ak";
+            var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
                 Every = 1,
@@ -85,11 +106,54 @@ namespace Omise.Examples
                 },
                 Transfer = new TransferScheduling
                 {
-                    Recipient = recipientId,
+                    Recipient = recipient.Id,
                 },
             });
 
             Console.WriteLine($"created schedule: {schedule.Id}");
+        }
+
+        public async Task Destroy_Destroy()
+        {
+            var schedule = RetrieveTransferSchedule();
+            schedule = await Client.Schedules.Destroy(schedule.Id);
+            Console.WriteLine($"destroyed schedule: {schedule.Id} ({schedule.Deleted})");
+        }
+
+        protected Schedule RetrieveTransferSchedule()
+        {
+            return Client.Schedules.Create(new CreateScheduleRequest
+            {
+                Every = 1,
+                Period = SchedulePeriod.Month,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddYears(2),
+                On = new ScheduleOnRequest
+                {
+                    WeekdayOfMonth = "2nd_monday"
+                },
+                Transfer = new TransferScheduling
+                {
+                    Recipient = RetrieveRecipient().Id,
+                },
+            }).Result;
+        }
+
+        protected Recipient RetrieveRecipient()
+        {
+            return Client.Recipients.Create(new CreateRecipientRequest
+            {
+                Name = "John Doe",
+                Email = "john.doe@example.com",
+                Description = "John Doe (user: 30)",
+                Type = RecipientType.Individual,
+                BankAccount = new BankAccountRequest
+                {
+                    Brand = "kbank",
+                    Number = "7777777777",
+                    Name = "Dohn Joe",
+                },
+            }).Result;
         }
     }
 }
