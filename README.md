@@ -6,10 +6,11 @@
 
 **This library has been updated to v2.0, check the v1 branch for the previous version.**
 
-Omise.Net is a NuGet package for CLR platforms (.NET/Mono) written in C#. This package
-provides a set of bindings to the [Omise REST API](https://www.omise.co/docs).
+Omise.Net is a NuGet package for CLR platforms (.NET Standard) written in C#.  This
+library is developed on OS X using Visual Studio for Mac.  This package provides a set of
+bindings to the [Omise REST API](https://www.omise.co/docs).
 
-Please pop onto our [gitter chat](https://gitter.im/omise/omise-dotnet) or contact
+Please pop onto our [community forum](https://forum.omise.co) or contact
 [support@omise.co](mailto:support@omise.co) if you have any question regarding this
 library and the functionality it provides.
 
@@ -18,19 +19,11 @@ library and the functionality it provides.
 You will need to obtain the Omise public and secret API keys in order to use this package.
 You can obtain them by [registering on our website](https://dashboard.omise.co/signup).
 
-The library targets the Portable Class Library (PCL) 4.0 (Profile147) and should works on
-the following list of platforms:
+**PCL support is removed since v2.5, the library now targets .NET Standard instead.**
 
-* .NET Framework 4.0.3 or later
-* Windows Phone 8 or later
-* Silverlight 5
-* Windows 8
-* Windows Phone Silverlight 8
-* Windows Store apps (Windows 8)
-* Xamarin.Android
-* Xamarin.iOS Classic
-* Xamarin.iOS Unified
-* Xamarin.Mac Unified
+This library targets the .NET Standard version 1.2. For an updated list of supported
+platforms and compatibility with projects that target the PCL, please consult 
+[Official Microsoft's Documentation on .NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
 # INSTALLATION
 
