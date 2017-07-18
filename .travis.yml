@@ -1,3 +1,4 @@
 language: csharp
+dist: wily
 script:
   - make test
