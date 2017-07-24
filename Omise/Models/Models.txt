@@ -81,6 +81,25 @@ Occurrence
   Status OccurrenceStatus
   Message String
   Result String
+Receipt
+  Number string
+  CustomerName string customer_name
+  CustomerAddress string customer_address
+  CustomerTaxId string customer_tax_id
+  CustomerEmail string customer_email
+  CustomerStatementName string customer_statement_name
+  CompanyName string company_name
+  CompanyAddress string company_address
+  CompanyTaxId string company_tax_id
+  ChargeFee long charge_fee
+  VoidedFee long voided_fee
+  TransferFee long transfer_fee
+  Subtotal long
+  Vat long
+  Wht long
+  Total long
+  CreditNote bool credit_note
+  Currency string
 Recipient
   Verified bool
   Active bool
