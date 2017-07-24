@@ -17,6 +17,7 @@ namespace Omise
         public readonly ForexResource Forex;
         public readonly LinkResource Links;
         public readonly OccurrenceResource Occurrences;
+        public readonly ReceiptResource Receipts;
         public readonly RecipientResource Recipients;
         public readonly RefundResource Refunds;
         public readonly ScheduleResource Schedules;
@@ -54,6 +55,7 @@ namespace Omise
             Forex = new ForexResource(requester);
             Links = new LinkResource(requester);
             Occurrences = new OccurrenceResource(requester);
+            Receipts = new ReceiptResource(requester);
             Recipients = new RecipientResource(requester);
             Refunds = new RefundResource(requester);
             Schedules = new ScheduleResource(requester);

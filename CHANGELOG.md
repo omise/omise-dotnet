@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.5.6
+
+* **NEW:** Receipts API.
+
 # v2.5.5
 
 * **FIXED:** Calling `.Equals` on model objects to compare it with an object of
