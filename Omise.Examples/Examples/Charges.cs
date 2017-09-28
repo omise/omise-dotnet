@@ -32,7 +32,7 @@ namespace Omise.Examples
                 Metadata = new Dictionary<string, object>
                 {
                     { "order_id", "123" }
-                }
+                },
             });
 
             Console.WriteLine($"created charge: {charge.Id}");

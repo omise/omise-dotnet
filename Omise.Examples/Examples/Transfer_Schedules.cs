@@ -27,7 +27,7 @@ namespace Omise.Examples
             Console.WriteLine($"transfer schedule for recipients: {schedules.Total}");
         }
 
-        public async Task Create_Create_Daily()
+        public async Task Create_Create_Daily_Fixed_Amount()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -46,7 +46,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Weekly()
+        public async Task Create_Create_Weekly_Percentage()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -69,7 +69,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly()
+        public async Task Create_Create_Monthly_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -91,7 +91,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly_By_Week()
+        public async Task Create_Create_Monthly_By_Week_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
