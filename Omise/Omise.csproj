@@ -12,11 +12,10 @@
     <PackageReleaseNotes>See https://github.com/omise/omise-dotnet/blob/master/CHANGELOG.md for changes shipping in each version of the library.</PackageReleaseNotes>
     <Title>Omise</Title>
     <Description>C# bindings to the Omise API (https://www.omise.co/docs)</Description>
-    <PackOnBuild>true</PackOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.323" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
 </Project>
