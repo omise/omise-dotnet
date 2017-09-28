@@ -6,7 +6,7 @@ namespace Omise.Examples
 {
     public class Transfer_Schedules : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var schedules = await Client
                 .Transfers
@@ -16,7 +16,7 @@ namespace Omise.Examples
             Console.WriteLine($"total transfer schedules: {schedules.Total}");
         }
 
-        public async Task List_Recipient_List()
+        public async Task List__Recipient_List()
         {
             var recipientId = "recp_test_58fkcajowtvy3pax0ak";
             var schedules = await Client
@@ -27,7 +27,7 @@ namespace Omise.Examples
             Console.WriteLine($"transfer schedule for recipients: {schedules.Total}");
         }
 
-        public async Task Create_Create_Daily_Fixed_Amount()
+        public async Task Create__Create_Daily_Fixed_Amount()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -46,7 +46,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Weekly_Percentage()
+        public async Task Create__Create_Weekly_Percentage()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -69,7 +69,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly_Whole_Balance()
+        public async Task Create__Create_Monthly_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -91,7 +91,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly_By_Week_Whole_Balance()
+        public async Task Create__Create_Monthly_By_Week_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
@@ -113,7 +113,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var schedule = RetrieveTransferSchedule();
             schedule = await Client.Schedules.Destroy(schedule.Id);

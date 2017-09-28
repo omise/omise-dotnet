@@ -5,7 +5,7 @@ namespace Omise.Examples
 {
     public class Balances : Example
     {
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var balance = await Client.Balance.Get();
             Console.WriteLine($"available balance: {balance.Available}");

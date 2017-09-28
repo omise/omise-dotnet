@@ -103,7 +103,7 @@ namespace Omise.Examples
             var klass = example.GetType().Name;
             var methodName = method.Identifier.ToString();
 
-            var parts = methodName.Split(new[] { '_' }, 2);
+            var parts = methodName.Split(new[] { "__" }, 2, StringSplitOptions.None);
             var operation = parts[0];
             var name = parts[1];
 

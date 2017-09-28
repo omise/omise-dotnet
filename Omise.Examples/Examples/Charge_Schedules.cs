@@ -6,7 +6,7 @@ namespace Omise.Examples
 {
     public class Charge_Schedules : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var schedules = await Client
                 .Charges
@@ -16,9 +16,9 @@ namespace Omise.Examples
             Console.WriteLine($"total charge schedules: {schedules.Total}");
         }
 
-        public async Task List_Customer_List()
+        public async Task Customer_List__Customer_List()
         {
-            var customerId = "cust_test_566l67k7etfyl0k49mi";
+            var customerId = "cust_test_566l67k7etfyl0k49msi";
             var schedules = await Client
                 .Customer(customerId)
                 .Schedules
@@ -27,7 +27,7 @@ namespace Omise.Examples
             Console.WriteLine($"total schedule for customer: {schedules.Total}");
         }
 
-        public async Task Create_Create_Daily()
+        public async Task Create__Create_Daily()
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
@@ -50,7 +50,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Weekly()
+        public async Task Create__Create_Weekly()
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
@@ -73,7 +73,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly()
+        public async Task Create__Create_Monthly()
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
@@ -96,7 +96,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Create_Create_Monthly_By_Week()
+        public async Task Create__Create_Monthly_By_Week()
         {
             var schedule = await Client.Schedules.Create(new CreateScheduleRequest
             {
@@ -119,7 +119,7 @@ namespace Omise.Examples
             Console.WriteLine($"created schedule: {schedule.Id}");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var schedule = RetrieveSchedule();
             schedule = await Client.Schedules.Destroy(schedule.Id);

@@ -7,20 +7,20 @@ namespace Omise.Examples
 {
     public class Customers : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var customers = await Client.Customers.GetList(order: Ordering.Chronological);
             Console.WriteLine($"total customers: {customers.Total}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Get(customerId);
             Console.WriteLine($"customer's email: {customer.Email}");
         }
 
-        public async Task Create_Create_Simple()
+        public async Task Create__Create_Simple()
         {
             var customer = await Client.Customers.Create(new CreateCustomerRequest
             {
@@ -35,7 +35,7 @@ namespace Omise.Examples
             Console.WriteLine($"created customer: {customer.Id}");
         }
 
-        public async Task Create_Attach_Card()
+        public async Task Create__Attach_Card()
         {
             var token = await RetrieveToken();
             var customer = await Client.Customers.Create(new CreateCustomerRequest
@@ -52,7 +52,7 @@ namespace Omise.Examples
             Console.WriteLine($"created customer: {customer.Id}");
         }
 
-        public async Task Update_Update()
+        public async Task Update__Update()
         {
             var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
@@ -68,7 +68,7 @@ namespace Omise.Examples
             Console.WriteLine($"updated customer: {customer.Id}");
         }
 
-        public async Task Update_Attach_Card()
+        public async Task Update__Attach_Card()
         {
             var token = await RetrieveToken();
 
@@ -81,7 +81,7 @@ namespace Omise.Examples
             Console.WriteLine($"updated customer: {customer.Id}");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var customer = RetrieveCustomer();
             customer = await Client.Customers.Destroy(customer.Id);

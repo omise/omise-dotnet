@@ -8,13 +8,13 @@ namespace Omise.Examples.Examples
 {
     public class Recipients : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var recipients = await Client.Recipients.GetList(order: Ordering.ReverseChronological);
             Console.WriteLine($"total recipients: {recipients.Total}");
         }
 
-        public async Task Create_Create()
+        public async Task Create__Create()
         {
             var recipient = await Client.Recipients.Create(new CreateRecipientRequest
             {
@@ -33,14 +33,14 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"created recipient: {recipient.Id}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
             var recipient = await Client.Recipients.Get(recipientId);
             Console.WriteLine($"recipient account last digits: {recipient.BankAccount.LastDigits}");
         }
 
-        public async Task Update_Update()
+        public async Task Update__Update()
         {
             var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
             var recipient = await Client.Recipients.Update(recipientId, new UpdateRecipientRequest
@@ -52,7 +52,7 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"updated recipient: {recipient.Id}");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var recipient = RetrieveRecipient();
             recipient = await Client.Recipients.Destroy(recipient.Id);

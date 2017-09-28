@@ -6,7 +6,7 @@ namespace Omise.Examples.Examples
 {
     public class Tokens : Example
     {
-        public async Task Create_Create()
+        public async Task Create__Create()
         {
             var token = await Client.Tokens.Create(new CreateTokenRequest
             {
@@ -20,7 +20,7 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"created token: {token.Id}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var tokenId = RetrieveTokenId();
             var token = await Client.Tokens.Get(tokenId);

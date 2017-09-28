@@ -7,7 +7,7 @@ namespace Omise.Examples
 {
     public class Cards : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var customerId = "cust_test_566l662pnj240tgz61k";
             var cards = await Client.Customer(customerId).Cards.GetList();
@@ -17,7 +17,7 @@ namespace Omise.Examples
             }
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var customerId = "cust_test_566l662pnj240tgz61k";
             var cardId = "card_test_566l661ty3h314lpl9e";
@@ -25,7 +25,7 @@ namespace Omise.Examples
             Console.WriteLine($"last digits: {card.LastDigits}");
         }
 
-        public async Task Update_Update()
+        public async Task Update__Update()
         {
             var customerId = "cust_test_566l662pnj240tgz61k";
             var cardId = "card_test_566l661ty3h314lpl9e";
@@ -39,7 +39,7 @@ namespace Omise.Examples
             Console.WriteLine($"updated card name: {card.Id} ({card.Deleted})");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var customer = RetrieveCustomerWithCard();
             var card = await Client.Customer(customer.Id).Cards.Destroy(customer.DefaultCard);

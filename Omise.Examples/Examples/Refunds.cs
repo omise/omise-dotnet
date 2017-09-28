@@ -6,7 +6,7 @@ namespace Omise.Examples.Examples
 {
     public class Refunds : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var chargeId = "chrg_test_58fkc7mrh99fnymu214";
             var refunds = await Client
@@ -17,7 +17,7 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"refunds for this charge: {refunds.Total}");
         }
 
-        public async Task Create_Create()
+        public async Task Create__Create()
         {
             var charge = RetrieveCharge();
             var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
@@ -28,7 +28,7 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"created refund: {refund.Id}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var chargeId = "chrg_test_58fkc7mrh99fnymu214";
             var refundId = "rfnd_test_58fkcxsbyxodfei74kt";

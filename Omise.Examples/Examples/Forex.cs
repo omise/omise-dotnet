@@ -6,7 +6,7 @@ namespace Omise.Examples.Examples
 {
     public class Forex : Example
     {
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var rate = await Client.Forex.Get("usd");
             Console.WriteLine($"conversion from USD to THB: {rate.Rate}");

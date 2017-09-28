@@ -6,13 +6,13 @@ namespace Omise.Examples.Examples
 {
     public class Transfers : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var transfers = await Client.Transfers.GetList(order: Ordering.ReverseChronological);
             Console.WriteLine($"total transfers: {transfers.Total}");
         }
 
-        public async Task Create_Create()
+        public async Task Create__Create()
         {
             var recipientId = "recp_test_560ph01r04muv1a28ze";
             var transfer = await Client.Transfers.Create(new CreateTransferRequest
@@ -25,14 +25,14 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"created transfer: {transfer.Id}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var transferId = "trsf_test_560ph0660cgiag1xjeh";
             var transfer = await Client.Transfers.Get(transferId);
             Console.WriteLine($"transfer amount: {transfer.Amount}");
         }
 
-        public async Task Update_Update()
+        public async Task Update__Update()
         {
             var transferId = "trsf_test_57po4c8r5hr41flvcw7";
             var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
@@ -43,7 +43,7 @@ namespace Omise.Examples.Examples
             Console.WriteLine($"updated transfer: {transfer.Id}");
         }
 
-        public async Task Destroy_Destroy()
+        public async Task Destroy__Destroy()
         {
             var transfer = RetrieveTransfer();
             transfer = await Client.Transfers.Destroy(transfer.Id);

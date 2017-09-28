@@ -8,20 +8,20 @@ namespace Omise.Examples
 {
     public class Charges : Example
     {
-        public async Task List_List()
+        public async Task List__List()
         {
             var charges = await Client.Charges.GetList(order: Ordering.Chronological);
             Console.WriteLine($"total charges: {charges.Total}");
         }
 
-        public async Task Retrieve_Retrieve()
+        public async Task Retrieve__Retrieve()
         {
             var chargeId = "chrg_test_58e1ybdog1y8f5z97l8";
             var charge = await Client.Charges.Get(chargeId);
             Console.WriteLine($"charge amount: {charge.Amount}");
         }
 
-        public async Task Create_Create_With_Token()
+        public async Task Create__Create_With_Token()
         {
             var token = await RetrieveToken();
             var charge = await Client.Charges.Create(new CreateChargeRequest
@@ -38,7 +38,7 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
-        public async Task Create_Create_With_Card()
+        public async Task Create__Create_With_Card()
         {
             var customerId = "cust_test_5665swqhhb3mioax1y7";
             var cardId = "card_test_5665swpkm6tv47htmuv";
@@ -53,7 +53,7 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
-        public async Task Create_Create_With_Customer()
+        public async Task Create__Create_With_Customer()
         {
             var customerId = "cust_test_5665swqhhb3mioax1y7";
             var charge = await Client.Charges.Create(new CreateChargeRequest
@@ -66,21 +66,21 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
-        public async Task Capture_Capture()
+        public async Task Capture__Capture()
         {
             var charge = RetrieveUncapturedCharge();
             charge = await Client.Charges.Capture(charge.Id);
             Console.WriteLine($"captured charge: ({charge.Paid}) {charge.Id}");
         }
 
-        public async Task Reverse_Reverse()
+        public async Task Reverse__Reverse()
         {
             var charge = RetrieveUncapturedCharge();
             charge = await Client.Charges.Reverse(charge.Id);
             Console.WriteLine($"reversed charge: ({charge.Reversed}) {charge.Id}");
         }
 
-        public async Task Update_Update()
+        public async Task Update__Update()
         {
             var charge = RetrieveUncapturedCharge();
             charge = await Client.Charges.Update(charge.Id, new UpdateChargeRequest
