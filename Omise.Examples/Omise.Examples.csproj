@@ -175,13 +175,13 @@
     <Compile Include="Examples\Customers.cs" />
     <Compile Include="Examples\Disputes.cs" />
     <Compile Include="Examples\Events.cs" />
-    <Compile Include="Examples\Forex.cs" />
+    <Compile Include="Examples\Forexes.cs" />
     <Compile Include="Examples\Links.cs" />
     <Compile Include="Examples\Occurrences.cs" />
     <Compile Include="Examples\Recipients.cs" />
     <Compile Include="Examples\Refunds.cs" />
     <Compile Include="Examples\Schedules.cs" />
-    <Compile Include="Examples\Search.cs" />
+    <Compile Include="Examples\Searches.cs" />
     <Compile Include="Examples\Tokens.cs" />
     <Compile Include="Examples\Transactions.cs" />
     <Compile Include="Examples\Transfers.cs" />

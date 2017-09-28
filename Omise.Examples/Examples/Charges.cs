@@ -80,7 +80,7 @@ namespace Omise.Examples
             Console.WriteLine($"reversed charge: ({charge.Reversed}) {charge.Id}");
         }
 
-        public async Task Update__Update()
+        public async Task Update__Update_Description()
         {
             var charge = RetrieveUncapturedCharge();
             charge = await Client.Charges.Update(charge.Id, new UpdateChargeRequest

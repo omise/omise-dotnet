@@ -4,9 +4,9 @@ using System;
 
 namespace Omise.Examples.Examples
 {
-    public class Search : Example
+    public class Searches : Example
     {
-        public async Task Retrieve__Retrieve()
+        public async Task Search__Search()
         {
             var charges = await Client.Charges.Search(
                 query: "TSUNAMI",

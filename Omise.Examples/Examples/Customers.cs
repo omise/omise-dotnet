@@ -52,7 +52,7 @@ namespace Omise.Examples
             Console.WriteLine($"created customer: {customer.Id}");
         }
 
-        public async Task Update__Update()
+        public async Task Update__Update_Simple()
         {
             var customerId = "cust_test_5665s8r7it17q4wo78a";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest

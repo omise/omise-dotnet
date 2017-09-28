@@ -8,6 +8,15 @@ namespace Omise.Examples.Examples
     {
         public async Task List__List()
         {
+            var refunds = await Client
+                .Refunds
+                .GetList(order: Ordering.ReverseChronological);
+
+            Console.WriteLine($"refunds so far: {refunds.Total}");
+        }
+
+        public async Task Charge_List__Charge_List()
+        {
             var chargeId = "chrg_test_58fkc7mrh99fnymu214";
             var refunds = await Client
                 .Charge(chargeId)

@@ -16,9 +16,9 @@ namespace Omise.Examples
             Console.WriteLine($"total charge schedules: {schedules.Total}");
         }
 
-        public async Task Customer_List__Customer_List()
+        public async Task Customer_List__List()
         {
-            var customerId = "cust_test_566l67k7etfyl0k49msi";
+            var customerId = "cust_test_59gbtlbjldnc8651pmp";
             var schedules = await Client
                 .Customer(customerId)
                 .Schedules
@@ -43,7 +43,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = "cust_test_59gbtlbjldnc8651pmp",
                 }
             });
 
@@ -66,7 +66,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = "cust_test_59gbtlbjldnc8651pmp",
                 }
             });
 
@@ -89,7 +89,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = "cust_test_59gbtlbjldnc8651pmp",
                 }
             });
 
@@ -112,7 +112,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = "cust_test_59gbtlbjldnc8651pmp",
                 }
             });
 
@@ -142,7 +142,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = "cust_test_59gbtlbjldnc8651pmp",
                 }
             }).Result;
         }

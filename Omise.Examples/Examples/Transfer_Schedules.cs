@@ -16,7 +16,7 @@ namespace Omise.Examples
             Console.WriteLine($"total transfer schedules: {schedules.Total}");
         }
 
-        public async Task List__Recipient_List()
+        public async Task Recipient_List__List()
         {
             var recipientId = "recp_test_58fkcajowtvy3pax0ak";
             var schedules = await Client
@@ -111,13 +111,6 @@ namespace Omise.Examples
             });
 
             Console.WriteLine($"created schedule: {schedule.Id}");
-        }
-
-        public async Task Destroy__Destroy()
-        {
-            var schedule = RetrieveTransferSchedule();
-            schedule = await Client.Schedules.Destroy(schedule.Id);
-            Console.WriteLine($"destroyed schedule: {schedule.Id} ({schedule.Deleted})");
         }
 
         protected Schedule RetrieveTransferSchedule()

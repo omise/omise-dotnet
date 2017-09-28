@@ -14,6 +14,17 @@ namespace Omise.Examples.Examples
 
         public async Task Create__Create()
         {
+            var transfer = await Client.Transfers.Create(new CreateTransferRequest
+            {
+                Amount = 200000,
+                FailFast = true,
+            });
+
+            Console.WriteLine($"created transfer: {transfer.Id}");
+        }
+
+        public async Task Create__Create_With_Recipient()
+        {
             var recipientId = "recp_test_560ph01r04muv1a28ze";
             var transfer = await Client.Transfers.Create(new CreateTransferRequest
             {

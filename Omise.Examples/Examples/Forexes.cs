@@ -4,7 +4,7 @@ using System;
 
 namespace Omise.Examples.Examples
 {
-    public class Forex : Example
+    public class Forexes : Example
     {
         public async Task Retrieve__Retrieve()
         {
