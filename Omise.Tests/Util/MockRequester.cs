@@ -9,6 +9,8 @@ namespace Omise.Tests.Util
     {
         readonly IList<RequestAttempt> requestAttempts;
 
+        public string APIVersion { get; set; }
+
         public object ResponseObject { get; set; }
         public IList<RequestAttempt> Requests
         {

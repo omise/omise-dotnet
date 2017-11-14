@@ -15,9 +15,10 @@ namespace Omise.Tests
         [Test]
         public void TestCtor()
         {
-            Assert.That(() => new Requester(null), Throws.ArgumentNullException);
+            Assert.That(() => new Requester(null, Environments.Production), Throws.ArgumentNullException);
+            Assert.That(() => new Requester(DummyCredentials, null), Throws.ArgumentNullException);
 
-            var req = new Requester(DummyCredentials);
+            var req = new Requester(DummyCredentials, Environments.Production);
             Assert.That(req.Credentials, Is.EqualTo(DummyCredentials));
         }
 
@@ -44,7 +45,31 @@ namespace Omise.Tests
                 Assert.That(apiVersion, Is.EqualTo("2000-02-01"));
             });
 
-            var requester = new Requester(DummyCredentials, roundtripper, "2000-02-01");
+            var requester = new Requester(
+                DummyCredentials,
+                Environments.Production,
+                roundtripper,
+                "2000-02-01"
+            );
+            await requester.Request<object>(Endpoint.Api, "GET", "/test");
+
+            Assert.That(roundtripper.RoundtripCount, Is.EqualTo(1));
+        }
+
+        [Test, MaxTime(1000)]
+        public async Task TestRequestWithStagingEnvironment()
+        {
+            var roundtripper = new MockRoundtripper((req) =>
+            {
+                Assert.That(req.RequestUri.Host, Is.EqualTo("api-staging.omise.co"));
+            });
+
+            var requester = new Requester(
+                DummyCredentials,
+                Environments.Staging,
+                roundtripper,
+                "2000-02-01"
+            );
             await requester.Request<object>(Endpoint.Api, "GET", "/test");
 
             Assert.That(roundtripper.RoundtripCount, Is.EqualTo(1));
@@ -118,7 +143,11 @@ namespace Omise.Tests
 
         IRequester BuildRequester(IRoundtripper roundtripper)
         {
-            return new Requester(DummyCredentials, roundtripper);
+            return new Requester(
+                DummyCredentials,
+                Environments.Production,
+                roundtripper
+            );
         }
 
         class DummyPayload
