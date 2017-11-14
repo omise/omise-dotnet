@@ -7,6 +7,7 @@ namespace Omise.Tests.Resources
     public abstract class ResourceTest<TResource> : OmiseTest
     {
         protected MockRequester Requester { get; private set; }
+        protected IEnvironment Environment { get; private set; }
         protected TResource Resource { get; private set; }
         protected Serializer Serializer { get; private set; }
 
@@ -18,8 +19,13 @@ namespace Omise.Tests.Resources
             Requester = new MockRequester();
             Resource = BuildResource(Requester);
             Serializer = new Serializer();
+            Environment = Environments.Production;
 
-            var fixtures = new Requester(DummyCredentials, new FixturesRoundtripper());
+            var fixtures = new Requester(
+                DummyCredentials,
+                Environments.Production,
+                new FixturesRoundtripper()
+            );
             Fixtures = BuildResource(fixtures);
         }
 
@@ -31,11 +37,13 @@ namespace Omise.Tests.Resources
             params object[] uriArgs
         )
         {
-            var uri = string.Format(uriFormat, uriArgs);
-
             var attempt = Requester.LastRequest;
-            Assert.AreEqual(method, attempt.Method, method);
-            Assert.AreEqual(uri, attempt.Endpoint.ApiPrefix + attempt.Path);
+
+            var uri = string.Format(uriFormat, uriArgs);
+            var expectedUri = Environment.ResolveEndpoint(attempt.Endpoint) + attempt.Path;
+
+            Assert.AreEqual(method, attempt.Method);
+            Assert.AreEqual(uri, expectedUri);
         }
 
         protected void AssertSerializedRequest<TRequest>(

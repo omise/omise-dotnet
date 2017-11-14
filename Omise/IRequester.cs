@@ -4,6 +4,8 @@ namespace Omise
 {
     public interface IRequester
     {
+        string APIVersion { get; set; }
+
         Task<TResult> Request<TResult>(
             Endpoint endpoint,
             string method,
