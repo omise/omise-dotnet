@@ -78,6 +78,7 @@ namespace Omise.Tests.Resources
                 @"""description"":""Test Charge""," +
                 @"""capture"":false," +
                 @"""offsite"":""internet_banking_bay""," +
+                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""}"
             );
         }
@@ -149,7 +150,8 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect
             };
         }
 

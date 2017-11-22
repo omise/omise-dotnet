@@ -36,6 +36,7 @@ Charge
   Transaction string
   SourceOfFund SourceOfFunds source_of_fund
   Card Card
+  Source PaymentSource
   Refunded long
   Refunds ScopedList<Refund>
   FailureCode string failure_code
@@ -81,6 +82,18 @@ Occurrence
   Status OccurrenceStatus
   Message String
   Result String
+PaymentReference
+  OmiseTaxId string
+  ReferenceNumber1 string reference_number_1
+  ReferenceNumber2 string reference_number_2
+  Barcode string
+  ExpiresAt DateTime expires_at
+PaymentSource
+  Type OffsiteTypes
+  Flow FlowTypes
+  Amount long
+  Currency string
+  References PaymentReference references
 Receipt
   Number string
   CustomerName string customer_name

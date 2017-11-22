@@ -16,6 +16,17 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Models\Models.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Models.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Models\Models.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

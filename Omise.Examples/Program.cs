@@ -26,6 +26,7 @@ namespace Omise.Examples
             new Forexes(),
             new Links(),
             new Occurrences(),
+            new PaymentSources(),
             new Recipients(),
             new Refunds(),
             new Schedules(),

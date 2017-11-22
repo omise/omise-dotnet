@@ -32,11 +32,11 @@ namespace Omise
                 .Aggregate("", (acc, pair) => $"{acc} {pair.Key}/{pair.Value}")
                 .Trim();
 
-            Credentials = creds;
-            APIVersion = apiVersion;
+            this.Credentials = creds;
+            this.APIVersion = apiVersion;
 
-            Roundtripper = roundtripper ?? new DefaultRoundtripper();
-            Serializer = new Serializer();
+            this.Roundtripper = roundtripper ?? new DefaultRoundtripper();
+            this.Serializer = new Serializer();
         }
 
         IDictionary<string, string> buildRequestMetadata()

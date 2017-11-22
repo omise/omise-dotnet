@@ -21,6 +21,7 @@ namespace Omise.Examples
             Console.WriteLine($"charge amount: {charge.Amount}");
         }
 
+        #region Cards
         public async Task Create__Create_With_Token()
         {
             var token = await RetrieveToken();
@@ -108,5 +109,55 @@ namespace Omise.Examples
 
             return charge;
         }
+        #endregion
+
+        #region PaymentSources
+
+        #region Internet Banking
+        public async Task Create__Create_With_Source_InternetBanking()
+        {
+            var source = await RetrieveSourceInternetBanking();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 1000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                Source = source,
+                Metadata = new Dictionary<string, object>
+                {
+                    { "invoice_id", "ABC1234" }
+                }
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"redirect customer to {charge.AuthorizeURI}");
+        }
+
+        // TODO: handle the return from the bank
+        #endregion
+
+        #region Bill Payment
+        public async Task Create__Create_With_Source_BillPayment()
+        {
+            var source = await RetrieveSourceBillPayment();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 1000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.BillPaymentTescoLotus,
+                Flow = FlowTypes.Offline,
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"Barcode for customer: {charge.}");
+        }
+        #endregion
+
+        #region Alipay Wallet
+        #endregion
+
+        #endregion
     }
 }
