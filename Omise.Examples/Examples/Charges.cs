@@ -151,11 +151,8 @@ namespace Omise.Examples
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
-            Console.WriteLine($"Barcode for customer: {charge.}");
+            Console.WriteLine($"Barcode for customer: {charge.Source.References.Barcode}");
         }
-        #endregion
-
-        #region Alipay Wallet
         #endregion
 
         #endregion

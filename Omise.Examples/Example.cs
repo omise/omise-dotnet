@@ -53,18 +53,5 @@ namespace Omise.Examples
             });
         }
 
-        // Creates a new PaymentSource called RetrieveSourceAlipay, as sources can be created client-side (as well as server-side).
-        protected async Task<PaymentSource> RetrieveSourceAlipay()
-        {
-            return await Client.Sources.Create(new CreatePaymentSourceRequest
-            {
-                Amount = 1000,
-                Currency = "thb",
-                Barcode = "21001111222233334444",
-                Invoice = "Test1234",
-                Type = OffsiteTypes.WalletAlipay,
-                Flow = FlowTypes.Offline
-            });
-        }
     }
 }

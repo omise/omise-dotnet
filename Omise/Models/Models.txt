@@ -94,6 +94,7 @@ PaymentSource
   Amount long
   Currency string
   References PaymentReference references
+  Barcode string
 Receipt
   Number string
   CustomerName string customer_name

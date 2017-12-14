@@ -8,5 +8,6 @@ namespace Omise.Models
         public FlowTypes Flow { get; set; }
         public long Amount { get; set; }
         public string Currency { get; set; }
+        public string Barcode { get; set; }
     }
 }
