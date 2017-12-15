@@ -119,11 +119,12 @@ namespace Omise.Examples
             var source = await RetrieveSourceInternetBanking();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
                 Source = source,
+                ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
                 {
                     { "invoice_id", "ABC1234" }
@@ -143,7 +144,7 @@ namespace Omise.Examples
             var source = await RetrieveSourceBillPayment();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Offsite = OffsiteTypes.BillPaymentTescoLotus,
                 Flow = FlowTypes.Offline,

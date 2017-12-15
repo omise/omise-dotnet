@@ -6,14 +6,15 @@ namespace Omise.Examples
 {
     public abstract class Example
     {
-        public const string OMISE_PKEY = "pkey_test_5948irkcbyvkleqd18w";
-        public const string OMISE_SKEY = "skey_test_59267l89d7wijuys94e";
+        public const string OMISE_PKEY = "pkey_test_59yny1yz6bxq5gfkbf1";
+        public const string OMISE_SKEY = "skey_test_59yny2e94mwhyr1lp7h";
 
         protected Client Client { get; private set; }
 
         public Example()
         {
-            Client = new Client(OMISE_PKEY, OMISE_SKEY);
+            this.Client = new Client(OMISE_PKEY, OMISE_SKEY);
+            this.Client.APIVersion = "2017-11-02";
         }
 
         // actually creates a new token, named RetrieveToken() so merchant read
@@ -34,7 +35,7 @@ namespace Omise.Examples
         {
             return await Client.Sources.Create(new CreatePaymentSourceRequest
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Type = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect
@@ -46,7 +47,7 @@ namespace Omise.Examples
         {
             return await Client.Sources.Create(new CreatePaymentSourceRequest
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Type = OffsiteTypes.BillPaymentTescoLotus,
                 Flow = FlowTypes.Offline
