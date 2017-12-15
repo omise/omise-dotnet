@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Links : Example
     {

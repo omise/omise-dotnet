@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Diagnostics;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Recipients : Example
     {

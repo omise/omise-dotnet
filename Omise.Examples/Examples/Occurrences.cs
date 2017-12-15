@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Occurrences : Example
     {

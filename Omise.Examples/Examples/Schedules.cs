@@ -2,7 +2,7 @@
 using Omise.Models;
 using System.Threading.Tasks;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Schedules : Example
     {

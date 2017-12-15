@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Searches : Example
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Events : Example
     {

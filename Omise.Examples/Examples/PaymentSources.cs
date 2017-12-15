@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Omise.Models;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class PaymentSources : Example
     {
@@ -11,7 +11,7 @@ namespace Omise.Examples.Examples
         {
             var source = await Client.Sources.Create(new CreatePaymentSourceRequest
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Type = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect
@@ -38,7 +38,7 @@ namespace Omise.Examples.Examples
         {
             var source = await Client.Sources.Create(new CreatePaymentSourceRequest
             {
-                Amount = 1000,
+                Amount = 2000,
                 Currency = "thb",
                 Type = OffsiteTypes.BillPaymentTescoLotus,
                 Flow = FlowTypes.Offline
