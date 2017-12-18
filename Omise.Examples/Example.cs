@@ -14,7 +14,6 @@ namespace Omise.Examples
         public Example()
         {
             this.Client = new Client(OMISE_PKEY, OMISE_SKEY);
-            this.Client.APIVersion = "2017-11-02";
         }
 
         // actually creates a new token, named RetrieveToken() so merchant read

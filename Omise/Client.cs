@@ -6,6 +6,9 @@ namespace Omise
 {
     public class Client
     {
+        // Default to the latest API Version.
+        private string apiVersion = "2017-11-02";
+
         readonly Requester requester;
 
         public readonly AccountResource Account;
@@ -45,7 +48,7 @@ namespace Omise
         public Client(Credentials credentials)
         {
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
-            requester = new Requester(credentials);
+            requester = new Requester(credentials, null, this.apiVersion);
 
             Account = new AccountResource(requester);
             Balance = new BalanceResource(requester);
