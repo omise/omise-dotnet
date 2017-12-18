@@ -16,7 +16,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var chargeId = "chrg_test_58e1ybdog1y8f5z97l8";
+            var chargeId = TestInfo.CHARGE_ID;
             var charge = await Client.Charges.Get(chargeId);
             Console.WriteLine($"charge amount: {charge.Amount}");
         }
@@ -41,8 +41,8 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Card()
         {
-            var customerId = "cust_test_5665swqhhb3mioax1y7";
-            var cardId = "card_test_5665swpkm6tv47htmuv";
+            var customerId = TestInfo.CUST_ID_2;
+            var cardId = TestInfo.CARD_ID_2;
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,
@@ -56,7 +56,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Customer()
         {
-            var customerId = "cust_test_5665swqhhb3mioax1y7";
+            var customerId = TestInfo.CUST_ID_2;
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,

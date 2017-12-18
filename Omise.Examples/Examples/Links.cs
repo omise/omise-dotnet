@@ -42,7 +42,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var link = await Client.Links.Get("link_test_56bkhnfd97h7eieu0hx");
+            var link = await Client.Links.Get(TestInfo.LINK_ID);
             Console.WriteLine($"link paid?: {link.Used} {link.Charges.FirstOrDefault()?.Id})");
         }
     }

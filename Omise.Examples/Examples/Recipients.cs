@@ -35,14 +35,14 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
+            var recipientId = TestInfo.RECIPIENT_ID;
             var recipient = await Client.Recipients.Get(recipientId);
             Console.WriteLine($"recipient account last digits: {recipient.BankAccount.LastDigits}");
         }
 
         public async Task Update__Update()
         {
-            var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
+            var recipientId = TestInfo.RECIPIENT_ID;
             var recipient = await Client.Recipients.Update(recipientId, new UpdateRecipientRequest
             {
                 Name = "Dohn Joe",

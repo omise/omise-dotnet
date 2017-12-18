@@ -15,7 +15,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var ev = await Client.Events.Get("evnt_test_58fffxu2gn498pb03pd");
+            var ev = await Client.Events.Get(TestInfo.EVENT_ID);
             Console.WriteLine($"event action: {ev.Key} {ev.Data.Id}");
         }
     }

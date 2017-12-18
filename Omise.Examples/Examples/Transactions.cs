@@ -14,7 +14,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var transactionId = "trxn_test_58fmj4hion95mndc96d";
+            var transactionId = TestInfo.TRANSACTION_ID;
             var transaction = await Client.Transactions.Get(transactionId);
             Console.WriteLine($"transaction amount: {transaction.Amount}");
         }

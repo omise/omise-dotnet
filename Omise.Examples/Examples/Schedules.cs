@@ -14,7 +14,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var scheduleId = "schd_test_58fmj4fpu2zpp2m8s8c";
+            var scheduleId = TestInfo.SCHEDULE_ID;
             var schedule = await Client.Schedules.Get(scheduleId);
             Console.WriteLine($"charges made on schedule: {schedule.Occurrences.Total}");
         }
@@ -42,7 +42,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = TestInfo.CUST_ID_2
                 }
             }).Result;
         }

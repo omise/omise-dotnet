@@ -45,21 +45,16 @@ namespace Omise.Examples
         public async Task Update__Update()
         {
             var dispute = RetrieveOpenDispute();
-
-            if (dispute != null)
+            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
             {
-                dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
-                {
-                    Message = "Hello, World!"
-                });
-
-                Console.WriteLine($"updated dispute: {dispute.Id}");
-            }
+                Message = "Hello, World!"
+            });
+            Console.WriteLine($"updated dispute: {dispute.Id}");
         }
 
         protected Dispute RetrieveOpenDispute()
         {
-            return Client.Disputes.OpenDisputes.GetList().Result.Count == 0 ? null : Client.Disputes.OpenDisputes.GetList().Result.First();
+            return Client.Disputes.OpenDisputes.GetList().Result.First();
         }
     }
 }

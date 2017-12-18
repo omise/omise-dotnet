@@ -17,7 +17,7 @@ namespace Omise.Examples
 
         public async Task Charge_List__Charge_List()
         {
-            var chargeId = "chrg_test_58fkc7mrh99fnymu214";
+            var chargeId = TestInfo.CHARGE_ID;
             var refunds = await Client
                 .Charge(chargeId)
                 .Refunds
@@ -39,8 +39,8 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var chargeId = "chrg_test_58fkc7mrh99fnymu214";
-            var refundId = "rfnd_test_58fkcxsbyxodfei74kt";
+            var chargeId = TestInfo.CHARGE_ID;
+            var refundId = TestInfo.REFUND_ID;
             var refund = await Client.Charge(chargeId).Refunds.Get(refundId);
             Console.WriteLine($"refunded: {refund.Amount}");
         }
