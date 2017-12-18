@@ -73,7 +73,20 @@ namespace Omise.Examples
         {
             Console.WriteLine($"running: {method.Name}");
             var result = method.Invoke(example, null) as Task;
-            result?.Wait();
+            try
+            {
+                result?.Wait();
+            }
+            catch (Exception ex)
+            {
+                // Get the actual exception.
+                Exception exInner = ex;
+                while (exInner.Message == "One or more errors occurred.")
+                {
+                    exInner = exInner.InnerException;
+                }
+                Console.WriteLine($"Error running {method.Name} task - {exInner.Message}");
+            }
         }
 
         static void extractExample(Example example)
