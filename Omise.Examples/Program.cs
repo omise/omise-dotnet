@@ -79,13 +79,12 @@ namespace Omise.Examples
             }
             catch (Exception ex)
             {
-                // Get the actual exception.
-                Exception exInner = ex;
-                while (exInner.Message == "One or more errors occurred.")
+                // Find the Omise exception.
+                while (ex.GetType() != typeof(OmiseError))
                 {
-                    exInner = exInner.InnerException;
+                    ex = ex.InnerException;
                 }
-                Console.WriteLine($"Error running {method.Name} task - {exInner.Message}");
+                Console.WriteLine($"Error running {method.Name} task - {ex.Message}");
             }
         }
 
