@@ -16,6 +16,7 @@ namespace Omise.Examples
 
         public const string CHARGE_ID = "chrg_test_5aass1sz7sdgaoi6zg8";
         public const string REFUND_ID = "rfnd_test_5aasqmj6fqvfoacm7xl";
+        public const string DISPUTE_ID = "dspt_test_5abyfl6u9ri3ndo8gzv";
 
         public const string TRANSACTION_ID = "trxn_test_5aasqmjqoyd3cpq1koo";
 
