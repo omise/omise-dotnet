@@ -18,7 +18,7 @@ namespace Omise.Examples
 
         public async Task Recipient_List__List()
         {
-            var recipientId = TestInfo.RECIPIENT_ID;
+            var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
             var schedules = await Client
                 .Recipient(recipientId)
                 .Schedules

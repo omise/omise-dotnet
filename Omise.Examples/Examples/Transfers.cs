@@ -25,7 +25,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Recipient()
         {
-            var recipientId = TestInfo.RECIPIENT_ID;
+            var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
             var transfer = await Client.Transfers.Create(new CreateTransferRequest
             {
                 Amount = 200000,
@@ -38,14 +38,14 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var transferId = TestInfo.TRANSFER_ID;
+            var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
             var transfer = await Client.Transfers.Get(transferId);
             Console.WriteLine($"transfer amount: {transfer.Amount}");
         }
 
         public async Task Update__Update()
         {
-            var transferId = TestInfo.TRANSFER_ID;
+            var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
             var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
             {
                 Amount = 733137
@@ -67,7 +67,7 @@ namespace Omise.Examples
             {
                 Amount = 200000,
                 FailFast = true,
-                Recipient = TestInfo.RECIPIENT_ID,
+                Recipient = ExampleInfo.RECIPIENT_ID,
             }).Result;
         }
     }

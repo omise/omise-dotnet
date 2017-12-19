@@ -8,7 +8,7 @@ namespace Omise.Examples
     {
         public async Task List__List()
         {
-            var scheduleId = TestInfo.SCHEDULE_ID;
+            var scheduleId = ExampleInfo.SCHEDULE_ID; // "schd_test_58fiiv0w9m9tl9xnd55";
             var occurrences = await Client
                 .Schedule(scheduleId)
                 .Occurrences
@@ -19,7 +19,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var occurrenceId = TestInfo.OCCURRENCE_ID;
+            var occurrenceId = ExampleInfo.OCCURRENCE_ID; // "occu_test_58965eudn25i1gpip0w";
             var occurrence = await Client.Occurrences.Get(occurrenceId);
             Console.WriteLine($"this occurrence is on: {occurrence.ScheduleDate}");
         }

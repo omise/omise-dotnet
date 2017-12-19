@@ -6,8 +6,8 @@ namespace Omise.Examples
 {
     public abstract class Example
     {
-        public const string OMISE_PKEY = TestInfo.OMISE_PKEY;
-        public const string OMISE_SKEY = TestInfo.OMISE_SKEY;
+        public const string OMISE_PKEY = ExampleInfo.OMISE_PKEY;
+        public const string OMISE_SKEY = ExampleInfo.OMISE_SKEY;
 
         protected Client Client { get; private set; }
 

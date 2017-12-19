@@ -37,7 +37,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var disputeId = TestInfo.DISPUTE_ID;
+            var disputeId = ExampleInfo.DISPUTE_ID; // "dspt_test_5abyfl6u9ri3ndo8gzv";
             var dispute = await Client.Disputes.Get(disputeId);
             Console.WriteLine($"disputed amount: {dispute.Amount}");
         }

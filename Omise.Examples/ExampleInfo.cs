@@ -1,7 +1,7 @@
 ﻿
 namespace Omise.Examples
 {
-    public class TestInfo
+    public class ExampleInfo
     {
         public const string OMISE_PKEY = "pkey_test_58lg7fy0ogtrvz99dj8";
         public const string OMISE_SKEY = "skey_test_58lg7fy0zebkfskz1zf";

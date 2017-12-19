@@ -220,7 +220,7 @@
     <Compile Include="Examples\Transfers.cs" />
     <Compile Include="Examples\Transfer_Schedules.cs" />
     <Compile Include="Examples\PaymentSources.cs" />
-    <Compile Include="TestInfo.cs" />
+    <Compile Include="ExampleInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

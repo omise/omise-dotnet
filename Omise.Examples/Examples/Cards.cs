@@ -9,7 +9,7 @@ namespace Omise.Examples
     {
         public async Task List__List()
         {
-            var customerId = TestInfo.CUST_ID;
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
             var cards = await Client.Customer(customerId).Cards.GetList();
             foreach (var card in cards)
             {
@@ -19,16 +19,16 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var customerId = TestInfo.CUST_ID;
-            var cardId = TestInfo.CARD_ID;
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
+            var cardId = ExampleInfo.CARD_ID; // "card_test_5aaswlbxdrzhoornpfe";
             var card = await Client.Customer(customerId).Cards.Get(cardId);
             Console.WriteLine($"last digits: {card.LastDigits}");
         }
 
         public async Task Update__Update()
         {
-            var customerId = TestInfo.CUST_ID;
-            var cardId = TestInfo.CARD_ID;
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
+            var cardId = ExampleInfo.CARD_ID; // "card_test_5aaswlbxdrzhoornpfe";
             var card = await Client.Customer(customerId).Cards.Update(cardId, new UpdateCardRequest
             {
                 Name = "Somchai Prasert",
@@ -49,7 +49,7 @@ namespace Omise.Examples
         protected Customer RetrieveCustomerWithCard()
         {
             var token = RetrieveToken().Result;
-            var customerId = TestInfo.CUST_ID_2;
+            var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
             var customer = Client.Customers.Update(customerId, new UpdateCustomerRequest
             {
                 Card = token.Id
