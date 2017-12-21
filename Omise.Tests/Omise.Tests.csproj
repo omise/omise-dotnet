@@ -117,7 +117,6 @@
     <Compile Include="KeyTest.cs" />
     <Compile Include="OmiseTest.cs" />
     <Compile Include="CredentialsTest.cs" />
-    <Compile Include="EndpointTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="RequesterTest.cs" />
     <Compile Include="SerializerTest.cs" />

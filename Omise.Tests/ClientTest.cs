@@ -12,7 +12,7 @@ namespace Omise.Tests
             var pkey = "pkey_test_123";
             var skey = "skey_test_123";
 
-            Assert.Throws<ArgumentException>(() => new Client(null, null));
+            Assert.Throws<ArgumentNullException>(() => new Client(null, null));
             Assert.DoesNotThrow(() => new Client(pkey, null));
             Assert.DoesNotThrow(() => new Client(null, skey));
             Assert.DoesNotThrow(() => new Client(pkey, skey));

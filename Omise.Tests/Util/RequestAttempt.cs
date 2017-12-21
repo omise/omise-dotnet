@@ -16,11 +16,6 @@ namespace Omise.Tests.Util
 
         public Type ResultType { get; internal set; }
         public object Result { get; internal set; }
-
-        public string Uri
-        {
-            get { return Endpoint.ApiPrefix + Path; }
-        }
     }
 }
 

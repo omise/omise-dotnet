@@ -18,25 +18,29 @@ namespace Omise
         public string APIVersion { get; set; }
 
         public IRoundtripper Roundtripper { get; private set; }
+        public IEnvironment Environment { get; private set; }
         public Serializer Serializer { get; private set; }
 
         public Requester(
             Credentials creds,
+            IEnvironment env,
             IRoundtripper roundtripper = null,
             string apiVersion = null
         )
         {
             if (creds == null) throw new ArgumentNullException(nameof(creds));
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             userAgent = buildRequestMetadata()
                 .Aggregate("", (acc, pair) => $"{acc} {pair.Key}/{pair.Value}")
                 .Trim();
 
-            this.Credentials = creds;
-            this.APIVersion = apiVersion;
+            Credentials = creds;
+            APIVersion = apiVersion;
+            Environment = env;
 
-            this.Roundtripper = roundtripper ?? new DefaultRoundtripper();
-            this.Serializer = new Serializer();
+            Roundtripper = roundtripper ?? new DefaultRoundtripper();
+            Serializer = new Serializer();
         }
 
         IDictionary<string, string> buildRequestMetadata()
@@ -69,12 +73,12 @@ namespace Omise
             where TPayload : class
             where TResult : class
         {
-
-            var key = endpoint.KeySelector(Credentials);
+            var apiPrefix = Environment.ResolveEndpoint(endpoint);
+            var key = Environment.SelectKey(endpoint, Credentials);
 
             // creates initial request
             // TODO: Dispose request.
-            var request = Roundtripper.CreateRequest(method, endpoint.ApiPrefix + path);
+            var request = Roundtripper.CreateRequest(method, apiPrefix + path);
             request.Headers.Add("Authorization", key.EncodeForAuthorizationHeader());
             request.Headers.Add("User-Agent", userAgent);
 
