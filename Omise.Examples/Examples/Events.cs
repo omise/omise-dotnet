@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Events : Example
     {
@@ -15,7 +15,7 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var ev = await Client.Events.Get("evnt_test_58fffxu2gn498pb03pd");
+            var ev = await Client.Events.Get(ExampleInfo.EVENT_ID);
             Console.WriteLine($"event action: {ev.Key} {ev.Data.Id}");
         }
     }

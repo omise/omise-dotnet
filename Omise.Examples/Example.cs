@@ -6,14 +6,14 @@ namespace Omise.Examples
 {
     public abstract class Example
     {
-        public const string OMISE_PKEY = "pkey_test_59yny1yz6bxq5gfkbf1";
-        public const string OMISE_SKEY = "skey_test_59yny2e94mwhyr1lp7h";
+        public const string OMISE_PKEY = ExampleInfo.OMISE_PKEY;
+        public const string OMISE_SKEY = ExampleInfo.OMISE_SKEY;
 
         protected Client Client { get; private set; }
 
         public Example()
         {
-            Client = new Client(OMISE_PKEY, OMISE_SKEY);
+            this.Client = new Client(OMISE_PKEY, OMISE_SKEY);
         }
 
         // actually creates a new token, named RetrieveToken() so merchant read
@@ -28,5 +28,30 @@ namespace Omise.Examples
                 ExpirationYear = DateTime.Now.Year + 10,
             });
         }
+
+        // Creates a new PaymentSource called RetrieveSourceInternetBanking, as sources can be created client-side (as well as server-side).
+        protected async Task<PaymentSource> RetrieveSourceInternetBanking()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceBillPayment, as sources can be created client-side (as well as server-side).
+        protected async Task<PaymentSource> RetrieveSourceBillPayment()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.BillPaymentTescoLotus,
+                Flow = FlowTypes.Offline
+            });
+        }
+
     }
 }

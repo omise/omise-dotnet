@@ -15,7 +15,7 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var customerId = "cust_test_5665s8r7it17q4wo78a";
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
             var customer = await Client.Customers.Get(customerId);
             Console.WriteLine($"customer's email: {customer.Email}");
         }
@@ -54,7 +54,7 @@ namespace Omise.Examples
 
         public async Task Update__Update_Simple()
         {
-            var customerId = "cust_test_5665s8r7it17q4wo78a";
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
             {
                 Email = "john.smith@example.com",
@@ -72,7 +72,7 @@ namespace Omise.Examples
         {
             var token = await RetrieveToken();
 
-            var customerId = "cust_test_5665s8r7it17q4wo78a";
+            var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
             var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
             {
                 Card = token.Id

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Transactions : Example
     {
@@ -14,7 +14,7 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var transactionId = "trxn_test_58fmj4hion95mndc96d";
+            var transactionId = ExampleInfo.TRANSACTION_ID; // "trxn_test_5aasqmjqoyd3cpq1koo";
             var transaction = await Client.Transactions.Get(transactionId);
             Console.WriteLine($"transaction amount: {transaction.Amount}");
         }

@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Diagnostics;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Recipients : Example
     {
@@ -35,14 +35,14 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
+            var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
             var recipient = await Client.Recipients.Get(recipientId);
             Console.WriteLine($"recipient account last digits: {recipient.BankAccount.LastDigits}");
         }
 
         public async Task Update__Update()
         {
-            var recipientId = "recp_test_57po4c5obpi7rrxhtyl";
+            var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
             var recipient = await Client.Recipients.Update(recipientId, new UpdateRecipientRequest
             {
                 Name = "Dohn Joe",

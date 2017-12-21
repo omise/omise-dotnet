@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Omise.Examples.Examples;
 
 namespace Omise.Examples
 {
@@ -26,6 +25,7 @@ namespace Omise.Examples
             new Forexes(),
             new Links(),
             new Occurrences(),
+            new PaymentSources(),
             new Recipients(),
             new Refunds(),
             new Schedules(),
@@ -73,7 +73,19 @@ namespace Omise.Examples
         {
             Console.WriteLine($"running: {method.Name}");
             var result = method.Invoke(example, null) as Task;
-            result?.Wait();
+            try
+            {
+                result?.Wait();
+            }
+            catch (Exception ex)
+            {
+                // Find the Omise exception.
+                while (ex.GetType() != typeof(OmiseError))
+                {
+                    ex = ex.InnerException;
+                }
+                Console.WriteLine($"Error running {method.Name} task - {ex.Message}");
+            }
         }
 
         static void extractExample(Example example)

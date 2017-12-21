@@ -18,7 +18,7 @@ namespace Omise.Examples
 
         public async Task Customer_List__List()
         {
-            var customerId = "cust_test_59gbtlbjldnc8651pmp";
+            var customerId = ExampleInfo.CUST_ID_3; // "cust_test_5aasqjmq7glo1c0pedk";
             var schedules = await Client
                 .Customer(customerId)
                 .Schedules
@@ -43,7 +43,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_59gbtlbjldnc8651pmp",
+                    Customer = ExampleInfo.CUST_ID_3,
                 }
             });
 
@@ -66,7 +66,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_59gbtlbjldnc8651pmp",
+                    Customer = ExampleInfo.CUST_ID_3,
                 }
             });
 
@@ -89,7 +89,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_59gbtlbjldnc8651pmp",
+                    Customer = ExampleInfo.CUST_ID_3,
                 }
             });
 
@@ -112,7 +112,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_59gbtlbjldnc8651pmp",
+                    Customer = ExampleInfo.CUST_ID_3,
                 }
             });
 
@@ -142,7 +142,7 @@ namespace Omise.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_59gbtlbjldnc8651pmp",
+                    Customer = ExampleInfo.CUST_ID_3,
                 }
             }).Result;
         }

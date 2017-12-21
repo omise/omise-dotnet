@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Links : Example
     {
@@ -42,7 +42,7 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var link = await Client.Links.Get("link_test_56bkhnfd97h7eieu0hx");
+            var link = await Client.Links.Get(ExampleInfo.LINK_ID);
             Console.WriteLine($"link paid?: {link.Used} {link.Charges.FirstOrDefault()?.Id})");
         }
     }

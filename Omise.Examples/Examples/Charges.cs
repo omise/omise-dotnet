@@ -16,11 +16,12 @@ namespace Omise.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var chargeId = "chrg_test_58e1ybdog1y8f5z97l8";
+            var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
             var charge = await Client.Charges.Get(chargeId);
             Console.WriteLine($"charge amount: {charge.Amount}");
         }
 
+        #region Cards
         public async Task Create__Create_With_Token()
         {
             var token = await RetrieveToken();
@@ -40,8 +41,8 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Card()
         {
-            var customerId = "cust_test_5665swqhhb3mioax1y7";
-            var cardId = "card_test_5665swpkm6tv47htmuv";
+            var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
+            var cardId = ExampleInfo.CARD_ID_2; // "card_test_5aasvrrz6vx42t74zux";
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,
@@ -55,7 +56,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Customer()
         {
-            var customerId = "cust_test_5665swqhhb3mioax1y7";
+            var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
             var charge = await Client.Charges.Create(new CreateChargeRequest
             {
                 Amount = 2000,
@@ -108,5 +109,53 @@ namespace Omise.Examples
 
             return charge;
         }
+        #endregion
+
+        #region PaymentSources
+
+        #region Internet Banking
+        public async Task Create__Create_With_Source_InternetBanking()
+        {
+            var source = await RetrieveSourceInternetBanking();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                Source = source,
+                ReturnUri = "https://www.omise.co/",
+                Metadata = new Dictionary<string, object>
+                {
+                    { "invoice_id", "ABC1234" }
+                }
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"redirect customer to {charge.AuthorizeURI}");
+        }
+
+        // TODO: handle the return from the bank
+        #endregion
+
+        #region Bill Payment
+        public async Task Create__Create_With_Source_BillPayment()
+        {
+            var source = await RetrieveSourceBillPayment();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.BillPaymentTescoLotus,
+                Flow = FlowTypes.Offline,
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"Barcode for customer: {charge.Source.References.Barcode}");
+        }
+        #endregion
+
+        #endregion
     }
 }

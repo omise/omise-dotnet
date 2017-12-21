@@ -2,7 +2,7 @@
 using Omise.Models;
 using System.Threading.Tasks;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Schedules : Example
     {
@@ -14,7 +14,7 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var scheduleId = "schd_test_58fmj4fpu2zpp2m8s8c";
+            var scheduleId = ExampleInfo.SCHEDULE_ID; // "schd_test_58fiiv0w9m9tl9xnd55";
             var schedule = await Client.Schedules.Get(scheduleId);
             Console.WriteLine($"charges made on schedule: {schedule.Occurrences.Total}");
         }
@@ -42,7 +42,7 @@ namespace Omise.Examples.Examples
                 {
                     Amount = 2000,
                     Currency = "thb",
-                    Customer = "cust_test_566l67k7etfyl0k49mi",
+                    Customer = ExampleInfo.CUST_ID_2
                 }
             }).Result;
         }

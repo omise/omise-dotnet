@@ -2,7 +2,7 @@
 using Omise.Models;
 using System.Threading.Tasks;
 
-namespace Omise.Examples.Examples
+namespace Omise.Examples
 {
     public class Refunds : Example
     {
@@ -17,7 +17,7 @@ namespace Omise.Examples.Examples
 
         public async Task Charge_List__Charge_List()
         {
-            var chargeId = "chrg_test_58fkc7mrh99fnymu214";
+            var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
             var refunds = await Client
                 .Charge(chargeId)
                 .Refunds
@@ -39,8 +39,8 @@ namespace Omise.Examples.Examples
 
         public async Task Retrieve__Retrieve()
         {
-            var chargeId = "chrg_test_58fkc7mrh99fnymu214";
-            var refundId = "rfnd_test_58fkcxsbyxodfei74kt";
+            var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
+            var refundId = ExampleInfo.REFUND_ID; // "rfnd_test_5aasqmj6fqvfoacm7xl";
             var refund = await Client.Charge(chargeId).Refunds.Get(refundId);
             Console.WriteLine($"refunded: {refund.Amount}");
         }

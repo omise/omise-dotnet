@@ -6,6 +6,9 @@ namespace Omise
 {
     public class Client
     {
+        // Default to the latest API Version.
+        private string apiVersion = "2017-11-02";
+
         readonly IRequester requester;
         readonly IEnvironment environment;
 
@@ -18,6 +21,7 @@ namespace Omise
         public readonly ForexResource Forex;
         public readonly LinkResource Links;
         public readonly OccurrenceResource Occurrences;
+        public readonly PaymentSourceResource Sources;
         public readonly ReceiptResource Receipts;
         public readonly RecipientResource Recipients;
         public readonly RefundResource Refunds;
@@ -52,7 +56,7 @@ namespace Omise
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
 
             environment = env ?? Environments.Production;
-            requester = new Requester(credentials, environment);
+            requester = new Requester(credentials, environment, null, this.apiVersion);
 
             Account = new AccountResource(requester);
             Balance = new BalanceResource(requester);
@@ -63,6 +67,7 @@ namespace Omise
             Forex = new ForexResource(requester);
             Links = new LinkResource(requester);
             Occurrences = new OccurrenceResource(requester);
+            Sources = new PaymentSourceResource(requester);
             Receipts = new ReceiptResource(requester);
             Recipients = new RecipientResource(requester);
             Refunds = new RefundResource(requester);
