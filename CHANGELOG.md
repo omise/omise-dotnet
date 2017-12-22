@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+
+# v2.6.0
+
+* **NEW:** Internet Banking API.
+* **NEW:** Bill Payment API.
+
 # v2.5.6
 
 * **NEW:** Receipts API.
