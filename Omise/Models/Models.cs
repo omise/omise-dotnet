@@ -6,14 +6,19 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Omise.Models {
-    public partial class Account : ModelBase {
+namespace Omise.Models
+{
+    public partial class Account : ModelBase
+    {
         [JsonProperty("email")]
         public string Email { get; set; }
         [JsonProperty("currency")]
         public string Currency { get; set; }
+        [JsonProperty("supported_currencies")]
+        public IList<String> SupportedCurrencies { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Account;
             if (another == null) return false;
@@ -21,17 +26,26 @@ namespace Omise.Models {
             return base.Equals(obj) &&
                 object.Equals(this.Email, another.Email) &&
                 object.Equals(this.Currency, another.Currency) &&
+                object.Equals(this.SupportedCurrencies, another.SupportedCurrencies) &&
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Email != default(string)) {
+                if (Email != default(string))
+                {
                     hash = hash * 23 + Email.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
+                }
+                if (SupportedCurrencies != default(IList<String>))
+                {
+                    hash = hash * 23 + SupportedCurrencies.GetHashCode();
                 }
 
                 return hash;
@@ -39,7 +53,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Balance : ModelBase {
+    public partial class Balance : ModelBase
+    {
         [JsonProperty("available")]
         public long Available { get; set; }
         [JsonProperty("total")]
@@ -47,7 +62,8 @@ namespace Omise.Models {
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Balance;
             if (another == null) return false;
@@ -59,16 +75,21 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Available != default(long)) {
+                if (Available != default(long))
+                {
                     hash = hash * 23 + Available.GetHashCode();
                 }
-                if (Total != default(long)) {
+                if (Total != default(long))
+                {
                     hash = hash * 23 + Total.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
 
@@ -77,7 +98,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class BankAccount : ModelBase {
+    public partial class BankAccount : ModelBase
+    {
         [JsonProperty("brand")]
         public string Brand { get; set; }
         [JsonProperty("number")]
@@ -87,7 +109,8 @@ namespace Omise.Models {
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as BankAccount;
             if (another == null) return false;
@@ -100,19 +123,25 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Brand != default(string)) {
+                if (Brand != default(string))
+                {
                     hash = hash * 23 + Brand.GetHashCode();
                 }
-                if (Number != default(string)) {
+                if (Number != default(string))
+                {
                     hash = hash * 23 + Number.GetHashCode();
                 }
-                if (LastDigits != default(string)) {
+                if (LastDigits != default(string))
+                {
                     hash = hash * 23 + LastDigits.GetHashCode();
                 }
-                if (Name != default(string)) {
+                if (Name != default(string))
+                {
                     hash = hash * 23 + Name.GetHashCode();
                 }
 
@@ -121,7 +150,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Card : ModelBase {
+    public partial class Card : ModelBase
+    {
         [JsonProperty("country")]
         public string Country { get; set; }
         [JsonProperty("city")]
@@ -147,7 +177,8 @@ namespace Omise.Models {
         [JsonProperty("security_code_check")]
         public bool SecurityCodeCheck { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Card;
             if (another == null) return false;
@@ -168,43 +199,57 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Country != default(string)) {
+                if (Country != default(string))
+                {
                     hash = hash * 23 + Country.GetHashCode();
                 }
-                if (City != default(string)) {
+                if (City != default(string))
+                {
                     hash = hash * 23 + City.GetHashCode();
                 }
-                if (Bank != default(string)) {
+                if (Bank != default(string))
+                {
                     hash = hash * 23 + Bank.GetHashCode();
                 }
-                if (PostalCode != default(string)) {
+                if (PostalCode != default(string))
+                {
                     hash = hash * 23 + PostalCode.GetHashCode();
                 }
-                if (Financing != default(string)) {
+                if (Financing != default(string))
+                {
                     hash = hash * 23 + Financing.GetHashCode();
                 }
-                if (LastDigits != default(string)) {
+                if (LastDigits != default(string))
+                {
                     hash = hash * 23 + LastDigits.GetHashCode();
                 }
-                if (Brand != default(string)) {
+                if (Brand != default(string))
+                {
                     hash = hash * 23 + Brand.GetHashCode();
                 }
-                if (ExpirationMonth != default(int)) {
+                if (ExpirationMonth != default(int))
+                {
                     hash = hash * 23 + ExpirationMonth.GetHashCode();
                 }
-                if (ExpirationYear != default(int)) {
+                if (ExpirationYear != default(int))
+                {
                     hash = hash * 23 + ExpirationYear.GetHashCode();
                 }
-                if (Fingerprint != default(string)) {
+                if (Fingerprint != default(string))
+                {
                     hash = hash * 23 + Fingerprint.GetHashCode();
                 }
-                if (Name != default(string)) {
+                if (Name != default(string))
+                {
                     hash = hash * 23 + Name.GetHashCode();
                 }
-                if (SecurityCodeCheck != default(bool)) {
+                if (SecurityCodeCheck != default(bool))
+                {
                     hash = hash * 23 + SecurityCodeCheck.GetHashCode();
                 }
 
@@ -213,7 +258,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Charge : ModelBase {
+    public partial class Charge : ModelBase
+    {
         [JsonProperty("status")]
         public ChargeStatus Status { get; set; }
         [JsonProperty("amount")]
@@ -223,7 +269,7 @@ namespace Omise.Models {
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("metadata")]
-        public IDictionary<string,object> Metadata { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
         [JsonProperty("capture")]
         public bool Capture { get; set; }
         [JsonProperty("authorized")]
@@ -261,7 +307,8 @@ namespace Omise.Models {
         [JsonProperty("installment_terms")]
         public int InstallmentTerms { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Charge;
             if (another == null) return false;
@@ -293,76 +340,101 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Status != default(ChargeStatus)) {
+                if (Status != default(ChargeStatus))
+                {
                     hash = hash * 23 + Status.GetHashCode();
                 }
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (Description != default(string)) {
+                if (Description != default(string))
+                {
                     hash = hash * 23 + Description.GetHashCode();
                 }
-                if (Metadata != default(IDictionary<string,object>)) {
+                if (Metadata != default(IDictionary<string, object>))
+                {
                     hash = hash * 23 + Metadata.GetHashCode();
                 }
-                if (Capture != default(bool)) {
+                if (Capture != default(bool))
+                {
                     hash = hash * 23 + Capture.GetHashCode();
                 }
-                if (Authorized != default(bool)) {
+                if (Authorized != default(bool))
+                {
                     hash = hash * 23 + Authorized.GetHashCode();
                 }
-                if (Reversed != default(bool)) {
+                if (Reversed != default(bool))
+                {
                     hash = hash * 23 + Reversed.GetHashCode();
                 }
-                if (Paid != default(bool)) {
+                if (Paid != default(bool))
+                {
                     hash = hash * 23 + Paid.GetHashCode();
                 }
-                if (Transaction != default(string)) {
+                if (Transaction != default(string))
+                {
                     hash = hash * 23 + Transaction.GetHashCode();
                 }
-                if (SourceOfFund != default(SourceOfFunds)) {
+                if (SourceOfFund != default(SourceOfFunds))
+                {
                     hash = hash * 23 + SourceOfFund.GetHashCode();
                 }
-                if (Card != default(Card)) {
+                if (Card != default(Card))
+                {
                     hash = hash * 23 + Card.GetHashCode();
                 }
-                if (Refunded != default(long)) {
+                if (Refunded != default(long))
+                {
                     hash = hash * 23 + Refunded.GetHashCode();
                 }
-                if (Refunds != default(ScopedList<Refund>)) {
+                if (Refunds != default(ScopedList<Refund>))
+                {
                     hash = hash * 23 + Refunds.GetHashCode();
                 }
-                if (FailureCode != default(string)) {
+                if (FailureCode != default(string))
+                {
                     hash = hash * 23 + FailureCode.GetHashCode();
                 }
-                if (FailureMessage != default(string)) {
+                if (FailureMessage != default(string))
+                {
                     hash = hash * 23 + FailureMessage.GetHashCode();
                 }
-                if (Customer != default(string)) {
+                if (Customer != default(string))
+                {
                     hash = hash * 23 + Customer.GetHashCode();
                 }
-                if (IP != default(string)) {
+                if (IP != default(string))
+                {
                     hash = hash * 23 + IP.GetHashCode();
                 }
-                if (Dispute != default(Dispute)) {
+                if (Dispute != default(Dispute))
+                {
                     hash = hash * 23 + Dispute.GetHashCode();
                 }
-                if (ReturnURI != default(string)) {
+                if (ReturnURI != default(string))
+                {
                     hash = hash * 23 + ReturnURI.GetHashCode();
                 }
-                if (AuthorizeURI != default(string)) {
+                if (AuthorizeURI != default(string))
+                {
                     hash = hash * 23 + AuthorizeURI.GetHashCode();
                 }
-                if (Offsite != default(OffsiteTypes)) {
+                if (Offsite != default(OffsiteTypes))
+                {
                     hash = hash * 23 + Offsite.GetHashCode();
                 }
-                if (InstallmentTerms != default(int)) {
+                if (InstallmentTerms != default(int))
+                {
                     hash = hash * 23 + InstallmentTerms.GetHashCode();
                 }
 
@@ -371,7 +443,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Customer : ModelBase {
+    public partial class Customer : ModelBase
+    {
         [JsonProperty("default_card")]
         public string DefaultCard { get; set; }
         [JsonProperty("email")]
@@ -379,11 +452,12 @@ namespace Omise.Models {
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("metadata")]
-        public IDictionary<string,object> Metadata { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
         [JsonProperty("cards")]
         public ScopedList<Card> Cards { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Customer;
             if (another == null) return false;
@@ -397,22 +471,29 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (DefaultCard != default(string)) {
+                if (DefaultCard != default(string))
+                {
                     hash = hash * 23 + DefaultCard.GetHashCode();
                 }
-                if (Email != default(string)) {
+                if (Email != default(string))
+                {
                     hash = hash * 23 + Email.GetHashCode();
                 }
-                if (Description != default(string)) {
+                if (Description != default(string))
+                {
                     hash = hash * 23 + Description.GetHashCode();
                 }
-                if (Metadata != default(IDictionary<string,object>)) {
+                if (Metadata != default(IDictionary<string, object>))
+                {
                     hash = hash * 23 + Metadata.GetHashCode();
                 }
-                if (Cards != default(ScopedList<Card>)) {
+                if (Cards != default(ScopedList<Card>))
+                {
                     hash = hash * 23 + Cards.GetHashCode();
                 }
 
@@ -421,7 +502,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Dispute : ModelBase {
+    public partial class Dispute : ModelBase
+    {
         [JsonProperty("amount")]
         public long Amount { get; set; }
         [JsonProperty("currency")]
@@ -433,7 +515,8 @@ namespace Omise.Models {
         [JsonProperty("charge")]
         public string Charge { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Dispute;
             if (another == null) return false;
@@ -447,22 +530,29 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (Status != default(DisputeStatus)) {
+                if (Status != default(DisputeStatus))
+                {
                     hash = hash * 23 + Status.GetHashCode();
                 }
-                if (Message != default(string)) {
+                if (Message != default(string))
+                {
                     hash = hash * 23 + Message.GetHashCode();
                 }
-                if (Charge != default(string)) {
+                if (Charge != default(string))
+                {
                     hash = hash * 23 + Charge.GetHashCode();
                 }
 
@@ -471,13 +561,15 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Event : ModelBase {
+    public partial class Event : ModelBase
+    {
         [JsonProperty("key")]
         public string Key { get; set; }
         [JsonProperty("data")]
         public JRaw RawDataJson { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Event;
             if (another == null) return false;
@@ -488,13 +580,17 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Key != default(string)) {
+                if (Key != default(string))
+                {
                     hash = hash * 23 + Key.GetHashCode();
                 }
-                if (RawDataJson != default(JRaw)) {
+                if (RawDataJson != default(JRaw))
+                {
                     hash = hash * 23 + RawDataJson.GetHashCode();
                 }
 
@@ -503,11 +599,13 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Forex : ModelBase {
+    public partial class Forex : ModelBase
+    {
         [JsonProperty("rate")]
         public float Rate { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Forex;
             if (another == null) return false;
@@ -517,10 +615,13 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Rate != default(float)) {
+                if (Rate != default(float))
+                {
                     hash = hash * 23 + Rate.GetHashCode();
                 }
 
@@ -529,7 +630,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Link : ModelBase {
+    public partial class Link : ModelBase
+    {
         [JsonProperty("amount")]
         public long Amount { get; set; }
         [JsonProperty("currency")]
@@ -547,7 +649,8 @@ namespace Omise.Models {
         [JsonProperty("payment_uri")]
         public string PaymentURI { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Link;
             if (another == null) return false;
@@ -564,31 +667,41 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (Used != default(bool)) {
+                if (Used != default(bool))
+                {
                     hash = hash * 23 + Used.GetHashCode();
                 }
-                if (Multiple != default(bool)) {
+                if (Multiple != default(bool))
+                {
                     hash = hash * 23 + Multiple.GetHashCode();
                 }
-                if (Title != default(string)) {
+                if (Title != default(string))
+                {
                     hash = hash * 23 + Title.GetHashCode();
                 }
-                if (Description != default(string)) {
+                if (Description != default(string))
+                {
                     hash = hash * 23 + Description.GetHashCode();
                 }
-                if (Charges != default(ScopedList<Charge>)) {
+                if (Charges != default(ScopedList<Charge>))
+                {
                     hash = hash * 23 + Charges.GetHashCode();
                 }
-                if (PaymentURI != default(string)) {
+                if (PaymentURI != default(string))
+                {
                     hash = hash * 23 + PaymentURI.GetHashCode();
                 }
 
@@ -597,7 +710,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Occurrence : ModelBase {
+    public partial class Occurrence : ModelBase
+    {
         [JsonProperty("schedule")]
         public string Schedule { get; set; }
         [JsonProperty("schedule_date")]
@@ -613,7 +727,8 @@ namespace Omise.Models {
         [JsonProperty("result")]
         public String Result { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Occurrence;
             if (another == null) return false;
@@ -629,28 +744,37 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Schedule != default(string)) {
+                if (Schedule != default(string))
+                {
                     hash = hash * 23 + Schedule.GetHashCode();
                 }
-                if (ScheduleDate != default(DateTime)) {
+                if (ScheduleDate != default(DateTime))
+                {
                     hash = hash * 23 + ScheduleDate.GetHashCode();
                 }
-                if (RetryDate != default(DateTime)) {
+                if (RetryDate != default(DateTime))
+                {
                     hash = hash * 23 + RetryDate.GetHashCode();
                 }
-                if (ProcessedAt != default(DateTime)) {
+                if (ProcessedAt != default(DateTime))
+                {
                     hash = hash * 23 + ProcessedAt.GetHashCode();
                 }
-                if (Status != default(OccurrenceStatus)) {
+                if (Status != default(OccurrenceStatus))
+                {
                     hash = hash * 23 + Status.GetHashCode();
                 }
-                if (Message != default(String)) {
+                if (Message != default(String))
+                {
                     hash = hash * 23 + Message.GetHashCode();
                 }
-                if (Result != default(String)) {
+                if (Result != default(String))
+                {
                     hash = hash * 23 + Result.GetHashCode();
                 }
 
@@ -659,7 +783,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Receipt : ModelBase {
+    public partial class Receipt : ModelBase
+    {
         [JsonProperty("number")]
         public string Number { get; set; }
         [JsonProperty("customer_name")]
@@ -697,7 +822,8 @@ namespace Omise.Models {
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Receipt;
             if (another == null) return false;
@@ -724,61 +850,81 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Number != default(string)) {
+                if (Number != default(string))
+                {
                     hash = hash * 23 + Number.GetHashCode();
                 }
-                if (CustomerName != default(string)) {
+                if (CustomerName != default(string))
+                {
                     hash = hash * 23 + CustomerName.GetHashCode();
                 }
-                if (CustomerAddress != default(string)) {
+                if (CustomerAddress != default(string))
+                {
                     hash = hash * 23 + CustomerAddress.GetHashCode();
                 }
-                if (CustomerTaxId != default(string)) {
+                if (CustomerTaxId != default(string))
+                {
                     hash = hash * 23 + CustomerTaxId.GetHashCode();
                 }
-                if (CustomerEmail != default(string)) {
+                if (CustomerEmail != default(string))
+                {
                     hash = hash * 23 + CustomerEmail.GetHashCode();
                 }
-                if (CustomerStatementName != default(string)) {
+                if (CustomerStatementName != default(string))
+                {
                     hash = hash * 23 + CustomerStatementName.GetHashCode();
                 }
-                if (CompanyName != default(string)) {
+                if (CompanyName != default(string))
+                {
                     hash = hash * 23 + CompanyName.GetHashCode();
                 }
-                if (CompanyAddress != default(string)) {
+                if (CompanyAddress != default(string))
+                {
                     hash = hash * 23 + CompanyAddress.GetHashCode();
                 }
-                if (CompanyTaxId != default(string)) {
+                if (CompanyTaxId != default(string))
+                {
                     hash = hash * 23 + CompanyTaxId.GetHashCode();
                 }
-                if (ChargeFee != default(long)) {
+                if (ChargeFee != default(long))
+                {
                     hash = hash * 23 + ChargeFee.GetHashCode();
                 }
-                if (VoidedFee != default(long)) {
+                if (VoidedFee != default(long))
+                {
                     hash = hash * 23 + VoidedFee.GetHashCode();
                 }
-                if (TransferFee != default(long)) {
+                if (TransferFee != default(long))
+                {
                     hash = hash * 23 + TransferFee.GetHashCode();
                 }
-                if (Subtotal != default(long)) {
+                if (Subtotal != default(long))
+                {
                     hash = hash * 23 + Subtotal.GetHashCode();
                 }
-                if (Vat != default(long)) {
+                if (Vat != default(long))
+                {
                     hash = hash * 23 + Vat.GetHashCode();
                 }
-                if (Wht != default(long)) {
+                if (Wht != default(long))
+                {
                     hash = hash * 23 + Wht.GetHashCode();
                 }
-                if (Total != default(long)) {
+                if (Total != default(long))
+                {
                     hash = hash * 23 + Total.GetHashCode();
                 }
-                if (CreditNote != default(bool)) {
+                if (CreditNote != default(bool))
+                {
                     hash = hash * 23 + CreditNote.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
 
@@ -787,7 +933,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Recipient : ModelBase {
+    public partial class Recipient : ModelBase
+    {
         [JsonProperty("verified")]
         public bool Verified { get; set; }
         [JsonProperty("active")]
@@ -807,7 +954,8 @@ namespace Omise.Models {
         [JsonProperty("failure_code")]
         public string FailureCode { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Recipient;
             if (another == null) return false;
@@ -825,34 +973,45 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Verified != default(bool)) {
+                if (Verified != default(bool))
+                {
                     hash = hash * 23 + Verified.GetHashCode();
                 }
-                if (Active != default(bool)) {
+                if (Active != default(bool))
+                {
                     hash = hash * 23 + Active.GetHashCode();
                 }
-                if (Name != default(string)) {
+                if (Name != default(string))
+                {
                     hash = hash * 23 + Name.GetHashCode();
                 }
-                if (Email != default(string)) {
+                if (Email != default(string))
+                {
                     hash = hash * 23 + Email.GetHashCode();
                 }
-                if (Description != default(string)) {
+                if (Description != default(string))
+                {
                     hash = hash * 23 + Description.GetHashCode();
                 }
-                if (Type != default(RecipientType)) {
+                if (Type != default(RecipientType))
+                {
                     hash = hash * 23 + Type.GetHashCode();
                 }
-                if (TaxID != default(string)) {
+                if (TaxID != default(string))
+                {
                     hash = hash * 23 + TaxID.GetHashCode();
                 }
-                if (BankAccount != default(BankAccount)) {
+                if (BankAccount != default(BankAccount))
+                {
                     hash = hash * 23 + BankAccount.GetHashCode();
                 }
-                if (FailureCode != default(string)) {
+                if (FailureCode != default(string))
+                {
                     hash = hash * 23 + FailureCode.GetHashCode();
                 }
 
@@ -861,7 +1020,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Refund : ModelBase {
+    public partial class Refund : ModelBase
+    {
         [JsonProperty("amount")]
         public long Amount { get; set; }
         [JsonProperty("currency")]
@@ -871,7 +1031,8 @@ namespace Omise.Models {
         [JsonProperty("transaction")]
         public string Transaction { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Refund;
             if (another == null) return false;
@@ -884,19 +1045,25 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (Charge != default(string)) {
+                if (Charge != default(string))
+                {
                     hash = hash * 23 + Charge.GetHashCode();
                 }
-                if (Transaction != default(string)) {
+                if (Transaction != default(string))
+                {
                     hash = hash * 23 + Transaction.GetHashCode();
                 }
 
@@ -905,7 +1072,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Schedule : ModelBase {
+    public partial class Schedule : ModelBase
+    {
         [JsonProperty("status")]
         public ScheduleStatus Status { get; set; }
         [JsonProperty("every")]
@@ -929,7 +1097,8 @@ namespace Omise.Models {
         [JsonProperty("next_occurrences")]
         public ScopedList<Occurrence> NextOccurrences { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Schedule;
             if (another == null) return false;
@@ -949,40 +1118,53 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Status != default(ScheduleStatus)) {
+                if (Status != default(ScheduleStatus))
+                {
                     hash = hash * 23 + Status.GetHashCode();
                 }
-                if (Every != default(int)) {
+                if (Every != default(int))
+                {
                     hash = hash * 23 + Every.GetHashCode();
                 }
-                if (Period != default(SchedulePeriod)) {
+                if (Period != default(SchedulePeriod))
+                {
                     hash = hash * 23 + Period.GetHashCode();
                 }
-                if (On != default(ScheduleOn)) {
+                if (On != default(ScheduleOn))
+                {
                     hash = hash * 23 + On.GetHashCode();
                 }
-                if (InWords != default(String)) {
+                if (InWords != default(String))
+                {
                     hash = hash * 23 + InWords.GetHashCode();
                 }
-                if (StartDate != default(DateTime)) {
+                if (StartDate != default(DateTime))
+                {
                     hash = hash * 23 + StartDate.GetHashCode();
                 }
-                if (EndDate != default(DateTime)) {
+                if (EndDate != default(DateTime))
+                {
                     hash = hash * 23 + EndDate.GetHashCode();
                 }
-                if (Charge != default(ChargeScheduling)) {
+                if (Charge != default(ChargeScheduling))
+                {
                     hash = hash * 23 + Charge.GetHashCode();
                 }
-                if (Transfer != default(TransferScheduling)) {
+                if (Transfer != default(TransferScheduling))
+                {
                     hash = hash * 23 + Transfer.GetHashCode();
                 }
-                if (Occurrences != default(ScopedList<Occurrence>)) {
+                if (Occurrences != default(ScopedList<Occurrence>))
+                {
                     hash = hash * 23 + Occurrences.GetHashCode();
                 }
-                if (NextOccurrences != default(ScopedList<Occurrence>)) {
+                if (NextOccurrences != default(ScopedList<Occurrence>))
+                {
                     hash = hash * 23 + NextOccurrences.GetHashCode();
                 }
 
@@ -991,7 +1173,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class ScheduleOn : ModelBase {
+    public partial class ScheduleOn : ModelBase
+    {
         [JsonProperty("weekdays")]
         public Weekdays[] Weekdays { get; set; }
         [JsonProperty("days_of_month")]
@@ -999,7 +1182,8 @@ namespace Omise.Models {
         [JsonProperty("weekday_of_month")]
         public String WeekdayOfMonth { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as ScheduleOn;
             if (another == null) return false;
@@ -1011,16 +1195,21 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Weekdays != default(Weekdays[])) {
+                if (Weekdays != default(Weekdays[]))
+                {
                     hash = hash * 23 + Weekdays.GetHashCode();
                 }
-                if (DaysOfMonth != default(int[])) {
+                if (DaysOfMonth != default(int[]))
+                {
                     hash = hash * 23 + DaysOfMonth.GetHashCode();
                 }
-                if (WeekdayOfMonth != default(String)) {
+                if (WeekdayOfMonth != default(String))
+                {
                     hash = hash * 23 + WeekdayOfMonth.GetHashCode();
                 }
 
@@ -1029,13 +1218,15 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Token : ModelBase {
+    public partial class Token : ModelBase
+    {
         [JsonProperty("used")]
         public bool Used { get; set; }
         [JsonProperty("card")]
         public Card Card { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Token;
             if (another == null) return false;
@@ -1046,13 +1237,17 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Used != default(bool)) {
+                if (Used != default(bool))
+                {
                     hash = hash * 23 + Used.GetHashCode();
                 }
-                if (Card != default(Card)) {
+                if (Card != default(Card))
+                {
                     hash = hash * 23 + Card.GetHashCode();
                 }
 
@@ -1061,7 +1256,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Transaction : ModelBase {
+    public partial class Transaction : ModelBase
+    {
         [JsonProperty("amount")]
         public long Amount { get; set; }
         [JsonProperty("currency")]
@@ -1073,7 +1269,8 @@ namespace Omise.Models {
         [JsonProperty("transferable")]
         public DateTime Transferable { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Transaction;
             if (another == null) return false;
@@ -1087,22 +1284,29 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (Type != default(TransactionType)) {
+                if (Type != default(TransactionType))
+                {
                     hash = hash * 23 + Type.GetHashCode();
                 }
-                if (Source != default(string)) {
+                if (Source != default(string))
+                {
                     hash = hash * 23 + Source.GetHashCode();
                 }
-                if (Transferable != default(DateTime)) {
+                if (Transferable != default(DateTime))
+                {
                     hash = hash * 23 + Transferable.GetHashCode();
                 }
 
@@ -1111,7 +1315,8 @@ namespace Omise.Models {
         }
     }
 
-    public partial class Transfer : ModelBase {
+    public partial class Transfer : ModelBase
+    {
         [JsonProperty("recipient")]
         public string Recipient { get; set; }
         [JsonProperty("bankaccount")]
@@ -1135,7 +1340,8 @@ namespace Omise.Models {
         [JsonProperty("transaction")]
         public string Transaction { get; set; }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj == null) return false;
             var another = obj as Transfer;
             if (another == null) return false;
@@ -1155,40 +1361,53 @@ namespace Omise.Models {
                 true;
         }
 
-        public override int GetHashCode() {
-            unchecked {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
                 int hash = 17;
-                if (Recipient != default(string)) {
+                if (Recipient != default(string))
+                {
                     hash = hash * 23 + Recipient.GetHashCode();
                 }
-                if (BankAccount != default(BankAccount)) {
+                if (BankAccount != default(BankAccount))
+                {
                     hash = hash * 23 + BankAccount.GetHashCode();
                 }
-                if (Sent != default(bool)) {
+                if (Sent != default(bool))
+                {
                     hash = hash * 23 + Sent.GetHashCode();
                 }
-                if (Paid != default(bool)) {
+                if (Paid != default(bool))
+                {
                     hash = hash * 23 + Paid.GetHashCode();
                 }
-                if (Fee != default(long)) {
+                if (Fee != default(long))
+                {
                     hash = hash * 23 + Fee.GetHashCode();
                 }
-                if (Amount != default(long)) {
+                if (Amount != default(long))
+                {
                     hash = hash * 23 + Amount.GetHashCode();
                 }
-                if (Currency != default(string)) {
+                if (Currency != default(string))
+                {
                     hash = hash * 23 + Currency.GetHashCode();
                 }
-                if (FailFast != default(bool)) {
+                if (FailFast != default(bool))
+                {
                     hash = hash * 23 + FailFast.GetHashCode();
                 }
-                if (FailureCode != default(string)) {
+                if (FailureCode != default(string))
+                {
                     hash = hash * 23 + FailureCode.GetHashCode();
                 }
-                if (FailureMessage != default(string)) {
+                if (FailureMessage != default(string))
+                {
                     hash = hash * 23 + FailureMessage.GetHashCode();
                 }
-                if (Transaction != default(string)) {
+                if (Transaction != default(string))
+                {
                     hash = hash * 23 + Transaction.GetHashCode();
                 }
 
@@ -1198,7 +1417,8 @@ namespace Omise.Models {
     }
 
 
-    public partial class ModelTypes {
+    public partial class ModelTypes
+    {
         static readonly IDictionary<string, Type> lookup = new Dictionary<string, Type>
         {
             { "account", typeof(Account) },
