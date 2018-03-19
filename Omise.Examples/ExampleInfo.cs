@@ -3,8 +3,8 @@ namespace Omise.Examples
 {
     public class ExampleInfo
     {
-        public const string OMISE_PKEY = "pkey_test_58lg7fy0ogtrvz99dj8";
-        public const string OMISE_SKEY = "skey_test_58lg7fy0zebkfskz1zf";
+        public const string OMISE_PKEY = "pkey_test_5alr4tca4bpu0cirhck";
+        public const string OMISE_SKEY = "skey_test_5alr4tz3so072nhkipj";
 
         public const string CUST_ID = "cust_test_5aass4jqqb39x80fkta";
         public const string CARD_ID = "card_test_5aaswlbxdrzhoornpfe";
@@ -30,5 +30,7 @@ namespace Omise.Examples
         public const string RECIPIENT_ID = "recp_test_57po4c5obpi7rrxhtyl";
 
         public const string TRANSFER_ID = "trsf_test_560ph0660cgiag1xjeh";
+
+        public const string CHARGE_ID_WA = "chrg_test_5aass1sz7sdgaoi6zg8";
     }
 }

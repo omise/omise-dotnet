@@ -156,6 +156,37 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region Wallet Alipay
+        public async Task Create__Create_With_Wallet_Alipay()
+        {
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Description = "Test product",
+                Source = new PaymentSource()
+                {
+                    Type = OffsiteTypes.WalletAlipay,
+                    Barcode = "201234567890",
+                    StoreId = "Store1",
+                    StoreName = "Store 1",
+                    TerminalId = "0001"
+                },
+                Metadata = new Dictionary<string, object>
+                {
+                    { "invoice_id", "inv0001" }
+                }
+            });
+        }
+
+        public async Task Retrieve__Retrieve_Wallet_Alipay()
+        {
+            var chargeId = ExampleInfo.CHARGE_ID_WA; // "chrg_test_5aass1sz7sdgaoi6zg8";
+            var charge = await Client.Charges.Get(chargeId);
+            Console.WriteLine($"charge status: {charge.Status}");
+        }
+        #endregion
+
         #endregion
     }
 }

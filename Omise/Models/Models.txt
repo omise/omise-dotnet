@@ -95,6 +95,9 @@ PaymentSource
   Currency string
   References PaymentReference references
   Barcode string
+  StoreId string store_id
+  StoreName string store_name
+  TerminalId string terminal_id
 Receipt
   Number string
   CustomerName string customer_name
