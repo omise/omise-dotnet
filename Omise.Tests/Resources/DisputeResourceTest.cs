@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -47,7 +48,8 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""message"":""Hello, This is definitely not ours.""}"
+				@"{""message"":""Hello, This is definitely not ours.""," +
+                @"""metadata"":{""color"":""red""}}"
             );
         }
 
@@ -83,6 +85,7 @@ namespace Omise.Tests.Resources
             return new UpdateDisputeRequest
             {
                 Message = "Hello, This is definitely not ours.",
+				Metadata = new Dictionary<string, object> { { "color", "red" } }
             };
         }
 

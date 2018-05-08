@@ -2,6 +2,7 @@
 using System;
 using Omise.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Omise.Examples
 {
@@ -48,6 +49,17 @@ namespace Omise.Examples
             dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
             {
                 Message = "Hello, World!"
+            });
+            Console.WriteLine($"updated dispute: {dispute.Id}");
+        }
+
+		public async Task Update__UpdateWithMetadata()
+        {
+            var dispute = RetrieveOpenDispute();
+            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
+            {
+                Message = "Hello, World!",
+				Metadata = new Dictionary<string, object> { { "color", "red" } }
             });
             Console.WriteLine($"updated dispute: {dispute.Id}");
         }
