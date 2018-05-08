@@ -1,6 +1,7 @@
 ﻿using Omise.Models;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace Omise.Examples
 {
@@ -36,6 +37,18 @@ namespace Omise.Examples
             Console.WriteLine($"created transfer: {transfer.Id}");
         }
 
+		public async Task Create__Create_With_Metadata()
+        {
+            var transfer = await Client.Transfers.Create(new CreateTransferRequest
+            {
+                Amount = 200000,
+                FailFast = true,
+				Metadata = new Dictionary<string, object> { { "color", "red" } }
+            });
+
+            Console.WriteLine($"created transfer: {transfer.Id}");
+        }
+
         public async Task Retrieve__Retrieve()
         {
             var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
@@ -49,6 +62,18 @@ namespace Omise.Examples
             var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
             {
                 Amount = 733137
+            });
+
+            Console.WriteLine($"updated transfer: {transfer.Id}");
+        }
+
+		public async Task Update__Update_With_Metadata()
+        {
+            var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
+            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
+            {
+				Amount = 733137,
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
             });
 
             Console.WriteLine($"updated transfer: {transfer.Id}");
