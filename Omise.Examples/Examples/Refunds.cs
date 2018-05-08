@@ -1,6 +1,7 @@
 ﻿using System;
 using Omise.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Omise.Examples
 {
@@ -25,13 +26,25 @@ namespace Omise.Examples
 
             Console.WriteLine($"refunds for this charge: {refunds.Total}");
         }
-
+        
         public async Task Create__Create()
         {
             var charge = RetrieveCharge();
             var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
             {
                 Amount = charge.Amount,
+            });
+
+            Console.WriteLine($"created refund: {refund.Id}");
+        }
+
+		public async Task Create__Create_With_Metadata()
+        {
+            var charge = RetrieveCharge();
+            var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
+            {
+                Amount = charge.Amount,
+				Metadata = new Dictionary<string, object> { { "color", "red" } }
             });
 
             Console.WriteLine($"created refund: {refund.Id}");
