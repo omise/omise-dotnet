@@ -8,13 +8,12 @@ namespace Omise.Models
         public long Amount { get; set; }
         public string Recipient { get; set; }
         [JsonProperty("fail_fast")]
-        public bool FailFast { get; set; }
-		public IDictionary<string, object> Metadata { get; set; }
+        public bool FailFast { get; set; }        public IDictionary<string, object> Metadata { get; set; }
     }
 
     public class UpdateTransferRequest : Request
     {
         public long Amount { get; set; }
-		public IDictionary<string, object> Metadata { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
     }
 }

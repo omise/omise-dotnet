@@ -38,13 +38,13 @@ namespace Omise.Examples
             Console.WriteLine($"created refund: {refund.Id}");
         }
 
-		public async Task Create__Create_With_Metadata()
+        public async Task Create__Create_With_Metadata()
         {
             var charge = RetrieveCharge();
             var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
             {
                 Amount = charge.Amount,
-				Metadata = new Dictionary<string, object> { { "color", "red" } }
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
             });
 
             Console.WriteLine($"created refund: {refund.Id}");

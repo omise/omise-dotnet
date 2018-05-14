@@ -63,7 +63,7 @@ namespace Omise.Tests.Resources
             AssertSerializedRequest(
                 BuildUpdateRequest(),
                 @"{""amount"":24488442," +
-			    @"""metadata"":{""color"":""red""}}"
+                @"""metadata"":{""color"":""red""}}"
             );
         }
 
@@ -116,17 +116,17 @@ namespace Omise.Tests.Resources
             {
                 Recipient = "recp_test_123",
                 Amount = 300000,
-				Metadata = new Dictionary<string, object> { { "color", "red" } }
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
             };
         }
 
         protected UpdateTransferRequest BuildUpdateRequest()
         {
             return new UpdateTransferRequest 
-			{ 
-				Amount = 24488442,
-				Metadata = new Dictionary<string, object> { { "color", "red" } }
-			};
+            { 
+                Amount = 24488442,
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
+            };
         }
 
         protected override TransferResource BuildResource(IRequester requester)

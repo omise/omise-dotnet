@@ -6,6 +6,6 @@ namespace Omise.Models
     {
         public long Amount { get; set; }
         public bool Void { get; set; }
-		public IDictionary<string, object> Metadata { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
     }
 }

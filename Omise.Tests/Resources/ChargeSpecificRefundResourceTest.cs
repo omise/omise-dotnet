@@ -39,7 +39,7 @@ namespace Omise.Tests.Resources
             AssertSerializedRequest(
                 BuildCreateRequest(),
                 @"{""amount"":300000," +
-				@"""void"":false," +
+                @"""void"":false," +
                 @"""metadata"":{""color"":""red""}}"             );
         }
 
@@ -73,10 +73,10 @@ namespace Omise.Tests.Resources
         protected CreateRefundRequest BuildCreateRequest()
         {
             return new CreateRefundRequest 
-			{ 
-				Amount = 300000,
-				Metadata = new Dictionary<string, object> { { "color", "red" } }
-			};
+            { 
+                Amount = 300000,
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
+            };
         }
 
         protected override ChargeSpecificRefundResource BuildResource(IRequester requester)

@@ -53,13 +53,13 @@ namespace Omise.Examples
             Console.WriteLine($"updated dispute: {dispute.Id}");
         }
 
-		public async Task Update__UpdateWithMetadata()
+        public async Task Update__UpdateWithMetadata()
         {
             var dispute = RetrieveOpenDispute();
             dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
             {
                 Message = "Hello, World!",
-				Metadata = new Dictionary<string, object> { { "color", "red" } }
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
             });
             Console.WriteLine($"updated dispute: {dispute.Id}");
         }
