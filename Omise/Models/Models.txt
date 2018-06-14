@@ -132,6 +132,7 @@ Refund
   Currency string
   Charge string
   Transaction string
+  Metadata IDictionary<string,object>
 Schedule
   Status ScheduleStatus
   Every int
