@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -38,8 +39,8 @@ namespace Omise.Tests.Resources
             AssertSerializedRequest(
                 BuildCreateRequest(),
                 @"{""amount"":300000," +
-                @"""void"":false}"
-            );
+                @"""void"":false," +
+                @"""metadata"":{""color"":""red""}}"             );
         }
 
         [Test]
@@ -71,7 +72,11 @@ namespace Omise.Tests.Resources
 
         protected CreateRefundRequest BuildCreateRequest()
         {
-            return new CreateRefundRequest { Amount = 300000 };
+            return new CreateRefundRequest 
+            { 
+                Amount = 300000,
+                Metadata = new Dictionary<string, object> { { "color", "red" } }
+            };
         }
 
         protected override ChargeSpecificRefundResource BuildResource(IRequester requester)
