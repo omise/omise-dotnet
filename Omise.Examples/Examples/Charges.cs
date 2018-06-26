@@ -166,7 +166,7 @@ namespace Omise.Examples
                 Description = "Test product",
                 Source = new PaymentSource()
                 {
-                    Type = OffsiteTypes.WalletAlipay,
+                    Type = OffsiteTypes.BarcodeAlipay,
                     Barcode = "201234567890",
                     StoreId = "Store1",
                     StoreName = "Store 1",
