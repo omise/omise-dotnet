@@ -80,7 +80,7 @@ namespace Omise.Examples
             catch (Exception ex)
             {
                 // Find the Omise exception.
-                while (ex.GetType() != typeof(OmiseError))
+                while (ex.GetType() != typeof(OmiseError) && ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }

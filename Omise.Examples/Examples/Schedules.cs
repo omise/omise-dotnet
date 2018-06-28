@@ -23,7 +23,7 @@ namespace Omise.Examples
         {
             var schedule = RetrieveSchedule();
             schedule = await Client.Schedules.Destroy(schedule.Id);
-            Console.WriteLine($"disabled schedule: {schedule.Id} ({schedule.Deleted})");
+            Console.WriteLine($"disabled schedule: {schedule.Id} ({schedule.Status == ScheduleStatus.Deleted})");
         }
 
         protected Schedule RetrieveSchedule()
