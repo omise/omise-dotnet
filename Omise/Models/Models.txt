@@ -27,6 +27,9 @@ Charge
   Status ChargeStatus
   Amount long
   Currency string
+  CustomerAmount long customer_amount
+  CustomerCurrency string customer_currency
+  CustomerExchangeRate decimal customer_exchange_rate
   Description string
   Metadata IDictionary<string,object>
   Capture bool
@@ -88,6 +91,7 @@ PaymentReference
   ReferenceNumber2 string reference_number_2
   Barcode string
   ExpiresAt DateTime expires_at
+  DeviceId string device_id
 PaymentSource
   Type OffsiteTypes
   Flow FlowTypes
