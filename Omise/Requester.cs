@@ -96,10 +96,13 @@ namespace Omise
             }
 
             // roundtrips the request
+            string s_content = default(string);
             try
             {
                 var response = await Roundtripper.Roundtrip(request);
                 var stream = await response.Content.ReadAsStreamAsync();
+                s_content = GenerateStreamToString(stream);
+                stream.Position = 0;
                 if (!response.IsSuccessStatusCode)
                 {
                     var error = Serializer.JsonDeserialize<ErrorResult>(stream);
@@ -107,6 +110,8 @@ namespace Omise
                     throw new OmiseError(error, null);
                 }
 
+                s_content = GenerateStreamToString(stream);
+                stream.Position = 0;
                 var result = Serializer.JsonDeserialize<TResult>(stream);
                 var model = result as ModelBase;
                 if (model != null)
@@ -115,12 +120,35 @@ namespace Omise
                 }
 
                 return result;
-
             }
             catch (HttpRequestException e)
             {
                 throw new OmiseException("Error while making HTTP request", e);
             }
+            catch (Newtonsoft.Json.JsonReaderException j)
+            {
+                throw new OmiseException("Error Unexpected character encountered while parsing value is " + s_content, j);
+            }
+            catch (Exception ex)
+            {
+                throw new OmiseException(ex.Message, ex);
+            }
+        }
+
+        public static Stream GenerateStringToStream(string s)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
+        public static string GenerateStreamToString(Stream s)
+        {
+            s.Seek(0, SeekOrigin.Begin);
+            return new StreamReader(s).ReadToEnd();
         }
     }
 }
