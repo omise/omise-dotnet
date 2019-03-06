@@ -1,5 +1,12 @@
 # CHANGE LOG
 
+# v2.7.1
+
+* Update nuget packages.
+
+# v2.7.0
+
+* Supported Alipay barcode.
 
 # v2.6.0
 
