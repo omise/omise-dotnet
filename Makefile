@@ -44,4 +44,4 @@ clean-test:
 	$(MSBUILD) /target:Clean $(OMISE_TEST_CSPROJ)
 
 test: $(OMISE_TEST_DLL)
-	$(NUNIT) --noresult --full $(OMISE_TEST_DLL) 
+	$(NUNIT) --noresult $(OMISE_TEST_DLL)
