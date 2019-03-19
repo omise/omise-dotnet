@@ -15,7 +15,11 @@ T4_OUTPUT_FILES := $(T4_FILES:.tt=.cs)
 
 MONO    := mono
 MSBUILD := msbuild /p:Configuration=$(CONFIG)
-NUNIT   := $(MONO) packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe
+ifndef TRAVIS
+	NUNIT := $(MONO) packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe
+else
+	NUNIT := $(MONO) ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe
+endif
 T4      := $(MONO) /Applications/Visual\ Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.TextTemplating/TextTransform.exe
 
 .PHONY: test clean
