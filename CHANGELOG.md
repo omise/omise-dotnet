@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.7.2
+
+* Add expired in charge status.
+
 # v2.7.1
 
 * Update nuget packages.
