@@ -68,7 +68,8 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""email"":""example@omise.co""," +
+                @"{""default_card"":""card_test_456""," +
+                @"""email"":""example@omise.co""," +
                 @"""description"":""Omise example""," +
                 @"""card"":""card_test_456""}"
             );
@@ -133,7 +134,8 @@ namespace Omise.Tests.Resources
             {
                 Email = "example@omise.co",
                 Description = "Omise example",
-                Card = "card_test_456"
+                Card = "card_test_456",
+                DefaultCard = "card_test_456"
             };
         }
 
