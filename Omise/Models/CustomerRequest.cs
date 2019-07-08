@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Omise.Models
 {
@@ -8,6 +9,8 @@ namespace Omise.Models
 
     public class UpdateCustomerRequest : CustomerRequest
     {
+        [JsonProperty("default_card")]
+        public string DefaultCard { get; set; }
     }
 
     public abstract class CustomerRequest : Request
