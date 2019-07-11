@@ -54,6 +54,13 @@ namespace Omise.Tests.Resources
         }
 
         [Test]
+        public async Task TestExpire()
+        {
+            await Resource.Expire(ChargeId);
+            AssertRequest("POST", "https://api.omise.co/charges/{0}/expire", ChargeId);
+        }
+
+        [Test]
         public async Task TestSearch()
         {
             var filters = new Dictionary<string, string> { { "amount", "1000.00" } };

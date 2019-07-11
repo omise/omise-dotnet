@@ -37,5 +37,14 @@ namespace Omise.Resources
                 $"{BasePath}/{chargeId}/reverse"
             );
         }
+
+        public async Task<Charge> Expire(string chargeId)
+        {
+            return await Requester.Request<Charge>(
+                Endpoint,
+                "POST",
+                $"{BasePath}/{chargeId}/expire"
+            );
+        }
     }
 }
