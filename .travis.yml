@@ -1,4 +1,8 @@
 language: csharp
+solution: Omise.sln
 dist: wily
+install:
+  - nuget restore Omise.sln
+  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
 script:
   - make test
