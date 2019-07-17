@@ -32,6 +32,7 @@ Charge
   Capture bool
   Authorized bool
   Reversed bool
+  Expired bool
   Paid bool
   Transaction string
   SourceOfFund SourceOfFunds source_of_fund
