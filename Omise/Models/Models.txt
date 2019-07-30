@@ -16,6 +16,7 @@ Card
   Bank string
   PostalCode string postal_code
   Financing string
+  FirstDigits string first_digits
   LastDigits string last_digits
   Brand string
   ExpirationMonth int expiration_month

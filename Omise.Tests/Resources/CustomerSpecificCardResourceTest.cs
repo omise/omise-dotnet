@@ -75,6 +75,7 @@ namespace Omise.Tests.Resources
 
             var card = list[0];
             Assert.AreEqual(CardId, card.Id);
+            Assert.AreEqual("424242", card.FirstDigits);
             Assert.AreEqual("4242", card.LastDigits);
         }
 
@@ -83,6 +84,7 @@ namespace Omise.Tests.Resources
         {
             var card = await Fixtures.Get(CardId);
             Assert.AreEqual(CardId, card.Id);
+            Assert.AreEqual("424242", card.FirstDigits);
             Assert.AreEqual("4242", card.LastDigits);
         }
 
