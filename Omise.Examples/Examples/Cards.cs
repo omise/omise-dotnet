@@ -13,7 +13,7 @@ namespace Omise.Examples
             var cards = await Client.Customer(customerId).Cards.GetList();
             foreach (var card in cards)
             {
-                Console.WriteLine($"card: {card.Id} ({card.LastDigits})");
+                Console.WriteLine($"card: {card.Id}");
             }
         }
 
@@ -22,6 +22,7 @@ namespace Omise.Examples
             var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
             var cardId = ExampleInfo.CARD_ID; // "card_test_5aaswlbxdrzhoornpfe";
             var card = await Client.Customer(customerId).Cards.Get(cardId);
+            Console.WriteLine($"first digits: {card.FirstDigits}");
             Console.WriteLine($"last digits: {card.LastDigits}");
         }
 

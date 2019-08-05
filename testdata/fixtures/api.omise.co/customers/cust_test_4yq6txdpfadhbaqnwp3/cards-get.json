@@ -21,6 +21,7 @@
       "bank": "",
       "postal_code": "10240",
       "financing": "",
+      "first_digits": "424242",
       "last_digits": "4242",
       "brand": "Visa",
       "expiration_month": 2,
