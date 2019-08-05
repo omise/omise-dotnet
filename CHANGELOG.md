@@ -1,8 +1,16 @@
 # CHANGE LOG
 
+# v2.7.4
+
+* Added FirstDigits field to Cards.
+
+# v2.7.3
+
+* Supported for charge expire api.
+
 # v2.7.2
 
-* Add expired in charge status.
+* Added expired in charge status.
 
 # v2.7.1
 
