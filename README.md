@@ -21,7 +21,7 @@ You can obtain them by [registering on our website](https://dashboard.omise.co/s
 
 **PCL support is removed since v2.5, the library now targets .NET Standard instead.**
 
-This library targets the .NET Standard version 1.2. For an updated list of supported
+This library targets the .NET Standard version 2.0. For an updated list of supported
 platforms and compatibility with projects that target the PCL, please consult 
 [Official Microsoft's Documentation on .NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
