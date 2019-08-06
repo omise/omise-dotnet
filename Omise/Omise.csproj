@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Omise</PackageId>
-    <PackageVersion>2.7.1</PackageVersion>
+    <PackageVersion>2.7.4</PackageVersion>
     <Authors>Chakrit Wichian &lt;chakrit@omise.co&gt;</Authors>
     <PackageIconUrl>https://cdn.omise.co/assets/frontend-images/omise-logo.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/omise/omise-dotnet/blob/master/LICENSE</PackageLicenseUrl>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Models\Models.tt">
