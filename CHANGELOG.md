@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.7.5
+
+* Fixed bug for nuget packaging + netstandard 2.0 produces large package
+
 # v2.7.4
 
 * Added FirstDigits field to Cards.
