@@ -1,7 +1,7 @@
 #!/usr/bin/make
 
 CONFIG   := Debug
-PLATFORM := netstandard1.2
+PLATFORM := netstandard2.0
 
 OMISE_CSPROJ      := Omise/Omise.csproj
 OMISE_TEST_CSPROJ := Omise.Tests/Omise.Tests.csproj
