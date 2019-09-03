@@ -53,14 +53,14 @@ namespace Omise
             if (!opts.IsEmpty())
             {
                 var content = serializer.ExtractFormValues(opts);
-                path += $"?{await content.ReadAsStringAsync()}";
+                path += $"?{await content.ReadAsStringAsync().ConfigureAwait(false)}";
             }
 
             return await resource.Requester.Request<SearchResult<TResult>>(
                 resource.Endpoint,
                 "GET",
                 path
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Omise
                 "POST",
                 resource.BasePath,
                 request
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

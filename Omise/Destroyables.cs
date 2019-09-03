@@ -18,7 +18,7 @@ namespace Omise
                 resource.Endpoint,
                 "DELETE",
                 $"{resource.BasePath}/{modelId}"
-            );
+            ).ConfigureAwait(false);
         }
     }
 }
