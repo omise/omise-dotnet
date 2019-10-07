@@ -1,11 +1,18 @@
-﻿namespace Omise.Models
+using System.Runtime.Serialization;
+
+namespace Omise.Models
 {
     public enum DisputeStatus
     {
-        Open,
-        Pending,
-        Won,
+        [EnumMember(Value = "closed")]
+        Closed,
+        [EnumMember(Value = "lost")]
         Lost,
-        Closed
+        [EnumMember(Value = "open")]
+        Open,
+        [EnumMember(Value = "pending")]
+        Pending,
+        [EnumMember(Value = "won")]
+        Won
     }
 }

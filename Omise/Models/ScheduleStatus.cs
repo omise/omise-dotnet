@@ -1,13 +1,20 @@
-﻿using System;
+using System.Runtime.Serialization;
 
 namespace Omise.Models
 {
     public enum ScheduleStatus
     {
+        [EnumMember(Value = "active")]
         Active,
-        Expiring,
-        Expired,
+        [EnumMember(Value = "deleted")]
         Deleted,
-        Suspended,
+        [EnumMember(Value = "expired")]
+        Expired,
+        [EnumMember(Value = "expiring")]
+        Expiring,
+        [EnumMember(Value = "running")]
+        Running,
+        [EnumMember(Value = "suspended")]
+        Suspended
     }
 }

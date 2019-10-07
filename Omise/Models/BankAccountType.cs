@@ -1,10 +1,12 @@
-﻿using System;
+using System.Runtime.Serialization;
+
 namespace Omise.Models
 {
-    public class BankAccountType
+    public enum BankAccountType
     {
-        public BankAccountType()
-        {
-        }
+        [EnumMember(Value = "current")]
+        Current,
+        [EnumMember(Value = "normal")]
+        Normal
     }
 }

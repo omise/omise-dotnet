@@ -121,7 +121,7 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.InternetBankingBAY,
+                Offsite = SourceType.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
                 Source = source,
                 ReturnUri = "https://www.omise.co/",
@@ -146,7 +146,7 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.BillPaymentTescoLotus,
+                Offsite = SourceType.BillPaymentTescoLotus,
                 Flow = FlowTypes.Offline,
                 Source = source
             });
@@ -166,7 +166,7 @@ namespace Omise.Examples
                 Description = "Test product",
                 Source = new PaymentSource()
                 {
-                    Type = OffsiteTypes.BarcodeAlipay,
+                    Type = SourceType.BarcodeAlipay,
                     Barcode = "201234567890",
                     StoreId = "Store1",
                     StoreName = "Store 1",

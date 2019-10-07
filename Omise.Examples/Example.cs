@@ -36,7 +36,7 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Type = OffsiteTypes.InternetBankingBAY,
+                Type = SourceType.InternetBankingBAY,
                 Flow = FlowTypes.Redirect
             });
         }
@@ -48,7 +48,7 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Type = OffsiteTypes.BillPaymentTescoLotus,
+                Type = SourceType.BillPaymentTescoLotus,
                 Flow = FlowTypes.Offline
             });
         }

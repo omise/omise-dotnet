@@ -52,7 +52,8 @@ namespace Omise.Tests.Resources
                 @"""charge"":{" +
                 @"""amount"":3333," +
                 @"""currency"":""thb""," +
-                @"""customer"":""cust_test_57weukrimynz11hwz77""}}"
+                @"""customer"":""cust_test_57weukrimynz11hwz77""," +
+                @"""default_card"":false}}"
             );
         }
 

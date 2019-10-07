@@ -1,14 +1,16 @@
-﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Omise.Models
 {
-    public class TransferScheduling
+    public partial class TransferScheduling
     {
-        public string Recipient { get; set; }
-        public long? Amount { get; set; }
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
         [JsonProperty("percentage_of_balance")]
-        public float? PercentageOfBalance { get; set; }
+        public float PercentageOfBalance { get; set; }
+        [JsonProperty("recipient")]
+        public string Recipient { get; set; }
     }
 }

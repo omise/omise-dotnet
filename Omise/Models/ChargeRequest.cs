@@ -12,7 +12,7 @@ namespace Omise.Models
         public string Description { get; set; }
         public IDictionary<string, object> Metadata { get; set; }
         public bool Capture { get; set; }
-        public OffsiteTypes Offsite { get; set; }
+        public SourceType Offsite { get; set; }
         public PaymentSource Source { get; set; }
         public FlowTypes Flow { get; set; }
         [JsonProperty("installment_terms")]

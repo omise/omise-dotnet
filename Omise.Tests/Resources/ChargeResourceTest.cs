@@ -160,7 +160,7 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
+                Offsite = SourceType.InternetBankingBAY,
                 Flow = FlowTypes.Redirect
             };
         }
