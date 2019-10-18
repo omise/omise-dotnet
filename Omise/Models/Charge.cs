@@ -266,4 +266,54 @@ namespace Omise.Models
             }
         }
     }
+
+    public class UpdateChargeParams : Request
+    {
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+    }
+
+    public class CreateChargeParams : Request
+    {
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("capture")]
+        public bool Capture { get; set; }
+        [JsonProperty("card")]
+        public string Card { get; set; }
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+        [JsonProperty("customer")]
+        public string Customer { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("expires_at")]
+        public DateTime ExpiresAt { get; set; }
+        [JsonProperty("ip")]
+        public string Ip { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+        [JsonProperty("offsite")]
+        public string Offsite { get; set; }
+        [JsonProperty("platform_fee")]
+        public PlatformFee PlatformFee { get; set; }
+        [JsonProperty("reference")]
+        public string Reference { get; set; }
+        [JsonProperty("return_uri")]
+        public string ReturnUri { get; set; }
+        [JsonProperty("source")]
+        public string Source { get; set; }
+    }
+
+    public class CreateChargeRefundParams : Request
+    {
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+        [JsonProperty("void")]
+        public bool Void { get; set; }
+    }
 }

@@ -1,27 +1,34 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Omise.Models;
 
 namespace Omise.Resources
 {
     public class ChargeResource : BaseResource<Charge>,
-    IListable<Charge>,
-    IListRetrievable<Charge>,
-    ICreatable<Charge, CreateChargeRequest>,
-    IUpdatable<Charge, UpdateChargeRequest>,
-    ISearchable<Charge>
+        IListable<Charge>,
+        IListRetrievable<Charge>,
+        IUpdatable<Charge, UpdateChargeParams>,
+        ICreatable<Charge, CreateChargeParams>,
+        ISearchable<Charge>
     {
-        public readonly ChargeScheduleResource Schedules;
-
+        public ChargeRefundResource Refunds { get; private set; }
+        public ChargeEventResource Events { get; private set; }
+        public ChargeScheduleResource Schedules { get; private set; }
         public SearchScope Scope => SearchScope.Charge;
 
         public ChargeResource(IRequester requester)
-            : base(requester, Endpoint.Api, "/charges")
+        : base(requester, Endpoint.Api, "/charges")
         {
-            Schedules = new ChargeScheduleResource(requester);
+            Schedules = new ChargeScheduleResource(Requester);
         }
 
-        public async Task<Charge> Capture(string chargeId)
-        {
+        public ChargeResource Charge(string chargeId) {
+            Refunds = new ChargeRefundResource(Requester, chargeId);
+            Events = new ChargeEventResource(Requester, chargeId);
+
+            return this;
+        }
+
+        public async Task<Charge> Capture(string chargeId) {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
@@ -29,22 +36,65 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Charge> Reverse(string chargeId)
-        {
+        public async Task<Charge> Expire(string chargeId) {
+            return await Requester.Request<Charge>(
+                Endpoint,
+                "POST",
+                $"{BasePath}/{chargeId}/expire"
+            );
+        }
+
+        public async Task<Charge> MarkAsFailed(string chargeId) {
+            return await Requester.Request<Charge>(
+                Endpoint,
+                "POST",
+                $"{BasePath}/{chargeId}/mark_as_failed"
+            );
+        }
+
+        public async Task<Charge> MarkAsPaid(string chargeId) {
+            return await Requester.Request<Charge>(
+                Endpoint,
+                "POST",
+                $"{BasePath}/{chargeId}/mark_as_paid"
+            );
+        }
+
+        public async Task<Charge> Reverse(string chargeId) {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
                 $"{BasePath}/{chargeId}/reverse"
             );
         }
+    }
 
-        public async Task<Charge> Expire(string chargeId)
+    public class ChargeRefundResource : BaseResource<Refund>,
+        IListable<Refund>,
+        IListRetrievable<Refund>,
+        ICreatable<Refund, CreateChargeRefundParams>
+    {
+        public ChargeRefundResource(IRequester requester, string chargeId)
+        : base(requester, Endpoint.Api, $"/charges/{chargeId}/refunds")
         {
-            return await Requester.Request<Charge>(
-                Endpoint,
-                "POST",
-                $"{BasePath}/{chargeId}/expire"
-            );
+        }
+    }
+
+    public class ChargeEventResource : BaseResource<Event>,
+        IListable<Event>
+    {
+        public ChargeEventResource(IRequester requester, string chargeId)
+        : base(requester, Endpoint.Api, $"/charges/{chargeId}/events")
+        {
+        }
+    }
+
+    public class ChargeScheduleResource : BaseResource<Schedule>,
+        IListable<Schedule>
+    {
+        public ChargeScheduleResource(IRequester requester)
+        : base(requester, Endpoint.Api, "/charges/schedules")
+        {
         }
     }
 }

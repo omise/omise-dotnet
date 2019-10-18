@@ -1,13 +1,14 @@
-﻿using Omise.Models;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources
 {
     public class TransactionResource : BaseResource<Transaction>,
-    IListable<Transaction>,
-    IListRetrievable<Transaction>
+        IListRetrievable<Transaction>,
+        IListable<Transaction>
     {
         public TransactionResource(IRequester requester)
-            : base(requester, Endpoint.Api, "/transactions")
+        : base(requester, Endpoint.Api, "/transactions")
         {
         }
     }

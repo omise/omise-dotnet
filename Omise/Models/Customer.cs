@@ -55,4 +55,30 @@ namespace Omise.Models
             }
         }
     }
+
+    public class UpdateCustomerParams : Request
+    {
+        [JsonProperty("card")]
+        public string Card { get; set; }
+        [JsonProperty("default_card")]
+        public string DefaultCard { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+    }
+
+    public class CreateCustomerParams : Request
+    {
+        [JsonProperty("card")]
+        public string Card { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+    }
 }

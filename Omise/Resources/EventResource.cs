@@ -1,15 +1,15 @@
-﻿using Omise.Models;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources
 {
     public class EventResource : BaseResource<Event>,
-    IListable<Event>,
-    IListRetrievable<Event>
+        IListRetrievable<Event>,
+        IListable<Event>
     {
         public EventResource(IRequester requester)
-            : base(requester, Endpoint.Api, "/events")
+        : base(requester, Endpoint.Api, "/events")
         {
         }
     }
 }
-
