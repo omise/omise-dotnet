@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.7.6
+
+* Added new payment sources (e.g. paynow, truemoney, etc.)
+
 # v2.7.5
 
 * Fixed bug for nuget packaging + netstandard 2.0 produces large package
