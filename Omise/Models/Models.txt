@@ -68,7 +68,6 @@ Dispute
 Document
   DownloadURI string download_uri
   Filename string
-  Location string
 Event
   Key string
   RawDataJson JRaw data
