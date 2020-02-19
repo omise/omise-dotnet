@@ -5,6 +5,9 @@ Balance
   Available long
   Total long
   Currency string
+Barcode
+  Type string
+  Image Document
 BankAccount bank_account
   Brand string
   Number string
@@ -62,6 +65,10 @@ Dispute
   Status DisputeStatus
   Message string
   Charge string
+Document
+  DownloadURI string download_uri
+  Filename string
+  Location string
 Event
   Key string
   RawDataJson JRaw data
@@ -97,6 +104,7 @@ PaymentSource
   Currency string
   References PaymentReference references
   Barcode string
+  ScannableCode Barcode scannable_code
   StoreId string store_id
   StoreName string store_name
   TerminalId string terminal_id
