@@ -120,7 +120,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var charge = await Fixtures.Create(new CreateChargeRequest());
+            var charge = await Fixtures.Create(new CreateChargeParams());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual(100000, charge.Amount);
             Assert.IsInstanceOf(typeof(PaymentSource), charge.Source);
@@ -131,7 +131,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var charge = await Fixtures.Update(ChargeId, new UpdateChargeRequest());
+            var charge = await Fixtures.Update(ChargeId, new UpdateChargeParams());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual("Charge for order 3947 (XXL)", charge.Description);
         }
@@ -149,9 +149,9 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest()
+        protected CreateChargeParams BuildCreateRequest()
         {
-            return new CreateChargeRequest
+            return new CreateChargeParams
             {
                 Customer = "Omise Co., Ltd.",
                 Card = "card_test_123",
@@ -165,9 +165,9 @@ namespace Omise.Tests.Resources
             };
         }
 
-        protected UpdateChargeRequest BuildUpdateRequest()
+        protected UpdateChargeParams BuildUpdateRequest()
         {
-            return new UpdateChargeRequest
+            return new UpdateChargeParams
             {
                 Description = "Charge was for testing."
             };

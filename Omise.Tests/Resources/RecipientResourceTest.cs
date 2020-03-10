@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -50,15 +51,21 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""name"":""John Doe""," +
-                @"""email"":""john.doe@example.com""," +
-                @"""description"":""Waaat?""," +
-                @"""type"":""corporation""," +
-                @"""tax_id"":""123""," +
-                @"""bank_account"":{" +
-                @"""brand"":""KBank""," +
-                @"""number"":""1234-567-89-0""," +
-                @"""name"":""Secret Stash""}}"
+                new Dictionary<string, object>
+                {
+                    { "name", "John Doe" },
+                    { "email", "john.doe@example.com" },
+                    { "description", "Waaat?" },
+                    { "type", "corporation" },
+                    { "tax_id", "123" },
+                    { "bank_account", new Dictionary<string, object>
+                        {
+                            { "brand", "KBank" },
+                            { "number", "1234-567-89-0" },
+                            { "name", "Secret Stash" },
+                        }
+                    }
+                }
             );
         }
 
@@ -67,15 +74,21 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""name"":""John Doe""," +
-                @"""email"":""john.doe@example.com""," +
-                @"""description"":""I'm up-to-date""," +
-                @"""type"":""individual""," +
-                @"""tax_id"":""456""," +
-                @"""bank_account"":{" +
-                @"""brand"":""BBL""," +
-                @"""number"":""987654321""," +
-                @"""name"":""Accounts""}}"
+                new Dictionary<string, object>
+                {
+                    { "name", "John Doe" },
+                    { "email", "john.doe@example.com" },
+                    { "description", "I'm up-to-date" },
+                    { "type", "individual" },
+                    { "tax_id", "456" },
+                    { "bank_account", new Dictionary<string, object>
+                        {
+                            { "brand", "BBL" },
+                            { "number", "987654321" },
+                            { "name", "Accounts" },
+                        }
+                    }
+                }
             );
         }
 
@@ -101,7 +114,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var recipient = await Fixtures.Create(new CreateRecipientRequest());
+            var recipient = await Fixtures.Create(new CreateRecipientParams());
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.AreEqual("6789", recipient.BankAccount.LastDigits);
         }
@@ -109,7 +122,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var recipient = await Fixtures.Update(RecipientId, new UpdateRecipientRequest());
+            var recipient = await Fixtures.Update(RecipientId, new UpdateRecipientParams());
             Assert.AreEqual(RecipientId, recipient.Id);
             Assert.AreEqual("john@doe.com", recipient.Email);
         }
@@ -122,16 +135,16 @@ namespace Omise.Tests.Resources
             Assert.IsTrue(recipient.Deleted);
         }
 
-        protected CreateRecipientRequest BuildCreateRequest()
+        protected CreateRecipientParams BuildCreateRequest()
         {
-            return new CreateRecipientRequest
+            return new CreateRecipientParams
             {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "Waaat?",
                 Type = RecipientType.Corporation,
-                TaxID = "123",
-                BankAccount = new BankAccountRequest
+                TaxId = "123",
+                BankAccount = new BankAccountParams
                 {
                     Brand = "KBank",
                     Name = "Secret Stash",
@@ -140,16 +153,16 @@ namespace Omise.Tests.Resources
             };
         }
 
-        protected UpdateRecipientRequest BuildUpdateRequest()
+        protected UpdateRecipientParams BuildUpdateRequest()
         {
-            return new UpdateRecipientRequest
+            return new UpdateRecipientParams
             {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "I'm up-to-date",
                 Type = RecipientType.Individual,
-                TaxID = "456",
-                BankAccount = new BankAccountRequest
+                TaxId = "456",
+                BankAccount = new BankAccountParams
                 {
                     Brand = "BBL",
                     Name = "Accounts",

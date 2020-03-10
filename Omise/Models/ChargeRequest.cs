@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
-    public class CreateChargeRequest : Request
+    public class CreateChargeParams : Request
     {
         public string Customer { get; set; }
         public string Card { get; set; }
@@ -20,7 +20,7 @@ namespace Omise.Models
         [JsonProperty("return_uri")]
         public string ReturnUri { get; set; }
 
-        public CreateChargeRequest()
+        public CreateChargeParams()
         {
             Capture = true;
         }

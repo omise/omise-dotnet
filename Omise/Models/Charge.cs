@@ -275,7 +275,7 @@ namespace Omise.Models
         public IDictionary<string, object> Metadata { get; set; }
     }
 
-    public class CreateChargeParams : Request
+    public class CreateChargeParams_NO : Request
     {
         [JsonProperty("amount")]
         public long Amount { get; set; }

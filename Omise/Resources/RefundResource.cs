@@ -12,7 +12,7 @@ namespace Omise.Resources
         public SearchScope Scope => SearchScope.Refund;
 
         public RefundResource(IRequester requester)
-        : base(requester, Endpoint.Api, "/charges")
+        : base(requester, Endpoint.Api, "/refunds")
         {
         }
     }

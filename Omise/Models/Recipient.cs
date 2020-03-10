@@ -114,7 +114,7 @@ namespace Omise.Models
     public class UpdateRecipientParams : Request
     {
         [JsonProperty("bank_account")]
-        public BankAccount BankAccount { get; set; }
+        public BankAccountParams BankAccount { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]
@@ -130,7 +130,7 @@ namespace Omise.Models
     public class CreateRecipientParams : Request
     {
         [JsonProperty("bank_account")]
-        public BankAccount BankAccount { get; set; }
+        public BankAccountParams BankAccount { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]

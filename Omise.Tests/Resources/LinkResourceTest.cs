@@ -26,7 +26,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestCreate()
         {
-            await Resource.Create(new CreateLinkRequest());
+            await Resource.Create(new CreateLinkParams());
             AssertRequest("POST", "https://api.omise.co/links");
         }
 

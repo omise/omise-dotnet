@@ -13,21 +13,21 @@ namespace Omise.Models
         public String WeekdayOfMonth { get; set; }
     }
 
-    public class CreateScheduleRequest : Request
-    {
-        public int Every { get; set; }
-        public SchedulePeriod Period { get; set; }
-        public ScheduleOnRequest On { get; set; }
-        [JsonProperty("start_date")]
-        public DateTime? StartDate { get; set; }
-        [JsonProperty("end_date")]
-        public DateTime? EndDate { get; set; }
-        public ChargeScheduling Charge { get; set; }
-        public TransferScheduling Transfer { get; set; }
+    //public class CreateScheduleParams : Request
+    //{
+    //    public int Every { get; set; }
+    //    public SchedulePeriod Period { get; set; }
+    //    public ScheduleOnRequest On { get; set; }
+    //    [JsonProperty("start_date")]
+    //    public DateTime? StartDate { get; set; }
+    //    [JsonProperty("end_date")]
+    //    public DateTime? EndDate { get; set; }
+    //    public ChargeScheduling Charge { get; set; }
+    //    public TransferScheduling Transfer { get; set; }
 
-        public CreateScheduleRequest()
-        {
-            On = new ScheduleOnRequest();
-        }
-    }
+    //    public CreateScheduleParams()
+    //    {
+    //        On = new ScheduleOnRequest();
+    //    }
+    //}
 }

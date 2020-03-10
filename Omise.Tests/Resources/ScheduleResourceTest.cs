@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Omise.Resources;
 using Omise.Models;
@@ -43,29 +44,39 @@ namespace Omise.Tests.Resources
         [Test]
         public void CreateScheduleRequest()
         {
-            AssertSerializedRequest(
-                BuildCreateRequest(),
-                @"{""every"":1," +
-                @"""period"":""week""," +
-                @"""on"":{""weekdays"":[""friday""]}," +
-                @"""end_date"":""2099-02-01T19:54:00""," +
-                @"""charge"":{" +
-                @"""amount"":3333," +
-                @"""currency"":""thb""," +
-                @"""customer"":""cust_test_57weukrimynz11hwz77""," +
-                @"""default_card"":false}}"
-            );
+            var a = BuildCreateRequest();
+            var b = new Dictionary<string, object>
+                {
+                    { "every", 1 },
+                    { "period", "week" },
+                    { "on", new Dictionary<string, object>
+                        {
+                            {"weekdays", new List<string>{"friday"}},
+                        }
+                    },
+                    { "end_date", "2099-02-01T19:54:00" },
+                    { "charge", new Dictionary<string, object>
+                        {
+                            { "amount", 3333 },
+                            { "currency", "thb" },
+                            { "customer", "cust_test_57weukrimynz11hwz77" },
+                            { "default_card", false },
+                        }
+                    }
+                };
+
+            AssertSerializedRequest(a, b);
         }
 
-        protected CreateScheduleRequest BuildCreateRequest()
+        protected CreateScheduleParams BuildCreateRequest()
         {
-            return new CreateScheduleRequest
+            return new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Week,
                 On = new ScheduleOnRequest
                 {
-                    Weekdays = new[] { Weekdays.Friday },
+                    Weekdays = new Weekdays[] { Weekdays.Friday },
                 },
                 EndDate = new DateTime(2099, 2, 1, 19, 54, 00),
                 Charge = new ChargeScheduling

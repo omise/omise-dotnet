@@ -28,7 +28,7 @@ namespace Omise.Tests
             });
             WriteLine($"created token: ${token.Id}");
 
-            var charge = await client.Charges.Create(new CreateChargeRequest
+            var charge = await client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "usd",
@@ -36,7 +36,7 @@ namespace Omise.Tests
             });
             WriteLine($"created charge: ${charge.Id}");
 
-            charge = await client.Charges.Update(charge.Id, new UpdateChargeRequest
+            charge = await client.Charges.Update(charge.Id, new UpdateChargeParams
             {
                 Description = "TestRealCharge",
                 Metadata = new Dictionary<string, object> {
@@ -63,7 +63,7 @@ namespace Omise.Tests
             token = await client.Tokens.Get(token.Id);
             WriteLine($"retrieved token: {token.Id}");
 
-            var customer = await client.Customers.Create(new CreateCustomerRequest
+            var customer = await client.Customers.Create(new CreateCustomerParams
             {
                 Email = "test@omise.co",
                 Card = token.Id,

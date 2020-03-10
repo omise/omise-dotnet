@@ -108,17 +108,17 @@ namespace Omise.Models
     public class CreateScheduleParams : Request
     {
         [JsonProperty("charge")]
-        public Charge Charge { get; set; }
+        public ChargeScheduling Charge { get; set; }
         [JsonProperty("end_date")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         [JsonProperty("every")]
         public long Every { get; set; }
         [JsonProperty("on")]
-        public ScheduleOn On { get; set; }
+        public ScheduleOnRequest On { get; set; }
         [JsonProperty("period")]
         public SchedulePeriod Period { get; set; }
         [JsonProperty("start_date")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         [JsonProperty("transfer")]
         public Transfer Transfer { get; set; }
     }
