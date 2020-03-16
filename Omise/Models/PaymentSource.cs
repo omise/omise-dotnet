@@ -23,7 +23,7 @@ namespace Omise.Models
         [JsonProperty("references")]
         public PaymentReference References { get; set; }
         [JsonProperty("scannable_code")]
-        public string ScannableCode { get; set; }
+        public Barcode ScannableCode { get; set; }
         [JsonProperty("store_id")]
         public string StoreId { get; set; }
         [JsonProperty("store_name")]
@@ -91,7 +91,7 @@ namespace Omise.Models
                 if (References != default(PaymentReference)) {
                     hash = hash * 23 + References.GetHashCode();
                 }
-                if (ScannableCode != default(string)) {
+                if (ScannableCode != default(Barcode)) {
                     hash = hash * 23 + ScannableCode.GetHashCode();
                 }
                 if (StoreId != default(string)) {
