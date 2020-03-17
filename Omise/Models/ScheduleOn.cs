@@ -6,9 +6,9 @@ namespace Omise.Models
     public partial class ScheduleOn : ModelBase
     {
         [JsonProperty("days_of_month")]
-        public List<long> DaysOfMonth { get; set; }
+        public List<IDictionary<string, object>> DaysOfMonth { get; set; }
         [JsonProperty("weekday_of_month")]
-        public string WeekdayOfMonth { get; set; }
+        public List<IDictionary<string, object>> WeekdayOfMonth { get; set; }
         [JsonProperty("weekdays")]
         public List<Weekdays> Weekdays { get; set; }
 
@@ -29,10 +29,10 @@ namespace Omise.Models
         {
             unchecked {
                 int hash = 17;
-                if (DaysOfMonth != default(List<long>)) {
+                if (DaysOfMonth != default(List<IDictionary<string, object>>)) {
                     hash = hash * 23 + DaysOfMonth.GetHashCode();
                 }
-                if (WeekdayOfMonth != default(string)) {
+                if (WeekdayOfMonth != default(List<IDictionary<string, object>>)) {
                     hash = hash * 23 + WeekdayOfMonth.GetHashCode();
                 }
                 if (Weekdays != default(List<Weekdays>)) {

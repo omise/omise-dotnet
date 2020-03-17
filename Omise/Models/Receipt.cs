@@ -3,10 +3,15 @@ using System;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Receipt object
+    ///
+    /// <a href="https://www.omise.co/receipts-api">Receipt API</a>
+    /// </summary>
     public partial class Receipt : ModelBase
     {
         [JsonProperty("adjustment_transaction")]
-        public string AdjustmentTransaction { get; set; }
+        public Transaction AdjustmentTransaction { get; set; }
         [JsonProperty("charge_fee")]
         public long ChargeFee { get; set; }
         [JsonProperty("company_address")]
@@ -80,7 +85,7 @@ namespace Omise.Models
         {
             unchecked {
                 int hash = 17;
-                if (AdjustmentTransaction != default(string)) {
+                if (AdjustmentTransaction != default(Transaction)) {
                     hash = hash * 23 + AdjustmentTransaction.GetHashCode();
                 }
                 if (ChargeFee != default(long)) {

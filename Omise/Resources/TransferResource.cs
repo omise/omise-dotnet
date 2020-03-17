@@ -5,10 +5,10 @@ namespace Omise.Resources
 {
     public class TransferResource : BaseResource<Transfer>,
         IDestroyable<Transfer>,
-        IListable<Transfer>,
         IListRetrievable<Transfer>,
-        ICreatable<Transfer, CreateTransferParams>,
         IUpdatable<Transfer, UpdateTransferParams>,
+        IListable<Transfer>,
+        ICreatable<Transfer, CreateTransferParams>,
         ISearchable<Transfer>
     {
         public TransferScheduleResource Schedules { get; private set; }

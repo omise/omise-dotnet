@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Transfer object
+    ///
+    /// <a href="https://www.omise.co/transfer-schedules-api">Transfer API</a>
+    /// </summary>
     public partial class TransferScheduling
     {
         [JsonProperty("amount")]

@@ -4,6 +4,11 @@ using System;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Transfer object
+    ///
+    /// <a href="https://www.omise.co/transfers-api">Transfer API</a>
+    /// </summary>
     public partial class Transfer : ModelBase
     {
         [JsonProperty("amount")]
@@ -32,6 +37,8 @@ namespace Omise.Models
         public DateTime PaidAt { get; set; }
         [JsonProperty("recipient")]
         public string Recipient { get; set; }
+        [JsonProperty("schedule")]
+        public string Schedule { get; set; }
         [JsonProperty("sendable")]
         public bool Sendable { get; set; }
         [JsonProperty("sent")]
@@ -63,6 +70,7 @@ namespace Omise.Models
                 object.Equals(this.Paid, another.Paid) &&
                 object.Equals(this.PaidAt, another.PaidAt) &&
                 object.Equals(this.Recipient, another.Recipient) &&
+                object.Equals(this.Schedule, another.Schedule) &&
                 object.Equals(this.Sendable, another.Sendable) &&
                 object.Equals(this.Sent, another.Sent) &&
                 object.Equals(this.SentAt, another.SentAt) &&
@@ -114,6 +122,9 @@ namespace Omise.Models
                 if (Recipient != default(string)) {
                     hash = hash * 23 + Recipient.GetHashCode();
                 }
+                if (Schedule != default(string)) {
+                    hash = hash * 23 + Schedule.GetHashCode();
+                }
                 if (Sendable != default(bool)) {
                     hash = hash * 23 + Sendable.GetHashCode();
                 }
@@ -135,6 +146,14 @@ namespace Omise.Models
         }
     }
 
+    public class UpdateTransferParams : Request
+    {
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+    }
+
     public class CreateTransferParams : Request
     {
         [JsonProperty("amount")]
@@ -145,13 +164,5 @@ namespace Omise.Models
         public IDictionary<string, object> Metadata { get; set; }
         [JsonProperty("recipient")]
         public string Recipient { get; set; }
-    }
-
-    public class UpdateTransferParams : Request
-    {
-        [JsonProperty("amount")]
-        public long Amount { get; set; }
-        [JsonProperty("metadata")]
-        public IDictionary<string, object> Metadata { get; set; }
     }
 }

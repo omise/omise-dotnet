@@ -1,8 +1,14 @@
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Event object
+    ///
+    /// <a href="https://www.omise.co/events-api">Event API</a>
+    /// </summary>
     public partial class Event : ModelBase
     {
         [JsonIgnore]
@@ -12,6 +18,8 @@ namespace Omise.Models
         public JRaw RawDataJson { get; set; }
         [JsonProperty("key")]
         public string Key { get; set; }
+        [JsonProperty("webhook_deliveries")]
+        public List<IDictionary<string, object>> WebhookDeliveries { get; set; }
 
         public ModelBase DeserializeDataByKey() {
             var parts = Key.Split('.');
@@ -34,6 +42,7 @@ namespace Omise.Models
                 object.Equals(this.Data, another.Data) &&
                 object.Equals(this.RawDataJson, another.RawDataJson) &&
                 object.Equals(this.Key, another.Key) &&
+                object.Equals(this.WebhookDeliveries, another.WebhookDeliveries) &&
                 true;
         }
 
@@ -49,6 +58,9 @@ namespace Omise.Models
                 }
                 if (Key != default(string)) {
                     hash = hash * 23 + Key.GetHashCode();
+                }
+                if (WebhookDeliveries != default(List<IDictionary<string, object>>)) {
+                    hash = hash * 23 + WebhookDeliveries.GetHashCode();
                 }
 
                 return hash;

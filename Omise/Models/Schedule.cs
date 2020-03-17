@@ -4,12 +4,17 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Schedule object
+    ///
+    /// <a href="https://www.omise.co/schedules-api">Schedule API</a>
+    /// </summary>
     public partial class Schedule : ModelBase
     {
         [JsonProperty("active")]
         public bool Active { get; set; }
         [JsonProperty("charge")]
-        public Charge Charge { get; set; }
+        public ChargeScheduling Charge { get; set; }
         [JsonProperty("end_on")]
         public DateTime EndOn { get; set; }
         [JsonProperty("ended_at")]
@@ -23,7 +28,7 @@ namespace Omise.Models
         [JsonProperty("occurrences")]
         public ScopedList<Occurrence> Occurrences { get; set; }
         [JsonProperty("on")]
-        public ScheduleOn On { get; set; }
+        public ScheduleOnRequest On { get; set; }
         [JsonProperty("period")]
         public SchedulePeriod Period { get; set; }
         [JsonProperty("start_on")]
@@ -31,7 +36,7 @@ namespace Omise.Models
         [JsonProperty("status")]
         public ScheduleStatus Status { get; set; }
         [JsonProperty("transfer")]
-        public Transfer Transfer { get; set; }
+        public TransferScheduling Transfer { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -63,7 +68,7 @@ namespace Omise.Models
                 if (Active != default(bool)) {
                     hash = hash * 23 + Active.GetHashCode();
                 }
-                if (Charge != default(Charge)) {
+                if (Charge != default(ChargeScheduling)) {
                     hash = hash * 23 + Charge.GetHashCode();
                 }
                 if (EndOn != default(DateTime)) {
@@ -84,7 +89,7 @@ namespace Omise.Models
                 if (Occurrences != default(ScopedList<Occurrence>)) {
                     hash = hash * 23 + Occurrences.GetHashCode();
                 }
-                if (On != default(ScheduleOn)) {
+                if (On != default(ScheduleOnRequest)) {
                     hash = hash * 23 + On.GetHashCode();
                 }
                 if (Period != default(SchedulePeriod)) {
@@ -96,7 +101,7 @@ namespace Omise.Models
                 if (Status != default(ScheduleStatus)) {
                     hash = hash * 23 + Status.GetHashCode();
                 }
-                if (Transfer != default(Transfer)) {
+                if (Transfer != default(TransferScheduling)) {
                     hash = hash * 23 + Transfer.GetHashCode();
                 }
 
@@ -110,7 +115,7 @@ namespace Omise.Models
         [JsonProperty("charge")]
         public ChargeScheduling Charge { get; set; }
         [JsonProperty("end_date")]
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         [JsonProperty("every")]
         public long Every { get; set; }
         [JsonProperty("on")]
@@ -120,6 +125,6 @@ namespace Omise.Models
         [JsonProperty("start_date")]
         public DateTime? StartDate { get; set; }
         [JsonProperty("transfer")]
-        public Transfer Transfer { get; set; }
+        public TransferScheduling Transfer { get; set; }
     }
 }

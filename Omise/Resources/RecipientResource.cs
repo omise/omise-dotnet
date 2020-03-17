@@ -5,9 +5,9 @@ namespace Omise.Resources
 {
     public class RecipientResource : BaseResource<Recipient>,
         IDestroyable<Recipient>,
-        IListable<Recipient>,
         IListRetrievable<Recipient>,
         IUpdatable<Recipient, UpdateRecipientParams>,
+        IListable<Recipient>,
         ICreatable<Recipient, CreateRecipientParams>,
         ISearchable<Recipient>
     {

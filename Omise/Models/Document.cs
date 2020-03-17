@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Document object
+    ///
+    /// <a href="https://www.omise.co/documents-api">Document API</a>
+    /// </summary>
     public partial class Document : ModelBase
     {
         [JsonProperty("download_uri")]

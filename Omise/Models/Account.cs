@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Account object
+    ///
+    /// <a href="https://www.omise.co/account-api">Account API</a>
+    /// </summary>
     public partial class Account : ModelBase
     {
+        [JsonProperty("country")]
+        public string Country { get; set; }
         [JsonProperty("currency")]
         public string Currency { get; set; }
         [JsonProperty("email")]
@@ -21,6 +28,7 @@ namespace Omise.Models
             if (another == null) return false;
 
             return base.Equals(obj) &&
+                object.Equals(this.Country, another.Country) &&
                 object.Equals(this.Currency, another.Currency) &&
                 object.Equals(this.Email, another.Email) &&
                 object.Equals(this.SupportedCurrencies, another.SupportedCurrencies) &&
@@ -32,6 +40,9 @@ namespace Omise.Models
         {
             unchecked {
                 int hash = 17;
+                if (Country != default(string)) {
+                    hash = hash * 23 + Country.GetHashCode();
+                }
                 if (Currency != default(string)) {
                     hash = hash * 23 + Currency.GetHashCode();
                 }

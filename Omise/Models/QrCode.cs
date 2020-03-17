@@ -2,30 +2,25 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
-    /// <summary>
-    /// Chain object
-    ///
-    /// <a href="https://www.omise.co/chains-api">Chain API</a>
-    /// </summary>
-    public partial class Chain : ModelBase
+    public partial class QrCode : ModelBase
     {
         [JsonProperty("email")]
         public string Email { get; set; }
-        [JsonProperty("key")]
-        public string Key { get; set; }
-        [JsonProperty("revoked")]
-        public bool Revoked { get; set; }
+        [JsonProperty("mfa_provisioning_uri")]
+        public string MfaProvisioningUri { get; set; }
+        [JsonProperty("secret")]
+        public string Secret { get; set; }
 
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            var another = obj as Chain;
+            var another = obj as QrCode;
             if (another == null) return false;
 
             return base.Equals(obj) &&
                 object.Equals(this.Email, another.Email) &&
-                object.Equals(this.Key, another.Key) &&
-                object.Equals(this.Revoked, another.Revoked) &&
+                object.Equals(this.MfaProvisioningUri, another.MfaProvisioningUri) &&
+                object.Equals(this.Secret, another.Secret) &&
                 true;
         }
 
@@ -36,11 +31,11 @@ namespace Omise.Models
                 if (Email != default(string)) {
                     hash = hash * 23 + Email.GetHashCode();
                 }
-                if (Key != default(string)) {
-                    hash = hash * 23 + Key.GetHashCode();
+                if (MfaProvisioningUri != default(string)) {
+                    hash = hash * 23 + MfaProvisioningUri.GetHashCode();
                 }
-                if (Revoked != default(bool)) {
-                    hash = hash * 23 + Revoked.GetHashCode();
+                if (Secret != default(string)) {
+                    hash = hash * 23 + Secret.GetHashCode();
                 }
 
                 return hash;

@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Charge object
+    ///
+    /// <a href="https://www.omise.co/charges-api">Charge API</a>
+    /// </summary>
     public partial class Charge : ModelBase
     {
         [JsonProperty("amount")]
@@ -32,6 +37,8 @@ namespace Omise.Models
         public bool Expired { get; set; }
         [JsonProperty("expired_at")]
         public DateTime ExpiredAt { get; set; }
+        [JsonProperty("expires_at")]
+        public DateTime ExpiresAt { get; set; }
         [JsonProperty("failure_code")]
         public ChargeFailureCode FailureCode { get; set; }
         [JsonProperty("failure_message")]
@@ -86,6 +93,8 @@ namespace Omise.Models
         public string Transaction { get; set; }
         [JsonProperty("voided")]
         public bool Voided { get; set; }
+        [JsonProperty("zero_interest_installments")]
+        public bool ZeroInterestInstallments { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -107,6 +116,7 @@ namespace Omise.Models
                 object.Equals(this.Dispute, another.Dispute) &&
                 object.Equals(this.Expired, another.Expired) &&
                 object.Equals(this.ExpiredAt, another.ExpiredAt) &&
+                object.Equals(this.ExpiresAt, another.ExpiresAt) &&
                 object.Equals(this.FailureCode, another.FailureCode) &&
                 object.Equals(this.FailureMessage, another.FailureMessage) &&
                 object.Equals(this.Fee, another.Fee) &&
@@ -134,6 +144,7 @@ namespace Omise.Models
                 object.Equals(this.Status, another.Status) &&
                 object.Equals(this.Transaction, another.Transaction) &&
                 object.Equals(this.Voided, another.Voided) &&
+                object.Equals(this.ZeroInterestInstallments, another.ZeroInterestInstallments) &&
                 true;
         }
 
@@ -179,6 +190,9 @@ namespace Omise.Models
                 }
                 if (ExpiredAt != default(DateTime)) {
                     hash = hash * 23 + ExpiredAt.GetHashCode();
+                }
+                if (ExpiresAt != default(DateTime)) {
+                    hash = hash * 23 + ExpiresAt.GetHashCode();
                 }
                 if (FailureCode != default(ChargeFailureCode)) {
                     hash = hash * 23 + FailureCode.GetHashCode();
@@ -261,18 +275,13 @@ namespace Omise.Models
                 if (Voided != default(bool)) {
                     hash = hash * 23 + Voided.GetHashCode();
                 }
+                if (ZeroInterestInstallments != default(bool)) {
+                    hash = hash * 23 + ZeroInterestInstallments.GetHashCode();
+                }
 
                 return hash;
             }
         }
-    }
-
-    public class UpdateChargeParams : Request
-    {
-        [JsonProperty("description")]
-        public string Description { get; set; }
-        [JsonProperty("metadata")]
-        public IDictionary<string, object> Metadata { get; set; }
     }
 
     public class CreateChargeParams_NO : Request
@@ -307,13 +316,11 @@ namespace Omise.Models
         public string Source { get; set; }
     }
 
-    public class CreateChargeRefundParams : Request
+    public class UpdateChargeParams : Request
     {
-        [JsonProperty("amount")]
-        public long Amount { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
         [JsonProperty("metadata")]
         public IDictionary<string, object> Metadata { get; set; }
-        [JsonProperty("void")]
-        public bool Void { get; set; }
     }
 }

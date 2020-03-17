@@ -3,6 +3,11 @@ using System;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Occurrence object
+    ///
+    /// <a href="https://www.omise.co/occurrences-api">Occurrence API</a>
+    /// </summary>
     public partial class Occurrence : ModelBase
     {
         [JsonProperty("message")]

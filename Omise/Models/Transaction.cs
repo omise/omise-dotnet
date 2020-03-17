@@ -3,6 +3,11 @@ using System;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Transaction object
+    ///
+    /// <a href="https://www.omise.co/transactions-api">Transaction API</a>
+    /// </summary>
     public partial class Transaction : ModelBase
     {
         [JsonProperty("amount")]

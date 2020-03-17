@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Recipient object
+    ///
+    /// <a href="https://www.omise.co/recipients-api">Recipient API</a>
+    /// </summary>
     public partial class Recipient : ModelBase
     {
         [JsonProperty("activated_at")]

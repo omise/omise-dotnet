@@ -5,9 +5,9 @@ namespace Omise.Resources
 {
     public class CardResource : BaseResource<Card>,
         IDestroyable<Card>,
-        IListable<Card>,
         IListRetrievable<Card>,
-        IUpdatable<Card, UpdateCardParams>
+        IUpdatable<Card, UpdateCardParams>,
+        IListable<Card>
     {
         public CardResource(IRequester requester)
         : base(requester, Endpoint.Api, "/customers")

@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Token object
+    ///
+    /// <a href="https://www.omise.co/tokens-api">Token API</a>
+    /// </summary>
     public partial class Token : ModelBase
     {
         [JsonProperty("card")]

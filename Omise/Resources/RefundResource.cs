@@ -5,8 +5,8 @@ namespace Omise.Resources
 {
     public class RefundResource : BaseResource<Refund>,
         ICreatable<Refund, CreateRefundParams>,
-        IListRetrievable<Refund>,
         IListable<Refund>,
+        IListRetrievable<Refund>,
         ISearchable<Refund>
     {
         public SearchScope Scope => SearchScope.Refund;

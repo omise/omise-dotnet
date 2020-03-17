@@ -5,9 +5,9 @@ namespace Omise.Resources
 {
     public class CustomerResource : BaseResource<Customer>,
         IDestroyable<Customer>,
-        IListable<Customer>,
         IListRetrievable<Customer>,
         IUpdatable<Customer, UpdateCustomerParams>,
+        IListable<Customer>,
         ICreatable<Customer, CreateCustomerParams>,
         ISearchable<Customer>
     {

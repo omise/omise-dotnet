@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Bank Account object
+    ///
+    /// <a href="https://www.omise.co/bank-account-api">Bank Account API</a>
+    /// </summary>
     public partial class BankAccount : ModelBase
     {
         [JsonProperty("bank_code")]

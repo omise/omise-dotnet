@@ -5,12 +5,11 @@ namespace Omise.Resources
 {
     public class ChargeResource : BaseResource<Charge>,
         IListable<Charge>,
+        ICreatable<Charge, CreateChargeParams>,
         IListRetrievable<Charge>,
         IUpdatable<Charge, UpdateChargeParams>,
-        ICreatable<Charge, CreateChargeParams>,
         ISearchable<Charge>
     {
-        public ChargeRefundResource Refunds { get; private set; }
         public ChargeEventResource Events { get; private set; }
         public ChargeScheduleResource Schedules { get; private set; }
         public SearchScope Scope => SearchScope.Charge;
@@ -22,7 +21,6 @@ namespace Omise.Resources
         }
 
         public ChargeResource Charge(string chargeId) {
-            Refunds = new ChargeRefundResource(Requester, chargeId);
             Events = new ChargeEventResource(Requester, chargeId);
 
             return this;
@@ -66,17 +64,6 @@ namespace Omise.Resources
                 "POST",
                 $"{BasePath}/{chargeId}/reverse"
             );
-        }
-    }
-
-    public class ChargeRefundResource : BaseResource<Refund>,
-        IListable<Refund>,
-        IListRetrievable<Refund>,
-        ICreatable<Refund, CreateChargeRefundParams>
-    {
-        public ChargeRefundResource(IRequester requester, string chargeId)
-        : base(requester, Endpoint.Api, $"/charges/{chargeId}/refunds")
-        {
         }
     }
 

@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Source object
+    ///
+    /// <a href="https://www.omise.co/sources-api">Source API</a>
+    /// </summary>
     public partial class PaymentSource : ModelBase
     {
         [JsonProperty("amount")]
@@ -20,6 +25,8 @@ namespace Omise.Models
         public string MobileNumber { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("phone_number")]
+        public string PhoneNumber { get; set; }
         [JsonProperty("references")]
         public PaymentReference References { get; set; }
         [JsonProperty("scannable_code")]
@@ -50,6 +57,7 @@ namespace Omise.Models
                 object.Equals(this.InstallmentTerm, another.InstallmentTerm) &&
                 object.Equals(this.MobileNumber, another.MobileNumber) &&
                 object.Equals(this.Name, another.Name) &&
+                object.Equals(this.PhoneNumber, another.PhoneNumber) &&
                 object.Equals(this.References, another.References) &&
                 object.Equals(this.ScannableCode, another.ScannableCode) &&
                 object.Equals(this.StoreId, another.StoreId) &&
@@ -87,6 +95,9 @@ namespace Omise.Models
                 }
                 if (Name != default(string)) {
                     hash = hash * 23 + Name.GetHashCode();
+                }
+                if (PhoneNumber != default(string)) {
+                    hash = hash * 23 + PhoneNumber.GetHashCode();
                 }
                 if (References != default(PaymentReference)) {
                     hash = hash * 23 + References.GetHashCode();
@@ -139,5 +150,7 @@ namespace Omise.Models
         public string TerminalId { get; set; }
         [JsonProperty("type")]
         public SourceType Type { get; set; }
+        [JsonProperty("zero_interest_installments")]
+        public bool ZeroInterestInstallments { get; set; }
     }
 }

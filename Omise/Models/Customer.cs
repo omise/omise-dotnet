@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Customer object
+    ///
+    /// <a href="https://www.omise.co/customers-api">Customer API</a>
+    /// </summary>
     public partial class Customer : ModelBase
     {
         [JsonProperty("cards")]

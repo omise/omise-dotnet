@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Dispute object
+    ///
+    /// <a href="https://www.omise.co/disputes-api">Dispute API</a>
+    /// </summary>
     public partial class Dispute : ModelBase
     {
         [JsonProperty("admin_message")]

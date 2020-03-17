@@ -3,6 +3,11 @@ using System;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Links object
+    ///
+    /// <a href="https://www.omise.co/links-api">Links API</a>
+    /// </summary>
     public partial class Link : ModelBase
     {
         [JsonProperty("amount")]

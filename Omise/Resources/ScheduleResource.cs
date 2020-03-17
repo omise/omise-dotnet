@@ -5,8 +5,8 @@ namespace Omise.Resources
 {
     public class ScheduleResource : BaseResource<Schedule>,
         IDestroyable<Schedule>,
-        IListable<Schedule>,
         IListRetrievable<Schedule>,
+        IListable<Schedule>,
         ICreatable<Schedule, CreateScheduleParams>
     {
         public ScheduleOccurrenceResource Occurrences { get; private set; }

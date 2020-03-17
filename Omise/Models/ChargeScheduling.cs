@@ -1,7 +1,13 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Charge Schedule object
+    ///
+    /// <a href="https://www.omise.co/charge-schedules-api">Charge Schedule API</a>
+    /// </summary>
     public partial class ChargeScheduling
     {
         [JsonProperty("amount")]
@@ -16,5 +22,7 @@ namespace Omise.Models
         public bool DefaultCard { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
     }
 }

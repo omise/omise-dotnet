@@ -8,43 +8,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Omise.Models {
 
-    public partial class Barcode : ModelBase
-    {
-        [JsonProperty("type")]
-        public string Type { get; set; }
-        [JsonProperty("image")]
-        public Document Image { get; set; }
+    //public partial class Barcode : ModelBase
+    //{
+    //    [JsonProperty("type")]
+    //    public string Type { get; set; }
+    //    [JsonProperty("image")]
+    //    public Document Image { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            var another = obj as Barcode;
-            if (another == null) return false;
+    //    public override bool Equals(object obj)
+    //    {
+    //        if (obj == null) return false;
+    //        var another = obj as Barcode;
+    //        if (another == null) return false;
 
-            return base.Equals(obj) &&
-                object.Equals(this.Type, another.Type) &&
-                object.Equals(this.Image, another.Image) &&
-                true;
-        }
+    //        return base.Equals(obj) &&
+    //            object.Equals(this.Type, another.Type) &&
+    //            object.Equals(this.Image, another.Image) &&
+    //            true;
+    //    }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 17;
-                if (Type != default(string))
-                {
-                    hash = hash * 23 + Type.GetHashCode();
-                }
-                if (Image != default(Document))
-                {
-                    hash = hash * 23 + Image.GetHashCode();
-                }
+    //    public override int GetHashCode()
+    //    {
+    //        unchecked
+    //        {
+    //            int hash = 17;
+    //            if (Type != default(string))
+    //            {
+    //                hash = hash * 23 + Type.GetHashCode();
+    //            }
+    //            if (Image != default(Document))
+    //            {
+    //                hash = hash * 23 + Image.GetHashCode();
+    //            }
 
-                return hash;
-            }
-        }
-    }
+    //            return hash;
+    //        }
+    //    }
+    //}
 
     //public partial class Account : ModelBase {
     //    [JsonProperty("email")]

@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Balance object
+    ///
+    /// <a href="https://www.omise.co/balance-api">Balance API</a>
+    /// </summary>
     public partial class Balance : ModelBase
     {
         [JsonProperty("currency")]

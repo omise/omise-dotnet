@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Refund object
+    ///
+    /// <a href="https://www.omise.co/refunds-api">Refund API</a>
+    /// </summary>
     public partial class Refund : ModelBase
     {
         [JsonProperty("amount")]

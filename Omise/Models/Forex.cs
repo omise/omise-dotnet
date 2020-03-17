@@ -2,6 +2,11 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
+    /// <summary>
+    /// Forex object
+    ///
+    /// <a href="https://www.omise.co/forex-api">Forex API</a>
+    /// </summary>
     public partial class Forex : ModelBase
     {
         [JsonProperty("base")]
