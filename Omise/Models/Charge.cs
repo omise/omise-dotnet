@@ -284,7 +284,7 @@ namespace Omise.Models
         }
     }
 
-    public class CreateChargeParams_NO : Request
+    public class CreateChargeParams : Request
     {
         [JsonProperty("amount")]
         public long Amount { get; set; }
@@ -299,7 +299,7 @@ namespace Omise.Models
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("expires_at")]
-        public DateTime ExpiresAt { get; set; }
+        public DateTime? ExpiresAt { get; set; }
         [JsonProperty("ip")]
         public string Ip { get; set; }
         [JsonProperty("metadata")]

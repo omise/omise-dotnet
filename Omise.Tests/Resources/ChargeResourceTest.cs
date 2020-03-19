@@ -78,15 +78,17 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""customer"":""Omise Co., Ltd.""," +
-                @"""card"":""card_test_123""," +
-                @"""amount"":244884," +
-                @"""currency"":""thb""," +
-                @"""description"":""Test Charge""," +
-                @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
-                @"""return_uri"":""asdf""}"
+                new Dictionary<string, object>
+                {
+                    { "customer", "Omise Co., Ltd." },
+                    { "card", "card_test_123" },
+                    { "amount", 244884 },
+                    { "currency", "thb" },
+                    { "description", "Test Charge" },
+                    { "capture", false },
+                    { "source", "src_test_id" },
+                    { "return_uri", "asdf" },
+                }
             );
         }
 
@@ -160,8 +162,7 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = SourceType.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
+                Source = "src_test_id",
             };
         }
 
