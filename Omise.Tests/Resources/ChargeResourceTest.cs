@@ -97,7 +97,10 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""description"":""Charge was for testing.""}"
+                new Dictionary<string, object>
+                {
+                    { "description", "Charge was for testing." },
+                }
             );
         }
 

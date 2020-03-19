@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -44,11 +45,14 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""name"":""MasterCard SmartPay""," +
-                @"""city"":""Bangkok""," +
-                @"""postal_code"":""12345""," +
-                @"""expiration_month"":12," +
-                @"""expiration_year"":2018}"
+                new Dictionary<string, object>
+                {
+                    { "name", "MasterCard SmartPay" },
+                    { "city", "Bangkok" },
+                    { "postal_code", "12345" },
+                    { "expiration_month", 12 },
+                    { "expiration_year", 2018 }
+                }
             );
         }
 
@@ -62,8 +66,11 @@ namespace Omise.Tests.Resources
 
             AssertSerializedRequest(
                 request,
-                @"{""name"":""MasterCard SmartPay""," +
-                @"""city"":""Bangkok""}"
+                new Dictionary<string, object>
+                {
+                    { "name", "MasterCard SmartPay" },
+                    { "city", "Bangkok" }
+                }
             );
         }
 

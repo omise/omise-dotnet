@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -31,14 +32,20 @@ namespace Omise.Tests.Resources
             // (not using one from ICreatable)
             AssertSerializedRequest(
                 BuildWrappedCreateRequest(),
-                @"{""card"":{" +
-                @"""name"":""VISA RichGuy""," +
-                @"""number"":""4242424242424242""," +
-                @"""expiration_month"":12," +
-                @"""expiration_year"":2099," +
-                @"""security_code"":""xyz""," +
-                @"""city"":""Bangkok""," +
-                @"""postal_code"":""43424""}}"
+                new Dictionary<string, object>
+                {
+                    {"card", new Dictionary<string, object>
+                        {
+                            { "name", "VISA RichGuy" },
+                            { "number", "4242424242424242" },
+                            { "expiration_month", 12 },
+                            { "expiration_year", 2099 },
+                            { "security_code", "xyz" },
+                            { "city", "Bangkok" },
+                            { "postal_code", "43424" }
+                        }
+                    }
+                }
             );
         }
 

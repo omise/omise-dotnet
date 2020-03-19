@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -35,11 +36,14 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""amount"":2000," +
-                @"""currency"":""thb""," +
-                @"""title"":""Test Link""," +
-                @"""description"":""Hello World""," +
-                @"""multiple"":true}"
+                new Dictionary<string, object>
+                {
+                    { "amount", 2000 },
+                    { "currency", "thb" },
+                    { "title", "Test Link" },
+                    { "description", "Hello World" },
+                    { "multiple", true }
+                }
             );
         }
 

@@ -38,9 +38,17 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""amount"":300000," +
-                @"""void"":false," +
-                @"""metadata"":{""color"":""red""}}"             );
+                new Dictionary<string, object>
+                {
+                    { "amount", 300000 },
+                    { "void", false },
+                    { "metadata", new Dictionary<string, object>
+                        {
+                            { "color", "red" },
+                        }
+                    }
+                }
+            );
         }
 
         [Test]

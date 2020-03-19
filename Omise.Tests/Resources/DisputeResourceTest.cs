@@ -48,8 +48,15 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""message"":""Hello, This is definitely not ours.""," +
-                @"""metadata"":{""color"":""red""}}"
+                new Dictionary<string, object>
+                {
+                    { "message", "Hello, This is definitely not ours." },
+                    { "metadata", new Dictionary<string, object>
+                        {
+                            { "color", "red" }
+                        }
+                    }
+                }
             );
         }
 
