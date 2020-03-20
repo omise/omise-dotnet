@@ -4,12 +4,6 @@ using Newtonsoft.Json;
 
 namespace Omise.Resources
 {
-    public class TokenRequestWrapper : Request
-    {
-        [JsonProperty("card")]
-        public CreateTokenRequest Card { get; set; }
-    }
-
     public class TokenResource : BaseResource<Token>,
         ICreatable<Token, CreateTokenParams>,
         IListRetrievable<Token>
@@ -19,10 +13,10 @@ namespace Omise.Resources
         {
         }
 
-        public async Task<Token> Create(CreateTokenRequest request)
+        public async Task<Token> Create(CreateCardParams request)
         {
-            var wrapped = new TokenRequestWrapper { Card = request };
-            return await Requester.Request<TokenRequestWrapper, Token>(
+            var wrapped = new CreateTokenParams { Card = request };
+            return await Requester.Request<CreateTokenParams, Token>(
                 Endpoint, "POST", BasePath, wrapped
             );
         }
