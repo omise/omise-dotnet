@@ -61,12 +61,10 @@ namespace Omise.Models
         }
     }
 
-    public class UpdateCustomerParams : Request
+    public class CreateCustomerParams : Request
     {
         [JsonProperty("card")]
         public string Card { get; set; }
-        [JsonProperty("default_card")]
-        public string DefaultCard { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]
@@ -75,10 +73,12 @@ namespace Omise.Models
         public IDictionary<string, object> Metadata { get; set; }
     }
 
-    public class CreateCustomerParams : Request
+    public class UpdateCustomerParams : Request
     {
         [JsonProperty("card")]
         public string Card { get; set; }
+        [JsonProperty("default_card")]
+        public string DefaultCard { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]

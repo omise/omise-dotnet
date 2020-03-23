@@ -116,10 +116,10 @@ namespace Omise.Models
         }
     }
 
-    public class UpdateRecipientParams : Request
+    public class CreateRecipientParams : Request
     {
         [JsonProperty("bank_account")]
-        public BankAccountParams BankAccount { get; set; }
+        public CreateBankAccountParams BankAccount { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]
@@ -132,10 +132,10 @@ namespace Omise.Models
         public RecipientType Type { get; set; }
     }
 
-    public class CreateRecipientParams : Request
+    public class UpdateRecipientParams : Request
     {
         [JsonProperty("bank_account")]
-        public BankAccountParams BankAccount { get; set; }
+        public CreateBankAccountParams BankAccount { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("email")]
