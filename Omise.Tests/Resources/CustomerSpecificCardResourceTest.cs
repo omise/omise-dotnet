@@ -98,7 +98,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var card = await Fixtures.Update(CardId, new UpdateCardRequest());
+            var card = await Fixtures.Update(CardId, new UpdateCardParams());
             Assert.AreEqual(CardId, card.Id);
             Assert.AreEqual("JOHN W. DOE", card.Name);
         }
@@ -111,9 +111,9 @@ namespace Omise.Tests.Resources
             Assert.IsTrue(card.Deleted);
         }
 
-        protected UpdateCardRequest BuildUpdateRequest()
+        protected UpdateCardParams BuildUpdateRequest()
         {
-            return new UpdateCardRequest
+            return new UpdateCardParams
             {
                 Name = "MasterCard SmartPay",
                 City = "Bangkok",

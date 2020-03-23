@@ -128,7 +128,7 @@ namespace Omise.Tests.Resources
             var charge = await Fixtures.Create(new CreateChargeParams());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual(100000, charge.Amount);
-            Assert.IsInstanceOf(typeof(PaymentSource), charge.Source);
+            Assert.IsInstanceOf(typeof(Source), charge.Source);
             Assert.IsInstanceOf(typeof(Barcode), charge.Source.ScannableCode);
             Assert.IsInstanceOf(typeof(Document), charge.Source.ScannableCode.Image);
         }

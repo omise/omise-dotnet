@@ -86,7 +86,7 @@ namespace Omise.Models
         [JsonProperty("schedule")]
         public string Schedule { get; set; }
         [JsonProperty("source")]
-        public PaymentSource Source { get; set; }
+        public Source Source { get; set; }
         [JsonProperty("status")]
         public ChargeStatus Status { get; set; }
         [JsonProperty("transaction")]
@@ -263,7 +263,7 @@ namespace Omise.Models
                 if (Schedule != default(string)) {
                     hash = hash * 23 + Schedule.GetHashCode();
                 }
-                if (Source != default(PaymentSource)) {
+                if (Source != default(Source)) {
                     hash = hash * 23 + Source.GetHashCode();
                 }
                 if (Status != default(ChargeStatus)) {

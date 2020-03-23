@@ -2,7 +2,13 @@ using Newtonsoft.Json;
 
 namespace Omise.Models
 {
-    public partial class Source : ModelBase {
+    /// <summary>
+    /// Source object
+    ///
+    /// <a href="https://www.omise.co/sources-api">Source API</a>
+    /// </summary>
+    public partial class Source : ModelBase
+    {
         [JsonProperty("amount")]
         public long Amount { get; set; }
         [JsonProperty("barcode")]
@@ -15,16 +21,16 @@ namespace Omise.Models
         public FlowTypes Flow { get; set; }
         [JsonProperty("installment_term")]
         public long InstallmentTerm { get; set; }
-        [JsonProperty("location")]
-        public string Location { get; set; }
         [JsonProperty("mobile_number")]
         public string MobileNumber { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("phone_number")]
+        public string PhoneNumber { get; set; }
         [JsonProperty("references")]
-        public References References { get; set; }
+        public PaymentReference References { get; set; }
         [JsonProperty("scannable_code")]
-        public string ScannableCode { get; set; }
+        public Barcode ScannableCode { get; set; }
         [JsonProperty("store_id")]
         public string StoreId { get; set; }
         [JsonProperty("store_name")]
@@ -49,9 +55,9 @@ namespace Omise.Models
                 object.Equals(this.Email, another.Email) &&
                 object.Equals(this.Flow, another.Flow) &&
                 object.Equals(this.InstallmentTerm, another.InstallmentTerm) &&
-                object.Equals(this.Location, another.Location) &&
                 object.Equals(this.MobileNumber, another.MobileNumber) &&
                 object.Equals(this.Name, another.Name) &&
+                object.Equals(this.PhoneNumber, another.PhoneNumber) &&
                 object.Equals(this.References, another.References) &&
                 object.Equals(this.ScannableCode, another.ScannableCode) &&
                 object.Equals(this.StoreId, another.StoreId) &&
@@ -62,7 +68,8 @@ namespace Omise.Models
                 true;
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             unchecked {
                 int hash = 17;
                 if (Amount != default(long)) {
@@ -83,19 +90,19 @@ namespace Omise.Models
                 if (InstallmentTerm != default(long)) {
                     hash = hash * 23 + InstallmentTerm.GetHashCode();
                 }
-                if (Location != default(string)) {
-                    hash = hash * 23 + Location.GetHashCode();
-                }
                 if (MobileNumber != default(string)) {
                     hash = hash * 23 + MobileNumber.GetHashCode();
                 }
                 if (Name != default(string)) {
                     hash = hash * 23 + Name.GetHashCode();
                 }
-                if (References != default(References)) {
+                if (PhoneNumber != default(string)) {
+                    hash = hash * 23 + PhoneNumber.GetHashCode();
+                }
+                if (References != default(PaymentReference)) {
                     hash = hash * 23 + References.GetHashCode();
                 }
-                if (ScannableCode != default(string)) {
+                if (ScannableCode != default(Barcode)) {
                     hash = hash * 23 + ScannableCode.GetHashCode();
                 }
                 if (StoreId != default(string)) {
@@ -117,5 +124,33 @@ namespace Omise.Models
                 return hash;
             }
         }
+    }
+
+    public class CreateSourceParams : Request
+    {
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("barcode")]
+        public string Barcode { get; set; }
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        [JsonProperty("installment_term")]
+        public long InstallmentTerm { get; set; }
+        [JsonProperty("mobile_number")]
+        public string MobileNumber { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("store_id")]
+        public string StoreId { get; set; }
+        [JsonProperty("store_name")]
+        public string StoreName { get; set; }
+        [JsonProperty("terminal_id")]
+        public string TerminalId { get; set; }
+        [JsonProperty("type")]
+        public SourceType Type { get; set; }
+        [JsonProperty("zero_interest_installments")]
+        public bool ZeroInterestInstallments { get; set; }
     }
 }
