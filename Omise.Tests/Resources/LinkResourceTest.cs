@@ -47,9 +47,9 @@ namespace Omise.Tests.Resources
             );
         }
 
-        protected CreateLinkRequest BuildCreateRequest()
+        protected CreateLinkParams BuildCreateRequest()
         {
-            return new CreateLinkRequest
+            return new CreateLinkParams
             {
                 Amount = 2000,
                 Currency = "thb",

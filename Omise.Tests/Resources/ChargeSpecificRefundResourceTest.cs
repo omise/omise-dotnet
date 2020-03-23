@@ -73,14 +73,14 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var refund = await Fixtures.Create(new CreateRefundRequest());
+            var refund = await Fixtures.Create(new CreateRefundParams());
             Assert.AreEqual(RefundId, refund.Id);
             Assert.AreEqual(10000, refund.Amount);
         }
 
-        protected CreateRefundRequest BuildCreateRequest()
+        protected CreateRefundParams BuildCreateRequest()
         {
-            return new CreateRefundRequest 
+            return new CreateRefundParams 
             { 
                 Amount = 300000,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
