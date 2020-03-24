@@ -45,6 +45,6 @@ namespace Omise.Models
     public class CreateTokenParams : Request
     {
         [JsonProperty("card")]
-        public CreateCardParams Card { get; set; }
+        public CardParams Card { get; set; }
     }
 }

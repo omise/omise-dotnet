@@ -66,7 +66,7 @@ namespace Omise.Models
         }
     }
 
-    public class CreateBankAccountParams : Request
+    public class BankAccountParams : Request
     {
         [JsonProperty("account_type")]
         public AccountType? AccountType { get; set; }

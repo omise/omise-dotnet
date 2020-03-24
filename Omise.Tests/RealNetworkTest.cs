@@ -18,7 +18,7 @@ namespace Omise.Tests
         public async Task TestRealCharge()
         {
             var client = buildTestClient();
-            var token = await client.Tokens.Create(new CreateCardParams
+            var token = await client.Tokens.Create(new CardParams
             {
                 Name = "Omise Co., Ltd",
                 Number = "4242424242424242",
@@ -50,7 +50,7 @@ namespace Omise.Tests
         public async Task TestGettingUsedToken()
         {
             var client = buildTestClient();
-            var token = await client.Tokens.Create(new CreateCardParams
+            var token = await client.Tokens.Create(new CardParams
             {
                 Name = "Omise Co., Ltd.",
                 Number = "4242424242424242",

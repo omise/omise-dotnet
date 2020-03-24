@@ -52,7 +52,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var token = await Fixtures.Create(new CreateCardParams());
+            var token = await Fixtures.Create(new CardParams());
             Assert.AreEqual(TokenId, token.Id);
             Assert.AreEqual("4242", token.Card.LastDigits);
         }
@@ -70,9 +70,9 @@ namespace Omise.Tests.Resources
             return new CreateTokenParams { Card = BuildCreateRequest() };
         }
 
-        protected CreateCardParams BuildCreateRequest()
+        protected CardParams BuildCreateRequest()
         {
-            return new CreateCardParams
+            return new CardParams
             {
                 Name = "VISA RichGuy",
                 Number = "4242424242424242",

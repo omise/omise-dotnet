@@ -144,7 +144,7 @@ namespace Omise.Tests.Resources
                 Description = "Waaat?",
                 Type = RecipientType.Corporation,
                 TaxId = "123",
-                BankAccount = new CreateBankAccountParams
+                BankAccount = new BankAccountParams
                 {
                     Brand = "KBank",
                     Name = "Secret Stash",
@@ -162,7 +162,7 @@ namespace Omise.Tests.Resources
                 Description = "I'm up-to-date",
                 Type = RecipientType.Individual,
                 TaxId = "456",
-                BankAccount = new CreateBankAccountParams
+                BankAccount = new BankAccountParams
                 {
                     Brand = "BBL",
                     Name = "Accounts",

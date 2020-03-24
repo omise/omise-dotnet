@@ -13,7 +13,7 @@ namespace Omise.Resources
         {
         }
 
-        public async Task<Token> Create(CreateCardParams request)
+        public async Task<Token> Create(CardParams request)
         {
             var wrapped = new CreateTokenParams { Card = request };
             return await Requester.Request<CreateTokenParams, Token>(

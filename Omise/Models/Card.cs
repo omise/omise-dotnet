@@ -132,7 +132,7 @@ namespace Omise.Models
         }
     }
 
-    public class CreateCardParams : Request
+    public class CardParams : Request
     {
         [JsonProperty("city")]
         public string City { get; set; }
