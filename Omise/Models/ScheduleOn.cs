@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Omise.Models
@@ -6,11 +5,11 @@ namespace Omise.Models
     public partial class ScheduleOn : ModelBase
     {
         [JsonProperty("days_of_month")]
-        public List<IDictionary<string, object>> DaysOfMonth { get; set; }
+        public int[] DaysOfMonth { get; set; }
         [JsonProperty("weekday_of_month")]
-        public List<IDictionary<string, object>> WeekdayOfMonth { get; set; }
+        public string WeekdayOfMonth { get; set; }
         [JsonProperty("weekdays")]
-        public List<Weekdays> Weekdays { get; set; }
+        public Weekdays[] Weekdays { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -29,18 +28,28 @@ namespace Omise.Models
         {
             unchecked {
                 int hash = 17;
-                if (DaysOfMonth != default(List<IDictionary<string, object>>)) {
+                if (DaysOfMonth != default(int[])) {
                     hash = hash * 23 + DaysOfMonth.GetHashCode();
                 }
-                if (WeekdayOfMonth != default(List<IDictionary<string, object>>)) {
+                if (WeekdayOfMonth != default(string)) {
                     hash = hash * 23 + WeekdayOfMonth.GetHashCode();
                 }
-                if (Weekdays != default(List<Weekdays>)) {
+                if (Weekdays != default(Weekdays[])) {
                     hash = hash * 23 + Weekdays.GetHashCode();
                 }
 
                 return hash;
             }
         }
+    }
+
+    public class ScheduleOnParams : Request
+    {
+        [JsonProperty("days_of_month")]
+        public int[] DaysOfMonth { get; set; }
+        [JsonProperty("weekday_of_month")]
+        public string WeekdayOfMonth { get; set; }
+        [JsonProperty("weekdays")]
+        public Weekdays[] Weekdays { get; set; }
     }
 }

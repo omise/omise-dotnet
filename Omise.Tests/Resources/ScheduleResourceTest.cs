@@ -74,7 +74,7 @@ namespace Omise.Tests.Resources
             {
                 Every = 1,
                 Period = SchedulePeriod.Week,
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     Weekdays = new Weekdays[] { Weekdays.Friday },
                 },
