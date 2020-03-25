@@ -59,10 +59,7 @@ namespace Omise.Tests.Resources
         [Test]
         public void TestUpdateCardRequest_NameOnly()
         {
-            var request = BuildUpdateRequest();
-            request.PostalCode = null;
-            request.ExpirationMonth = null;
-            request.ExpirationYear = null;
+            var request = BuildUpdateRequestNameOnly();
 
             AssertSerializedRequest(
                 request,
@@ -120,6 +117,15 @@ namespace Omise.Tests.Resources
                 PostalCode = "12345",
                 ExpirationMonth = 12,
                 ExpirationYear = 2018,
+            };
+        }
+
+        protected UpdateCardParams BuildUpdateRequestNameOnly()
+        {
+            return new UpdateCardParams
+            {
+                Name = "MasterCard SmartPay",
+                City = "Bangkok",
             };
         }
 

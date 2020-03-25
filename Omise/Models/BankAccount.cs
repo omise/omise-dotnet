@@ -68,8 +68,6 @@ namespace Omise.Models
 
     public class BankAccountParams : Request
     {
-        [JsonProperty("account_type")]
-        public AccountType? AccountType { get; set; }
         [JsonProperty("bank_code")]
         public string BankCode { get; set; }
         [JsonProperty("branch_code")]
@@ -80,5 +78,7 @@ namespace Omise.Models
         public string Name { get; set; }
         [JsonProperty("number")]
         public string Number { get; set; }
+        [JsonProperty("type")]
+        public BankAccountType? Type { get; set; }
     }
 }
