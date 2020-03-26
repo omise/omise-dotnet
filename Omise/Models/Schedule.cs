@@ -28,7 +28,7 @@ namespace Omise.Models
         [JsonProperty("occurrences")]
         public ScopedList<Occurrence> Occurrences { get; set; }
         [JsonProperty("on")]
-        public ScheduleOnParams On { get; set; }
+        public ScheduleOn On { get; set; }
         [JsonProperty("period")]
         public SchedulePeriod Period { get; set; }
         [JsonProperty("start_on")]
@@ -89,7 +89,7 @@ namespace Omise.Models
                 if (Occurrences != default(ScopedList<Occurrence>)) {
                     hash = hash * 23 + Occurrences.GetHashCode();
                 }
-                if (On != default(ScheduleOnParams)) {
+                if (On != default(ScheduleOn)) {
                     hash = hash * 23 + On.GetHashCode();
                 }
                 if (Period != default(SchedulePeriod)) {
