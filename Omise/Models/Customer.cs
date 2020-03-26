@@ -73,6 +73,20 @@ namespace Omise.Models
         public IDictionary<string, object> Metadata { get; set; }
     }
 
+    public class UpdateCustomerCardParams : Request
+    {
+        [JsonProperty("city")]
+        public string City { get; set; }
+        [JsonProperty("expiration_month")]
+        public long ExpirationMonth { get; set; }
+        [JsonProperty("expiration_year")]
+        public long ExpirationYear { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("postal_code")]
+        public string PostalCode { get; set; }
+    }
+
     public class UpdateCustomerParams : Request
     {
         [JsonProperty("card")]

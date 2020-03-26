@@ -316,6 +316,16 @@ namespace Omise.Models
         public string Source { get; set; }
     }
 
+    public class CreateChargeRefundParams : Request
+    {
+        [JsonProperty("amount")]
+        public long Amount { get; set; }
+        [JsonProperty("metadata")]
+        public IDictionary<string, object> Metadata { get; set; }
+        [JsonProperty("void")]
+        public bool Void { get; set; }
+    }
+
     public class UpdateChargeParams : Request
     {
         [JsonProperty("description")]

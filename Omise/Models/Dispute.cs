@@ -116,6 +116,12 @@ namespace Omise.Models
         }
     }
 
+    public class CreateDisputeDocumentParams : Request
+    {
+        [JsonProperty("file")]
+        public string File { get; set; }
+    }
+
     public class UpdateDisputeParams : Request
     {
         [JsonProperty("message")]

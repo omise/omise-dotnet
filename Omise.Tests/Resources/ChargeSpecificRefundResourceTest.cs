@@ -7,7 +7,7 @@ using Omise.Resources;
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class ChargeSpecificRefundResourceTest : ResourceTest<ChargeSpecificRefundResource>
+    public class ChargeSpecificRefundResourceTest : ResourceTest<ChargeRefundResource>
     {
         const string ChargeId = "chrg_test_4yq7duw15p9hdrjp8oq";
         const string RefundId = "rfnd_test_4yqmv79ahghsiz23y3c";
@@ -73,23 +73,23 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var refund = await Fixtures.Create(new CreateRefundParams());
+            var refund = await Fixtures.Create(new CreateChargeRefundParams());
             Assert.AreEqual(RefundId, refund.Id);
             Assert.AreEqual(10000, refund.Amount);
         }
 
-        protected CreateRefundParams BuildCreateRequest()
+        protected CreateChargeRefundParams BuildCreateRequest()
         {
-            return new CreateRefundParams 
+            return new CreateChargeRefundParams
             { 
                 Amount = 300000,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
             };
         }
 
-        protected override ChargeSpecificRefundResource BuildResource(IRequester requester)
+        protected override ChargeRefundResource BuildResource(IRequester requester)
         {
-            return new ChargeSpecificRefundResource(requester, ChargeId);
+            return new ChargeRefundResource(requester, ChargeId);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Omise.Resources
     {
         public ChargeEventResource Events { get; private set; }
         public ChargeScheduleResource Schedules { get; private set; }
+        public ChargeRefundResource Refunds { get; private set; }
         public SearchScope Scope => SearchScope.Charge;
 
         public ChargeResource(IRequester requester)
@@ -22,6 +23,7 @@ namespace Omise.Resources
 
         public ChargeResource Charge(string chargeId) {
             Events = new ChargeEventResource(Requester, chargeId);
+            Refunds = new ChargeRefundResource(Requester, chargeId);
 
             return this;
         }
@@ -81,6 +83,17 @@ namespace Omise.Resources
     {
         public ChargeScheduleResource(IRequester requester)
         : base(requester, Endpoint.Api, "/charges/schedules")
+        {
+        }
+    }
+
+    public class ChargeRefundResource : BaseResource<Refund>,
+        ICreatable<Refund, CreateChargeRefundParams>,
+        IListable<Refund>,
+        IListRetrievable<Refund>
+    {
+        public ChargeRefundResource(IRequester requester, string chargeId)
+        : base(requester, Endpoint.Api, $"/charges/{chargeId}/refunds")
         {
         }
     }
