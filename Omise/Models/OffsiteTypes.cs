@@ -28,6 +28,8 @@ namespace Omise.Models
         Paynow,
         [EnumMember(Value = "points_citi")]
         PointsCiti,
+        [EnumMember(Value = "promptpay")]
+        PromptPay,
         [EnumMember(Value = "truemoney")]
         TrueMoney
     }
