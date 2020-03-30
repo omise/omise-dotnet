@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.7.8
+
+* Added new payment source `promptpay`.
+
 # v2.7.7
 
 * Added `PaymentSource.scannable_code`, `Document` and `Barcode`.
