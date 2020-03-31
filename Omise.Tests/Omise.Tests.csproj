@@ -209,14 +209,16 @@
     <Compile Include="Util\RequestAttempt.cs" />
     <Compile Include="Util\StringMemoryStream.cs" />
     <Compile Include="Resources\ScheduleResourceTest.cs" />
-    <Compile Include="Resources\CustomerSpecificResourceTest.cs" />
-    <Compile Include="Resources\ChargeSpecificResourceTest.cs" />
+    <Compile Include="Resources\CustomerNestedResourceTest.cs" />
+    <Compile Include="Resources\ChargeNestedResourceTest.cs" />
     <Compile Include="Resources\ChargeScheduleResourceTest.cs" />
     <Compile Include="Resources\CustomerSpecificScheduleResourceTest.cs" />
     <Compile Include="Resources\ForexResourceTest.cs" />
     <Compile Include="Resources\OccurrenceResourceTest.cs" />
     <Compile Include="Resources\RefundResourceTest.cs" />
     <Compile Include="RealNetworkTest.cs" />
+    <Compile Include="Resources\RecipientNestedResourceTest.cs" />
+    <Compile Include="Resources\ScheduleNestedResourceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\testdata\fixtures\api.omise.co\account-get.json">

@@ -12,6 +12,7 @@ namespace Omise.Resources
         ISearchable<Customer>
     {
         public CustomerScheduleResource Schedules { get; private set; }
+        public CustomerCardResource Cards { get; private set; }
         public SearchScope Scope => SearchScope.Customer;
 
         public CustomerResource(IRequester requester)
@@ -21,6 +22,7 @@ namespace Omise.Resources
 
         public CustomerResource Customer(string customerId) {
             Schedules = new CustomerScheduleResource(Requester, customerId);
+            Cards = new CustomerCardResource(Requester, customerId);
 
             return this;
         }
@@ -31,6 +33,18 @@ namespace Omise.Resources
     {
         public CustomerScheduleResource(IRequester requester, string customerId)
         : base(requester, Endpoint.Api, $"/customers/{customerId}/schedules")
+        {
+        }
+    }
+
+    public class CustomerCardResource : BaseResource<Card>,
+        IDestroyable<Card>,
+        IListRetrievable<Card>,
+        IUpdatable<Card, UpdateCustomerCardParams>,
+        IListable<Card>
+    {
+        public CustomerCardResource(IRequester requester, string customerId)
+        : base(requester, Endpoint.Api, $"/customers/{customerId}/cards")
         {
         }
     }
