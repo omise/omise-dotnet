@@ -77,7 +77,6 @@ namespace Omise
             Transfers = new TransferResource(requester);
         }
 
-        public ChargeSpecificResource Charge(string chargeId) => new ChargeSpecificResource(requester, chargeId);
         public CustomerSpecificResource Customer(string customerId) => new CustomerSpecificResource(requester, customerId);
         public RecipientSpecificResource Recipient(string recipientId) => new RecipientSpecificResource(requester, recipientId);
         public ScheduleSpecificResource Schedule(string scheduleId) => new ScheduleSpecificResource(requester, scheduleId);

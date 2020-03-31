@@ -7,7 +7,7 @@ using Omise.Resources;
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class ChargeSpecificRefundResourceTest : ResourceTest<ChargeRefundResource>
+    public class ChargeRefundResourceTest : ResourceTest<ChargeRefundResource>
     {
         const string ChargeId = "chrg_test_4yq7duw15p9hdrjp8oq";
         const string RefundId = "rfnd_test_4yqmv79ahghsiz23y3c";

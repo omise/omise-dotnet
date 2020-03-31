@@ -5,25 +5,32 @@ using NUnit.Framework;
 
 namespace Omise.Tests.Resources
 {
-    public class ChargeSpecificResourceTest : ResourceTest<ChargeSpecificResource>
+    public class ChargeSpecificResourceTest : ResourceTest<ChargeResource>
     {
         const string ChargeId = "chrg_test_4yq7duw15p9hdrjp8oq";
 
         [Test]
         public void TestBasePath()
         {
-            Assert.IsTrue(Resource.BasePath.Contains(ChargeId));
+            Assert.IsTrue(Resource.Refunds.BasePath.Contains(ChargeId));
+            Assert.IsTrue(Resource.Events.BasePath.Contains(ChargeId));
         }
 
         [Test]
         public void TestRefunds()
         {
-            Assert.IsNotNull(Resource.Refunds);
+            Assert.IsInstanceOf(typeof(ChargeRefundResource), Resource.Refunds);
         }
 
-        protected override ChargeSpecificResource BuildResource(IRequester requester)
+        [Test]
+        public void TestEvents()
         {
-            return new ChargeSpecificResource(requester, ChargeId);
+            Assert.IsInstanceOf(typeof(ChargeEventResource), Resource.Events);
+        }
+
+        protected override ChargeResource BuildResource(IRequester requester)
+        {
+            return new ChargeResource(requester).Charge(ChargeId);
         }
     }
 }

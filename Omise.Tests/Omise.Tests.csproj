@@ -197,7 +197,7 @@
     <Compile Include="Resources\LinkResourceTest.cs" />
     <Compile Include="Resources\ListableTest.cs" />
     <Compile Include="Resources\RecipientResourceTest.cs" />
-    <Compile Include="Resources\ChargeSpecificRefundResourceTest.cs" />
+    <Compile Include="Resources\ChargeRefundResourceTest.cs" />
     <Compile Include="Resources\ResourceTest.cs" />
     <Compile Include="Resources\TokenResourceTest.cs" />
     <Compile Include="Resources\TransactionResourceTest.cs" />
