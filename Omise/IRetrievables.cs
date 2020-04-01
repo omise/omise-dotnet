@@ -3,12 +3,6 @@ using Omise.Models;
 
 namespace Omise
 {
-    // TODO: [vNext] - We should apply IRetrievable on X-SpecificResource and
-    //   forego IListRetrievable for maximum consistency.
-    public interface IRetrievable<TModel> : IResource<TModel> where TModel : ModelBase
-    {
-    }
-
     public interface IListRetrievable<TModel> : IResource<TModel> where TModel : ModelBase
     {
     }
@@ -16,7 +10,7 @@ namespace Omise
     public static class Retrievables
     {
         public static async Task<TResult> Get<TResult>(
-            this IRetrievable<TResult> resource
+            this IListRetrievable<TResult> resource
         ) where TResult : ModelBase
         {
             return await resource.Requester.Request<TResult>(

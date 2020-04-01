@@ -9,11 +9,18 @@ namespace Omise.Resources
         IUpdatable<Dispute, UpdateDisputeParams>,
         ISearchable<Dispute>
     {
+        public DisputeDocumentResource Documents { get; private set; }
         public SearchScope Scope => SearchScope.Dispute;
 
         public DisputeResource(IRequester requester)
         : base(requester, Endpoint.Api, "/disputes")
         {
+        }
+
+        public DisputeResource Dispute(string disputeId) {
+            Documents = new DisputeDocumentResource(Requester, disputeId);
+
+            return this;
         }
 
         public async Task<Dispute> Closed() {
@@ -38,6 +45,18 @@ namespace Omise.Resources
                 "GET",
                 $"{BasePath}/pending"
             );
+        }
+    }
+
+    public class DisputeDocumentResource : BaseResource<Document>,
+        IDestroyable<Document>,
+        IListRetrievable<Document>,
+        IListable<Document>,
+        ICreatable<Document, CreateDisputeDocumentParams>
+    {
+        public DisputeDocumentResource(IRequester requester, string disputeId)
+        : base(requester, Endpoint.Api, $"/disputes/{disputeId}/documents")
+        {
         }
     }
 }
