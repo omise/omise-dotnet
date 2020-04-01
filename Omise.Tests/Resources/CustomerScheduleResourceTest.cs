@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class CustomerSpecificScheduleResourceTest : ResourceTest<CustomerSpecificScheduleResource>
+    public class CustomerScheduleResourceTest : ResourceTest<CustomerScheduleResource>
     {
         const string CustomerId = "cust_test_4yq6txdpfadhbaqnwp3";
-        const string ScheduleId = "card_test_4yq6tuucl9h4erukfl0";
 
         [Test]
         public async Task TestGetList()
@@ -19,9 +18,9 @@ namespace Omise.Tests.Resources
             AssertRequest("GET", $"https://api.omise.co/customers/{CustomerId}/schedules");
         }
 
-        protected override CustomerSpecificScheduleResource BuildResource(IRequester requester)
+        protected override CustomerScheduleResource BuildResource(IRequester requester)
         {
-            return new CustomerSpecificScheduleResource(requester, CustomerId);
+            return new CustomerScheduleResource(requester, CustomerId);
         }
     }
 }

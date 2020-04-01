@@ -189,7 +189,7 @@
     <Compile Include="Models\JsonSerializationTest.cs" />
     <Compile Include="Resources\AccountResourceTest.cs" />
     <Compile Include="Resources\BalanceResourceTest.cs" />
-    <Compile Include="Resources\CustomerSpecificCardResourceTest.cs" />
+    <Compile Include="Resources\CustomerCardResourceTest.cs" />
     <Compile Include="Resources\ChargeResourceTest.cs" />
     <Compile Include="Resources\CustomerResourceTest.cs" />
     <Compile Include="Resources\DisputeResourceTest.cs" />
@@ -212,7 +212,7 @@
     <Compile Include="Resources\CustomerNestedResourceTest.cs" />
     <Compile Include="Resources\ChargeNestedResourceTest.cs" />
     <Compile Include="Resources\ChargeScheduleResourceTest.cs" />
-    <Compile Include="Resources\CustomerSpecificScheduleResourceTest.cs" />
+    <Compile Include="Resources\CustomerScheduleResourceTest.cs" />
     <Compile Include="Resources\ForexResourceTest.cs" />
     <Compile Include="Resources\OccurrenceResourceTest.cs" />
     <Compile Include="Resources\RefundResourceTest.cs" />

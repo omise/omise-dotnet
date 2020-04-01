@@ -7,7 +7,7 @@ using Omise.Resources;
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class CustomerSpecificCardResourceTest : ResourceTest<CustomerSpecificCardResource>
+    public class CustomerCardResourceTest : ResourceTest<CustomerCardResource>
     {
         const string CustomerId = "cust_test_4yq6txdpfadhbaqnwp3";
         const string CardId = "card_test_4yq6tuucl9h4erukfl0";
@@ -95,7 +95,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var card = await Fixtures.Update(CardId, new UpdateCardParams());
+            var card = await Fixtures.Update(CardId, new UpdateCustomerCardParams());
             Assert.AreEqual(CardId, card.Id);
             Assert.AreEqual("JOHN W. DOE", card.Name);
         }
@@ -108,9 +108,9 @@ namespace Omise.Tests.Resources
             Assert.IsTrue(card.Deleted);
         }
 
-        protected UpdateCardParams BuildUpdateRequest()
+        protected UpdateCustomerCardParams BuildUpdateRequest()
         {
-            return new UpdateCardParams
+            return new UpdateCustomerCardParams
             {
                 Name = "MasterCard SmartPay",
                 City = "Bangkok",
@@ -120,18 +120,18 @@ namespace Omise.Tests.Resources
             };
         }
 
-        protected UpdateCardParams BuildUpdateRequestNameOnly()
+        protected UpdateCustomerCardParams BuildUpdateRequestNameOnly()
         {
-            return new UpdateCardParams
+            return new UpdateCustomerCardParams
             {
                 Name = "MasterCard SmartPay",
                 City = "Bangkok",
             };
         }
 
-        protected override CustomerSpecificCardResource BuildResource(IRequester requester)
+        protected override CustomerCardResource BuildResource(IRequester requester)
         {
-            return new CustomerSpecificCardResource(requester, CustomerId);
+            return new CustomerCardResource(requester, CustomerId);
         }
     }
 }

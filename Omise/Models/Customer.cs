@@ -78,9 +78,9 @@ namespace Omise.Models
         [JsonProperty("city")]
         public string City { get; set; }
         [JsonProperty("expiration_month")]
-        public long ExpirationMonth { get; set; }
+        public long? ExpirationMonth { get; set; }
         [JsonProperty("expiration_year")]
-        public long ExpirationYear { get; set; }
+        public long? ExpirationYear { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("postal_code")]
