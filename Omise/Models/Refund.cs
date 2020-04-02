@@ -84,14 +84,4 @@ namespace Omise.Models
             }
         }
     }
-
-    public class CreateRefundParams : Request
-    {
-        [JsonProperty("amount")]
-        public long Amount { get; set; }
-        [JsonProperty("metadata")]
-        public IDictionary<string, object> Metadata { get; set; }
-        [JsonProperty("void")]
-        public bool Void { get; set; }
-    }
 }

@@ -4,9 +4,7 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class RefundResource : BaseResource<Refund>,
-        ICreatable<Refund, CreateRefundParams>,
         IListable<Refund>,
-        IRetrievable<Refund>,
         ISearchable<Refund>
     {
         public SearchScope Scope => SearchScope.Refund;

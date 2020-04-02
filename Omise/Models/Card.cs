@@ -159,18 +159,4 @@ namespace Omise.Models
         [JsonProperty("street2")]
         public string Street2 { get; set; }
     }
-
-    public class UpdateCardParams : Request
-    {
-        [JsonProperty("city")]
-        public string City { get; set; }
-        [JsonProperty("expiration_month")]
-        public long? ExpirationMonth { get; set; }
-        [JsonProperty("expiration_year")]
-        public long? ExpirationYear { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("postal_code")]
-        public string PostalCode { get; set; }
-    }
 }

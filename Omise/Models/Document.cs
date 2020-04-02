@@ -41,10 +41,4 @@ namespace Omise.Models
             }
         }
     }
-
-    public class CreateDocumentParams : Request
-    {
-        [JsonProperty("file")]
-        public string File { get; set; }
-    }
 }
