@@ -6,7 +6,7 @@ namespace Omise.Resources
     public class ChargeResource : BaseResource<Charge>,
         IListable<Charge>,
         ICreatable<Charge, CreateChargeParams>,
-        IListRetrievable<Charge>,
+        IRetrievable<Charge>,
         IUpdatable<Charge, UpdateChargeParams>,
         ISearchable<Charge>
     {
@@ -90,7 +90,7 @@ namespace Omise.Resources
     public class ChargeRefundResource : BaseResource<Refund>,
         ICreatable<Refund, CreateChargeRefundParams>,
         IListable<Refund>,
-        IListRetrievable<Refund>
+        IRetrievable<Refund>
     {
         public ChargeRefundResource(IRequester requester, string chargeId)
         : base(requester, Endpoint.Api, $"/charges/{chargeId}/refunds")

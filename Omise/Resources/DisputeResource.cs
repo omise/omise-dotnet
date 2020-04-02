@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class DisputeResource : BaseResource<Dispute>,
         IListable<Dispute>,
-        IListRetrievable<Dispute>,
+        IRetrievable<Dispute>,
         IUpdatable<Dispute, UpdateDisputeParams>,
         ISearchable<Dispute>
     {
@@ -50,7 +50,7 @@ namespace Omise.Resources
 
     public class DisputeDocumentResource : BaseResource<Document>,
         IDestroyable<Document>,
-        IListRetrievable<Document>,
+        IRetrievable<Document>,
         IListable<Document>,
         ICreatable<Document, CreateDisputeDocumentParams>
     {

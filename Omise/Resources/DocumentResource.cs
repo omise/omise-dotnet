@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class DocumentResource : BaseResource<Document>,
         IDestroyable<Document>,
-        IListRetrievable<Document>,
+        IRetrievable<Document>,
         IListable<Document>,
         ICreatable<Document, CreateDocumentParams>
     {

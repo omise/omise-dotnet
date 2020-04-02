@@ -6,7 +6,7 @@ namespace Omise.Resources
 {
     public class TokenResource : BaseResource<Token>,
         ICreatable<Token, CreateTokenParams>,
-        IListRetrievable<Token>
+        IRetrievable<Token>
     {
         public TokenResource(IRequester requester)
         : base(requester, Endpoint.Vault, "/tokens")

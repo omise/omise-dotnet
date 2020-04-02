@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class CardResource : BaseResource<Card>,
         IDestroyable<Card>,
-        IListRetrievable<Card>,
+        IRetrievable<Card>,
         IUpdatable<Card, UpdateCardParams>,
         IListable<Card>
     {

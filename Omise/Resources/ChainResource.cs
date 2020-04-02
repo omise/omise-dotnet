@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class ChainResource : BaseResource<Chain>,
         IListable<Chain>,
-        IListRetrievable<Chain>
+        IRetrievable<Chain>
     {
         public ChainResource(IRequester requester)
         : base(requester, Endpoint.Api, "/chains")

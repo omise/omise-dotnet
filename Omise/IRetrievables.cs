@@ -3,14 +3,14 @@ using Omise.Models;
 
 namespace Omise
 {
-    public interface IListRetrievable<TModel> : IResource<TModel> where TModel : ModelBase
+    public interface IRetrievable<TModel> : IResource<TModel> where TModel : ModelBase
     {
     }
 
     public static class Retrievables
     {
         public static async Task<TResult> Get<TResult>(
-            this IListRetrievable<TResult> resource
+            this IRetrievable<TResult> resource
         ) where TResult : ModelBase
         {
             return await resource.Requester.Request<TResult>(
@@ -21,7 +21,7 @@ namespace Omise
         }
 
         public static async Task<TResult> Get<TResult>(
-            this IListRetrievable<TResult> resource,
+            this IRetrievable<TResult> resource,
             string modelId
         ) where TResult : ModelBase
         {

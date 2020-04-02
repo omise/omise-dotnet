@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class CustomerResource : BaseResource<Customer>,
         IDestroyable<Customer>,
-        IListRetrievable<Customer>,
+        IRetrievable<Customer>,
         IUpdatable<Customer, UpdateCustomerParams>,
         IListable<Customer>,
         ICreatable<Customer, CreateCustomerParams>,
@@ -39,7 +39,7 @@ namespace Omise.Resources
 
     public class CustomerCardResource : BaseResource<Card>,
         IDestroyable<Card>,
-        IListRetrievable<Card>,
+        IRetrievable<Card>,
         IUpdatable<Card, UpdateCustomerCardParams>,
         IListable<Card>
     {

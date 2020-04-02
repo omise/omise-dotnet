@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class TransferResource : BaseResource<Transfer>,
         IDestroyable<Transfer>,
-        IListRetrievable<Transfer>,
+        IRetrievable<Transfer>,
         IUpdatable<Transfer, UpdateTransferParams>,
         IListable<Transfer>,
         ICreatable<Transfer, CreateTransferParams>,

@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class ReceiptResource : BaseResource<Receipt>,
         IListable<Receipt>,
-        IListRetrievable<Receipt>
+        IRetrievable<Receipt>
     {
         public ReceiptResource(IRequester requester)
         : base(requester, Endpoint.Api, "/receipts")

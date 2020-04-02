@@ -5,7 +5,7 @@ namespace Omise.Resources
 {
     public class LinkResource : BaseResource<Link>,
         IDestroyable<Link>,
-        IListRetrievable<Link>,
+        IRetrievable<Link>,
         IListable<Link>,
         ICreatable<Link, CreateLinkParams>,
         ISearchable<Link>

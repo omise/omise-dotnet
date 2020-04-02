@@ -4,7 +4,7 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class EventResource : BaseResource<Event>,
-        IListRetrievable<Event>,
+        IRetrievable<Event>,
         IListable<Event>
     {
         public EventResource(IRequester requester)
