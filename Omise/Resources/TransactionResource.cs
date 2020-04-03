@@ -4,8 +4,8 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class TransactionResource : BaseResource<Transaction>,
-        IRetrievable<Transaction>,
         IListable<Transaction>
+        IRetrievable<Transaction>,
     {
         public TransactionResource(IRequester requester)
         : base(requester, Endpoint.Api, "/transactions")

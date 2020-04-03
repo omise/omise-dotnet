@@ -4,12 +4,12 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class CustomerResource : BaseResource<Customer>,
-        IDestroyable<Customer>,
-        IRetrievable<Customer>,
-        IUpdatable<Customer, UpdateCustomerParams>,
-        IListable<Customer>,
         ICreatable<Customer, CreateCustomerParams>,
+        IDestroyable<Customer>,
+        IListable<Customer>,
+        IRetrievable<Customer>,
         ISearchable<Customer>
+        IUpdatable<Customer, UpdateCustomerParams>,
     {
         public CustomerScheduleResource Schedules { get; private set; }
         public CustomerCardResource Cards { get; private set; }
@@ -40,9 +40,9 @@ namespace Omise.Resources
 
     public class CustomerCardResource : BaseResource<Card>,
         IDestroyable<Card>,
+        IListable<Card>
         IRetrievable<Card>,
         IUpdatable<Card, UpdateCustomerCardParams>,
-        IListable<Card>
     {
         public CustomerCardResource(IRequester requester, string customerId)
         : base(requester, Endpoint.Api, $"/customers/{customerId}/cards")

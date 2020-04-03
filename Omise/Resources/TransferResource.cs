@@ -4,12 +4,12 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class TransferResource : BaseResource<Transfer>,
-        IDestroyable<Transfer>,
-        IRetrievable<Transfer>,
-        IUpdatable<Transfer, UpdateTransferParams>,
-        IListable<Transfer>,
         ICreatable<Transfer, CreateTransferParams>,
+        IDestroyable<Transfer>,
+        IListable<Transfer>,
+        IRetrievable<Transfer>,
         ISearchable<Transfer>
+        IUpdatable<Transfer, UpdateTransferParams>,
     {
         public TransferScheduleResource Schedules { get; private set; }
         public SearchScope Scope => SearchScope.Transfer;

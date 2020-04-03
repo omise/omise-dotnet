@@ -8,6 +8,8 @@ namespace Omise.Models
         Alipay,
         [EnumMember(Value = "barcode_alipay")]
         BarcodeAlipay,
+        [EnumMember(Value = "barcode_wechat")]
+        BarcodeWechat,
         [EnumMember(Value = "bill_payment_tesco_lotus")]
         BillPaymentTescoLotus,
         [EnumMember(Value = "econtext")]

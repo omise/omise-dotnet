@@ -4,10 +4,10 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class LinkResource : BaseResource<Link>,
-        IDestroyable<Link>,
-        IRetrievable<Link>,
-        IListable<Link>,
         ICreatable<Link, CreateLinkParams>,
+        IDestroyable<Link>,
+        IListable<Link>,
+        IRetrievable<Link>,
         ISearchable<Link>
     {
         public SearchScope Scope => SearchScope.Link;

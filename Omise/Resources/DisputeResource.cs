@@ -6,8 +6,8 @@ namespace Omise.Resources
     public class DisputeResource : BaseResource<Dispute>,
         IListable<Dispute>,
         IRetrievable<Dispute>,
-        IUpdatable<Dispute, UpdateDisputeParams>,
         ISearchable<Dispute>
+        IUpdatable<Dispute, UpdateDisputeParams>,
     {
         public DisputeDocumentResource Documents { get; private set; }
         public SearchScope Scope => SearchScope.Dispute;
@@ -53,10 +53,10 @@ namespace Omise.Resources
     }
 
     public class DisputeDocumentResource : BaseResource<Document>,
-        IDestroyable<Document>,
-        IRetrievable<Document>,
-        IListable<Document>,
         ICreatable<Document, CreateDisputeDocumentParams>
+        IDestroyable<Document>,
+        IListable<Document>,
+        IRetrievable<Document>,
     {
         public DisputeDocumentResource(IRequester requester, string disputeId)
         : base(requester, Endpoint.Api, $"/disputes/{disputeId}/documents")
