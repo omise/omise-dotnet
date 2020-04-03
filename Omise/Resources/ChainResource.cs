@@ -12,7 +12,8 @@ namespace Omise.Resources
         {
         }
 
-        public async Task<Chain> Revoke(string chainId) {
+        public async Task<Chain> Revoke(string chainId)
+        {
             return await Requester.Request<Chain>(
                 Endpoint,
                 "POST",

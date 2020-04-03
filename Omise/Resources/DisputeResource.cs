@@ -17,13 +17,15 @@ namespace Omise.Resources
         {
         }
 
-        public DisputeResource Dispute(string disputeId) {
+        public DisputeResource Dispute(string disputeId)
+        {
             Documents = new DisputeDocumentResource(Requester, disputeId);
 
             return this;
         }
 
-        public async Task<Dispute> Closed() {
+        public async Task<Dispute> Closed()
+        {
             return await Requester.Request<Dispute>(
                 Endpoint,
                 "GET",
@@ -31,7 +33,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Dispute> Open() {
+        public async Task<Dispute> Open()
+        {
             return await Requester.Request<Dispute>(
                 Endpoint,
                 "GET",
@@ -39,7 +42,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Dispute> Pending() {
+        public async Task<Dispute> Pending()
+        {
             return await Requester.Request<Dispute>(
                 Endpoint,
                 "GET",

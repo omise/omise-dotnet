@@ -19,13 +19,15 @@ namespace Omise.Resources
         {
         }
 
-        public RecipientResource Recipient(string recipientId) {
+        public RecipientResource Recipient(string recipientId)
+        {
             Schedules = new RecipientScheduleResource(Requester, recipientId);
 
             return this;
         }
 
-        public async Task<Recipient> Verify(string recipientId) {
+        public async Task<Recipient> Verify(string recipientId)
+        {
             return await Requester.Request<Recipient>(
                 Endpoint,
                 "PATCH",

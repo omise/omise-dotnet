@@ -16,7 +16,8 @@ namespace Omise.Resources
         {
         }
 
-        public ScheduleResource Schedule(string scheduleId) {
+        public ScheduleResource Schedule(string scheduleId)
+        {
             Occurrences = new ScheduleOccurrenceResource(Requester, scheduleId);
 
             return this;

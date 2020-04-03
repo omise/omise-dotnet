@@ -20,7 +20,8 @@ namespace Omise.Resources
         {
         }
 
-        public CustomerResource Customer(string customerId) {
+        public CustomerResource Customer(string customerId)
+        {
             Schedules = new CustomerScheduleResource(Requester, customerId);
             Cards = new CustomerCardResource(Requester, customerId);
 

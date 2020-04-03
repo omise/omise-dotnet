@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Omise.Models;
-using Newtonsoft.Json;
 
 namespace Omise.Resources
 {

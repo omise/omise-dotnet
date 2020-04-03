@@ -17,7 +17,8 @@ namespace Omise.Resources
         {
         }
 
-        public async Task<Link> ListCharges(string linkId) {
+        public async Task<Link> ListCharges(string linkId)
+        {
             return await Requester.Request<Link>(
                 Endpoint,
                 "GET",

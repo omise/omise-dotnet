@@ -21,14 +21,16 @@ namespace Omise.Resources
             Schedules = new ChargeScheduleResource(Requester);
         }
 
-        public ChargeResource Charge(string chargeId) {
+        public ChargeResource Charge(string chargeId)
+        {
             Events = new ChargeEventResource(Requester, chargeId);
             Refunds = new ChargeRefundResource(Requester, chargeId);
 
             return this;
         }
 
-        public async Task<Charge> Capture(string chargeId) {
+        public async Task<Charge> Capture(string chargeId)
+        {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
@@ -36,7 +38,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Charge> Expire(string chargeId) {
+        public async Task<Charge> Expire(string chargeId)
+        {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
@@ -44,7 +47,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Charge> MarkAsFailed(string chargeId) {
+        public async Task<Charge> MarkAsFailed(string chargeId)
+        {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
@@ -52,7 +56,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Charge> MarkAsPaid(string chargeId) {
+        public async Task<Charge> MarkAsPaid(string chargeId)
+        {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",
@@ -60,7 +65,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Charge> Reverse(string chargeId) {
+        public async Task<Charge> Reverse(string chargeId)
+        {
             return await Requester.Request<Charge>(
                 Endpoint,
                 "POST",

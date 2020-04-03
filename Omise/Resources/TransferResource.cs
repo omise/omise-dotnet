@@ -20,7 +20,8 @@ namespace Omise.Resources
             Schedules = new TransferScheduleResource(Requester);
         }
 
-        public async Task<Transfer> MarkAsPaid(string transferId) {
+        public async Task<Transfer> MarkAsPaid(string transferId)
+        {
             return await Requester.Request<Transfer>(
                 Endpoint,
                 "POST",
@@ -28,7 +29,8 @@ namespace Omise.Resources
             );
         }
 
-        public async Task<Transfer> MarkAsSent(string transferId) {
+        public async Task<Transfer> MarkAsSent(string transferId)
+        {
             return await Requester.Request<Transfer>(
                 Endpoint,
                 "POST",
