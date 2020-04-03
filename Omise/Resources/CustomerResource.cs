@@ -8,8 +8,8 @@ namespace Omise.Resources
         IDestroyable<Customer>,
         IListable<Customer>,
         IRetrievable<Customer>,
-        ISearchable<Customer>
-        IUpdatable<Customer, UpdateCustomerParams>,
+        ISearchable<Customer>,
+        IUpdatable<Customer, UpdateCustomerParams>
     {
         public CustomerScheduleResource Schedules { get; private set; }
         public CustomerCardResource Cards { get; private set; }
@@ -40,9 +40,9 @@ namespace Omise.Resources
 
     public class CustomerCardResource : BaseResource<Card>,
         IDestroyable<Card>,
-        IListable<Card>
+        IListable<Card>,
         IRetrievable<Card>,
-        IUpdatable<Card, UpdateCustomerCardParams>,
+        IUpdatable<Card, UpdateCustomerCardParams>
     {
         public CustomerCardResource(IRequester requester, string customerId)
         : base(requester, Endpoint.Api, $"/customers/{customerId}/cards")

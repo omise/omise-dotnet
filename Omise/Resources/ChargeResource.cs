@@ -7,8 +7,8 @@ namespace Omise.Resources
         ICreatable<Charge, CreateChargeParams>,
         IListable<Charge>,
         IRetrievable<Charge>,
-        ISearchable<Charge>
-        IUpdatable<Charge, UpdateChargeParams>,
+        ISearchable<Charge>,
+        IUpdatable<Charge, UpdateChargeParams>
     {
         public ChargeEventResource Events { get; private set; }
         public ChargeScheduleResource Schedules { get; private set; }

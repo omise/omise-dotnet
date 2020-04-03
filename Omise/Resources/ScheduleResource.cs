@@ -4,10 +4,10 @@ using Omise.Models;
 namespace Omise.Resources
 {
     public class ScheduleResource : BaseResource<Schedule>,
-        ICreatable<Schedule, CreateScheduleParams>
+        ICreatable<Schedule, CreateScheduleParams>,
         IDestroyable<Schedule>,
         IListable<Schedule>,
-        IRetrievable<Schedule>,
+        IRetrievable<Schedule>
     {
         public ScheduleOccurrenceResource Occurrences { get; private set; }
 

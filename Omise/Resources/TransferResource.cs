@@ -8,8 +8,8 @@ namespace Omise.Resources
         IDestroyable<Transfer>,
         IListable<Transfer>,
         IRetrievable<Transfer>,
-        ISearchable<Transfer>
-        IUpdatable<Transfer, UpdateTransferParams>,
+        ISearchable<Transfer>,
+        IUpdatable<Transfer, UpdateTransferParams>
     {
         public TransferScheduleResource Schedules { get; private set; }
         public SearchScope Scope => SearchScope.Transfer;

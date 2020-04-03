@@ -8,8 +8,8 @@ namespace Omise.Resources
         IDestroyable<Recipient>,
         IListable<Recipient>,
         IRetrievable<Recipient>,
-        ISearchable<Recipient>
-        IUpdatable<Recipient, UpdateRecipientParams>,
+        ISearchable<Recipient>,
+        IUpdatable<Recipient, UpdateRecipientParams>
     {
         public RecipientScheduleResource Schedules { get; private set; }
         public SearchScope Scope => SearchScope.Recipient;
