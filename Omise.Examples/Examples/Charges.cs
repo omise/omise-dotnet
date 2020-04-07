@@ -25,7 +25,7 @@ namespace Omise.Examples
         public async Task Create__Create_With_Token()
         {
             var token = await RetrieveToken();
-            var charge = await Client.Charges.Create(new CreateChargeRequest
+            var charge = await Client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "thb",
@@ -43,7 +43,7 @@ namespace Omise.Examples
         {
             var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
             var cardId = ExampleInfo.CARD_ID_2; // "card_test_5aasvrrz6vx42t74zux";
-            var charge = await Client.Charges.Create(new CreateChargeRequest
+            var charge = await Client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "thb",
@@ -57,7 +57,7 @@ namespace Omise.Examples
         public async Task Create__Create_With_Customer()
         {
             var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
-            var charge = await Client.Charges.Create(new CreateChargeRequest
+            var charge = await Client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "thb",
@@ -84,7 +84,7 @@ namespace Omise.Examples
         public async Task Update__Update_Description()
         {
             var charge = RetrieveUncapturedCharge();
-            charge = await Client.Charges.Update(charge.Id, new UpdateChargeRequest
+            charge = await Client.Charges.Update(charge.Id, new UpdateChargeParams
             {
                 Description = "hello",
                 Metadata = new Dictionary<string, object>
@@ -99,7 +99,7 @@ namespace Omise.Examples
         protected Charge RetrieveUncapturedCharge()
         {
             var token = RetrieveToken().Result;
-            var charge = Client.Charges.Create(new CreateChargeRequest
+            var charge = Client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "thb",
@@ -117,13 +117,11 @@ namespace Omise.Examples
         public async Task Create__Create_With_Source_InternetBanking()
         {
             var source = await RetrieveSourceInternetBanking();
-            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            var charge = await Client.Charges.Create(new CreateChargeParams()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = SourceType.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
-                Source = source,
+                Source = source.Id,
                 ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
                 {
@@ -142,13 +140,11 @@ namespace Omise.Examples
         public async Task Create__Create_With_Source_BillPayment()
         {
             var source = await RetrieveSourceBillPayment();
-            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            var charge = await Client.Charges.Create(new CreateChargeParams()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = SourceType.BillPaymentTescoLotus,
-                Flow = FlowTypes.Offline,
-                Source = source
+                Source = source.Id
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -159,19 +155,13 @@ namespace Omise.Examples
         #region Wallet Alipay
         public async Task Create__Create_With_Wallet_Alipay()
         {
-            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            var source = await RetrieveSourceBarcode();
+            var charge = await Client.Charges.Create(new CreateChargeParams()
             {
                 Amount = 2000,
                 Currency = "thb",
                 Description = "Test product",
-                Source = new PaymentSource()
-                {
-                    Type = SourceType.BarcodeAlipay,
-                    Barcode = "201234567890",
-                    StoreId = "Store1",
-                    StoreName = "Store 1",
-                    TerminalId = "0001"
-                },
+                Source = source.Id,
                 Metadata = new Dictionary<string, object>
                 {
                     { "invoice_id", "inv0001" }

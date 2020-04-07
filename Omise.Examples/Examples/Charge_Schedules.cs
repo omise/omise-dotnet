@@ -20,6 +20,7 @@ namespace Omise.Examples
         {
             var customerId = ExampleInfo.CUST_ID_3; // "cust_test_5aasqjmq7glo1c0pedk";
             var schedules = await Client
+                .Customers
                 .Customer(customerId)
                 .Schedules
                 .GetList(order: Ordering.ReverseChronological);
@@ -29,13 +30,13 @@ namespace Omise.Examples
 
         public async Task Create__Create_Daily()
         {
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 2,
                 Period = SchedulePeriod.Day,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     Weekdays = new[] { Weekdays.Monday }
                 },
@@ -52,13 +53,13 @@ namespace Omise.Examples
 
         public async Task Create__Create_Weekly()
         {
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Week,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     Weekdays = new[] { Weekdays.Monday, Weekdays.Friday }
                 },
@@ -75,13 +76,13 @@ namespace Omise.Examples
 
         public async Task Create__Create_Monthly()
         {
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 3,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     DaysOfMonth = new[] { 1, 10, 15 }
                 },
@@ -98,13 +99,13 @@ namespace Omise.Examples
 
         public async Task Create__Create_Monthly_By_Week()
         {
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     WeekdayOfMonth = "2nd_monday"
                 },
@@ -128,13 +129,13 @@ namespace Omise.Examples
 
         protected Schedule RetrieveSchedule()
         {
-            return Client.Schedules.Create(new CreateScheduleRequest
+            return Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     WeekdayOfMonth = "2nd_monday"
                 },

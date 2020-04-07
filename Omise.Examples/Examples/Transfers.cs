@@ -15,7 +15,7 @@ namespace Omise.Examples
 
         public async Task Create__Create()
         {
-            var transfer = await Client.Transfers.Create(new CreateTransferRequest
+            var transfer = await Client.Transfers.Create(new CreateTransferParams
             {
                 Amount = 200000,
                 FailFast = true,
@@ -27,7 +27,7 @@ namespace Omise.Examples
         public async Task Create__Create_With_Recipient()
         {
             var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
-            var transfer = await Client.Transfers.Create(new CreateTransferRequest
+            var transfer = await Client.Transfers.Create(new CreateTransferParams
             {
                 Amount = 200000,
                 FailFast = true,
@@ -39,7 +39,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_With_Metadata()
         {
-            var transfer = await Client.Transfers.Create(new CreateTransferRequest
+            var transfer = await Client.Transfers.Create(new CreateTransferParams
             {
                 Amount = 200000,
                 FailFast = true,
@@ -59,7 +59,7 @@ namespace Omise.Examples
         public async Task Update__Update()
         {
             var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
-            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
+            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferParams
             {
                 Amount = 733137
             });
@@ -70,7 +70,7 @@ namespace Omise.Examples
         public async Task Update__Update_With_Metadata()
         {
             var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
-            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
+            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferParams
             {
                 Amount = 733137,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
@@ -88,7 +88,7 @@ namespace Omise.Examples
 
         protected Transfer RetrieveTransfer()
         {
-            return Client.Transfers.Create(new CreateTransferRequest
+            return Client.Transfers.Create(new CreateTransferParams
             {
                 Amount = 200000,
                 FailFast = true,

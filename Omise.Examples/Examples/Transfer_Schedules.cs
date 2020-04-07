@@ -20,6 +20,7 @@ namespace Omise.Examples
         {
             var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
             var schedules = await Client
+                .Recipients
                 .Recipient(recipientId)
                 .Schedules
                 .GetList(order: Ordering.ReverseChronological);
@@ -30,7 +31,7 @@ namespace Omise.Examples
         public async Task Create__Create_Daily_Fixed_Amount()
         {
             var recipient = RetrieveRecipient();
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 2,
                 Period = SchedulePeriod.Day,
@@ -49,13 +50,13 @@ namespace Omise.Examples
         public async Task Create__Create_Weekly_Percentage()
         {
             var recipient = RetrieveRecipient();
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Week,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     Weekdays = new[] { Weekdays.Monday, Weekdays.Friday }
                 },
@@ -72,13 +73,13 @@ namespace Omise.Examples
         public async Task Create__Create_Monthly_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 3,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     DaysOfMonth = new[] { 1, 10, 15 }
                 },
@@ -94,13 +95,13 @@ namespace Omise.Examples
         public async Task Create__Create_Monthly_By_Week_Whole_Balance()
         {
             var recipient = RetrieveRecipient();
-            var schedule = await Client.Schedules.Create(new CreateScheduleRequest
+            var schedule = await Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     WeekdayOfMonth = "2nd_monday"
                 },
@@ -115,13 +116,13 @@ namespace Omise.Examples
 
         protected Schedule RetrieveTransferSchedule()
         {
-            return Client.Schedules.Create(new CreateScheduleRequest
+            return Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 1,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     WeekdayOfMonth = "2nd_monday"
                 },
@@ -134,13 +135,13 @@ namespace Omise.Examples
 
         protected Recipient RetrieveRecipient()
         {
-            return Client.Recipients.Create(new CreateRecipientRequest
+            return Client.Recipients.Create(new CreateRecipientParams
             {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "John Doe (user: 30)",
                 Type = RecipientType.Individual,
-                BankAccount = new BankAccountRequest
+                BankAccount = new BankAccountParams
                 {
                     Brand = "kbank",
                     Number = "7777777777",

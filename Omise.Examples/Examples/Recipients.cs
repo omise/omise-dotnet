@@ -16,13 +16,13 @@ namespace Omise.Examples
 
         public async Task Create__Create()
         {
-            var recipient = await Client.Recipients.Create(new CreateRecipientRequest
+            var recipient = await Client.Recipients.Create(new CreateRecipientParams
             {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "John Doe (user: 30)",
                 Type = RecipientType.Individual,
-                BankAccount = new BankAccountRequest
+                BankAccount = new BankAccountParams
                 {
                     Brand = "kbank",
                     Number = "7777777777",
@@ -43,7 +43,7 @@ namespace Omise.Examples
         public async Task Update__Update()
         {
             var recipientId = ExampleInfo.RECIPIENT_ID; // "recp_test_57po4c5obpi7rrxhtyl";
-            var recipient = await Client.Recipients.Update(recipientId, new UpdateRecipientRequest
+            var recipient = await Client.Recipients.Update(recipientId, new UpdateRecipientParams
             {
                 Name = "Dohn Joe",
                 Email = "dohn.joe@example.com",
@@ -61,13 +61,13 @@ namespace Omise.Examples
 
         protected Recipient RetrieveRecipient()
         {
-            return Client.Recipients.Create(new CreateRecipientRequest
+            return Client.Recipients.Create(new CreateRecipientParams
             {
                 Name = "John Doe",
                 Email = "john.doe@example.com",
                 Description = "John Doe (user: 30)",
                 Type = RecipientType.Individual,
-                BankAccount = new BankAccountRequest
+                BankAccount = new BankAccountParams
                 {
                     Brand = "kbank",
                     Number = "7777777777",

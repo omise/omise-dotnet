@@ -8,7 +8,7 @@ namespace Omise.Examples
     {
         public async Task Create__Create()
         {
-            var token = await Client.Tokens.Create(new CreateTokenRequest
+            var token = await Client.Tokens.Create(new CardParams
             {
                 Name = "John Doe",
                 Number = "4242424242424242",

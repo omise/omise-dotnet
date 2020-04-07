@@ -9,12 +9,11 @@ namespace Omise.Examples
         #region Internet Banking
         public async Task Create__Create_InternetBanking()
         {
-            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            var source = await Client.Sources.Create(new CreateSourceParams
             {
                 Amount = 2000,
                 Currency = "thb",
                 Type = SourceType.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
             });
 
             Console.WriteLine($"created source: {source.Id}");
@@ -36,12 +35,11 @@ namespace Omise.Examples
         #region BillPayment
         public async Task Create__Create_BillPayment()
         {
-            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            var source = await Client.Sources.Create(new CreateSourceParams
             {
                 Amount = 2000,
                 Currency = "thb",
                 Type = SourceType.BillPaymentTescoLotus,
-                Flow = FlowTypes.Offline
             });
 
             Console.WriteLine($"created source: {source.Id}");

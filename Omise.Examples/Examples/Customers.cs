@@ -22,7 +22,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_Simple()
         {
-            var customer = await Client.Customers.Create(new CreateCustomerRequest
+            var customer = await Client.Customers.Create(new CreateCustomerParams
             {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
@@ -38,7 +38,7 @@ namespace Omise.Examples
         public async Task Create__Attach_Card()
         {
             var token = await RetrieveToken();
-            var customer = await Client.Customers.Create(new CreateCustomerRequest
+            var customer = await Client.Customers.Create(new CreateCustomerParams
             {
                 Email = "john.doe@example.com",
                 Description = "John Doe (id: 30)",
@@ -55,7 +55,7 @@ namespace Omise.Examples
         public async Task Update__Update_Simple()
         {
             var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
-            var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
+            var customer = await Client.Customers.Update(customerId, new UpdateCustomerParams
             {
                 Email = "john.smith@example.com",
                 Description = "John Smith",
@@ -73,7 +73,7 @@ namespace Omise.Examples
             var token = await RetrieveToken();
 
             var customerId = ExampleInfo.CUST_ID; // "cust_test_5aass4jqqb39x80fkta";
-            var customer = await Client.Customers.Update(customerId, new UpdateCustomerRequest
+            var customer = await Client.Customers.Update(customerId, new UpdateCustomerParams
             {
                 Card = token.Id
             });
@@ -90,7 +90,7 @@ namespace Omise.Examples
 
         protected Customer RetrieveCustomer()
         {
-            return Client.Customers.Create(new CreateCustomerRequest
+            return Client.Customers.Create(new CreateCustomerParams
             {
                 Email = "john.doe@example.com",
                 Description = "wat",

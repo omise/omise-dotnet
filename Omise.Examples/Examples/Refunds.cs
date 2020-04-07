@@ -20,6 +20,7 @@ namespace Omise.Examples
         {
             var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
             var refunds = await Client
+                .Charges
                 .Charge(chargeId)
                 .Refunds
                 .GetList(order: Ordering.ReverseChronological);
@@ -30,7 +31,7 @@ namespace Omise.Examples
         public async Task Create__Create()
         {
             var charge = RetrieveCharge();
-            var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
+            var refund = await Client.Charges.Charge(charge.Id).Refunds.Create(new CreateChargeRefundParams
             {
                 Amount = charge.Amount,
             });
@@ -41,7 +42,7 @@ namespace Omise.Examples
         public async Task Create__Create_With_Metadata()
         {
             var charge = RetrieveCharge();
-            var refund = await Client.Charge(charge.Id).Refunds.Create(new CreateRefundRequest
+            var refund = await Client.Charges.Charge(charge.Id).Refunds.Create(new CreateChargeRefundParams
             {
                 Amount = charge.Amount,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
@@ -54,14 +55,14 @@ namespace Omise.Examples
         {
             var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
             var refundId = ExampleInfo.REFUND_ID; // "rfnd_test_5aasqmj6fqvfoacm7xl";
-            var refund = await Client.Charge(chargeId).Refunds.Get(refundId);
+            var refund = await Client.Charges.Charge(chargeId).Refunds.Get(refundId);
             Console.WriteLine($"refunded: {refund.Amount}");
         }
 
         protected Charge RetrieveCharge()
         {
             var token = RetrieveToken().Result;
-            return Client.Charges.Create(new CreateChargeRequest
+            return Client.Charges.Create(new CreateChargeParams
             {
                 Amount = 2000,
                 Currency = "thb",

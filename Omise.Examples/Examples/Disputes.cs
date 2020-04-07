@@ -17,22 +17,22 @@ namespace Omise.Examples
 
         public async Task Open__Open()
         {
-            var resource = Client.Disputes.OpenDisputes;
-            var openDisputes = await resource.GetList(order: Ordering.ReverseChronological);
+            var resource = Client.Disputes;
+            var openDisputes = await resource.ListOpen(order: Ordering.ReverseChronological);
             Console.WriteLine($"open disputes: {openDisputes.Total}");
         }
 
         public async Task Closed__Closed()
         {
-            var resource = Client.Disputes.ClosedDisputes;
-            var closedDisputes = await resource.GetList(order: Ordering.ReverseChronological);
+            var resource = Client.Disputes;
+            var closedDisputes = await resource.ListClosed(order: Ordering.ReverseChronological);
             Console.WriteLine($"closed disputes: {closedDisputes.Total}");
         }
 
         public async Task Pending__Pending()
         {
-            var resource = Client.Disputes.PendingDisputes;
-            var pendingDisputes = await resource.GetList(order: Ordering.ReverseChronological);
+            var resource = Client.Disputes;
+            var pendingDisputes = await resource.ListPending(order: Ordering.ReverseChronological);
             Console.WriteLine($"pending disputes: {pendingDisputes.Total}");
         }
 
@@ -46,7 +46,7 @@ namespace Omise.Examples
         public async Task Update__Update()
         {
             var dispute = RetrieveOpenDispute();
-            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
+            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeParams
             {
                 Message = "Hello, World!"
             });
@@ -56,7 +56,7 @@ namespace Omise.Examples
         public async Task Update__UpdateWithMetadata()
         {
             var dispute = RetrieveOpenDispute();
-            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeRequest
+            dispute = await Client.Disputes.Update(dispute.Id, new UpdateDisputeParams
             {
                 Message = "Hello, World!",
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
@@ -66,7 +66,7 @@ namespace Omise.Examples
 
         protected Dispute RetrieveOpenDispute()
         {
-            return Client.Disputes.OpenDisputes.GetList().Result.First();
+            return Client.Disputes.ListOpen().Result.First();
         }
     }
 }
