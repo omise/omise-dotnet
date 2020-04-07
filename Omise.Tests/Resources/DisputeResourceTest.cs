@@ -21,12 +21,14 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestGetListByStatus()
         {
-            //await Resource.OpenDisputes.GetList();
-            //AssertRequest("GET", "https://api.omise.co/disputes/open");
-            //await Resource.PendingDisputes.GetList();
-            //AssertRequest("GET", "https://api.omise.co/disputes/pending");
-            //await Resource.ClosedDisputes.GetList();
-            //AssertRequest("GET", "https://api.omise.co/disputes/closed");
+            await Resource.ListOpen();
+            AssertRequest("GET", "https://api.omise.co/disputes/open");
+
+            await Resource.ListPending();
+            AssertRequest("GET", "https://api.omise.co/disputes/pending");
+
+            await Resource.ListClosed();
+            AssertRequest("GET", "https://api.omise.co/disputes/closed");
         }
 
         [Test]

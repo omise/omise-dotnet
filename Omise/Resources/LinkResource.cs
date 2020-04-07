@@ -10,6 +10,7 @@ namespace Omise.Resources
         IRetrievable<Link>,
         ISearchable<Link>
     {
+        public LinkChargeResource Charges { get; private set; }
         public SearchScope Scope => SearchScope.Link;
 
         public LinkResource(IRequester requester)
@@ -17,13 +18,20 @@ namespace Omise.Resources
         {
         }
 
-        public async Task<Link> ListCharges(string linkId)
+        public LinkResource Link(string linkId)
         {
-            return await Requester.Request<Link>(
-                Endpoint,
-                "GET",
-                $"{BasePath}/{linkId}/charges"
-            );
+            Charges = new LinkChargeResource(Requester, linkId);
+
+            return this;
+        }
+    }
+
+    public class LinkChargeResource : BaseResource<Charge>,
+        IListable<Charge>
+    {
+        public LinkChargeResource(IRequester requester, string linkId)
+        : base(requester, Endpoint.Api, $"/links/{linkId}/charges")
+        {
         }
     }
 }

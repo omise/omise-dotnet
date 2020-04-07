@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Omise.Models;
+using System;
 
 namespace Omise.Resources
 {
@@ -24,31 +25,19 @@ namespace Omise.Resources
             return this;
         }
 
-        public async Task<Dispute> Closed()
+        public async Task<ScopedList<Dispute>> ListClosed(int? offset = null, int? limit = null, DateTime? from = null, DateTime? to = null, Ordering? order = null)
         {
-            return await Requester.Request<Dispute>(
-                Endpoint,
-                "GET",
-                $"{BasePath}/closed"
-            );
+            return await this.GetList($"{BasePath}/closed", offset, limit, from, to, order);
         }
 
-        public async Task<Dispute> Open()
+        public async Task<ScopedList<Dispute>> ListOpen(int? offset = null, int? limit = null, DateTime? from = null, DateTime? to = null, Ordering? order = null)
         {
-            return await Requester.Request<Dispute>(
-                Endpoint,
-                "GET",
-                $"{BasePath}/open"
-            );
+            return await this.GetList($"{BasePath}/open", offset, limit, from, to, order);
         }
 
-        public async Task<Dispute> Pending()
+        public async Task<ScopedList<Dispute>> ListPending(int? offset = null, int? limit = null, DateTime? from = null, DateTime? to = null, Ordering? order = null)
         {
-            return await Requester.Request<Dispute>(
-                Endpoint,
-                "GET",
-                $"{BasePath}/pending"
-            );
+            return await this.GetList($"{BasePath}/pending", offset, limit, from, to, order);
         }
     }
 

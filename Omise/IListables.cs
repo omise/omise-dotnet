@@ -40,6 +40,19 @@ namespace Omise
             Ordering? order = null
         ) where TResult : ModelBase
         {
+            return await resource.GetList(resource.BasePath, offset, limit, from, to, order);
+        }
+
+        public static async Task<ScopedList<TResult>> GetList<TResult>(
+            this IListable<TResult> resource,
+            string path,
+            int? offset = null,
+            int? limit = null,
+            DateTime? from = null,
+            DateTime? to = null,
+            Ordering? order = null
+        ) where TResult : ModelBase
+        {
 
             var opts = new ListOptions
             {
@@ -50,7 +63,6 @@ namespace Omise
                 Order = order
             };
 
-            var path = resource.BasePath;
             if (!opts.IsEmpty())
             {
                 var content = serializer.ExtractFormValues(opts);
