@@ -7,7 +7,7 @@ namespace Omise
     public class Client
     {
         // Default to the latest API Version.
-        private string apiVersion = "2017-11-02";
+        public readonly string APIVersion = "2019-05-29";
 
         readonly IRequester requester;
         readonly IEnvironment environment;
@@ -40,12 +40,6 @@ namespace Omise
             get { return environment; }
         }
 
-        public string APIVersion
-        {
-            get { return requester.APIVersion; }
-            set { requester.APIVersion = value; }
-        }
-
         public Client(string pkey = null, string skey = null, IEnvironment env = null)
             : this(new Credentials(pkey, skey), env)
         {
@@ -56,7 +50,7 @@ namespace Omise
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
 
             environment = env ?? Environments.Production;
-            requester = new Requester(credentials, environment, null, this.apiVersion);
+            requester = new Requester(credentials, environment, null, APIVersion);
 
             Account = new AccountResource(requester);
             Balance = new BalanceResource(requester);

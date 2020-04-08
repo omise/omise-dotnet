@@ -26,9 +26,10 @@ namespace Omise.Tests
         public void TestAPIVersion()
         {
             var client = new Client("pkey_test_123", "skey_test_123");
-            client.APIVersion = "new-shiny-version";
-            Assert.AreEqual("new-shiny-version", client.APIVersion);
-            Assert.AreEqual("new-shiny-version", ((Requester)client.Requester).APIVersion);
+            var version = "2019-05-29";
+
+            Assert.AreEqual(version, client.APIVersion);
+            Assert.AreEqual(version, ((Requester)client.Requester).APIVersion);
         }
 
         [Test]
