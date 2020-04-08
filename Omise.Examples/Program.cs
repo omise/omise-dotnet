@@ -95,6 +95,7 @@ namespace Omise.Examples
 
             Console.WriteLine($"extracting: {name}");
             var source = File.ReadAllText(filename);
+            // var a = new System.Collections.Immutable.ImmutableArray<int>{  1 };
             var tree = CSharpSyntaxTree.ParseText(source);
             var root = tree.GetRoot();
 
