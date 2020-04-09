@@ -63,5 +63,16 @@ namespace Omise.Examples
                 TerminalId = "0001"
             });
         }
+
+        // Creates a new PromptPay source
+        protected async Task<Source> RetrieveSourcePromptPay()
+        {
+            return await Client.Sources.Create(new CreateSourceParams
+            {
+                Type = SourceType.PromptPay,
+                Amount = 20000,
+                Currency = "thb"
+            });
+        }
     }
 }

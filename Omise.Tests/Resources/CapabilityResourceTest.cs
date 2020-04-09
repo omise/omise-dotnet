@@ -5,25 +5,26 @@ using Omise.Resources;
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class BalanceResourceTest : ResourceTest<BalanceResource>
+    public class CapabilityResourceTest : ResourceTest<CapabilityResource>
     {
         [Test]
         public async Task TestGet()
         {
             await Resource.Get();
-            AssertRequest("GET", "https://api.omise.co/balance");
+            AssertRequest("GET", "https://api.omise.co/capability");
         }
 
         [Test]
         public async Task TestFixturesGet()
         {
-            var balance = await Fixtures.Get();
-            Assert.AreEqual(96094, balance.Total);
+            var capability = await Fixtures.Get();
+            Assert.AreEqual("TH", capability.Country);
+            Assert.True(capability.ZeroInterestInstallments);
         }
 
-        protected override BalanceResource BuildResource(IRequester requester)
+        protected override CapabilityResource BuildResource(IRequester requester)
         {
-            return new BalanceResource(requester);
+            return new CapabilityResource(requester);
         }
     }
 }

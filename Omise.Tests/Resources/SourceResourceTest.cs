@@ -1,32 +1,35 @@
 ﻿using System;
-using Omise.Resources;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using Omise.Resources;
+using Omise.Models;
 
 namespace Omise.Tests.Resources
 {
     [TestFixture]
-    public class RefundResourceTest : ResourceTest<RefundResource>
+    public class SourceResourceTest : ResourceTest<SourceResource>
     {
-        const string RefundId = "rfnd_test_56gs5h8w22wcmhmg92c";
+        const string SourceId = "src_test_no1t4tnemucod0e51mo";
 
         [Test]
-        public async Task TestGetList()
+        public async Task TestGet()
         {
-            await Resource.GetList();
-            AssertRequest("GET", "https://api.omise.co/refunds");
+            await Resource.Get(SourceId);
+            AssertRequest("GET", "https://api.omise.co/sources/{0}", SourceId);
         }
 
         [Test]
-        public async Task TestSearch()
+        public async Task TestFixturesGet()
         {
-            await Resource.Search(RefundId);
-            AssertRequest("GET", $"https://api.omise.co/search?scope=refund&query={RefundId}");
+            var source = await Fixtures.Get(SourceId);
+            Assert.AreEqual(SourceId, source.Id);
+            Assert.IsInstanceOf(typeof(Barcode), source.ScannableCode);
+            Assert.IsInstanceOf(typeof(Document), source.ScannableCode.Image);
         }
 
-        protected override RefundResource BuildResource(IRequester requester)
+        protected override SourceResource BuildResource(IRequester requester)
         {
-            return new RefundResource(requester);
+            return new SourceResource(requester);
         }
     }
 }

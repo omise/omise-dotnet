@@ -3,13 +3,12 @@ using System.Threading.Tasks;
 
 namespace Omise.Examples
 {
-    public class Balances : Example
+    public class Capability : Example
     {
         public async Task Retrieve__Retrieve()
         {
-            var balance = await Client.Balance.Get();
-            Console.WriteLine($"available balance: {balance.Transferable}");
-            Console.WriteLine($"total balance: {balance.Total}");
+            var capability = await Client.Capability.Get();
+            Console.WriteLine($"Country: {capability.Country}");
         }
     }
 }
