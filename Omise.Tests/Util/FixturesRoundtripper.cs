@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using System;
 
 namespace Omise.Tests.Util
 {
@@ -31,7 +32,7 @@ namespace Omise.Tests.Util
             var path = request.RequestUri.AbsolutePath;
 
             var filename = $"{host}{path}-{method}.json";
-            var fullpath = GetFixturePath(filename);
+            var fullpath = Fixtures.GetFixturesPath(filename);
 
             if (!File.Exists(fullpath))
             {
@@ -40,7 +41,7 @@ namespace Omise.Tests.Util
 
                 response.StatusCode = HttpStatusCode.NotFound;
                 filename = $"{host}{string.Join("/", segments)}-{method}.json";
-                fullpath = GetFixturePath(filename);
+                fullpath = Fixtures.GetFixturesPath(filename);
             }
 
             if (!File.Exists(fullpath))
@@ -52,11 +53,6 @@ namespace Omise.Tests.Util
             response.Content = new ByteArrayContent(bytes);
             response.Content.Headers.Add("Content-Type", "application/json");
             return response;
-        }
-
-        private string GetFixturePath(string filename)
-        {
-            return Path.GetFullPath(Path.Combine("../../testdata/fixtures", filename));
         }
     }
 }

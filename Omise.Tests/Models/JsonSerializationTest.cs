@@ -2,6 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 using Omise.Models;
+using Omise.Tests.Util;
 
 namespace Omise.Tests.Models
 {
@@ -58,7 +59,7 @@ namespace Omise.Tests.Models
                     .MakeGenericMethod(type);
 
                 var filename = $"{ModelTypes.NameFor(type)}_object.json";
-                var fullpath = Path.GetFullPath(Path.Combine("../../testdata/objects", filename));
+                var fullpath = Fixtures.GetFixturesPath(filename, "objects");
 
                 if (!File.Exists(fullpath))
                 {

@@ -167,6 +167,7 @@
     <Compile Include="Resources\ScheduleNestedResourceTest.cs" />
     <Compile Include="Resources\CapabilityResourceTest.cs" />
     <Compile Include="Resources\SourceResourceTest.cs" />
+    <Compile Include="Util\Fixtures.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
