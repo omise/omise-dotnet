@@ -5,7 +5,7 @@ namespace Omise
 {
     public interface IUpdatable<TModel, TRequest> : IResource<TModel>
         where TModel : ModelBase
-        where TRequest : Request
+        where TRequest : Params
     {
     }
 
@@ -16,7 +16,7 @@ namespace Omise
             string modelId,
             TRequest request
         ) where TModel : ModelBase
-            where TRequest : Request
+            where TRequest : Params
         {
             return await resource.Requester.Request<TRequest, TModel>(
                 resource.Endpoint,

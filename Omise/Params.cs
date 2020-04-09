@@ -1,6 +1,6 @@
 ﻿namespace Omise.Models
 {
-    public abstract class Request
+    public abstract class Params
     {
     }
 }

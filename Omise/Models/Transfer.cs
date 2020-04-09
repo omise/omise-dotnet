@@ -145,24 +145,4 @@ namespace Omise.Models
             }
         }
     }
-
-    public class CreateTransferParams : Request
-    {
-        [JsonProperty("amount")]
-        public long Amount { get; set; }
-        [JsonProperty("fail_fast")]
-        public bool FailFast { get; set; }
-        [JsonProperty("metadata")]
-        public IDictionary<string, object> Metadata { get; set; }
-        [JsonProperty("recipient")]
-        public string Recipient { get; set; }
-    }
-
-    public class UpdateTransferParams : Request
-    {
-        [JsonProperty("amount")]
-        public long Amount { get; set; }
-        [JsonProperty("metadata")]
-        public IDictionary<string, object> Metadata { get; set; }
-    }
 }

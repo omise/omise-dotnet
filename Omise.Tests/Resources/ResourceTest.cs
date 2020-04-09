@@ -55,7 +55,7 @@ namespace Omise.Tests.Resources
         protected void AssertSerializedRequest<TRequest>(
             TRequest request,
             string serialized
-        ) where TRequest : Request
+        ) where TRequest : Params
         {
             using (var ms = new StringMemoryStream())
             {
@@ -67,7 +67,7 @@ namespace Omise.Tests.Resources
         protected void AssertSerializedRequest<TRequest>(
             TRequest request,
             IDictionary<string, object> expected
-        ) where TRequest : Request
+        ) where TRequest : Params
         {
             expected = Sort(expected);
 

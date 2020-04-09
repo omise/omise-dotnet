@@ -5,7 +5,7 @@ namespace Omise
 {
     public interface ICreatable<TModel, TRequest> : IResource<TModel>
         where TModel : ModelBase
-        where TRequest : Request
+        where TRequest : Params
     {
     }
 
@@ -15,7 +15,7 @@ namespace Omise
             this ICreatable<TModel, TRequest> resource,
             TRequest request
         ) where TModel : ModelBase
-            where TRequest : Request
+            where TRequest : Params
         {
             return await resource.Requester.Request<TRequest, TModel>(
                 resource.Endpoint,
