@@ -131,9 +131,6 @@
     <Compile Include="ClientTest.cs" />
     <Compile Include="RequesterTest.cs" />
     <Compile Include="SerializerTest.cs" />
-    <Compile Include="TestData.cs">
-      <DependentUpon>TestData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EventTest.cs" />
     <Compile Include="Models\JsonSerializationTest.cs" />
     <Compile Include="Resources\AccountResourceTest.cs" />
@@ -168,13 +165,15 @@
     <Compile Include="RealNetworkTest.cs" />
     <Compile Include="Resources\RecipientNestedResourceTest.cs" />
     <Compile Include="Resources\ScheduleNestedResourceTest.cs" />
+    <Compile Include="Resources\CapabilityResourceTest.cs" />
+    <Compile Include="Resources\SourceResourceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\testdata\fixtures\api.omise.co\account-get.json">
       <Link>testdata\fixtures\api.omise.co\account-get.json</Link>
     </None>
-    <None Include="..\testdata\fixtures\api.omise.co\balance-get.json">
-      <Link>testdata\fixtures\api.omise.co\balance-get.json</Link>
+    <None Include="..\testdata\fixtures\api.omise.co\capability-get.json">
+      <Link>testdata\fixtures\api.omise.co\capability-get.json</Link>
     </None>
     <None Include="..\testdata\fixtures\api.omise.co\charges-get.json">
       <Link>testdata\fixtures\api.omise.co\charges-get.json</Link>
@@ -354,9 +353,8 @@
       <Link>testdata\objects\transfer_object.json</Link>
     </None>
     <None Include="packages.config" />
-    <None Include="TestData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TestData.cs</LastGenOutput>
+    <None Include="..\testdata\fixtures\api.omise.co\balance-get.json">
+      <Link>testdata\fixtures\api.omise.co\balance-get.json</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

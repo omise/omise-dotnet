@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.IO;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Omise.Tests.Util
 {
@@ -28,25 +30,33 @@ namespace Omise.Tests.Util
             var host = request.RequestUri.Host;
             var path = request.RequestUri.AbsolutePath;
 
-            var filename = $"fixtures/{host}{path}-{method}.json";
-            if (!TestData.Files.ContainsKey(filename))
+            var filename = $"{host}{path}-{method}.json";
+            var fullpath = GetFixturePath(filename);
+
+            if (!File.Exists(fullpath))
             {
                 var segments = path.Split('/');
                 segments[segments.Length - 1] = "404";
 
                 response.StatusCode = HttpStatusCode.NotFound;
-                filename = $"fixtures/{host}{string.Join("/", segments)}-{method}.json";
+                filename = $"{host}{string.Join("/", segments)}-{method}.json";
+                fullpath = GetFixturePath(filename);
             }
 
-            if (!TestData.Files.ContainsKey(filename))
+            if (!File.Exists(fullpath))
             {
                 Debugger.Break();
             }
 
-            var data = TestData.Files[filename];
-            response.Content = new ByteArrayContent(data);
+            var bytes = File.ReadAllBytes(fullpath);
+            response.Content = new ByteArrayContent(bytes);
             response.Content.Headers.Add("Content-Type", "application/json");
             return response;
+        }
+
+        private string GetFixturePath(string filename)
+        {
+            return Path.GetFullPath(Path.Combine("../../../testdata/fixtures", filename));
         }
     }
 }
