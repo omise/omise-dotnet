@@ -56,7 +56,7 @@ namespace Omise.Tests.Util
 
         private string GetFixturePath(string filename)
         {
-            return Path.GetFullPath(Path.Combine("../../../testdata/fixtures", filename));
+            return Path.GetFullPath(Path.Combine("../../testdata/fixtures", filename));
         }
     }
 }

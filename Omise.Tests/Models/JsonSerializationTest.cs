@@ -58,7 +58,7 @@ namespace Omise.Tests.Models
                     .MakeGenericMethod(type);
 
                 var filename = $"{ModelTypes.NameFor(type)}_object.json";
-                var fullpath = Path.GetFullPath(Path.Combine("../../../testdata/objects", filename));
+                var fullpath = Path.GetFullPath(Path.Combine("../../testdata/objects", filename));
 
                 if (!File.Exists(fullpath))
                 {

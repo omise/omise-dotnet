@@ -169,193 +169,73 @@
     <Compile Include="Resources\SourceResourceTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\testdata\fixtures\api.omise.co\account-get.json">
-      <Link>testdata\fixtures\api.omise.co\account-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\capability-get.json">
-      <Link>testdata\fixtures\api.omise.co\capability-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges-post.json">
-      <Link>testdata\fixtures\api.omise.co\charges-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers-post.json">
-      <Link>testdata\fixtures\api.omise.co\customers-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes-get.json">
-      <Link>testdata\fixtures\api.omise.co\disputes-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\events-get.json">
-      <Link>testdata\fixtures\api.omise.co\events-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\malformed-get.json">
-      <Link>testdata\fixtures\api.omise.co\malformed-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\recipients-get.json">
-      <Link>testdata\fixtures\api.omise.co\recipients-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\recipients-post.json">
-      <Link>testdata\fixtures\api.omise.co\recipients-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\search-get.json">
-      <Link>testdata\fixtures\api.omise.co\search-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transactions-get.json">
-      <Link>testdata\fixtures\api.omise.co\transactions-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transfers-get.json">
-      <Link>testdata\fixtures\api.omise.co\transfers-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transfers-post.json">
-      <Link>testdata\fixtures\api.omise.co\transfers-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\404-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges\404-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-patch.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-post.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\404-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\404-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\rfnd_test_4yqmv79ahghsiz23y3c-get.json">
-      <Link>testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\rfnd_test_4yqmv79ahghsiz23y3c-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\404-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers\404-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-delete.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-delete.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-patch.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\404-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\404-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-delete.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-delete.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-get.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-patch.json">
-      <Link>testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes\closed-get.json">
-      <Link>testdata\fixtures\api.omise.co\disputes\closed-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-get.json">
-      <Link>testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-patch.json">
-      <Link>testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes\open-get.json">
-      <Link>testdata\fixtures\api.omise.co\disputes\open-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\disputes\pending-get.json">
-      <Link>testdata\fixtures\api.omise.co\disputes\pending-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\events\evnt_test_526yctupnje5mbldskd-get.json">
-      <Link>testdata\fixtures\api.omise.co\events\evnt_test_526yctupnje5mbldskd-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-delete.json">
-      <Link>testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-delete.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-get.json">
-      <Link>testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-patch.json">
-      <Link>testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transactions\trxn_test_4yq7duwb9jts1vxgqua-get.json">
-      <Link>testdata\fixtures\api.omise.co\transactions\trxn_test_4yq7duwb9jts1vxgqua-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transactions\trxn_test_4yqafnvlztbf3908vs1-get.json">
-      <Link>testdata\fixtures\api.omise.co\transactions\trxn_test_4yqafnvlztbf3908vs1-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transactions\trxn_test_4yqmv79fzpy0gmz5mmq-get.json">
-      <Link>testdata\fixtures\api.omise.co\transactions\trxn_test_4yqmv79fzpy0gmz5mmq-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-delete.json">
-      <Link>testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-delete.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-get.json">
-      <Link>testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-get.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-patch.json">
-      <Link>testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-patch.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\vault.omise.co\tokens-post.json">
-      <Link>testdata\fixtures\vault.omise.co\tokens-post.json</Link>
-    </None>
-    <None Include="..\testdata\fixtures\vault.omise.co\tokens\tokn_test_4yq8lbecl0q6dsjzxr5-get.json">
-      <Link>testdata\fixtures\vault.omise.co\tokens\tokn_test_4yq8lbecl0q6dsjzxr5-get.json</Link>
-    </None>
-    <None Include="..\testdata\objects\account_object.json">
-      <Link>testdata\objects\account_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\balance_object.json">
-      <Link>testdata\objects\balance_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\bank_account_object.json">
-      <Link>testdata\objects\bank_account_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\card_object.json">
-      <Link>testdata\objects\card_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\charge_object.json">
-      <Link>testdata\objects\charge_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\customer_object.json">
-      <Link>testdata\objects\customer_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\dispute_object.json">
-      <Link>testdata\objects\dispute_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\event_object.json">
-      <Link>testdata\objects\event_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\recipient_object.json">
-      <Link>testdata\objects\recipient_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\refund_object.json">
-      <Link>testdata\objects\refund_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\token_object.json">
-      <Link>testdata\objects\token_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\transaction_object.json">
-      <Link>testdata\objects\transaction_object.json</Link>
-    </None>
-    <None Include="..\testdata\objects\transfer_object.json">
-      <Link>testdata\objects\transfer_object.json</Link>
-    </None>
     <None Include="packages.config" />
-    <None Include="..\testdata\fixtures\api.omise.co\balance-get.json">
-      <Link>testdata\fixtures\api.omise.co\balance-get.json</Link>
-    </None>
+    <None Include="testdata\objects\balance_object.json" />
+    <None Include="testdata\objects\card_object.json" />
+    <None Include="testdata\objects\barcode_object.json" />
+    <None Include="testdata\objects\charge_object.json" />
+    <None Include="testdata\objects\dispute_object.json" />
+    <None Include="testdata\objects\transfer_object.json" />
+    <None Include="testdata\objects\account_object.json" />
+    <None Include="testdata\objects\transaction_object.json" />
+    <None Include="testdata\objects\recipient_object.json" />
+    <None Include="testdata\objects\document_object.json" />
+    <None Include="testdata\objects\refund_object.json" />
+    <None Include="testdata\objects\customer_object.json" />
+    <None Include="testdata\objects\token_object.json" />
+    <None Include="testdata\objects\event_object.json" />
+    <None Include="testdata\objects\bank_account_object.json" />
+    <None Include="testdata\fixtures\vault.omise.co\tokens-post.json" />
+    <None Include="testdata\fixtures\vault.omise.co\tokens\tokn_test_4yq8lbecl0q6dsjzxr5-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\recipients-post.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges-post.json" />
+    <None Include="testdata\fixtures\api.omise.co\transfers-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\malformed-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\source-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers-post.json" />
+    <None Include="testdata\fixtures\api.omise.co\recipients-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transactions-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\events-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\account-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\balance-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\capability-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transfers-post.json" />
+    <None Include="testdata\fixtures\api.omise.co\search-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\404-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-delete.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\card_test_4yq6tuucl9h4erukfl0-delete.json" />
+    <None Include="testdata\fixtures\api.omise.co\customers\cust_test_4yq6txdpfadhbaqnwp3\cards\404-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\404-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-post.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\404-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\charges\chrg_test_4yq7duw15p9hdrjp8oq\refunds\rfnd_test_4yqmv79ahghsiz23y3c-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes\dspt_test_5089off452g5m5te7xs-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes\open-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes\pending-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\disputes\closed-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-delete.json" />
+    <None Include="testdata\fixtures\api.omise.co\transfers\trsf_test_4yqacz8t3cbipcj766u-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-delete.json" />
+    <None Include="testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\recipients\recp_test_50894vc13y8z4v51iuc-patch.json" />
+    <None Include="testdata\fixtures\api.omise.co\transactions\trxn_test_4yqafnvlztbf3908vs1-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transactions\trxn_test_4yqmv79fzpy0gmz5mmq-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\transactions\trxn_test_4yq7duwb9jts1vxgqua-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\sources\src_test_no1t4tnemucod0e51mo-get.json" />
+    <None Include="testdata\fixtures\api.omise.co\events\evnt_test_526yctupnje5mbldskd-get.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Omise\Omise.csproj">
