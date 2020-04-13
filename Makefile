@@ -1,47 +1,44 @@
 #!/usr/bin/make
 
-CONFIG   := Debug
-PLATFORM := netstandard2.0
+CONFIG    := Debug
+PLATFORM  := netstandard2.0
+FRAMEWORK := net462
+MONO	  := mono
+BUILD	  := dotnet build
 
 OMISE_CSPROJ      := Omise/Omise.csproj
 OMISE_TEST_CSPROJ := Omise.Tests/Omise.Tests.csproj
+OMISE_EXAM_CSPROJ := Omise.Examples/Omise.Examples.csproj
 OMISE_DLL         := Omise/bin/$(CONFIG)/$(PLATFORM)/Omise.dll
 OMISE_TEST_DLL    := Omise.Tests/bin/$(CONFIG)/Omise.Tests.dll
+OMISE_EXAMPLE_EXE := Omise.Examples/bin/$(CONFIG)/$(FRAMEWORK)/Omise.Examples.exe
 
 SRC_FILES       := $(wildcard Omise/**/*.cs Omise/*.cs)
 SRC_TEST_FILES  := $(wildcard Omise.Tests/**/*.cs Omise.Tests/*.cs)
-T4_FILES        := $(wildcard Omise/**/*.tt Omise/*.tt Omise.Tests/**/*.tt Omise.Tests/*.tt)
-T4_OUTPUT_FILES := $(T4_FILES:.tt=.cs)
-
-MONO    := mono
-MSBUILD := msbuild /p:Configuration=$(CONFIG)
-ifdef TRAVIS
-	NUNIT := $(MONO) ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe
-else
-	NUNIT := $(MONO) ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe
-endif
-T4      := $(MONO) /Applications/Visual\ Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.TextTemplating/TextTransform.exe
 
 .PHONY: test clean
 
 default: build
 
-t4: $(T4_OUTPUT_FILES)
-%.cs: %.tt
-	$(T4) -o="$@" "$<"
-
 build: $(OMISE_DLL)
-$(OMISE_DLL): $(OMISE_CSPROJ) $(SRC_FILES) $(T4_OUTPUT_FILES)
-	$(MSBUILD) /target:Build;Pack $(OMISE_CSPROJ)
+$(OMISE_DLL): $(OMISE_CSPROJ) $(SRC_FILES)
+	$(BUILD) $(OMISE_CSPROJ)
 
 build-test: $(OMISE_TEST_DLL) $(SRC_TEST_FILES)
-$(OMISE_TEST_DLL): $(OMISE_TEST_CSPROJ) $(SRC_TEST_FILES) $(T4_OUTPUT_FILES)
-	$(MSBUILD) $(OMISE_TEST_CSPROJ)
+$(OMISE_TEST_DLL): $(OMISE_TEST_CSPROJ) $(SRC_TEST_FILES)
+	$(BUILD) $(OMISE_TEST_CSPROJ)
+
+build-example: $(OMISE_EXEAMPLE_EXE)
+	$(BUILD) $(OMISE_EXAM_CSPROJ)
+
+pack: $(OMISE_DLL)
+	dotnet pack -c Release $(OMISE_CSPROJ)
 
 clean:
-	$(MSBUILD) /target:Clean $(OMISE_CSPROJ)
-clean-test:
-	$(MSBUILD) /target:Clean $(OMISE_TEST_CSPROJ)
+	dotnet clean
 
-test: $(OMISE_TEST_DLL)
-	$(NUNIT) --noresult $(OMISE_TEST_DLL)
+test: $(SRC_FILES) $(SRC_TEST_FILES)
+	dotnet test $(OMISE_TEST_CSPROJ)
+
+run: build-example
+	$(MONO) $(OMISE_EXAMPLE_EXE)

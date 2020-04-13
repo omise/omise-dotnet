@@ -6,6 +6,7 @@ namespace Omise
 {
     public class Client
     {
+
         // Default to the latest API Version.
         public readonly string APIVersion = "2019-05-29";
 

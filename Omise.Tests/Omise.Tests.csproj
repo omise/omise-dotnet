@@ -10,7 +10,7 @@
   <ItemGroup>
     <!-- 
       A solution to run .NET Framework using dotnet test command
-      https://github.com/dotnet/designs/pull/33#issuecomment-489264196 
+      https://github.com/dotnet/designs/pull/33#issuecomment-489264196
     -->
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="nunit" Version="3.11.0" />

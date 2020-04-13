@@ -11,7 +11,7 @@ namespace Omise.Tests.Util
             var path = Environment.CurrentDirectory;
 
             // When running inside Visual Studio it'll always be in `bin/Debug` dir
-            if (Environment.CurrentDirectory.Contains("Omise.Tests/bin/Debug"))
+            if (Environment.CurrentDirectory.Contains("bin/Debug"))
             {
                 path = "../../../";
             }
