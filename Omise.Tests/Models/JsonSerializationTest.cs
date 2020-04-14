@@ -2,6 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 using Omise.Models;
+using Omise.Tests.Util;
 
 namespace Omise.Tests.Models
 {
@@ -57,13 +58,15 @@ namespace Omise.Tests.Models
                     .GetMethod("JsonDeserialize")
                     .MakeGenericMethod(type);
 
-                var filename = $"objects/{ModelTypes.NameFor(type)}_object.json";
-                if (!TestData.Files.ContainsKey(filename))
+                var filename = $"{ModelTypes.NameFor(type)}_object.json";
+                var fullpath = Fixtures.GetFixturesPath(filename, "objects");
+
+                if (!File.Exists(fullpath))
                 {
                     throw new FileNotFoundException(filename);
                 }
 
-                var filedata = TestData.Files[filename];
+                var filedata = File.ReadAllBytes(fullpath);
 
                 object result;
                 using (var ms = new MemoryStream(filedata))

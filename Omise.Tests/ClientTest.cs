@@ -26,9 +26,10 @@ namespace Omise.Tests
         public void TestAPIVersion()
         {
             var client = new Client("pkey_test_123", "skey_test_123");
-            client.APIVersion = "new-shiny-version";
-            Assert.AreEqual("new-shiny-version", client.APIVersion);
-            Assert.AreEqual("new-shiny-version", ((Requester)client.Requester).APIVersion);
+            var version = "2019-05-29";
+
+            Assert.AreEqual(version, client.APIVersion);
+            Assert.AreEqual(version, ((Requester)client.Requester).APIVersion);
         }
 
         [Test]
@@ -39,17 +40,17 @@ namespace Omise.Tests
             {
                 client.Account,
                 client.Balance,
-                client.Charge("chrg_test_4yq7duw15p9hdrjp8oq"),
+                client.Charges.Charge("chrg_test_4yq7duw15p9hdrjp8oq"),
                 client.Charges,
-                client.Customer("cust_test_4yq6txdpfadhbaqnwp3"),
+                client.Customers.Customer("cust_test_4yq6txdpfadhbaqnwp3"),
                 client.Customers,
                 client.Disputes,
                 client.Events,
                 client.Occurrences,
-                client.Recipient("recp_test_57po4c5obpi7rrxhtyl"),
+                client.Recipients.Recipient("recp_test_57po4c5obpi7rrxhtyl"),
                 client.Recipients,
                 client.Refunds,
-                client.Schedule("schd_test_57ze0f4rbugx2jjlg4y"),
+                client.Schedules.Schedule("schd_test_57ze0f4rbugx2jjlg4y"),
                 client.Schedules,
                 client.Tokens,
                 client.Transactions,

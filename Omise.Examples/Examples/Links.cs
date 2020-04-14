@@ -15,7 +15,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_For_Once()
         {
-            var link = await Client.Links.Create(new CreateLinkRequest
+            var link = await Client.Links.Create(new CreateLinkParams
             {
                 Amount = 2000,
                 Currency = "thb",
@@ -28,7 +28,7 @@ namespace Omise.Examples
 
         public async Task Create__Create_For_Multi()
         {
-            var link = await Client.Links.Create(new CreateLinkRequest
+            var link = await Client.Links.Create(new CreateLinkParams
             {
                 Amount = 2000,
                 Currency = "thb",

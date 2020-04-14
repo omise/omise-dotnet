@@ -25,7 +25,7 @@ namespace Omise.Examples
             new Forexes(),
             new Links(),
             new Occurrences(),
-            new PaymentSources(),
+            new Sources(),
             new Recipients(),
             new Refunds(),
             new Schedules(),
@@ -91,10 +91,11 @@ namespace Omise.Examples
         static void extractExample(Example example)
         {
             var name = example.GetType().Name;
-            var filename = $"../../Examples/{name}.cs"; // pwd is ./bin/Debug/ (or Release)
+            var filename = ResolvePath($"Examples/{name}.cs");
 
-            Console.WriteLine($"extracting: {name}");
+            Console.WriteLine($"extracting: {filename}");
             var source = File.ReadAllText(filename);
+            // var a = new System.Collections.Immutable.ImmutableArray<int>{  1 };
             var tree = CSharpSyntaxTree.ParseText(source);
             var root = tree.GetRoot();
 
@@ -145,6 +146,19 @@ namespace Omise.Examples
             Console.WriteLine($"writing: {path}");
             Console.WriteLine(code);
             File.WriteAllText(path, code);
+        }
+
+        static string ResolvePath(string file)
+        {
+            var basePath = "../../../";
+
+            // run via `dotnet` command
+            if (Environment.CurrentDirectory.EndsWith("omise-dotnet"))
+            {
+                basePath = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location);
+            }
+
+            return Path.Combine(basePath, file);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Omise.Examples
         // this as an example call to get token from cient-side.
         protected async Task<Token> RetrieveToken()
         {
-            return await Client.Tokens.Create(new CreateTokenRequest
+            return await Client.Tokens.Create(new CardParams
             {
                 Name = "Somchai Prasert",
                 Number = "4242424242424242",
@@ -30,28 +30,49 @@ namespace Omise.Examples
         }
 
         // Creates a new PaymentSource called RetrieveSourceInternetBanking, as sources can be created client-side (as well as server-side).
-        protected async Task<PaymentSource> RetrieveSourceInternetBanking()
+        protected async Task<Source> RetrieveSourceInternetBanking()
         {
-            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            return await Client.Sources.Create(new CreateSourceParams
             {
                 Amount = 2000,
                 Currency = "thb",
-                Type = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
+                Type = SourceType.InternetBankingBAY,
             });
         }
 
         // Creates a new PaymentSource called RetrieveSourceBillPayment, as sources can be created client-side (as well as server-side).
-        protected async Task<PaymentSource> RetrieveSourceBillPayment()
+        protected async Task<Source> RetrieveSourceBillPayment()
         {
-            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            return await Client.Sources.Create(new CreateSourceParams
             {
                 Amount = 2000,
                 Currency = "thb",
-                Type = OffsiteTypes.BillPaymentTescoLotus,
-                Flow = FlowTypes.Offline
+                Type = SourceType.BillPaymentTescoLotus,
             });
         }
 
+        // Creates a new PaymentSource called RetrieveSourceBarcode, as sources can be created client-side (as well as server-side).
+        protected async Task<Source> RetrieveSourceBarcode()
+        {
+            return await Client.Sources.Create(new CreateSourceParams
+            {
+                Type = SourceType.BarcodeAlipay,
+                Barcode = "201234567890",
+                StoreId = "Store1",
+                StoreName = "Store 1",
+                TerminalId = "0001"
+            });
+        }
+
+        // Creates a new PromptPay source
+        protected async Task<Source> RetrieveSourcePromptPay()
+        {
+            return await Client.Sources.Create(new CreateSourceParams
+            {
+                Type = SourceType.PromptPay,
+                Amount = 20000,
+                Currency = "thb"
+            });
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Omise.Examples
         {
             var scheduleId = ExampleInfo.SCHEDULE_ID; // "schd_test_58fiiv0w9m9tl9xnd55";
             var occurrences = await Client
+                .Schedules
                 .Schedule(scheduleId)
                 .Occurrences
                 .GetList(order: Ordering.ReverseChronological);

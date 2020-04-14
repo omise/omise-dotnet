@@ -1,11 +1,13 @@
-﻿using Omise.Models;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources
 {
-    public class BalanceResource : BaseResource<Balance>, IRetrievable<Balance>
+    public class BalanceResource : BaseResource<Balance>,
+        IRetrievable<Balance>
     {
         public BalanceResource(IRequester requester)
-            : base(requester, Endpoint.Api, "/balance")
+        : base(requester, Endpoint.Api, "/balance")
         {
         }
     }

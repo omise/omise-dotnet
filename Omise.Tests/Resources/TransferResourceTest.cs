@@ -51,10 +51,18 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""amount"":300000," +
-                @"""recipient"":""recp_test_123""," +
-                @"""fail_fast"":false," +
-                @"""metadata"":{""color"":""red""}}"             );
+                new Dictionary<string, object>
+                {
+                    { "amount", 300000 },
+                    { "recipient", "recp_test_123" },
+                    { "fail_fast", false },
+                    { "metadata", new Dictionary<string, object>
+                        {
+                            { "color", "red"},
+                        }
+                    }
+                }
+            );
         }
 
         [Test]
@@ -62,8 +70,15 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""amount"":24488442," +
-                @"""metadata"":{""color"":""red""}}"
+                new Dictionary<string, object>
+                {
+                    { "amount", 24488442 },
+                    { "metadata", new Dictionary<string, object>
+                        {
+                            { "color", "red" }
+                        }
+                    }
+                }
             );
         }
 
@@ -89,7 +104,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var transfer = await Fixtures.Create(new CreateTransferRequest());
+            var transfer = await Fixtures.Create(new CreateTransferParams());
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.AreEqual(192188, transfer.Amount);
         }
@@ -97,7 +112,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var transfer = await Fixtures.Update(TransferId, new UpdateTransferRequest());
+            var transfer = await Fixtures.Update(TransferId, new UpdateTransferParams());
             Assert.AreEqual(TransferId, transfer.Id);
             Assert.AreEqual(192189, transfer.Amount);
         }
@@ -110,9 +125,9 @@ namespace Omise.Tests.Resources
             Assert.IsTrue(transfer.Deleted);
         }
 
-        protected CreateTransferRequest BuildCreateRequest()
+        protected CreateTransferParams BuildCreateRequest()
         {
-            return new CreateTransferRequest
+            return new CreateTransferParams
             {
                 Recipient = "recp_test_123",
                 Amount = 300000,
@@ -120,9 +135,9 @@ namespace Omise.Tests.Resources
             };
         }
 
-        protected UpdateTransferRequest BuildUpdateRequest()
+        protected UpdateTransferParams BuildUpdateRequest()
         {
-            return new UpdateTransferRequest 
+            return new UpdateTransferParams
             { 
                 Amount = 24488442,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }

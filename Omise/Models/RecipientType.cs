@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace Omise.Models
 {
     public enum RecipientType
     {
-        Individual,
-        Corporation
+        [EnumMember(Value = "corporation")]
+        Corporation,
+        [EnumMember(Value = "individual")]
+        Individual
     }
 }

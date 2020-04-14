@@ -1,11 +1,18 @@
-﻿namespace Omise.Models
+using System.Runtime.Serialization;
+
+namespace Omise.Models
 {
     public enum ChargeStatus
     {
-        Failed,
+        [EnumMember(Value = "expired")]
         Expired,
+        [EnumMember(Value = "failed")]
+        Failed,
+        [EnumMember(Value = "pending")]
         Pending,
-        Successful,
-        Reversed
+        [EnumMember(Value = "reversed")]
+        Reversed,
+        [EnumMember(Value = "successful")]
+        Successful
     }
 }

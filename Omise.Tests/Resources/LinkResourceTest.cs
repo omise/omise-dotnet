@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -26,7 +27,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestCreate()
         {
-            await Resource.Create(new CreateLinkRequest());
+            await Resource.Create(new CreateLinkParams());
             AssertRequest("POST", "https://api.omise.co/links");
         }
 
@@ -35,17 +36,20 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""amount"":2000," +
-                @"""currency"":""thb""," +
-                @"""title"":""Test Link""," +
-                @"""description"":""Hello World""," +
-                @"""multiple"":true}"
+                new Dictionary<string, object>
+                {
+                    { "amount", 2000 },
+                    { "currency", "thb" },
+                    { "title", "Test Link" },
+                    { "description", "Hello World" },
+                    { "multiple", true }
+                }
             );
         }
 
-        protected CreateLinkRequest BuildCreateRequest()
+        protected CreateLinkParams BuildCreateRequest()
         {
-            return new CreateLinkRequest
+            return new CreateLinkParams
             {
                 Amount = 2000,
                 Currency = "thb",

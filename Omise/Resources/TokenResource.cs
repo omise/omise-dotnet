@@ -1,27 +1,21 @@
-﻿using Omise.Models;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Omise.Models;
 
 namespace Omise.Resources
 {
-    public class TokenRequestWrapper : Request
-    {
-        [JsonProperty("card")]
-        public CreateTokenRequest Card { get; set; }
-    }
-
     public class TokenResource : BaseResource<Token>,
-    IListRetrievable<Token>
+        ICreatable<Token, CreateTokenParams>,
+        IRetrievable<Token>
     {
         public TokenResource(IRequester requester)
-            : base(requester, Endpoint.Vault, "/tokens")
+        : base(requester, Endpoint.Vault, "/tokens")
         {
         }
 
-        public async Task<Token> Create(CreateTokenRequest request)
+        public async Task<Token> Create(CardParams request)
         {
-            var wrapped = new TokenRequestWrapper { Card = request };
-            return await Requester.Request<TokenRequestWrapper, Token>(
+            var wrapped = new CreateTokenParams { Card = request };
+            return await Requester.Request<CreateTokenParams, Token>(
                 Endpoint, "POST", BasePath, wrapped
             );
         }

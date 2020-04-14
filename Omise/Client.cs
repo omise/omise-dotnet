@@ -6,14 +6,16 @@ namespace Omise
 {
     public class Client
     {
+
         // Default to the latest API Version.
-        private string apiVersion = "2017-11-02";
+        public readonly string APIVersion = "2019-05-29";
 
         readonly IRequester requester;
         readonly IEnvironment environment;
 
         public readonly AccountResource Account;
         public readonly BalanceResource Balance;
+        public readonly CapabilityResource Capability;
         public readonly ChargeResource Charges;
         public readonly CustomerResource Customers;
         public readonly DisputeResource Disputes;
@@ -21,7 +23,7 @@ namespace Omise
         public readonly ForexResource Forex;
         public readonly LinkResource Links;
         public readonly OccurrenceResource Occurrences;
-        public readonly PaymentSourceResource Sources;
+        public readonly SourceResource Sources;
         public readonly ReceiptResource Receipts;
         public readonly RecipientResource Recipients;
         public readonly RefundResource Refunds;
@@ -40,12 +42,6 @@ namespace Omise
             get { return environment; }
         }
 
-        public string APIVersion
-        {
-            get { return requester.APIVersion; }
-            set { requester.APIVersion = value; }
-        }
-
         public Client(string pkey = null, string skey = null, IEnvironment env = null)
             : this(new Credentials(pkey, skey), env)
         {
@@ -56,10 +52,11 @@ namespace Omise
             if (credentials == null) throw new ArgumentNullException(nameof(credentials));
 
             environment = env ?? Environments.Production;
-            requester = new Requester(credentials, environment, null, this.apiVersion);
+            requester = new Requester(credentials, environment, null, APIVersion);
 
             Account = new AccountResource(requester);
             Balance = new BalanceResource(requester);
+            Capability = new CapabilityResource(requester);
             Charges = new ChargeResource(requester);
             Customers = new CustomerResource(requester);
             Disputes = new DisputeResource(requester);
@@ -67,7 +64,7 @@ namespace Omise
             Forex = new ForexResource(requester);
             Links = new LinkResource(requester);
             Occurrences = new OccurrenceResource(requester);
-            Sources = new PaymentSourceResource(requester);
+            Sources = new SourceResource(requester);
             Receipts = new ReceiptResource(requester);
             Recipients = new RecipientResource(requester);
             Refunds = new RefundResource(requester);
@@ -76,10 +73,5 @@ namespace Omise
             Transactions = new TransactionResource(requester);
             Transfers = new TransferResource(requester);
         }
-
-        public ChargeSpecificResource Charge(string chargeId) => new ChargeSpecificResource(requester, chargeId);
-        public CustomerSpecificResource Customer(string customerId) => new CustomerSpecificResource(requester, customerId);
-        public RecipientSpecificResource Recipient(string recipientId) => new RecipientSpecificResource(requester, recipientId);
-        public ScheduleSpecificResource Schedule(string scheduleId) => new ScheduleSpecificResource(requester, scheduleId);
     }
 }

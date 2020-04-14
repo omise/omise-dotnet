@@ -1,12 +1,13 @@
-﻿using Omise.Models;
+using System.Threading.Tasks;
+using Omise.Models;
 
 namespace Omise.Resources
 {
     public class ForexResource : BaseResource<Forex>,
-    IListRetrievable<Forex>
+        IRetrievable<Forex>
     {
         public ForexResource(IRequester requester)
-            : base(requester, Endpoint.Api, "/forex")
+        : base(requester, Endpoint.Api, "/forex")
         {
         }
     }

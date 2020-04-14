@@ -1,11 +1,14 @@
-﻿using System;
+using System.Runtime.Serialization;
 
 namespace Omise.Models
 {
     public enum SchedulePeriod
     {
+        [EnumMember(Value = "day")]
         Day,
-        Week,
+        [EnumMember(Value = "month")]
         Month,
+        [EnumMember(Value = "week")]
+        Week
     }
 }

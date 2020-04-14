@@ -28,13 +28,13 @@ namespace Omise.Examples
 
         protected Schedule RetrieveSchedule()
         {
-            return Client.Schedules.Create(new CreateScheduleRequest
+            return Client.Schedules.Create(new CreateScheduleParams
             {
                 Every = 12,
                 Period = SchedulePeriod.Month,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(2),
-                On = new ScheduleOnRequest
+                On = new ScheduleOnParams
                 {
                     DaysOfMonth = new[] { 1 }
                 },

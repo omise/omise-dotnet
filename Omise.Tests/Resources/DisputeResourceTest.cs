@@ -21,11 +21,13 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestGetListByStatus()
         {
-            await Resource.OpenDisputes.GetList();
+            await Resource.ListOpen();
             AssertRequest("GET", "https://api.omise.co/disputes/open");
-            await Resource.PendingDisputes.GetList();
+
+            await Resource.ListPending();
             AssertRequest("GET", "https://api.omise.co/disputes/pending");
-            await Resource.ClosedDisputes.GetList();
+
+            await Resource.ListClosed();
             AssertRequest("GET", "https://api.omise.co/disputes/closed");
         }
 
@@ -48,8 +50,15 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""message"":""Hello, This is definitely not ours.""," +
-                @"""metadata"":{""color"":""red""}}"
+                new Dictionary<string, object>
+                {
+                    { "message", "Hello, This is definitely not ours." },
+                    { "metadata", new Dictionary<string, object>
+                        {
+                            { "color", "red" }
+                        }
+                    }
+                }
             );
         }
 
@@ -75,14 +84,14 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var dispute = await Fixtures.Update(DisputeId, new UpdateDisputeRequest());
+            var dispute = await Fixtures.Update(DisputeId, new UpdateDisputeParams());
             Assert.AreEqual(DisputeId, dispute.Id);
             Assert.AreEqual("Your dispute message", dispute.Message);
         }
 
-        protected UpdateDisputeRequest BuildUpdateRequest()
+        protected UpdateDisputeParams BuildUpdateRequest()
         {
-            return new UpdateDisputeRequest
+            return new UpdateDisputeParams
             {
                 Message = "Hello, This is definitely not ours.",
                 Metadata = new Dictionary<string, object> { { "color", "red" } }

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -57,9 +58,12 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""email"":""support@omise.co""," +
-                @"""description"":""Omise support""," +
-                @"""card"":""card_test_123""}"
+                new Dictionary<string, object>
+                {
+                    { "card", "card_test_123" },
+                    { "description", "Omise support" },
+                    { "email", "support@omise.co" },
+                }
             );
         }
 
@@ -68,10 +72,13 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""default_card"":""card_test_456""," +
-                @"""email"":""example@omise.co""," +
-                @"""description"":""Omise example""," +
-                @"""card"":""card_test_456""}"
+                new Dictionary<string, object>
+                {
+                    { "card", "card_test_456" },
+                    { "default_card", "card_test_456" },
+                    { "description", "Omise example" },
+                    { "email", "example@omise.co" },
+                }
             );
         }
 
@@ -97,7 +104,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var customer = await Fixtures.Create(new CreateCustomerRequest());
+            var customer = await Fixtures.Create(new CreateCustomerParams());
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
@@ -105,7 +112,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var customer = await Fixtures.Update(CustomerId, new UpdateCustomerRequest());
+            var customer = await Fixtures.Update(CustomerId, new UpdateCustomerParams());
             Assert.AreEqual(CustomerId, customer.Id);
             Assert.AreEqual("John Doe (id: 30)", customer.Description);
         }
@@ -118,9 +125,9 @@ namespace Omise.Tests.Resources
             Assert.IsTrue(customer.Deleted);
         }
 
-        protected CreateCustomerRequest BuildCreateRequest()
+        protected CreateCustomerParams BuildCreateRequest()
         {
-            return new CreateCustomerRequest
+            return new CreateCustomerParams
             {
                 Email = "support@omise.co",
                 Description = "Omise support",
@@ -128,9 +135,9 @@ namespace Omise.Tests.Resources
             };
         }
 
-        protected UpdateCustomerRequest BuildUpdateRequest()
+        protected UpdateCustomerParams BuildUpdateRequest()
         {
-            return new UpdateCustomerRequest
+            return new UpdateCustomerParams
             {
                 Email = "example@omise.co",
                 Description = "Omise example",

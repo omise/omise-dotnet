@@ -78,15 +78,17 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildCreateRequest(),
-                @"{""customer"":""Omise Co., Ltd.""," +
-                @"""card"":""card_test_123""," +
-                @"""amount"":244884," +
-                @"""currency"":""thb""," +
-                @"""description"":""Test Charge""," +
-                @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
-                @"""return_uri"":""asdf""}"
+                new Dictionary<string, object>
+                {
+                    { "customer", "Omise Co., Ltd." },
+                    { "card", "card_test_123" },
+                    { "amount", 244884 },
+                    { "currency", "thb" },
+                    { "description", "Test Charge" },
+                    { "capture", false },
+                    { "source", "src_test_id" },
+                    { "return_uri", "asdf" },
+                }
             );
         }
 
@@ -95,7 +97,10 @@ namespace Omise.Tests.Resources
         {
             AssertSerializedRequest(
                 BuildUpdateRequest(),
-                @"{""description"":""Charge was for testing.""}"
+                new Dictionary<string, object>
+                {
+                    { "description", "Charge was for testing." },
+                }
             );
         }
 
@@ -120,10 +125,10 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesCreate()
         {
-            var charge = await Fixtures.Create(new CreateChargeRequest());
+            var charge = await Fixtures.Create(new CreateChargeParams());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual(100000, charge.Amount);
-            Assert.IsInstanceOf(typeof(PaymentSource), charge.Source);
+            Assert.IsInstanceOf(typeof(Source), charge.Source);
             Assert.IsInstanceOf(typeof(Barcode), charge.Source.ScannableCode);
             Assert.IsInstanceOf(typeof(Document), charge.Source.ScannableCode.Image);
         }
@@ -131,7 +136,7 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestFixturesUpdate()
         {
-            var charge = await Fixtures.Update(ChargeId, new UpdateChargeRequest());
+            var charge = await Fixtures.Update(ChargeId, new UpdateChargeParams());
             Assert.AreEqual(ChargeId, charge.Id);
             Assert.AreEqual("Charge for order 3947 (XXL)", charge.Description);
         }
@@ -149,9 +154,9 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest()
+        protected CreateChargeParams BuildCreateRequest()
         {
-            return new CreateChargeRequest
+            return new CreateChargeParams
             {
                 Customer = "Omise Co., Ltd.",
                 Card = "card_test_123",
@@ -160,14 +165,13 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
+                Source = "src_test_id",
             };
         }
 
-        protected UpdateChargeRequest BuildUpdateRequest()
+        protected UpdateChargeParams BuildUpdateRequest()
         {
-            return new UpdateChargeRequest
+            return new UpdateChargeParams
             {
                 Description = "Charge was for testing."
             };

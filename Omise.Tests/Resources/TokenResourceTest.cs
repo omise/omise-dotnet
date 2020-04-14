@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Resources;
@@ -31,21 +32,27 @@ namespace Omise.Tests.Resources
             // (not using one from ICreatable)
             AssertSerializedRequest(
                 BuildWrappedCreateRequest(),
-                @"{""card"":{" +
-                @"""name"":""VISA RichGuy""," +
-                @"""number"":""4242424242424242""," +
-                @"""expiration_month"":12," +
-                @"""expiration_year"":2099," +
-                @"""security_code"":""xyz""," +
-                @"""city"":""Bangkok""," +
-                @"""postal_code"":""43424""}}"
+                new Dictionary<string, object>
+                {
+                    {"card", new Dictionary<string, object>
+                        {
+                            { "name", "VISA RichGuy" },
+                            { "number", "4242424242424242" },
+                            { "expiration_month", 12 },
+                            { "expiration_year", 2099 },
+                            { "security_code", "xyz" },
+                            { "city", "Bangkok" },
+                            { "postal_code", "43424" }
+                        }
+                    }
+                }
             );
         }
 
         [Test]
         public async Task TestFixturesCreate()
         {
-            var token = await Fixtures.Create(new CreateTokenRequest());
+            var token = await Fixtures.Create(new CardParams());
             Assert.AreEqual(TokenId, token.Id);
             Assert.AreEqual("4242", token.Card.LastDigits);
         }
@@ -58,14 +65,14 @@ namespace Omise.Tests.Resources
             Assert.AreEqual("4242", token.Card.LastDigits);
         }
 
-        protected TokenRequestWrapper BuildWrappedCreateRequest()
+        protected CreateTokenParams BuildWrappedCreateRequest()
         {
-            return new TokenRequestWrapper { Card = BuildCreateRequest() };
+            return new CreateTokenParams { Card = BuildCreateRequest() };
         }
 
-        protected CreateTokenRequest BuildCreateRequest()
+        protected CardParams BuildCreateRequest()
         {
-            return new CreateTokenRequest
+            return new CardParams
             {
                 Name = "VISA RichGuy",
                 Number = "4242424242424242",
