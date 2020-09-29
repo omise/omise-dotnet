@@ -9,5 +9,6 @@ namespace Omise.Models
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Barcode { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
