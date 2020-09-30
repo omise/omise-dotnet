@@ -387,6 +387,9 @@
     <None Include="..\testdata\objects\event_object.json">
       <Link>testdata\objects\event_object.json</Link>
     </None>
+    <None Include="..\testdata\objects\paymentsource_object.json">
+      <Link>testdata\objects\paymentsource_object.json</Link>
+    </None>
     <None Include="..\testdata\objects\recipient_object.json">
       <Link>testdata\objects\recipient_object.json</Link>
     </None>

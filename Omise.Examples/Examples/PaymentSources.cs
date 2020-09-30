@@ -60,5 +60,31 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region TrueMoney
+        public async Task Create__Create_TrueMoney()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.TrueMoney,
+                PhoneNumber = "0812345678"
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_TrueMoney()
+        {
+            var sourceId = RetrieveTrueMoneySourceId();
+            var source = await Client.Sources.Get(sourceId);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveTrueMoneySourceId()
+        {
+            return RetrieveSourceBillPayment().Result.Id;
+        }
+        #endregion
     }
 }
