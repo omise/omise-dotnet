@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+# v2.7.9
+
+* Fixed missing `PhoneNumber` attribute for `truemoney` payment source.
+
 # v2.7.8
 
 * Added new payment source `promptpay`.
