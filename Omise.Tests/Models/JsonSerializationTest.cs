@@ -20,6 +20,7 @@ namespace Omise.Tests.Models
             typeof(Document),
             typeof(Dispute),
             typeof(Event),
+            typeof(PaymentSource),
             typeof(Recipient),
             typeof(Refund),
             typeof(Token),

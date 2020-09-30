@@ -187,6 +187,22 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region TrueMoney
+        public async Task Create__Create_With_Source_TrueMoney()
+        {
+            var source = await RetrieveSourceTrueMoney();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"phone number {charge.Source.PhoneNumber}");
+        }
+        #endregion
+
         #endregion
     }
 }
