@@ -20,8 +20,10 @@ namespace Omise.Models
         InstallmentBAY,
         [EnumMember(Value = "installment_kbank")]
         InstallmentKBank,
+        [EnumMember(Value = "installment_citi")]
+        InstallmentCiti,
         [EnumMember(Value = "bill_payment_tesco_lotus")]
-        BillPaymentTescoLotus, 
+        BillPaymentTescoLotus,
         [EnumMember(Value = "barcode_alipay")]
         BarcodeAlipay,
         [EnumMember(Value = "paynow")]
