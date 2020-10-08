@@ -53,5 +53,15 @@ namespace Omise.Examples
             });
         }
 
+        public async Task<PaymentSource> RetrieveSourceTrueMoney()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.TrueMoney,
+                PhoneNumber = "0812345678"
+            });
+        }
     }
 }
