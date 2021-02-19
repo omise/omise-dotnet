@@ -31,7 +31,6 @@ namespace Omise.Tests.Resources
 
             Assert.AreEqual("CIMB Clicks", bank.Name);
             Assert.True(bank.Active);
-
         }
 
         protected override CapabilityResource BuildResource(IRequester requester)
