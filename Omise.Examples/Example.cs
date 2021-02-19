@@ -63,5 +63,18 @@ namespace Omise.Examples
                 PhoneNumber = "0812345678"
             });
         }
+
+        // Creates a new PaymentSource called RetrieveSourceFpx, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceFpx()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "myr",
+                Type = OffsiteTypes.Fpx,
+                Email = "example@omise.co",
+                Bank = "cimb"
+            });
+        }
     }
 }
