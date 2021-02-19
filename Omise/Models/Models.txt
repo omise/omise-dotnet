@@ -13,6 +13,11 @@ BankAccount bank_account
   Number string
   LastDigits string last_digits
   Name string
+Capability
+  Banks List<string>
+  Country string
+  PaymentMethods List<PaymentMethod> payment_methods
+  ZeroInterestInstallments bool zero_interest_installments
 Card
   Country string
   City string
@@ -103,7 +108,7 @@ PaymentSource
   Currency string
   References PaymentReference references
   Barcode string
-  PhoneNumber string
+  PhoneNumber string phone_number
   ScannableCode Barcode scannable_code
   StoreId string store_id
   StoreName string store_name
