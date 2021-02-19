@@ -11,8 +11,8 @@ namespace Omise.Models
         public string Name { get; set; }
 
         [JsonProperty("active")]
-
         public bool Active { get; set; }
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

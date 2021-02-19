@@ -22,6 +22,16 @@ namespace Omise.Examples
             foreach (var paymentMethod in paymentMethods)
             {
                 Console.WriteLine($"supported payment method: {paymentMethod.Name}");
+
+                if (!paymentMethod.Name.Equals("fpx")) {
+                    continue;
+                }
+
+                foreach (var bank in paymentMethod.Banks) {
+                    Console.WriteLine($"fpx bank code: {bank.Code}");
+                    Console.WriteLine($"fpx bank name: {bank.Name}");
+                    Console.WriteLine($"fpx bank availability: {bank.Active}");
+                }
             }
         }
     }
