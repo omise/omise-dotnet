@@ -39,6 +39,7 @@ namespace Omise.Tests
             {
                 client.Account,
                 client.Balance,
+                client.Capability,
                 client.Charge("chrg_test_4yq7duw15p9hdrjp8oq"),
                 client.Charges,
                 client.Customer("cust_test_4yq6txdpfadhbaqnwp3"),
