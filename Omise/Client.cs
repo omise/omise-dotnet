@@ -14,6 +14,7 @@ namespace Omise
 
         public readonly AccountResource Account;
         public readonly BalanceResource Balance;
+        public readonly CapabilityResource Capability;
         public readonly ChargeResource Charges;
         public readonly CustomerResource Customers;
         public readonly DisputeResource Disputes;
@@ -60,6 +61,7 @@ namespace Omise
 
             Account = new AccountResource(requester);
             Balance = new BalanceResource(requester);
+            Capability = new CapabilityResource(requester);
             Charges = new ChargeResource(requester);
             Customers = new CustomerResource(requester);
             Disputes = new DisputeResource(requester);
