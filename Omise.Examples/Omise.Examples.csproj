@@ -348,6 +348,7 @@
     <Compile Include="Examples\Transfer_Schedules.cs" />
     <Compile Include="Examples\PaymentSources.cs" />
     <Compile Include="ExampleInfo.cs" />
+    <Compile Include="Examples\Capability.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
