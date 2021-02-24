@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: nuget restore Omise.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: make test
