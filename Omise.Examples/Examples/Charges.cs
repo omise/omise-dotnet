@@ -203,6 +203,23 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region
+        public async Task Create__Create_With_Source_Fpx()
+        {
+            var source = await RetrieveSourceFpx();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "myr",
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"email {charge.Source.Email}");
+            Console.WriteLine($"bank {charge.Source.Bank}");
+        }
+        #endregion
+
         #endregion
     }
 }

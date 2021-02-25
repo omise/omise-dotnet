@@ -16,6 +16,8 @@ namespace Omise.Models
         InternetBankingBAY,
         [EnumMember(Value = "alipay")]
         AlipayOnline,
+        [EnumMember(Value = "fpx")]
+        Fpx,
         [EnumMember(Value = "installment_bay")]
         InstallmentBAY,
         [EnumMember(Value = "installment_kbank")]

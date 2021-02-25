@@ -117,6 +117,8 @@ PaymentSource
   Currency string
   References PaymentReference references
   Barcode string
+  Bank string
+  Email string
   PhoneNumber string phone_number
   ScannableCode Barcode scannable_code
   StoreId string store_id

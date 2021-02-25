@@ -930,6 +930,10 @@ namespace Omise.Models {
         public PaymentReference References { get; set; }
         [JsonProperty("barcode")]
         public string Barcode { get; set; }
+        [JsonProperty("bank")]
+        public string Bank { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }
         [JsonProperty("scannable_code")]
@@ -953,6 +957,8 @@ namespace Omise.Models {
                 object.Equals(this.Currency, another.Currency) &&
                 object.Equals(this.References, another.References) &&
                 object.Equals(this.Barcode, another.Barcode) &&
+                object.Equals(this.Bank, another.Bank) &&
+                object.Equals(this.Email, another.Email) &&
                 object.Equals(this.PhoneNumber, another.PhoneNumber) &&
                 object.Equals(this.ScannableCode, another.ScannableCode) &&
                 object.Equals(this.StoreId, another.StoreId) &&
@@ -981,6 +987,12 @@ namespace Omise.Models {
                 }
                 if (Barcode != default(string)) {
                     hash = hash * 23 + Barcode.GetHashCode();
+                }
+                if (Bank != default(string)) {
+                    hash = hash * 23 + Bank.GetHashCode();
+                }
+                if (Email != default(string)) {
+                    hash = hash * 23 + Email.GetHashCode();
                 }
                 if (PhoneNumber != default(string)) {
                     hash = hash * 23 + PhoneNumber.GetHashCode();

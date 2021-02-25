@@ -9,6 +9,8 @@ namespace Omise.Models
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Barcode { get; set; }
+        public string Bank { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }

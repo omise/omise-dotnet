@@ -4,6 +4,7 @@
   "livemode": false,
   "location": "/sources/src_test_5kdpoi6wetms2wd59v2",
   "amount": 400000,
+  "bank": null,
   "barcode": null,
   "created_at": "2020-06-30T03:53:47Z",
   "currency": "THB",
