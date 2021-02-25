@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System;
+using System.Linq;
 
 namespace Omise.Examples
 {
@@ -8,29 +9,25 @@ namespace Omise.Examples
         public async Task Retrieve__Retrieve()
         {
             var capability = await Client.Capability.Get();
-            var banks = capability.Banks;
-            var paymentMethods = capability.PaymentMethods;
 
-            Console.WriteLine($"country: {capability.Country}");
-            Console.WriteLine($"zero interest installments: {capability.ZeroInterestInstallments}");
+            Console.WriteLine($"supported banks: {string.Join(", ", capability.Banks)}");
 
-            foreach (var bank in banks)
+            foreach (var paymentMethod in capability.PaymentBackends)
             {
-                Console.WriteLine($"supported bank: {bank}");
-            }
+                var key = paymentMethod.Keys.ElementAt(0);
+                var value = paymentMethod.Values.ElementAt(0);
 
-            foreach (var paymentMethod in paymentMethods)
-            {
-                Console.WriteLine($"supported payment method: {paymentMethod.Name}");
+                // PaymentMethod identifier
+                Console.WriteLine($"payment method: {key}");
 
-                if (!paymentMethod.Name.Equals("fpx")) {
-                    continue;
-                }
+                // PaymentMethod supported currencies
+                Console.WriteLine($"supported currencies: {string.Join(", ", value.Currencies)}");
 
-                foreach (var bank in paymentMethod.Banks) {
-                    Console.WriteLine($"fpx bank code: {bank.Code}");
-                    Console.WriteLine($"fpx bank name: {bank.Name}");
-                    Console.WriteLine($"fpx bank availability: {bank.Active}");
+                // PaymentMethod supported banks
+                if (value.Banks == null) { continue; }
+                foreach (var bank in value.Banks)
+                {
+                    Console.WriteLine($"bank {bank.Name} with code '{bank.Code}' availability: {bank.Active}");
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Omise.Resources;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Omise.Tests.Resources
@@ -19,18 +20,13 @@ namespace Omise.Tests.Resources
         {
             var capability = await Fixtures.Get();
 
-            Assert.AreEqual("TH", capability.Country);
-            Assert.False(capability.ZeroInterestInstallments);
+            Assert.True(capability.ZeroInterestInstallments);
             Assert.That(capability.Banks, Does.Contain("kbank"));
 
-            var fpx = capability.PaymentMethods.Find(P => P.Name == "fpx");
-            var bank = fpx.Banks.Find(B => B.Code == "cimb");
+            var paymentMethod = capability.PaymentBackends.Find(P => P.Keys.ElementAt(0) == "fpx");
 
-            Assert.AreEqual("fpx", fpx.Name);
-            Assert.Null(fpx.InstallmentTerms);
-
-            Assert.AreEqual("CIMB Clicks", bank.Name);
-            Assert.True(bank.Active);
+            Assert.AreEqual("fpx", paymentMethod.Keys.ElementAt(0));
+            Assert.That(paymentMethod.Values.ElementAt(0).Currencies, Does.Contain("myr"));
         }
 
         protected override CapabilityResource BuildResource(IRequester requester)
