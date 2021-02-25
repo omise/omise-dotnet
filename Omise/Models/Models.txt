@@ -5,6 +5,10 @@ Balance
   Available long
   Total long
   Currency string
+Bank
+  Code string
+  Name string
+  Active bool
 Barcode
   Type string
   Image Document
@@ -95,6 +99,12 @@ Occurrence
   Status OccurrenceStatus
   Message String
   Result String
+PaymentMethod
+  Name string
+  Currencies List<string>
+  CardBrands List<string> card_brands
+  InstallmentTerms List<int> installment_terms
+  Banks List<Bank>
 PaymentReference
   OmiseTaxId string
   ReferenceNumber1 string reference_number_1

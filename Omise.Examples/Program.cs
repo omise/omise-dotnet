@@ -16,6 +16,7 @@ namespace Omise.Examples
         {
             new Accounts(),
             new Balances(),
+            new Capability(),
             new Cards(),
             new Charges(),
             new Charge_Schedules(),
