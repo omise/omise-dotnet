@@ -86,5 +86,33 @@ namespace Omise.Examples
             return RetrieveSourceBillPayment().Result.Id;
         }
         #endregion
+
+        #region Fpx
+        public async Task Create__Create_Fpx()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "myr",
+                Type = OffsiteTypes.Fpx,
+                Email = "example@omise.co",
+                Bank = "cimb"
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_Fpx()
+        {
+            var sourceID = RetrieveFpxSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveFpxSourceId()
+        {
+            return RetrieveSourceFpx().Result.Id;
+        }
+        #endregion
     }
 }

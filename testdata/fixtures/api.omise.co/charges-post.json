@@ -62,6 +62,7 @@
     "name": null,
     "email": null,
     "barcode": "1234567890",
+    "bank":  null,
     "store_id": "store_1",
     "store_name": "store 1",
     "terminal_id": "POS-01",
