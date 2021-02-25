@@ -10,16 +10,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        dotnet: [ '2.1.x', '3.1.x', '5.0.x', '6.0.x']
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: ${{ matrix.dotnet }}
     - name: Install dependencies
       run: nuget restore Omise.sln
-    - name: Build
-      run: nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
     - name: Test
       run: make test
