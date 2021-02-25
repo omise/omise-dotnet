@@ -19,8 +19,7 @@ BankAccount bank_account
   Name string
 Capability
   Banks List<string>
-  Country string
-  PaymentMethods List<PaymentMethod> payment_methods
+  PaymentBackends List<Dictionary<string,PaymentMethod>> payment_backends
   ZeroInterestInstallments bool zero_interest_installments
 Card
   Country string
@@ -100,10 +99,10 @@ Occurrence
   Message String
   Result String
 PaymentMethod
-  Name string
+  Type string
   Currencies List<string>
-  CardBrands List<string> card_brands
-  InstallmentTerms List<int> installment_terms
+  Brands List<string>
+  AllowedInstallmentTerms List<int> allowed_installment_terms
   Banks List<Bank>
 PaymentReference
   OmiseTaxId string
