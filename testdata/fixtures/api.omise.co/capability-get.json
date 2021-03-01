@@ -1,0 +1,319 @@
+{
+  "object": "capability",
+  "location": "/capability",
+  "banks": [
+    "test",
+    "bbl",
+    "kbank",
+    "rbs",
+    "ktb",
+    "jpm",
+    "mufg",
+    "tmb",
+    "scb",
+    "citi",
+    "smbc",
+    "sc",
+    "cimb",
+    "uob",
+    "bay",
+    "mega",
+    "boa",
+    "cacib",
+    "gsb",
+    "hsbc",
+    "db",
+    "ghb",
+    "baac",
+    "mb",
+    "bnp",
+    "tbank",
+    "ibank",
+    "tisco",
+    "kk",
+    "icbc",
+    "tcrb",
+    "lhb"
+  ],
+  "limits": {
+    "charge_amount": {
+      "max": 15000000,
+      "min": 2000
+    },
+    "transfer_amount": {
+      "max": 5000000000,
+      "min": 3000
+    }
+  },
+  "payment_backends": [
+    {
+      "credit_card": {
+        "type": "card",
+        "currencies": [
+          "thb",
+          "jpy",
+          "usd",
+          "eur",
+          "gbp",
+          "sgd",
+          "aud",
+          "chf",
+          "cny",
+          "dkk",
+          "hkd"
+        ],
+        "brands": [
+          "JCB",
+          "Visa",
+          "MasterCard"
+        ]
+      }
+    },
+    {
+      "internet_banking_bay": {
+        "type": "internet_banking",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "internet_banking_ktb": {
+        "type": "internet_banking",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "internet_banking_scb": {
+        "type": "internet_banking",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "internet_banking_bbl": {
+        "type": "internet_banking",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "alipay": {
+        "type": "alipay",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "installment_bay": {
+        "type": "installment",
+        "currencies": [
+          "thb"
+        ],
+        "allowed_installment_terms": [
+          3,
+          4,
+          6,
+          9,
+          10
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "installment_kbank": {
+        "type": "installment",
+        "currencies": [
+          "thb"
+        ],
+        "allowed_installment_terms": [
+          3,
+          4,
+          6,
+          10
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "installment_ktc": {
+        "type": "installment",
+        "currencies": [
+          "thb"
+        ],
+        "allowed_installment_terms": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "installment_bbl": {
+        "type": "installment",
+        "currencies": [
+          "thb"
+        ],
+        "allowed_installment_terms": [
+          4,
+          6,
+          8,
+          9,
+          10
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "installment_first_choice": {
+        "type": "installment",
+        "currencies": [
+          "thb"
+        ],
+        "allowed_installment_terms": [
+          3,
+          4,
+          6,
+          9,
+          10,
+          12,
+          18,
+          24,
+          36
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "bill_payment_tesco_lotus": {
+        "type": "offline",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "barcode_alipay": {
+        "type": "offline",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "fpx": {
+        "type": "fpx",
+        "currencies": [
+          "myr"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "truemoney": {
+        "type": "truemoney",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        },
+        "banks": [
+          {
+            "code": "ambank",
+            "name": "AmBank",
+            "active": true
+          },
+          {
+            "code": "uob",
+            "name": "UOB Bank",
+            "active": false
+          }
+        ]
+      }
+    },
+    {
+      "promptpay": {
+        "type": "promptpay",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    },
+    {
+      "points_citi": {
+        "type": "points_citi",
+        "currencies": [
+          "thb"
+        ],
+        "amount": {
+          "min": 2000,
+          "max": 15000000
+        }
+      }
+    }
+  ],
+  "zero_interest_installments": true
+}

@@ -14,6 +14,7 @@ namespace Omise.Tests.Models
             typeof(Balance),
             typeof(BankAccount),
             typeof(Barcode),
+            typeof(Capability),
             typeof(Card),
             typeof(Charge),
             typeof(Customer),

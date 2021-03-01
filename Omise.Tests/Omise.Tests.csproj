@@ -189,6 +189,7 @@
     <Compile Include="Models\JsonSerializationTest.cs" />
     <Compile Include="Resources\AccountResourceTest.cs" />
     <Compile Include="Resources\BalanceResourceTest.cs" />
+    <Compile Include="Resources\CapabilityResourceTest.cs" />
     <Compile Include="Resources\CustomerSpecificCardResourceTest.cs" />
     <Compile Include="Resources\ChargeResourceTest.cs" />
     <Compile Include="Resources\CustomerResourceTest.cs" />
@@ -224,6 +225,9 @@
     </None>
     <None Include="..\testdata\fixtures\api.omise.co\balance-get.json">
       <Link>testdata\fixtures\api.omise.co\balance-get.json</Link>
+    </None>
+    <None Include="..\testdata\fixtures\api.omise.co\capability-get.json">
+      <Link>testdata\fixtures\api.omise.co\capability-get.json</Link>
     </None>
     <None Include="..\testdata\fixtures\api.omise.co\charges-get.json">
       <Link>testdata\fixtures\api.omise.co\charges-get.json</Link>
@@ -368,6 +372,9 @@
     </None>
     <None Include="..\testdata\objects\balance_object.json">
       <Link>testdata\objects\balance_object.json</Link>
+    </None>
+    <None Include="..\testdata\objects\capability_object.json">
+      <Link>testdata\objects\capability_object.json</Link>
     </None>
     <None Include="..\testdata\objects\bank_account_object.json">
       <Link>testdata\objects\bank_account_object.json</Link>
