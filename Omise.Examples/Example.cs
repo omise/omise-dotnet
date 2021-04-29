@@ -53,6 +53,18 @@ namespace Omise.Examples
             });
         }
 
+        // Creates a new PaymentSource called RetrieveSourceRabbitLinepay, as sources can be created client-side (as well as server-side).
+        protected async Task<PaymentSource> RetrieveSourceRabbitLinepay()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.RabbitLinepay,
+                Flow = FlowTypes.Redirect
+            });
+        }
+
         public async Task<PaymentSource> RetrieveSourceTrueMoney()
         {
             return await Client.Sources.Create(new CreatePaymentSourceRequest
