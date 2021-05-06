@@ -30,6 +30,8 @@ namespace Omise.Models
         BillPaymentTescoLotus,
         [EnumMember(Value = "barcode_alipay")]
         BarcodeAlipay,
+        [EnumMember(Value = "rabbit_linepay")]
+        RabbitLinepay,
         [EnumMember(Value = "paynow")]
         Paynow,
         [EnumMember(Value = "points_citi")]

@@ -33,6 +33,33 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region Rabbit Linepay
+        public async Task Create__Create_RabbitLinepay()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.RabbitLinepay,
+                Flow = FlowTypes.Redirect
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_RabbitLinepay()
+        {
+            var sourceId = RetrieveRabbitLinepaySourceId();
+            var source = await Client.Sources.Get(sourceId);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveRabbitLinepaySourceId()
+        {
+            return RetrieveSourceRabbitLinepay().Result.Id;
+        }
+        #endregion
+
         #region BillPayment
         public async Task Create__Create_BillPayment()
         {

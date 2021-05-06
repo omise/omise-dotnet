@@ -156,6 +156,24 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region Rabbit Linepay
+        public async Task Create__Create_With_Source_RabbitLinepay()
+        {
+            var source = await RetrieveSourceRabbitLinepay();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.RabbitLinepay,
+                Flow = FlowTypes.Redirect,
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"Redirect customer to: {charge.AuthorizeURI}");
+        }
+        #endregion
+
         #region Wallet Alipay
         public async Task Create__Create_With_Wallet_Alipay()
         {
