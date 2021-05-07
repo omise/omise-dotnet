@@ -1,0 +1,28 @@
+name: Publish package
+
+on:
+  release:
+    types: [created]
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+
+    - name: Install dependencies
+      run: nuget restore Omise.sln
+
+    - name: Test
+      run: make test
+
+    - name: Create package
+      run: dotnet pack -c Release Omise/Omise.csproj
+
+    - name: Release
+      run: dotnet nuget push Omise/bin/Release/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY}} --skip-duplicate
