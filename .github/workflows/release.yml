@@ -4,6 +4,9 @@ on:
   release:
     types: [created]
 
+jobs:
+  release:
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
