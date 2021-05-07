@@ -1,4 +1,7 @@
 # CHANGE LOG
+## v2.7.11
+
+* Added `RabbitLinepay` source types.
 
 ## v2.7.10
 
