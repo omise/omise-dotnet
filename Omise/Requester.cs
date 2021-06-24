@@ -62,7 +62,7 @@ namespace Omise
             string path)
             where TResult : class
         {
-            return await Request<object, TResult>(endpoint, method, path, null);
+            return await Request<object, TResult>(endpoint, method, path, null).ConfigureAwait(false);
         }
 
         public async Task<TResult> Request<TPayload, TResult>(
@@ -98,8 +98,8 @@ namespace Omise
             // roundtrips the request
             try
             {
-                var response = await Roundtripper.Roundtrip(request);
-                var stream = await response.Content.ReadAsStreamAsync();
+                var response = await Roundtripper.Roundtrip(request).ConfigureAwait(false);
+                var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
                     var error = Serializer.JsonDeserialize<ErrorResult>(stream);

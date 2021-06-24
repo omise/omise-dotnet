@@ -23,7 +23,7 @@ namespace Omise
                 resource.Endpoint,
                 "GET",
                 resource.BasePath
-            );
+            ).ConfigureAwait(false);
         }
 
         public static async Task<TResult> Get<TResult>(
@@ -35,7 +35,7 @@ namespace Omise
                 resource.Endpoint,
                 "GET",
                 $"{resource.BasePath}/{modelId}"
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

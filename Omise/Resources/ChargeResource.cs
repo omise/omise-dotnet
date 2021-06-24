@@ -26,7 +26,7 @@ namespace Omise.Resources
                 Endpoint,
                 "POST",
                 $"{BasePath}/{chargeId}/capture"
-            );
+            ).ConfigureAwait(false);
         }
 
         public async Task<Charge> Reverse(string chargeId)
@@ -35,7 +35,7 @@ namespace Omise.Resources
                 Endpoint,
                 "POST",
                 $"{BasePath}/{chargeId}/reverse"
-            );
+            ).ConfigureAwait(false);
         }
 
         public async Task<Charge> Expire(string chargeId)
@@ -44,7 +44,7 @@ namespace Omise.Resources
                 Endpoint,
                 "POST",
                 $"{BasePath}/{chargeId}/expire"
-            );
+            ).ConfigureAwait(false);
         }
     }
 }
