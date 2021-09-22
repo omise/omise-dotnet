@@ -13,8 +13,8 @@ namespace Omise
 
         public static readonly IEnvironment Staging =
             new CustomEnvironment(new Dictionary<Endpoint, string> {
-                { Endpoint.Api, "https://api-staging.omise.co" },
-                { Endpoint.Vault, "https://vault-staging.omise.co" },
+                { Endpoint.Api, "https://api.staging-omise.co" },
+                { Endpoint.Vault, "https://vault.staging-omise.co" },
             });
 
         public static readonly IEnvironment LocalMachine =
