@@ -61,7 +61,7 @@ namespace Omise.Tests
         {
             var roundtripper = new MockRoundtripper((req) =>
             {
-                Assert.That(req.RequestUri.Host, Is.EqualTo("api-staging.omise.co"));
+                Assert.That(req.RequestUri.Host, Is.EqualTo("api.staging-omise.co"));
             });
 
             var requester = new Requester(
