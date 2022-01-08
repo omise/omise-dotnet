@@ -6,6 +6,7 @@ namespace Omise.Models
     {
         public OffsiteTypes Type { get; set; }
         public FlowTypes Flow { get; set; }
+        public PlatformTypes Platform { get; set; }
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Barcode { get; set; }

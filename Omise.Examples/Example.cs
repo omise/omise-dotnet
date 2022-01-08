@@ -88,5 +88,83 @@ namespace Omise.Examples
                 Bank = "cimb"
             });
         }
+
+        // Creates a new PaymentSource called RetrieveSourceAlipayCN, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceAlipayCN()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.AlipayCN,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceAlipayHK, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceAlipayHK()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.AlipayHK,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceDANA, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceDANA()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.DANA,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceGCash, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceGCash()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.GCash,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceKakaoPay, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceKakaoPay()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.KakaoPay,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceTouchNGo, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceTouchNGo()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.TouchNGo,
+                Platform = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
     }
 }

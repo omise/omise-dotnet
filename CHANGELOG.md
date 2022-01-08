@@ -1,4 +1,14 @@
 # CHANGE LOG
+
+## v2.7.12
+
+* Added source types for Alipay+
+  - `AlipayCN`
+  - `AlipayHK`
+  - `GANA`
+  - `GCash`
+  - `KakaoPay`
+  - `TouchNGo`
 ## v2.7.11
 
 * Added `RabbitLinepay` source types.
