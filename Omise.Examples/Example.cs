@@ -97,7 +97,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.AlipayCN,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }
@@ -110,7 +110,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.AlipayHK,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }
@@ -123,7 +123,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.DANA,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }
@@ -136,7 +136,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.GCash,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }
@@ -149,7 +149,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.KakaoPay,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }
@@ -162,7 +162,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.TouchNGo,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
         }

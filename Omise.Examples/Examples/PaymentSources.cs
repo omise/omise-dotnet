@@ -151,7 +151,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.AlipayCN,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -163,7 +163,7 @@ namespace Omise.Examples
             var sourceID = RetrieveAlipayCNSourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveAlipayCNSourceId()
@@ -179,7 +179,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.AlipayHK,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -191,7 +191,7 @@ namespace Omise.Examples
             var sourceID = RetrieveAlipayHKSourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveAlipayHKSourceId()
@@ -209,7 +209,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.DANA,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -221,7 +221,7 @@ namespace Omise.Examples
             var sourceID = RetrieveDANASourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveDANASourceId()
@@ -239,7 +239,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.GCash,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -251,7 +251,7 @@ namespace Omise.Examples
             var sourceID = RetrieveGCashSourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveGCashSourceId()
@@ -269,7 +269,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.KakaoPay,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -281,7 +281,7 @@ namespace Omise.Examples
             var sourceID = RetrieveKakaoPaySourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveKakaoPaySourceId()
@@ -299,7 +299,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "sgd",
                 Type = OffsiteTypes.TouchNGo,
-                Platform = PlatformTypes.Web,
+                PlatformType = PlatformTypes.Web,
                 Email = "example@omise.co",
             });
 
@@ -311,7 +311,7 @@ namespace Omise.Examples
             var sourceID = RetrieveTouchNGoSourceId();
             var source = await Client.Sources.Get(sourceID);
             Console.WriteLine($"source flow is {source.Flow.ToString()}");
-            Console.WriteLine($"source platform is {source.Platform.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
         }
 
         protected string RetrieveTouchNGoSourceId()

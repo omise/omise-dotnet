@@ -251,7 +251,7 @@ namespace Omise.Examples
 
             Console.WriteLine($"created charge: {charge.Id}");
             Console.WriteLine($"email {charge.Source.Email}");
-            Console.WriteLine($"platform {charge.Source.Platform}");
+            Console.WriteLine($"platform {charge.Source.PlatformType}");
         }
         #endregion
 
