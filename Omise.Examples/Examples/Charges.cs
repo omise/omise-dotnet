@@ -245,8 +245,9 @@ namespace Omise.Examples
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
-                Currency = "myr",
-                Source = source
+                Currency = "sgd",
+                Source = source,
+                ReturnUri = "https://www.example.com"
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
