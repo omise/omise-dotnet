@@ -238,6 +238,24 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region
+        public async Task Create__Create_With_Source_AlipayCN()
+        {
+            var source = await RetrieveSourceAlipayCN();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Source = source,
+                ReturnUri = "https://www.example.com"
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"email {charge.Source.Email}");
+            Console.WriteLine($"platform {charge.Source.PlatformType}");
+        }
+        #endregion
+
         #endregion
     }
 }

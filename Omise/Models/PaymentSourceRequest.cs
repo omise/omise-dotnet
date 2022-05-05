@@ -6,6 +6,8 @@ namespace Omise.Models
     {
         public OffsiteTypes Type { get; set; }
         public FlowTypes Flow { get; set; }
+        [JsonProperty("platform_type")]
+        public PlatformTypes PlatformType { get; set; }
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Barcode { get; set; }

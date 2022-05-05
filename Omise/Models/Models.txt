@@ -113,6 +113,7 @@ PaymentReference
 PaymentSource
   Type OffsiteTypes
   Flow FlowTypes
+  PlatformType PlatformTypes platform_type
   Amount long
   Currency string
   References PaymentReference references

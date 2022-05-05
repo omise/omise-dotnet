@@ -16,6 +16,18 @@ namespace Omise.Models
         InternetBankingBAY,
         [EnumMember(Value = "alipay")]
         AlipayOnline,
+        [EnumMember(Value = "alipay_cn")]
+        AlipayCN,
+        [EnumMember(Value = "alipay_hk")]
+        AlipayHK,
+        [EnumMember(Value = "dana")]
+        DANA,
+        [EnumMember(Value = "gcash")]
+        GCash,
+        [EnumMember(Value = "kakaopay")]
+        KakaoPay,
+        [EnumMember(Value = "touch_n_go")]
+        TouchNGo,
         [EnumMember(Value = "fpx")]
         Fpx,
         [EnumMember(Value = "installment_bay")]
