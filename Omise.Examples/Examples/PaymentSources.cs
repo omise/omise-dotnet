@@ -321,6 +321,33 @@ namespace Omise.Examples
 
         #endregion
 
+        #region OCBC PAO
+        public async Task Create__Create_OCBC_PAO()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.MobileBankingOCBCPAO,
+                PlatformType = PlatformTypes.iOS,
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_OCBC_PAO()
+        {
+            var sourceID = RetrieveOCBCPAOSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveOCBCPAOSourceId()
+        {
+            return RetrieveSourceOCBCPAO().Result.Id;
+        }
+        #endregion
+
         #endregion
 
         #endregion

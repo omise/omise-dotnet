@@ -166,5 +166,17 @@ namespace Omise.Examples
                 Email = "example@omise.co",
             });
         }
+
+        // Creates a new PaymentSource called RetrieveSourceOCBCPAO, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceOCBCPAO()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.MobileBankingOCBCPAO,
+                PlatformType = PlatformTypes.iOS,
+            });
+        }
     }
 }
