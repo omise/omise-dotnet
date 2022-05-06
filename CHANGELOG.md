@@ -2,7 +2,7 @@
 
 ## v2.7.13
 
-* * Added new payment source `OCBC PAO`.
+* Added new payment source `OCBC Pay Anyone`.
 
 ## v2.7.12
 
