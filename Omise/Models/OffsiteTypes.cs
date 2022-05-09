@@ -42,6 +42,8 @@ namespace Omise.Models
         BillPaymentTescoLotus,
         [EnumMember(Value = "barcode_alipay")]
         BarcodeAlipay,
+        [EnumMember(Value = "mobile_banking_ocbc_pao")]
+        MobileBankingOCBCPAO,
         [EnumMember(Value = "rabbit_linepay")]
         RabbitLinepay,
         [EnumMember(Value = "paynow")]
