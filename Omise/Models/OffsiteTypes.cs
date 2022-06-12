@@ -44,6 +44,8 @@ namespace Omise.Models
         BarcodeAlipay,
         [EnumMember(Value = "mobile_banking_ocbc_pao")]
         MobileBankingOCBCPAO,
+        [EnumMember(Value = "mobile_banking_scb")]
+        MobileBankingSCB,
         [EnumMember(Value = "rabbit_linepay")]
         RabbitLinepay,
         [EnumMember(Value = "paynow")]

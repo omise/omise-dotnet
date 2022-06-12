@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v2.7.14
+
+* Added new payment source `SCB (SCB Easy)`.
+
 ## v2.7.13
 
 * Added new payment source `OCBC Pay Anyone`.

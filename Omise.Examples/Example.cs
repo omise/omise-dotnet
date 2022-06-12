@@ -178,5 +178,17 @@ namespace Omise.Examples
                 PlatformType = PlatformTypes.iOS,
             });
         }
+
+        // Creates a new PaymentSource called RetrieveSourceScb, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceScb()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.MobileBankingSCB,
+                PlatformType = PlatformTypes.iOS,
+            });
+        }
     }
 }

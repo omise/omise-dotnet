@@ -170,6 +170,8 @@ namespace Omise.Examples
         {
             return RetrieveSourceAlipayCN().Result.Id;
         }
+        
+        #endregion
 
         #region AlipayHK
         public async Task Create__Create_AlipayHK()
@@ -348,6 +350,31 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region SCB
+        public async Task Create__Create_Scb()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.MobileBankingSCB,
+                PlatformType = PlatformTypes.iOS,
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_Scb()
+        {
+            var sourceID = RetrieveScbSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveScbSourceId()
+        {
+            return RetrieveSourceScb().Result.Id;
+        }
         #endregion
 
         #endregion
