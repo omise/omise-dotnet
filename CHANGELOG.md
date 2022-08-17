@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v2.7.14
+
+* Updated charge models to include `paid_at` field.
+
 ## v2.7.13
 
 * Added new payment source `OCBC Pay Anyone`.
