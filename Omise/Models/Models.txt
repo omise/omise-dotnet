@@ -46,6 +46,7 @@ Charge
   Reversed bool
   Expired bool
   Paid bool
+  PaidAt DateTime paid_at
   Transaction string
   SourceOfFund SourceOfFunds source_of_fund
   Card Card

@@ -3,6 +3,7 @@
 ## v2.7.14
 
 * Added new payment source `SCB (SCB Easy)`.
+* Updated charge models to include `paid_at` field.
 
 ## v2.7.13
 
