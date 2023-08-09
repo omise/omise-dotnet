@@ -83,6 +83,7 @@ namespace Omise.Tests.Resources
                 @"""amount"":244884," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
+                @"""expires_at"":""2023-08-10T23:01:50Z""," +
                 @"""capture"":false," +
                 @"""offsite"":""internet_banking_bay""," +
                 @"""flow"":""redirect""," +
@@ -161,7 +162,8 @@ namespace Omise.Tests.Resources
                 Capture = false,
                 ReturnUri = "asdf",
                 Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
+                Flow = FlowTypes.Redirect,
+                ExpiresAt="2023-08-10T23:01:50Z",
             };
         }
 
