@@ -3,7 +3,6 @@ using Omise.Resources;
 using Omise.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 namespace Omise.Tests.Resources
 {
     [TestFixture]
