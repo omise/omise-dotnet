@@ -49,7 +49,7 @@ namespace Omise.Examples
                 Currency = "thb",
                 Customer = customerId,
                 Card = cardId,
-                ExpiresAt= "2023-08-10T23:01:50Z"
+                ExpiresAt= new DateTime(2023, 8, 11, 0, 0, 0).ToUniversalTime()
             });
 
             Console.WriteLine($"created charge: {charge.Id}");

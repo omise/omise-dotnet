@@ -40,7 +40,7 @@ Charge
   Amount long
   Currency string
   Description string
-  ExpiresAt string expires_at
+  ExpiresAt DateTime expires_at
   Metadata IDictionary<string,object>
   Capture bool
   Authorized bool

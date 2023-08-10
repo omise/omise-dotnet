@@ -3,6 +3,8 @@ using Omise.Resources;
 using Omise.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
+
 namespace Omise.Tests.Resources
 {
     [TestFixture]
@@ -82,7 +84,7 @@ namespace Omise.Tests.Resources
                 @"""amount"":244884," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
-                @"""expires_at"":""2023-08-10T23:01:50Z""," +
+                @"""expires_at"":""2023-08-08T21:00:00Z""," +
                 @"""capture"":false," +
                 @"""offsite"":""internet_banking_bay""," +
                 @"""flow"":""redirect""," +
@@ -162,7 +164,7 @@ namespace Omise.Tests.Resources
                 ReturnUri = "asdf",
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
-                ExpiresAt="2023-08-10T23:01:50Z",
+                ExpiresAt= new DateTime(2023, 8, 9, 0, 0, 0).ToUniversalTime(),
             };
         }
 
