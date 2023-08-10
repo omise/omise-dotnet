@@ -182,4 +182,3 @@ namespace Omise.Tests.Resources
         }
     }
 }
-
