@@ -167,7 +167,7 @@ namespace Omise.Tests.Resources
                 ReturnUri = "asdf",
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
-                ExpiresAt= utcTime,
+                ExpiresAt = utcTime,
             };
         }
 
