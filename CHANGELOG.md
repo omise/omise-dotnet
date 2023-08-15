@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v2.7.8
+
+* Updated charge models to include `expires_at` field.
+
 ## v2.7.14
 
 * Updated charge models to include `paid_at` field.
