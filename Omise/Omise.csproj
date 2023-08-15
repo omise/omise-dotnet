@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Omise</PackageId>
-    <PackageVersion>2.7.14</PackageVersion>
+    <PackageVersion>2.7.8</PackageVersion>
     <Authors>Omise &lt;support@omise.co&gt;</Authors>
     <PackageIconUrl>https://cdn.omise.co/assets/frontend-images/omise-logo.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/omise/omise-dotnet/blob/master/LICENSE</PackageLicenseUrl>
