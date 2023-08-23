@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace Omise.Models
@@ -11,8 +10,6 @@ namespace Omise.Models
         public long Amount { get; set; }
         public string Currency { get; set; }
         public string Description { get; set; }
-        [JsonProperty("expires_at")]
-        public DateTime? ExpiresAt { get; set; }
         public IDictionary<string, object> Metadata { get; set; }
         public bool Capture { get; set; }
         public OffsiteTypes Offsite { get; set; }
