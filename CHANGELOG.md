@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v2.8.0
+
+- Updated charge models to include `expired_at` field.
+- Added `.example.env` and moved from static exposed values to `.env` usage
+- Changed unit testing to `dotnet test` instead of `nunit3-console.exe` removing third party dependency
+
 ## v2.7.14
 
 * Updated charge models to include `paid_at` field.
