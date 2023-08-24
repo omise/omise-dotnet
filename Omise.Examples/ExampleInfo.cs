@@ -1,36 +1,41 @@
-﻿
+﻿using System;
+using dotenv.net;
 namespace Omise.Examples
 {
     public class ExampleInfo
     {
-        public const string OMISE_PKEY = "pkey_test_5alr4tca4bpu0cirhck";
-        public const string OMISE_SKEY = "skey_test_5alr4tz3so072nhkipj";
+        static ExampleInfo()
+        {
+            DotEnv.Load();
+        }
+        public static string OMISE_PKEY => Environment.GetEnvironmentVariable("OMISE_PKEY");
+        public static string OMISE_SKEY => Environment.GetEnvironmentVariable("OMISE_SKEY");
 
-        public const string CUST_ID = "cust_test_5aass4jqqb39x80fkta";
-        public const string CARD_ID = "card_test_5aaswlbxdrzhoornpfe";
+        public static string CUST_ID => Environment.GetEnvironmentVariable("CUST_ID");
+        public static string CARD_ID => Environment.GetEnvironmentVariable("CARD_ID");
 
-        public const string CUST_ID_2 = "cust_test_5aass48w2i40qa5ivh9";
-        public const string CARD_ID_2 = "card_test_5aasvrrz6vx42t74zux";
+        public static string CUST_ID_2 => Environment.GetEnvironmentVariable("CUST_ID_2");
+        public static string CARD_ID_2 => Environment.GetEnvironmentVariable("CARD_ID_2");
 
-        public const string CUST_ID_3 = "cust_test_5aasqjmq7glo1c0pedk";
+        public static string CUST_ID_3 => Environment.GetEnvironmentVariable("CUST_ID_3");
 
-        public const string CHARGE_ID = "chrg_test_5aass1sz7sdgaoi6zg8";
-        public const string REFUND_ID = "rfnd_test_5aasqmj6fqvfoacm7xl";
-        public const string DISPUTE_ID = "dspt_test_5abyfl6u9ri3ndo8gzv";
+        public static string CHARGE_ID => Environment.GetEnvironmentVariable("CHARGE_ID");
+        public static string REFUND_ID => Environment.GetEnvironmentVariable("REFUND_ID");
+        public static string DISPUTE_ID => Environment.GetEnvironmentVariable("DISPUTE_ID");
 
-        public const string TRANSACTION_ID = "trxn_test_5aasqmjqoyd3cpq1koo";
+        public static string TRANSACTION_ID => Environment.GetEnvironmentVariable("TRANSACTION_ID");
 
-        public const string EVENT_ID = "evnt_test_5aaswswc0mq16nqeacr";
+        public static string EVENT_ID => Environment.GetEnvironmentVariable("EVENT_ID");
 
-        public const string LINK_ID = "link_test_56bkhnfd97h7eieu0hx";
+        public static string LINK_ID => Environment.GetEnvironmentVariable("LINK_ID");
 
-        public const string SCHEDULE_ID = "schd_test_58fiiv0w9m9tl9xnd55";
-        public const string OCCURRENCE_ID = "occu_test_58965eudn25i1gpip0w";
+        public static string SCHEDULE_ID => Environment.GetEnvironmentVariable("SCHEDULE_ID");
+        public static string OCCURRENCE_ID => Environment.GetEnvironmentVariable("OCCURRENCE_ID");
 
-        public const string RECIPIENT_ID = "recp_test_57po4c5obpi7rrxhtyl";
+        public static string RECIPIENT_ID => Environment.GetEnvironmentVariable("RECIPIENT_ID");
 
-        public const string TRANSFER_ID = "trsf_test_560ph0660cgiag1xjeh";
+        public static string TRANSFER_ID => Environment.GetEnvironmentVariable("TRANSFER_ID");
 
-        public const string CHARGE_ID_WA = "chrg_test_5aass1sz7sdgaoi6zg8";
+        public static string CHARGE_ID_WA => Environment.GetEnvironmentVariable("CHARGE_ID_WA");
     }
 }

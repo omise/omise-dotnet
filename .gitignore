@@ -153,6 +153,9 @@ csx/
 # Windows Store app package directory
 AppPackages/
 
+# .env
+**/.env
+
 # Others
 sql/
 *.Cache

@@ -351,5 +351,34 @@ namespace Omise.Examples
         #endregion
 
         #endregion
+        #region PromptPay
+        public async Task Create__Create_PromptPay()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.PromptPay,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_PromptPay()
+        {
+            var sourceID = RetrievePromptPaySourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
+        }
+
+        protected string RetrievePromptPaySourceId()
+        {
+            return RetrieveSourcePromptPay().Result.Id;
+        }
+
+        #endregion
     }
 }

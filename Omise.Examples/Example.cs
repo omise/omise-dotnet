@@ -6,8 +6,8 @@ namespace Omise.Examples
 {
     public abstract class Example
     {
-        public const string OMISE_PKEY = ExampleInfo.OMISE_PKEY;
-        public const string OMISE_SKEY = ExampleInfo.OMISE_SKEY;
+        public string OMISE_PKEY = ExampleInfo.OMISE_PKEY;
+        public string OMISE_SKEY = ExampleInfo.OMISE_SKEY;
 
         protected Client Client { get; private set; }
 
@@ -176,6 +176,18 @@ namespace Omise.Examples
                 Currency = "sgd",
                 Type = OffsiteTypes.MobileBankingOCBCPAO,
                 PlatformType = PlatformTypes.iOS,
+            });
+        }
+        // Creates a new PaymentSource called RetrieveSourcePromptPay, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourcePromptPay()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.PromptPay,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
             });
         }
     }

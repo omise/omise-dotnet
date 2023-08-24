@@ -3,6 +3,7 @@ using Omise.Resources;
 using Omise.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace Omise.Tests.Resources
 {
@@ -83,6 +84,7 @@ namespace Omise.Tests.Resources
                 @"""amount"":244884," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
+                @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
                 @"""offsite"":""internet_banking_bay""," +
                 @"""flow"":""redirect""," +
@@ -151,6 +153,9 @@ namespace Omise.Tests.Resources
 
         protected CreateChargeRequest BuildCreateRequest()
         {
+            TimeZoneInfo thailandZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
+            DateTime thailandTime = new DateTime(2023, 8, 9, 0, 0, 0);
+            DateTime utcTime = TimeZoneInfo.ConvertTimeToUtc(thailandTime, thailandZone);
             return new CreateChargeRequest
             {
                 Customer = "Omise Co., Ltd.",
@@ -161,7 +166,8 @@ namespace Omise.Tests.Resources
                 Capture = false,
                 ReturnUri = "asdf",
                 Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
+                Flow = FlowTypes.Redirect,
+                ExpiresAt = utcTime,
             };
         }
 

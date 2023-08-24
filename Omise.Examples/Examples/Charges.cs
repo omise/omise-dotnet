@@ -49,9 +49,10 @@ namespace Omise.Examples
                 Currency = "thb",
                 Customer = customerId,
                 Card = cardId,
+                ExpiresAt = DateTime.Now.AddDays(2).ToUniversalTime()
             });
 
-            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"created charge: {charge.Id} {charge.ExpiresAt}");
         }
 
         public async Task Create__Create_With_Customer()
@@ -273,6 +274,24 @@ namespace Omise.Examples
         }
         #endregion
 
+        #endregion
+        
+        #region
+        public async Task Create__Create_With_Source_PromptPay()
+        {
+            var source = await RetrieveSourcePromptPay();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Source = source,
+                ReturnUri = "https://www.example.com",
+                ExpiresAt = DateTime.Now.AddHours(11),
+            });
+
+            Console.WriteLine($"created charge: {charge.Id} {charge.ExpiresAt}");
+            Console.WriteLine($"platform {charge.Source.PlatformType}");
+        }
         #endregion
     }
 }
