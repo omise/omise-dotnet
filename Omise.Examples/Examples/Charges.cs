@@ -71,7 +71,7 @@ namespace Omise.Examples
         public async Task Capture__Capture()
         {
             var charge = RetrieveUncapturedCharge();
-            charge = await Client.Charges.Capture(charge.Id);
+            charge = await Client.Charges.Capture(charge.Id,new CaptureChargeRequest{CaptureAmount = 3000});
             Console.WriteLine($"captured charge: ({charge.Paid}) {charge.Id}");
         }
 
@@ -102,10 +102,11 @@ namespace Omise.Examples
             var token = RetrieveToken().Result;
             var charge = Client.Charges.Create(new CreateChargeRequest
             {
-                Amount = 2000,
+                Amount = 4000,
                 Currency = "thb",
                 Capture = false,
                 Card = token.Id,
+                AuthorizationType = "pre_auth"
             }).Result;
 
             return charge;
