@@ -39,6 +39,7 @@ Charge
   Status ChargeStatus
   Amount long
   Currency string
+  AuthorizationType string authorization_type
   Description string
   ExpiresAt DateTime expires_at
   Metadata IDictionary<string,object>
