@@ -39,7 +39,7 @@ namespace Omise.Models
     public class CaptureChargeRequest : Request
     {
         [JsonProperty("capture_amount")]
-        public int CaptureAmount { get; set; }
+        public long CaptureAmount { get; set; }
         
     }
 }
