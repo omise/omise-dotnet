@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v2.9.0 ([#75](https://github.com/omise/omise-dotnet/pull/75))
+
+- Updated charge models to include `authorization_type` field.
+- Added support for partial capture by adding `capture_amount` in capture request.
+- Added examples and unit tests for partial capture
+
 ## v2.8.0 ([#73](https://github.com/omise/omise-dotnet/pull/73))
 
 - Updated charge models to include `expired_at` field.
