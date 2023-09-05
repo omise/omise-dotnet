@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace Omise.Models
 {
-    public enum AuthType
+    public enum AuthTypes
     {
         [EnumMember(Value = null)]
          None,

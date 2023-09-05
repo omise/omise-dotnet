@@ -104,7 +104,7 @@ namespace Omise.Tests.Resources
         public void TestPreAuthCreateChargeRequest()
         {
             AssertSerializedRequest(
-                BuildCreateRequest(AuthType.PreAuth),
+                BuildCreateRequest(AuthTypes.PreAuth),
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
@@ -178,7 +178,7 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest(AuthType authType=AuthType.None)
+        protected CreateChargeRequest BuildCreateRequest(AuthTypes authType=AuthTypes.None)
         {
             TimeZoneInfo thailandZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
             DateTime thailandTime = new DateTime(2023, 8, 9, 0, 0, 0);

@@ -77,7 +77,7 @@ namespace Omise.Examples
 
         public async Task Capture__Capture__Partial()
         {
-            var charge = RetrieveUncapturedCharge(authType:AuthType.PreAuth);
+            var charge = RetrieveUncapturedCharge(authType:AuthTypes.PreAuth);
             charge = await Client.Charges.Capture(charge.Id,new CaptureChargeRequest{CaptureAmount = 3000});
             Console.WriteLine($"captured charge: ({charge.Paid}) {charge.Id}");
         }
@@ -118,7 +118,7 @@ namespace Omise.Examples
             return charge;
         }
 
-        protected Charge RetrieveUncapturedCharge(AuthType authType)
+        protected Charge RetrieveUncapturedCharge(AuthTypes authType)
         {
             var token = RetrieveToken().Result;
             var charge = Client.Charges.Create(new CreateChargeRequest
@@ -297,7 +297,7 @@ namespace Omise.Examples
         #endregion
 
         #endregion
-        
+
         #region
         public async Task Create__Create_With_Source_PromptPay()
         {

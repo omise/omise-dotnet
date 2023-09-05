@@ -10,7 +10,7 @@ namespace Omise.Models
         public string Card { get; set; }
         public long Amount { get; set; }
         [JsonProperty("authorization_type")]
-        public AuthType AuthorizationType { get; set; }
+        public AuthTypes AuthorizationType { get; set; }
         public string Currency { get; set; }
         public string Description { get; set; }
         [JsonProperty("expires_at")]
@@ -40,6 +40,6 @@ namespace Omise.Models
     {
         [JsonProperty("capture_amount")]
         public long CaptureAmount { get; set; }
-        
+
     }
 }
