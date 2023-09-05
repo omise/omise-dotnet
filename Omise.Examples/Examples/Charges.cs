@@ -75,6 +75,13 @@ namespace Omise.Examples
             Console.WriteLine($"captured charge: ({charge.Paid}) {charge.Id}");
         }
 
+        public async Task Capture__Capture__Partial()
+        {
+            var charge = RetrieveUncapturedCharge(authType:AuthTypes.PreAuth);
+            charge = await Client.Charges.Capture(charge.Id,new CaptureChargeRequest{CaptureAmount = 3000});
+            Console.WriteLine($"captured charge: ({charge.Paid}) {charge.Id}");
+        }
+
         public async Task Reverse__Reverse()
         {
             var charge = RetrieveUncapturedCharge();
@@ -106,6 +113,21 @@ namespace Omise.Examples
                 Currency = "thb",
                 Capture = false,
                 Card = token.Id,
+            }).Result;
+
+            return charge;
+        }
+
+        protected Charge RetrieveUncapturedCharge(AuthTypes authType)
+        {
+            var token = RetrieveToken().Result;
+            var charge = Client.Charges.Create(new CreateChargeRequest
+            {
+                Amount = 4000,
+                Currency = "thb",
+                Capture = false,
+                Card = token.Id,
+                AuthorizationType = authType
             }).Result;
 
             return charge;

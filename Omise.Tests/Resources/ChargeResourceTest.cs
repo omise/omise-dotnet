@@ -46,7 +46,14 @@ namespace Omise.Tests.Resources
             await Resource.Capture(ChargeId);
             AssertRequest("POST", "https://api.omise.co/charges/{0}/capture", ChargeId);
         }
-
+        [Test]
+        public void TestPartialCaptureRequest()
+        {
+            AssertSerializedRequest(
+                BuildPartialCaptureRequest(),
+                @"{""capture_amount"":3000}"
+            );
+        }
         [Test]
         public async Task TestReverse()
         {
@@ -82,6 +89,26 @@ namespace Omise.Tests.Resources
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
+                @"""authorization_type"":null," +
+                @"""currency"":""thb""," +
+                @"""description"":""Test Charge""," +
+                @"""expires_at"":""2023-08-08T17:00:00Z""," +
+                @"""capture"":false," +
+                @"""offsite"":""internet_banking_bay""," +
+                @"""flow"":""redirect""," +
+                @"""return_uri"":""asdf""}"
+            );
+        }
+
+        [Test]
+        public void TestPreAuthCreateChargeRequest()
+        {
+            AssertSerializedRequest(
+                BuildCreateRequest(AuthTypes.PreAuth),
+                @"{""customer"":""Omise Co., Ltd.""," +
+                @"""card"":""card_test_123""," +
+                @"""amount"":244884," +
+                @"""authorization_type"":""pre_auth""," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
@@ -151,7 +178,7 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest()
+        protected CreateChargeRequest BuildCreateRequest(AuthTypes authType=AuthTypes.None)
         {
             TimeZoneInfo thailandZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
             DateTime thailandTime = new DateTime(2023, 8, 9, 0, 0, 0);
@@ -168,6 +195,7 @@ namespace Omise.Tests.Resources
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
                 ExpiresAt = utcTime,
+                AuthorizationType=authType
             };
         }
 
@@ -182,6 +210,13 @@ namespace Omise.Tests.Resources
         protected override ChargeResource BuildResource(IRequester requester)
         {
             return new ChargeResource(requester);
+        }
+        protected CaptureChargeRequest BuildPartialCaptureRequest()
+        {
+            return new CaptureChargeRequest
+            {
+                CaptureAmount = 3000
+            };
         }
     }
 }

@@ -28,7 +28,15 @@ namespace Omise.Resources
                 $"{BasePath}/{chargeId}/capture"
             );
         }
-
+        public async Task<Charge> Capture(string chargeId, CaptureChargeRequest captureRequest) 
+        {
+            return await Requester.Request<CaptureChargeRequest, Charge>(
+                Endpoint,
+                "POST",
+                $"{BasePath}/{chargeId}/capture",
+                captureRequest
+            );
+        }
         public async Task<Charge> Reverse(string chargeId)
         {
             return await Requester.Request<Charge>(
