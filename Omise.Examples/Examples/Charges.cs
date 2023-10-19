@@ -68,6 +68,20 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
+        public async Task Create__Create_With_WebhookEndpoints()
+        {
+            var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";
+            var charge = await Client.Charges.Create(new CreateChargeRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Customer = customerId,
+                WebhookEndpoints= new string[] { "https://webhook.site/079503ac-d907-4ea3-bf2d-77c120ea5ec5" }
+            });
+
+            Console.WriteLine($"created charge with webhooks: {charge.Id}");
+        }
+
         public async Task Capture__Capture()
         {
             var charge = RetrieveUncapturedCharge();
