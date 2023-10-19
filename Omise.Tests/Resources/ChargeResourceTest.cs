@@ -101,6 +101,26 @@ namespace Omise.Tests.Resources
         }
 
         [Test]
+        public void TestCreateChargeRequestWithWebHooks()
+        {
+            AssertSerializedRequest(
+                BuildCreateRequest(webhooks: new string[] { "https://webhook.site/123" }),
+                @"{""customer"":""Omise Co., Ltd.""," +
+                @"""card"":""card_test_123""," +
+                @"""amount"":244884," +
+                @"""authorization_type"":null," +
+                @"""currency"":""thb""," +
+                @"""description"":""Test Charge""," +
+                @"""expires_at"":""2023-08-08T17:00:00Z""," +
+                @"""capture"":false," +
+                @"""offsite"":""internet_banking_bay""," +
+                @"""webhook_endpoints"":[""https://webhook.site/123""]," +
+                @"""flow"":""redirect""," +
+                @"""return_uri"":""asdf""}"
+            );
+        }
+
+        [Test]
         public void TestPreAuthCreateChargeRequest()
         {
             AssertSerializedRequest(
@@ -178,7 +198,7 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest(AuthTypes authType=AuthTypes.None)
+        protected CreateChargeRequest BuildCreateRequest(AuthTypes authType=AuthTypes.None,string[] webhooks=null)
         {
             TimeZoneInfo thailandZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
             DateTime thailandTime = new DateTime(2023, 8, 9, 0, 0, 0);
@@ -195,7 +215,8 @@ namespace Omise.Tests.Resources
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
                 ExpiresAt = utcTime,
-                AuthorizationType=authType
+                AuthorizationType=authType,
+                WebhookEndpoints=webhooks
             };
         }
 

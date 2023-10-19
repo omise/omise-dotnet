@@ -76,7 +76,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "thb",
                 Customer = customerId,
-                WebhookEndpoints= new string[] { "https://webhook.site/079503ac-d907-4ea3-bf2d-77c120ea5ec5" }
+                WebhookEndpoints= new string[] { "https://webhook.site/123" }
             });
 
             Console.WriteLine($"created charge with webhooks: {charge.Id}");
