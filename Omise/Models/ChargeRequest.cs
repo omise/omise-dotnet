@@ -19,6 +19,8 @@ namespace Omise.Models
         public bool Capture { get; set; }
         public OffsiteTypes Offsite { get; set; }
         public PaymentSource Source { get; set; }
+        [JsonProperty("webhook_endpoints")]
+        public string[] WebhookEndpoints { get; set; }
         public FlowTypes Flow { get; set; }
         [JsonProperty("installment_terms")]
         public int? InstallmentTerms { get; set; }
