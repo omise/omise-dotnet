@@ -1,6 +1,6 @@
 # CHANGE LOG
 
-## v3.0.0 ([#77](https://github.com/omise/omise-dotnet/pull/77))
+## v2.10.0 ([#77](https://github.com/omise/omise-dotnet/pull/77))
 
 - Added support for dynamic webhooks by adding `webhook_endpoints` in create charge request.
 - Added examples and unit tests for dynamic webhooks
