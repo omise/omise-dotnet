@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+## v2.10.0 ([#77](https://github.com/omise/omise-dotnet/pull/77))
+
+- Added support for dynamic webhooks by adding `webhook_endpoints` in create charge request.
+- Added examples and unit tests for dynamic webhooks
+
 ## v2.9.0 ([#75](https://github.com/omise/omise-dotnet/pull/75))
 
 - Updated charge models to include `authorization_type` field.
