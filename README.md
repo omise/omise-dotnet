@@ -62,7 +62,7 @@ securely.
 # Getting started
 
 The core of the library is the **client** that contains services to call the APIs. To
-initialize the client, you need to have the API keys. Visit the [Omise
+initialize the client, you need to have the API keys. Visit the [Opn Payments
 Dashboard](https://dashboard.omise.co/test/api-keys) to obtain your API keys.
 
 ```c#
@@ -133,7 +133,7 @@ C# byte slices via a T4 template.
 The following example code demonstrates common tasks that you can perform with this package.
 Note that, despite this library allowing you to do so, you should never transmit
 credit card data through your server directly. **Please read our [Security Best
-Practices](https://www.omise.co/security-best-practices) guideline before deploying
+Practices](https://docs.opn.ooo/security-best-practices) guideline before deploying
 production code using this package.**
 
 ### Creating a Charge with a Token
