@@ -227,7 +227,7 @@ card tokens server-side but should only be used for testing or if you currently 
 PCI-DSS Attestation of Compliance (AoC) delivered by a certified QSA Auditor
 
 Instead, we recommend that you follow our guide on how to safely [collect credit card
-information](https://docs.opn.ooo/collecting-card-information)
+information](https://docs.opn.ooo/collecting-card-information).
 
 # License
 
