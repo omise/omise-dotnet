@@ -16,5 +16,6 @@ namespace Omise.Models
 
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }
+        public string Ip { get; set; }
     }
 }

@@ -60,6 +60,34 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region WeChat Pay
+        public async Task Create__Create_WeChatPay()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Ip = "127.0.0.1",
+                Type = OffsiteTypes.WeChatPay,
+                Flow = FlowTypes.Redirect
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_WeChatPay()
+        {
+            var sourceId = RetrieveWeChatPaySourceId();
+            var source = await Client.Sources.Get(sourceId);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveWeChatPaySourceId()
+        {
+            return RetrieveSourceRabbitLinepay().Result.Id;
+        }
+        #endregion
+
         #region BillPayment
         public async Task Create__Create_BillPayment()
         {
