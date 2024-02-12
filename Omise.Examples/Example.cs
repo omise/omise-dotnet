@@ -65,7 +65,7 @@ namespace Omise.Examples
             });
         }
 
-        // Creates a new PaymentSource called RetrieveSourceRabbitLinepay, as sources can be created client-side (as well as server-side).
+        // Creates a new PaymentSource called RetrieveSourceWeChatPay, as sources can be created client-side (as well as server-side).
         protected async Task<PaymentSource> RetrieveSourceWeChatPay()
         {
             return await Client.Sources.Create(new CreatePaymentSourceRequest

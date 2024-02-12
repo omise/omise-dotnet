@@ -84,7 +84,7 @@ namespace Omise.Examples
 
         protected string RetrieveWeChatPaySourceId()
         {
-            return RetrieveSourceRabbitLinepay().Result.Id;
+            return RetrieveSourceWeChatPay().Result.Id;
         }
         #endregion
 
