@@ -136,6 +136,8 @@ credit card data through your server directly. **Please read our [Security Best
 Practices](https://www.omise.co/security-best-practices) guideline before deploying
 production code using this package.**
 
+**Note:** It is important to mention that when creating a `wechat_pay` source it is advised to pass the `ip` param. This `ip` param should be the client's ip and not the server's ip.
+
 ### Creating a Charge with a Token
 
 ```c#
