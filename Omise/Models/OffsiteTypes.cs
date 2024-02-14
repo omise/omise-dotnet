@@ -46,6 +46,8 @@ namespace Omise.Models
         MobileBankingOCBCPAO,
         [EnumMember(Value = "rabbit_linepay")]
         RabbitLinepay,
+        [EnumMember(Value = "wechat_pay")]
+        WeChatPay,
         [EnumMember(Value = "paynow")]
         Paynow,
         [EnumMember(Value = "points_citi")]

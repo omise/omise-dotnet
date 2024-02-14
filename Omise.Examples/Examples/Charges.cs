@@ -209,6 +209,25 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
             Console.WriteLine($"Redirect customer to: {charge.AuthorizeURI}");
         }
+
+        #region WeChat Pay
+        public async Task Create__Create_With_Source_WeChatPay()
+        {
+            var source = await RetrieveSourceWeChatPay();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Offsite = OffsiteTypes.WeChatPay,
+                Flow = FlowTypes.Redirect,
+                Source = source
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"Redirect customer to: {charge.AuthorizeURI}");
+        }
+        #endregion
+
         #endregion
 
         #region Wallet Alipay

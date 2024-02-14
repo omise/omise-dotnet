@@ -964,6 +964,8 @@ namespace Omise.Models {
         public string StoreName { get; set; }
         [JsonProperty("terminal_id")]
         public string TerminalId { get; set; }
+        [JsonProperty("ip")]
+        public string Ip { get; set; }
 
         public override bool Equals(object obj) {
             if (obj == null) return false;
@@ -985,6 +987,7 @@ namespace Omise.Models {
                 object.Equals(this.StoreId, another.StoreId) &&
                 object.Equals(this.StoreName, another.StoreName) &&
                 object.Equals(this.TerminalId, another.TerminalId) &&
+                object.Equals(this.Ip, another.Ip) &&
                 true;
         }
 
@@ -1032,6 +1035,9 @@ namespace Omise.Models {
                 }
                 if (TerminalId != default(string)) {
                     hash = hash * 23 + TerminalId.GetHashCode();
+                }
+                if (Ip != default(string)) {
+                    hash = hash * 23 + Ip.GetHashCode();
                 }
 
                 return hash;
