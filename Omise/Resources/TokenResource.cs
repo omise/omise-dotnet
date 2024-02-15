@@ -23,7 +23,7 @@ namespace Omise.Resources
             var wrapped = new TokenRequestWrapper { Card = request };
             return await Requester.Request<TokenRequestWrapper, Token>(
                 Endpoint, "POST", BasePath, wrapped
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Omise
             if (!opts.IsEmpty())
             {
                 var content = serializer.ExtractFormValues(opts);
-                path += $"?{await content.ReadAsStringAsync()}";
+                path += $"?{await content.ReadAsStringAsync().ConfigureAwait(false)}";
             }
 
             // TODO: Actual list container type that can be re-requested and supports paging as well.
@@ -62,7 +62,7 @@ namespace Omise
                 resource.Endpoint,
                 "GET",
                 path
-            );
+            ).ConfigureAwait(false);
         }
     }
 }

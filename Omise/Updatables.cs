@@ -23,7 +23,7 @@ namespace Omise
                 "PATCH",
                 $"{resource.BasePath}/{modelId}",
                 request
-            );
+            ).ConfigureAwait(false);
         }
     }
 }
