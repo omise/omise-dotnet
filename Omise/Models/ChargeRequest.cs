@@ -26,11 +26,18 @@ namespace Omise.Models
         public int? InstallmentTerms { get; set; }
         [JsonProperty("return_uri")]
         public string ReturnUri { get; set; }
+        [JsonProperty("platform_fee")]
+        public PlatFormFeeRequest PlatFormFee { get; set; }
 
         public CreateChargeRequest()
         {
             Capture = true;
         }
+    }
+    public class PlatFormFeeRequest : Request
+    {
+        public long? Fixed { get; set; }
+        public long? Percentage { get; set; }
     }
 
     public class UpdateChargeRequest : Request

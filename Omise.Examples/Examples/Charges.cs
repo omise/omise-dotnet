@@ -39,6 +39,28 @@ namespace Omise.Examples
             Console.WriteLine($"created charge: {charge.Id}");
         }
 
+        public async Task Create__Create_With_Token_And_PlatFormFee()
+        {
+            var token = await RetrieveToken();
+            var customHeaders = new Dictionary<string, string>
+            {
+                { "SUB_MERCHANT_ID", "team_123" },
+            };
+            var charge = await Client.Charges.Create(new CreateChargeRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Card = token.Id,
+                Metadata = new Dictionary<string, object>
+                {
+                    { "order_id", "123" }
+                },
+                PlatFormFee = new PlatFormFeeRequest { Fixed = 10, Percentage = 1 }
+            },customHeaders);
+
+            Console.WriteLine($"created charge: {charge.Id} {charge.PlatFormFee.Amount}");
+        }
+
         public async Task Create__Create_With_Card()
         {
             var customerId = ExampleInfo.CUST_ID_2; // "cust_test_5aass48w2i40qa5ivh9";

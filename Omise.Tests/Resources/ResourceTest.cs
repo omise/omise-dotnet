@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using Omise.Models;
 using Omise.Tests.Util;
 
@@ -44,6 +45,23 @@ namespace Omise.Tests.Resources
 
             Assert.AreEqual(method, attempt.Method);
             Assert.AreEqual(uri, expectedUri);
+        }
+
+        protected void AssertRequest(
+            string method,
+            string uriFormat,
+            IDictionary<string, string> Headers = null,
+            params object[] uriArgs
+        )
+        {
+            var attempt = Requester.LastRequest;
+
+            var uri = string.Format(uriFormat, uriArgs);
+            var expectedUri = Environment.ResolveEndpoint(attempt.Endpoint) + attempt.Path;
+
+            Assert.AreEqual(method, attempt.Method);
+            Assert.AreEqual(uri, expectedUri);
+            Assert.AreEqual(Headers,attempt.Headers);
         }
 
         protected void AssertSerializedRequest<TRequest>(

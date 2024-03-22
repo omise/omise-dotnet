@@ -29,8 +29,19 @@ namespace Omise.Tests.Resources
         [Test]
         public async Task TestCreate()
         {
-            await Resource.Create(BuildCreateRequest());
+            await Resource.Create(new CreateChargeRequest());
             AssertRequest("POST", "https://api.omise.co/charges");
+        }
+        
+        [Test]
+        public async Task TestCreateWithHeaders()
+        {
+            var customHeaders = new Dictionary<string, string>
+            {
+                { "SUB_MERCHANT_ID", "team_123" },
+            };
+            await Resource.Create(new CreateChargeRequest(),customHeaders);
+            AssertRequest("POST", "https://api.omise.co/charges",customHeaders);
         }
 
         [Test]
@@ -85,7 +96,19 @@ namespace Omise.Tests.Resources
         public void TestCreateChargeRequest()
         {
             AssertSerializedRequest(
-                BuildCreateRequest(),
+                new CreateChargeRequest
+            {
+                Customer = "Omise Co., Ltd.",
+                Card = "card_test_123",
+                Amount = 244884,
+                Currency = "thb",
+                Description = "Test Charge",
+                Capture = false,
+                ReturnUri = "asdf",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                ExpiresAt = CreateExpiresAt(),
+            },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
@@ -104,7 +127,20 @@ namespace Omise.Tests.Resources
         public void TestCreateChargeRequestWithWebHooks()
         {
             AssertSerializedRequest(
-                BuildCreateRequest(webhooks: new string[] { "https://webhook.site/123" }),
+               new CreateChargeRequest
+            {
+                Customer = "Omise Co., Ltd.",
+                Card = "card_test_123",
+                Amount = 244884,
+                Currency = "thb",
+                Description = "Test Charge",
+                Capture = false,
+                ReturnUri = "asdf",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                ExpiresAt = CreateExpiresAt(),
+                WebhookEndpoints = new string[] { "https://webhook.site/123" }
+            },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
@@ -121,10 +157,56 @@ namespace Omise.Tests.Resources
         }
 
         [Test]
+        public void TestCreateChargeRequestWithPlatFormFee()
+        {
+            AssertSerializedRequest(
+                new CreateChargeRequest
+            {
+                Customer = "Omise Co., Ltd.",
+                Card = "card_test_123",
+                Amount = 244884,
+                Currency = "thb",
+                Description = "Test Charge",
+                Capture = false,
+                ReturnUri = "asdf",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                ExpiresAt = CreateExpiresAt(),
+                PlatFormFee = new PlatFormFeeRequest{ Fixed = 100, Percentage = 1} 
+            },
+                @"{""customer"":""Omise Co., Ltd.""," +
+                @"""card"":""card_test_123""," +
+                @"""amount"":244884," +
+                @"""authorization_type"":null," +
+                @"""currency"":""thb""," +
+                @"""description"":""Test Charge""," +
+                @"""expires_at"":""2023-08-08T17:00:00Z""," +
+                @"""capture"":false," +
+                @"""offsite"":""internet_banking_bay""," +
+                @"""flow"":""redirect""," +
+                @"""return_uri"":""asdf""," +
+                @"""platform_fee"":{""fixed"":100,""percentage"":1}}"
+            );
+        }
+
+        [Test]
         public void TestPreAuthCreateChargeRequest()
         {
             AssertSerializedRequest(
-                BuildCreateRequest(AuthTypes.PreAuth),
+                new CreateChargeRequest
+            {
+                Customer = "Omise Co., Ltd.",
+                Card = "card_test_123",
+                Amount = 244884,
+                Currency = "thb",
+                Description = "Test Charge",
+                AuthorizationType = AuthTypes.PreAuth,
+                Capture = false,
+                ReturnUri = "asdf",
+                Offsite = OffsiteTypes.InternetBankingBAY,
+                Flow = FlowTypes.Redirect,
+                ExpiresAt = CreateExpiresAt(),
+            },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
@@ -198,26 +280,12 @@ namespace Omise.Tests.Resources
             Assert.That(result[0].Amount, Is.EqualTo(409669));
         }
 
-        protected CreateChargeRequest BuildCreateRequest(AuthTypes authType=AuthTypes.None,string[] webhooks=null)
+        protected DateTime CreateExpiresAt()
         {
             TimeZoneInfo thailandZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Bangkok");
             DateTime thailandTime = new DateTime(2023, 8, 9, 0, 0, 0);
             DateTime utcTime = TimeZoneInfo.ConvertTimeToUtc(thailandTime, thailandZone);
-            return new CreateChargeRequest
-            {
-                Customer = "Omise Co., Ltd.",
-                Card = "card_test_123",
-                Amount = 244884,
-                Currency = "thb",
-                Description = "Test Charge",
-                Capture = false,
-                ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
-                ExpiresAt = utcTime,
-                AuthorizationType=authType,
-                WebhookEndpoints=webhooks
-            };
+            return utcTime;
         }
 
         protected UpdateChargeRequest BuildUpdateRequest()
