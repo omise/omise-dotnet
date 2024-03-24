@@ -55,10 +55,10 @@ namespace Omise.Examples
                 {
                     { "order_id", "123" }
                 },
-                PlatFormFee = new PlatFormFeeRequest { Fixed = 10, Percentage = 1 }
+                PlatformFee = new PlatformFeeRequest { Fixed = 10, Percentage = 1 }
             },customHeaders);
 
-            Console.WriteLine($"created charge: {charge.Id} {charge.PlatFormFee.Amount}");
+            Console.WriteLine($"created charge: {charge.Id} {charge.PlatformFee.Amount}");
         }
 
         public async Task Create__Create_With_Card()

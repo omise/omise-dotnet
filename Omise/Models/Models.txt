@@ -64,8 +64,8 @@ Charge
   AuthorizeURI string authorize_uri
   Offsite OffsiteTypes
   InstallmentTerms int installment_terms
-  PlatFormFee PlatFormFee platform_fee
-PlatFormFee
+  PlatformFee PlatformFee platform_fee
+PlatformFee
   Fixed long? 
   Amount long?
   Percentage string 

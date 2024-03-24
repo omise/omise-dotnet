@@ -172,7 +172,7 @@ namespace Omise.Tests.Resources
                 Offsite = OffsiteTypes.InternetBankingBAY,
                 Flow = FlowTypes.Redirect,
                 ExpiresAt = CreateExpiresAt(),
-                PlatFormFee = new PlatFormFeeRequest{ Fixed = 100, Percentage = 1} 
+                PlatformFee = new PlatformFeeRequest{ Fixed = 100, Percentage = 1} 
             },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
