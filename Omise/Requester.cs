@@ -101,15 +101,7 @@ namespace Omise
             // creates initial request
             // TODO: Dispose request.
             var request = Roundtripper.CreateRequest(method, apiPrefix + path);
-            request.Headers.Add("Authorization", key.EncodeForAuthorizationHeader());
-            request.Headers.Add("User-Agent", userAgent);
-            if (customHeaders != null)
-            {
-                foreach (var header in customHeaders)
-                {
-                    request.Headers.Add(header.Key, header.Value);
-                }
-            }
+            SetHeaders(request, key, customHeaders);
 
             if (!string.IsNullOrEmpty(APIVersion)) request.Headers.Add("Omise-Version", APIVersion);
             if (payload != null)
@@ -149,6 +141,18 @@ namespace Omise
             catch (HttpRequestException e)
             {
                 throw new OmiseException("Error while making HTTP request", e);
+            }
+        }
+        private void SetHeaders(HttpRequestMessage request, Key key, IDictionary<string, string> customHeaders)
+        {
+            request.Headers.Add("Authorization", key.EncodeForAuthorizationHeader());
+            request.Headers.Add("User-Agent", userAgent);
+            if (customHeaders != null)
+            {
+                foreach (var header in customHeaders)
+                {
+                    request.Headers.Add(header.Key, header.Value);
+                }
             }
         }
     }
