@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Omise
 {
@@ -17,6 +18,15 @@ namespace Omise
             string method,
             string path,
             TPayload payload)
+            where TPayload : class
+            where TResult : class;
+
+            Task<TResult> Request<TPayload, TResult>(
+            Endpoint endpoint,
+            string method,
+            string path,
+            TPayload payload,
+            IDictionary<string, string> customHeaders)
             where TPayload : class
             where TResult : class;
     }

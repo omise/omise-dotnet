@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Omise.Tests.Util
@@ -12,6 +13,7 @@ namespace Omise.Tests.Util
 
         public MemoryStream RequestStream { get; internal set; }
         public Type PayloadType { get; internal set; }
+        public IDictionary<string, string> Headers;
         public object Payload { get; internal set; }
 
         public Type ResultType { get; internal set; }
