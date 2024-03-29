@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Omise.Models;
 
 namespace Omise
@@ -35,6 +36,20 @@ namespace Omise
                 resource.Endpoint,
                 "GET",
                 $"{resource.BasePath}/{modelId}"
+            );
+        }
+
+        public static async Task<TResult> Get<TResult>(
+            this IListRetrievable<TResult> resource,
+            string modelId,
+            IDictionary<string, string> customHeaders
+        ) where TResult : ModelBase
+        {
+            return await resource.Requester.Request<TResult>(
+                resource.Endpoint,
+                "GET",
+                $"{resource.BasePath}/{modelId}",
+                customHeaders
             );
         }
     }

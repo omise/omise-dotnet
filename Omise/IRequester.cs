@@ -29,5 +29,12 @@ namespace Omise
             IDictionary<string, string> customHeaders)
             where TPayload : class
             where TResult : class;
+
+            Task<TResult> Request<TResult>(
+            Endpoint endpoint,
+            string method,
+            string path,
+            IDictionary<string, string> customHeaders)
+            where TResult : class;
     }
 }
