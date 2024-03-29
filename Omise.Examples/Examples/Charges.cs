@@ -21,6 +21,17 @@ namespace Omise.Examples
             Console.WriteLine($"charge amount: {charge.Amount}");
         }
 
+        public async Task Retrieve__Retrieve_With_PlatformFee()
+        {
+            var chargeId = ExampleInfo.CHARGE_ID; // "chrg_test_5aass1sz7sdgaoi6zg8";
+            var customHeaders = new Dictionary<string, string>
+            {
+                { "SUB_MERCHANT_ID", "team_123" },
+            };
+            var charge = await Client.Charges.Get(chargeId, customHeaders);
+            Console.WriteLine($"charge amount: {charge.Amount} ${charge.PlatformFee.Amount}");
+        }
+
         #region Cards
         public async Task Create__Create_With_Token()
         {
@@ -37,6 +48,28 @@ namespace Omise.Examples
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
+        }
+
+        public async Task Create__Create_With_Token_And_PlatFormFee()
+        {
+            var token = await RetrieveToken();
+            var customHeaders = new Dictionary<string, string>
+            {
+                { "SUB_MERCHANT_ID", "team_123" },
+            };
+            var charge = await Client.Charges.Create(new CreateChargeRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Card = token.Id,
+                Metadata = new Dictionary<string, object>
+                {
+                    { "order_id", "123" }
+                },
+                PlatformFee = new PlatformFeeRequest { Fixed = 10, Percentage = 1 }
+            },customHeaders);
+
+            Console.WriteLine($"created charge: {charge.Id} {charge.PlatformFee.Amount}");
         }
 
         public async Task Create__Create_With_Card()

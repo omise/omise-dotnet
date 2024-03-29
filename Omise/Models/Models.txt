@@ -64,6 +64,11 @@ Charge
   AuthorizeURI string authorize_uri
   Offsite OffsiteTypes
   InstallmentTerms int installment_terms
+  PlatformFee PlatformFee platform_fee
+PlatformFee
+  Fixed long? 
+  Amount long?
+  Percentage string 
 Customer
   DefaultCard string default_card
   Email string
@@ -128,6 +133,7 @@ PaymentSource
   StoreId string store_id
   StoreName string store_name
   TerminalId string terminal_id
+  Ip string
 Receipt
   Number string
   CustomerName string customer_name

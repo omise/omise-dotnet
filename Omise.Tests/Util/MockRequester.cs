@@ -57,6 +57,51 @@ namespace Omise.Tests.Util
             source.SetResult((TResult)ResponseObject);
             return source.Task;
         }
+        public Task<TResult> Request<TPayload, TResult>(
+            Endpoint endpoint,
+            string method,
+            string path,
+            TPayload payload,
+            IDictionary<string, string> customHeaders
+        ) where TPayload : class where TResult : class
+        {
+            requestAttempts.Add(new RequestAttempt
+            {
+                Endpoint = endpoint,
+                Method = method,
+                Path = path,
+                PayloadType = typeof(TPayload),
+                ResultType = typeof(TResult),
+                Payload = payload,
+                Headers = customHeaders,
+                Result = ResponseObject,
+            });
+
+            var source = new TaskCompletionSource<TResult>();
+            source.SetResult((TResult)ResponseObject);
+            return source.Task;
+        }
+        public Task<TResult> Request<TResult>(
+            Endpoint endpoint,
+            string method,
+            string path,
+            IDictionary<string, string> customHeaders
+        ) where TResult : class
+        {
+            requestAttempts.Add(new RequestAttempt
+            {
+                Endpoint = endpoint,
+                Method = method,
+                Path = path,
+                ResultType = typeof(TResult),
+                Headers = customHeaders,
+                Result = ResponseObject,
+            });
+
+            var source = new TaskCompletionSource<TResult>();
+            source.SetResult((TResult)ResponseObject);
+            return source.Task;
+        }
     }
 }
 
