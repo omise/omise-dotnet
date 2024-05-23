@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v2.12.0 ([#83](https://github.com/omise/omise-dotnet/pull/83))
+
+- Added `platform_fee` param to charge request. The merchant needs to specify the `SUB_MERCHANT_ID` in the headers to get the correct behavior.
+
 ## v2.11.0 ([#81](https://github.com/omise/omise-dotnet/pull/81))
 
 - Added new payment source `wechat_pay`.
