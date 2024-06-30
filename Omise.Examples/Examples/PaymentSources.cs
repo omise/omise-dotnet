@@ -227,6 +227,65 @@ namespace Omise.Examples
             return RetrieveSourceAlipayHK().Result.Id;
         }
 
+        #region AlipayPlusUPM
+        public async Task Create__Create_AlipayPlusUPM()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.AlipayPlusUPM,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
+                Barcode = "2897991359827699709"
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_AlipayPlusUPM()
+        {
+            var sourceID = RetrieveAlipayPlusUPMSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
+        }
+
+        protected string RetrieveAlipayPlusUPMSourceId()
+        {
+            return RetrieveSourceAlipayPlusUPM().Result.Id;
+        }
+
+        #endregion
+        #region AlipayPlusMPM
+        public async Task Create__Create_AlipayPlusMPM()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.AlipayPlusMPM,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_AlipayPlusMPM()
+        {
+            var sourceID = RetrieveAlipayPlusMPMSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+            Console.WriteLine($"source platform is {source.PlatformType.ToString()}");
+        }
+
+        protected string RetrieveAlipayPlusMPMSourceId()
+        {
+            return RetrieveSourceAlipayPlusMPM().Result.Id;
+        }
+
+        #endregion
         #endregion
 
         #region DANA

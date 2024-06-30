@@ -20,6 +20,10 @@ namespace Omise.Models
         AlipayCN,
         [EnumMember(Value = "alipay_hk")]
         AlipayHK,
+        [EnumMember(Value = "alipayplus_mpm")]
+        AlipayPlusMPM,
+        [EnumMember(Value = "alipayplus_upm")]
+         AlipayPlusUPM,
         [EnumMember(Value = "dana")]
         DANA,
         [EnumMember(Value = "gcash")]
