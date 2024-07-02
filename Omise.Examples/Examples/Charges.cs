@@ -345,6 +345,38 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region AlipayPlusUPM
+        public async Task Create__Create_With_Source_AlipayUPM()
+        {
+            var source = await RetrieveSourceAlipayPlusUPM();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Source = source,
+                ReturnUri = "https://www.example.com"
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+        }
+        #endregion
+
+        #region AlipayPlusMPM
+        public async Task Create__Create_With_Source_AlipayMPM()
+        {
+            var source = await RetrieveSourceAlipayPlusMPM();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Source = source,
+                ReturnUri = "https://www.example.com"
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+        }
+        #endregion
+
         #region
         public async Task Create__Create_With_Source_OCBCPAO()
         {

@@ -128,6 +128,33 @@ namespace Omise.Examples
             });
         }
 
+        // Creates a new PaymentSource called RetrieveSourceAlipayPlusMPM, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceAlipayPlusMPM()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.AlipayPlusMPM,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
+            });
+        }
+
+        // Creates a new PaymentSource called RetrieveSourceAlipayPlusUPM, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceAlipayPlusUPM()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "sgd",
+                Type = OffsiteTypes.AlipayPlusUPM,
+                PlatformType = PlatformTypes.Web,
+                Email = "example@omise.co",
+                Barcode = "2897991359827699709"
+            });
+        }
+
         // Creates a new PaymentSource called RetrieveSourceDANA, as sources can be created client-side (as well as server-side).
         public async Task<PaymentSource> RetrieveSourceDANA()
         {
