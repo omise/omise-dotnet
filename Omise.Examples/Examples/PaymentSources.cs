@@ -435,6 +435,32 @@ namespace Omise.Examples
         }
         #endregion
 
+        #region Mobile Banking SCB
+        public async Task Create__Create_Mobile_Banking_SCB()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.MobileBankingSCB,
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_Mobile_Banking_SCB()
+        {
+            var sourceID = RetrieveMobileBankingSCBSourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveMobileBankingSCBSourceId()
+        {
+            return RetrieveSourceMobileBankingSCB().Result.Id;
+        }
+        #endregion
+
         #endregion
 
         #endregion
