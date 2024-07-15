@@ -1,7 +1,7 @@
 #!/usr/bin/make
 
 CONFIG   := Debug
-PLATFORM := netstandard2.0
+PLATFORM := netstandard2.1
 
 OMISE_CSPROJ      := Omise/Omise.csproj
 OMISE_TEST_CSPROJ := Omise.Tests/Omise.Tests.csproj
@@ -14,11 +14,14 @@ T4_FILES        := $(wildcard Omise/**/*.tt Omise/*.tt Omise.Tests/**/*.tt Omise
 T4_OUTPUT_FILES := $(T4_FILES:.tt=.cs)
 
 MONO    := mono
-MSBUILD := msbuild /p:Configuration=$(CONFIG)
+MSBUILD := dotnet build /p:Configuration=$(CONFIG)
 NUNIT := dotnet test
 T4      := $(MONO) /Applications/Visual\ Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.TextTemplating/TextTransform.exe
 
 .PHONY: test clean
+
+DOTNETEXPORT:
+    export TargetDotNet=$(TargetDotNet)
 
 default: build
 
@@ -30,7 +33,7 @@ build: $(OMISE_DLL)
 $(OMISE_DLL): $(OMISE_CSPROJ) $(SRC_FILES) $(T4_OUTPUT_FILES)
 	$(MSBUILD) /target:Build;Pack $(OMISE_CSPROJ)
 
-build-test: $(OMISE_TEST_DLL) $(SRC_TEST_FILES)
+build-test: $(DOTNETEXPORT) $(OMISE_TEST_DLL) $(SRC_TEST_FILES)
 $(OMISE_TEST_DLL): $(OMISE_TEST_CSPROJ) $(SRC_TEST_FILES) $(T4_OUTPUT_FILES)
 	$(MSBUILD) $(OMISE_TEST_CSPROJ)
 
