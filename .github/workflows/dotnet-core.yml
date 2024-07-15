@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         dotnet: ["3.0", "5.0", "6.0", "7.0", "8.0"]
+    env:
+      TargetDotNet: ${{ matrix.dotnet }}
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
