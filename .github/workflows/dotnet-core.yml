@@ -24,4 +24,4 @@ jobs:
     - name: Install dependencies
       run: nuget restore Omise.sln
     - name: Test
-      run: make test
+      run: dotnet test
