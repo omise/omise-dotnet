@@ -1,11 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <!-- Default target framework -->
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <RootNamespace>Omise.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <!-- Define conditions for each .NET SDK version -->
+  <Choose>
+    <!-- .NET Core 3.0 -->
+    <When Condition="'$(TargetDotNet)' == '3.0'">
+      <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+      </PropertyGroup>
+    </When>
+
+    <!-- .NET 5.0 -->
+    <When Condition="'$(TargetDotNet)' == '5.0'">
+      <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+      </PropertyGroup>
+    </When>
+
+    <!-- .NET 6.0 -->
+    <When Condition="'$(TargetDotNet)' == '6.0'">
+      <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+      </PropertyGroup>
+    </When>
+
+    <!-- .NET 7.0 -->
+    <When Condition="'$(TargetDotNet)' == '7.0'">
+      <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+      </PropertyGroup>
+    </When>
+
+    <!-- .NET 8.0 -->
+    <When Condition="'$(TargetDotNet)' == '8.0'">
+      <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+      </PropertyGroup>
+    </When>
+  </Choose>
 
   <ItemGroup>
     <!-- 

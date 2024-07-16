@@ -12,14 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
+        dotnet: ["3.0", "5.0", "6.0", "7.0", "8.0"]
+
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Install dependencies
       run: nuget restore Omise.sln
     - name: Test
-      run: make test
+      run: make test TargetDotNet=${{ matrix.dotnet }}
