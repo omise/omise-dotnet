@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## 3.0.0
+
+- Removed: Drop support for .NET 2.x to support usage of C# 8 ([#88](https://github.com/omise/omise-dotnet/pull/88))
+
 ## v2.13.0
 
 - Add new sources: `alipayplus_mpm`, `alipayplus_upm` ([#85](https://github.com/omise/omise-dotnet/pull/85))
