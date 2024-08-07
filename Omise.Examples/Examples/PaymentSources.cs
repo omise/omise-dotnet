@@ -493,5 +493,31 @@ namespace Omise.Examples
         }
 
         #endregion
+
+        #region ShopeePay
+        public async Task Create__Create_ShopeePay()
+        {
+            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.ShopeePay,
+            });
+
+            Console.WriteLine($"created source: {source.Id}");
+        }
+
+        public async Task Retrieve__Retrieve_ShopeePay()
+        {
+            var sourceID = RetrieveShopeePaySourceId();
+            var source = await Client.Sources.Get(sourceID);
+            Console.WriteLine($"source flow is {source.Flow.ToString()}");
+        }
+
+        protected string RetrieveShopeePaySourceId()
+        {
+            return RetrieveSourceShopeePay().Result.Id;
+        }
+        #endregion
     }
 }

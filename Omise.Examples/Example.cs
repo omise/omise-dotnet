@@ -242,5 +242,15 @@ namespace Omise.Examples
                 Email = "example@omise.co",
             });
         }
+        // Creates a new PaymentSource called RetrieveSourceShopeePay, as sources can be created client-side (as well as server-side).
+        public async Task<PaymentSource> RetrieveSourceShopeePay()
+        {
+            return await Client.Sources.Create(new CreatePaymentSourceRequest
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Type = OffsiteTypes.ShopeePay,
+            });
+        }
     }
 }

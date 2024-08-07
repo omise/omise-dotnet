@@ -69,6 +69,8 @@ namespace Omise.Models
         [EnumMember(Value = "promptpay")]
         PromptPay,
         [EnumMember(Value = "truemoney")]
-        TrueMoney
+        TrueMoney,
+        [EnumMember(Value = "shopeepay")]
+        ShopeePay
     }
 }
