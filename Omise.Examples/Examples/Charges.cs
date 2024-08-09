@@ -231,6 +231,29 @@ namespace Omise.Examples
         // TODO: handle the return from the bank
         #endregion
 
+        #region ShopeePay
+        public async Task Create__Create_With_Source_ShopeePay()
+        {
+            var source = await RetrieveSourceShopeePay();
+            var charge = await Client.Charges.Create(new CreateChargeRequest()
+            {
+                Amount = 2000,
+                Currency = "thb",
+                Source = source,
+                ReturnUri = "https://www.omise.co/",
+                Metadata = new Dictionary<string, object>
+                {
+                    { "invoice_id", "ABC1234" }
+                }
+            });
+
+            Console.WriteLine($"created charge: {charge.Id}");
+            Console.WriteLine($"redirect customer to {charge.AuthorizeURI}");
+        }
+
+        // TODO: handle the return from the bank
+        #endregion
+
         #region Bill Payment
         public async Task Create__Create_With_Source_BillPayment()
         {
