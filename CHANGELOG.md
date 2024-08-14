@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v3.1.0
+
+- Add new source: `shopeepay` ([#90](https://github.com/omise/omise-dotnet/pull/90))
+
 ## 3.0.0
 
 - Removed: Drop support for .NET 2.x to support usage of C# 8 ([#88](https://github.com/omise/omise-dotnet/pull/88))
