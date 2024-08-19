@@ -1,10 +1,27 @@
 ﻿Account
   Email string
   Currency string
+  Team string
+  Country string
+  SupportedCurrencies List<string> supported_currencies
+  ApiVersion string api_version
+  AutoActivateRecipients bool auto_activate_recipients
+  ChainEnabled bool chain_enabled
+  ZeroInterestInstallments bool zero_interest_installments
+  ChainReturnUri string chain_return_uri
+  WebhookUri string webhook_uri
+  MetadataExportKeys IDictionary<string,object> metadata_export_keys
+  ChainingAllowed bool chaining_allowed
+  LastUpdatedApiVersion string last_updated_api_version
+  TransferConfig IDictionary<string,object> transfer_config
 Balance
   Available long
   Total long
   Currency string
+  Transferable long
+  Reserve long
+  OnHold long on_hold
+  At DateTime
 Bank
   Code string
   Name string
@@ -14,13 +31,29 @@ Barcode
   Image Document
 BankAccount bank_account
   Brand string
-  Number string
   LastDigits string last_digits
   Name string
+  AccountNumber string
+  Type string
+  BankCode string bank_code
+  BranchCode string branch_code
 Capability
   Banks List<string>
   PaymentBackends List<Dictionary<string,PaymentMethod>> payment_backends
   ZeroInterestInstallments bool zero_interest_installments
+  Limits Limits
+  PaymentMethods ScopedList<PaymentMethod> payment_methods
+  Country string
+  TokenizationMethods List<string> tokenization_methods
+Limits
+  ChargeAmount MaxMin charge_amount
+  TransferAmount MaxMin transfer_amount
+  InstallmentAmount Min installment_amount
+MaxMin
+  Max long
+  Min long
+Min
+  MinAmount long min
 Card
   Country string
   City string
@@ -35,6 +68,12 @@ Card
   Fingerprint string
   Name string
   SecurityCodeCheck bool security_code_check
+  Deleted bool
+  Street1 string
+  Street2 string
+  State string
+  PhoneNumber string phone_number
+  TokenizationMethod string tokenization_method
 Charge
   Status ChargeStatus
   Amount long
@@ -65,30 +104,101 @@ Charge
   Offsite OffsiteTypes
   InstallmentTerms int installment_terms
   PlatformFee PlatformFee platform_fee
+  AcquirerReferenceNumber string? acquirer_reference_number
+  ApprovalCode string approval_code
+  AuthorizedAmount long authorized_amount
+  AuthorizedAt DateTime authorized_at
+  Branch string
+  CanPerformVoid bool can_perform_void
+  Capturable bool
+  CapturedAmount long captured_amount
+  Device string
+  Disputable bool
+  ExpiredAt DateTime expired_at
+  Fee long
+  FeeVat long fee_vat
+  FundingAmount long funding_amount
+  FundingCurrency string funding_currency
+  Interest long
+  InterestVat long interest_vat
+  Link string
+  LinkedAccount LinkedAccount linked_account
+  MerchantAdvice string merchant_advice
+  MerchantName string merchant_name
+  MerchantUid string merchant_uid
+  Net long
+  PartiallyRefundable bool partially_refundable
+  Refundable bool
+  RefundedAmount long
+  ReversedAt DateTime reversed_at
+  Reversible bool
+  Schedule string
+  Terminal string
+  TransactionFees TransactionFees transaction_fees
+  UnmanagedPayment UnmanagedPayment unmanaged_payment
+  Voided bool
+  zeroInterestInstallments bool zero_interest_installments
+LinkedAccount
+  RegistrationUri string registration_uri
+  ReturnUri string return_uri
+  Type string
+  Status string
+  LastDigits string? last_digits
+  Metadata IDictionary<string,object>
+  FailureCode string? failure_code
+  FailureMessage string? failure_message
+  RegisteredAt DateTime registered_at
+  ExpiresAt DateTime expires_at
+UnmanagedPayment
+  AuthorizationCode string authorization_code
+  BackendName string backend_name
+  Iin string
+  MerchantReference string merchant_reference
+TransactionFees
+  FeeFlat long fee_flat
+  FeeRate long fee_rate
+  VatRate long vat_rate
 PlatformFee
-  Fixed long? 
+  Fixed long?
   Amount long?
-  Percentage string 
+  Percentage string
 Customer
   DefaultCard string default_card
   Email string
   Description string
   Metadata IDictionary<string,object>
   Cards ScopedList<Card>
+  Deleted bool
+  LinkedAccounts ScopedList<Account>
 Dispute
   Amount long
   Currency string
   Status DisputeStatus
-  Message string
+  Message string?
   Charge string
+  FundingAmount long funding_amount
+  FundingCurrency string funding_currency
+  Metadata IDictionary<string,object>
+  Documents ScopedList<Document>
+  Transactions List<string>
+  AdminMessage string? admin_message
+  ReasonCode ReasonCode reason_code
+  ReasonMessage string
+  ClosedAt DateTime? closed_at
+  MerchantName string merchant_name
+  MerchantUid string merchant_uid
 Document
   DownloadURI string download_uri
   Filename string
+  Deleted bool
+  Kind string
 Event
   Key string
   RawDataJson JRaw data
 Forex
   Rate float
+  Base string
+  Quote string
 Link
   Amount long
   Currency string
@@ -98,26 +208,44 @@ Link
   Description string
   Charges ScopedList<Charge>
   PaymentURI string payment_uri
+  Deleted bool
+  UsedAt DateTime used_at
+  DeletedAt DateTime deleted_at
+  MerchantName string merchant_name
+  MerchantUid string merchant_uid
 Occurrence
   Schedule string
   ScheduleDate DateTime schedule_date
   RetryDate DateTime retry_date
   ProcessedAt DateTime processed_at
   Status OccurrenceStatus
-  Message String
-  Result String
+  Message string?
+  Result string?
+  ScheduledOn DateTime scheduled_on
+  RetryOn DateTime retry_on
 PaymentMethod
-  Type string
   Currencies List<string>
-  Brands List<string>
-  AllowedInstallmentTerms List<int> allowed_installment_terms
+  CardBrands List<string> card_brands
+  InstallmentTerms List<int> installment_terms
   Banks List<Bank>
+  Name string
+  Provider string
 PaymentReference
   OmiseTaxId string
   ReferenceNumber1 string reference_number_1
   ReferenceNumber2 string reference_number_2
   Barcode string
   ExpiresAt DateTime expires_at
+  DeviceId string device_id
+  CustomerAmount long customer_amount
+  CustomerCurrency string customer_currency
+  CustomerExchangeRate long customer_exchange_rate
+  PaymentCode string payment_code
+  VaCode string
+ProviderReference
+  ReferenceNumber1 string reference_number_1
+  ReferenceNumber2 string reference_number_2
+  BuyerName string buyer_name
 PaymentSource
   Type OffsiteTypes
   Flow FlowTypes
@@ -129,11 +257,24 @@ PaymentSource
   Bank string
   Email string
   PhoneNumber string phone_number
+  MobileNumber string mobile_number
   ScannableCode Barcode scannable_code
   StoreId string store_id
   StoreName string store_name
   TerminalId string terminal_id
   Ip string
+  InstallmentTerm long installment_term
+  AbsorptionType AbsorptionType absorption_type
+  Name string
+  Billing Billing
+  Shipping Shipping
+  Items ScopedList<Item>
+  ProviderReferences ProviderReference provider_references
+  ZeroInterestInstallments bool zero_interest_installments
+  ChargeStatus ChargeStatus charge_status
+  ReceiptAmount long receipt_amount
+  Discounts ScopedList<Item>
+  PromotionCode string promotion_code
 Billing
   City string
   Country string
@@ -176,34 +317,66 @@ Receipt
   Total long
   CreditNote bool credit_note
   Currency string
+  TransactionFee long transaction_fee
+  IssuedOn DateTime issued_on
+  AdjustmentTransaction Transaction adjustment_transaction
 Recipient
   Verified bool
   Active bool
   Name string
   Email string
-  Description string
+  Description string?
   Type RecipientType
   TaxID string
   BankAccount BankAccount bank_account
-  FailureCode string failure_code
+  FailureCode string? failure_code
+  Deleted bool
+  Default bool
+  TaxId string? tax_id
+  Schedule string
+  Metadata IDictionary<string,object>
+  VerifiedAt DateTime verified_at
+  ActivatedAt DateTime activated_at
 Refund
   Amount long
   Currency string
   Charge string
   Transaction string
   Metadata IDictionary<string,object>
+  Voided bool
+  Terminal string?
+  Status string
+  FundingAmount long funding_amount
+  FundingCurrency string funding_currency
+  AcquirerReferenceNumber string? acquirer_reference_number
+  MerchantName string merchant_name
+  MerchantUid string merchant_uid
+  ApprovalCode string? approval_code
 Schedule
   Status ScheduleStatus
   Every int
   Period SchedulePeriod
   On ScheduleOn
   InWords String in_words
-  StartDate DateTime start_date
-  EndDate DateTime end_date
   Charge ChargeScheduling
   Transfer TransferScheduling
   Occurrences ScopedList<Occurrence>
   NextOccurrences ScopedList<Occurrence> next_occurrences
+  Deleted bool
+  Active bool
+  State string
+  EndedAt DateTime ended_at
+  StartOn DateTime start_on
+  EndOn DateTime end_on
+ChargeScheduling
+  Currency string
+  Amount long
+  DefaultCard string default_card
+  Card string
+  Customer string
+  LinkedAccount string linked_account
+  Description string
+  Metadata IDictionary<string,object>
 ScheduleOn
   Weekdays Weekdays[]
   DaysOfMonth int[] days_of_month
@@ -211,21 +384,36 @@ ScheduleOn
 Token
   Used bool
   Card Card
+  ChargeStatus ChargeStatus charge_status
 Transaction
   Amount long
   Currency string
   Type TransactionType
   Source string
-  Transferable DateTime
+  Direction string
+  Key string
+  Origin string
+  TransferableAt DateTime transferable_at
 Transfer
   Recipient string
-  BankAccount BankAccount
+  BankAccount BankAccount bank_account
   Sent bool
   Paid bool
   Fee long
   Amount long
   Currency string
   FailFast bool fail_fast
-  FailureCode string failure_code
-  FailureMessage string failure_message
-  Transaction string
+  FailureCode string? failure_code
+  FailureMessage string? failure_message
+  Deleted bool
+  Sendable bool
+  Metadata IDictionary<string,object>
+  PaidAt DateTime paid_at
+  SentAt DateTime sent_at
+  Transactions ScopedList<Transaction>
+  Schedule string
+  FeeVat long fee_vat
+  Net long
+  TotalFee long total_fee
+  MerchantName string merchant_name
+  MerchantUid string merchant_uid
