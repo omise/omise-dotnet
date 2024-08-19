@@ -6,6 +6,5 @@
         Pending,
         Won,
         Lost,
-        Closed
     }
 }

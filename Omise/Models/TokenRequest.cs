@@ -20,7 +20,15 @@ namespace Omise.Models
         public string SecurityCode { get; set; }
         [JsonProperty("city")]
         public string City { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
         [JsonProperty("postal_code")]
         public string PostalCode { get; set; }
+        [JsonProperty("phone_number")]
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string State { get; set; }
+        public string Street1 { get; set; }
+        public string Street2 { get; set; }
     }
 }

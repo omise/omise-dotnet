@@ -20,11 +20,9 @@ namespace Omise.Models
         [JsonProperty("location")]
         public string Location { get; set; }
 
-        [JsonProperty("created")]
-        public DateTime Created { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
 
-        [JsonProperty("deleted")]
-        public bool Deleted { get; set; }
 
         // TODO: Provide Task<T> Reload() functionality.
 
@@ -37,8 +35,7 @@ namespace Omise.Models
             this.Id == another.Id &&
             this.LiveMode == another.LiveMode &&
             this.Location == another.Location &&
-            this.Created == another.Created &&
-            this.Deleted == another.Deleted;
+            this.CreatedAt == another.CreatedAt;
         }
 
         public override int GetHashCode()
@@ -50,8 +47,7 @@ namespace Omise.Models
                 hash = hash * 23 + Id.GetHashCode();
                 hash = hash * 23 + LiveMode.GetHashCode();
                 hash = hash * 23 + Location.GetHashCode();
-                hash = hash * 23 + Created.GetHashCode();
-                hash = hash * 23 + Deleted.GetHashCode();
+                hash = hash * 23 + CreatedAt.GetHashCode();
 
                 return hash;
             }

@@ -134,6 +134,29 @@ PaymentSource
   StoreName string store_name
   TerminalId string terminal_id
   Ip string
+Billing
+  City string
+  Country string
+  PostalCode string postal_code
+  State string
+  Street1 string
+  Street2 string
+Shipping
+  City string
+  Country string
+  PostalCode string postal_code
+  State string
+  Street1 string
+  Street2 string
+Item
+  Amount long
+  Sku string
+  Name string
+  Quantity long
+  Category string
+  Brand string
+  ItemUri string item_uri
+  ImageUri string image_uri
 Receipt
   Number string
   CustomerName string customer_name

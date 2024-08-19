@@ -11,7 +11,8 @@ namespace Omise.Resources
     {
         public readonly StatusSpecificDispute OpenDisputes;
         public readonly StatusSpecificDispute PendingDisputes;
-        public readonly StatusSpecificDispute ClosedDisputes;
+        public readonly StatusSpecificDispute WonDisputes;
+        public readonly StatusSpecificDispute LostDisputes;
 
         public SearchScope Scope => SearchScope.Dispute;
 
@@ -20,7 +21,8 @@ namespace Omise.Resources
         {
             OpenDisputes = new StatusSpecificDispute(DisputeStatus.Open, requester);
             PendingDisputes = new StatusSpecificDispute(DisputeStatus.Pending, requester);
-            ClosedDisputes = new StatusSpecificDispute(DisputeStatus.Closed, requester);
+            WonDisputes = new StatusSpecificDispute(DisputeStatus.Won, requester);
+            LostDisputes = new StatusSpecificDispute(DisputeStatus.Lost, requester);
         }
     }
 

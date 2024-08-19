@@ -28,6 +28,17 @@ namespace Omise.Models
         public string ReturnUri { get; set; }
         [JsonProperty("platform_fee")]
         public PlatformFeeRequest PlatformFee { get; set; }
+        [JsonProperty("first_charge")]
+        public string FirstCharge { get; set; }
+         public string Ip { get; set; }
+         [JsonProperty("linked_account")]
+         public string LinkedAccount { get; set; }
+         [JsonProperty("recurring_reason")]
+         public RecurringReason RecurringReason { get; set; }
+         [JsonProperty("transaction_indicator")]
+         public string TransactionIndicator { get; set; }
+         [JsonProperty("zero_interest_installments")]
+         public bool ZeroInterestInstallments { get; set; }
 
         public CreateChargeRequest()
         {

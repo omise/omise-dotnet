@@ -19,9 +19,9 @@ namespace Omise.Models
         public SchedulePeriod Period { get; set; }
         public ScheduleOnRequest On { get; set; }
         [JsonProperty("start_date")]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         [JsonProperty("end_date")]
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public ChargeScheduling Charge { get; set; }
         public TransferScheduling Transfer { get; set; }
 
