@@ -22,13 +22,6 @@ namespace Omise.Examples
             Console.WriteLine($"open disputes: {openDisputes.Total}");
         }
 
-        public async Task Closed__Closed()
-        {
-            var resource = Client.Disputes.ClosedDisputes;
-            var closedDisputes = await resource.GetList(order: Ordering.ReverseChronological);
-            Console.WriteLine($"closed disputes: {closedDisputes.Total}");
-        }
-
         public async Task Pending__Pending()
         {
             var resource = Client.Disputes.PendingDisputes;

@@ -33,13 +33,6 @@ namespace Omise.Tests.Resources
         }
 
         [Test]
-        public async Task TestUpdate()
-        {
-            await Resource.Update(TransferId, BuildUpdateRequest());
-            AssertRequest("PATCH", "https://api.omise.co/transfers/{0}", TransferId);
-        }
-
-        [Test]
         public async Task TestDestroy()
         {
             await Resource.Destroy(TransferId);
@@ -54,17 +47,7 @@ namespace Omise.Tests.Resources
                 @"{""amount"":300000," +
                 @"""recipient"":""recp_test_123""," +
                 @"""fail_fast"":false," +
-                @"""metadata"":{""color"":""red""}}"             );
-        }
-
-        [Test]
-        public void TestUpdateTransferRequest()
-        {
-            AssertSerializedRequest(
-                BuildUpdateRequest(),
-                @"{""amount"":24488442," +
-                @"""metadata"":{""color"":""red""}}"
-            );
+                @"""metadata"":{""color"":""red""}}"            );
         }
 
         [Test]
@@ -95,14 +78,6 @@ namespace Omise.Tests.Resources
         }
 
         [Test]
-        public async Task TestFixturesUpdate()
-        {
-            var transfer = await Fixtures.Update(TransferId, new UpdateTransferRequest());
-            Assert.AreEqual(TransferId, transfer.Id);
-            Assert.AreEqual(192189, transfer.Amount);
-        }
-
-        [Test]
         public async Task TestFixturesDestroy()
         {
             var transfer = await Fixtures.Destroy(TransferId);
@@ -116,15 +91,6 @@ namespace Omise.Tests.Resources
             {
                 Recipient = "recp_test_123",
                 Amount = 300000,
-                Metadata = new Dictionary<string, object> { { "color", "red" } }
-            };
-        }
-
-        protected UpdateTransferRequest BuildUpdateRequest()
-        {
-            return new UpdateTransferRequest 
-            { 
-                Amount = 24488442,
                 Metadata = new Dictionary<string, object> { { "color", "red" } }
             };
         }

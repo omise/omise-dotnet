@@ -6,39 +6,35 @@ namespace Omise.Models
 {
     public class CreateChargeRequest : Request
     {
-        public string Customer { get; set; }
-        public string Card { get; set; }
+        public string? Customer { get; set; }
+        public string? Card { get; set; }
         public long Amount { get; set; }
         [JsonProperty("authorization_type")]
-        public AuthTypes AuthorizationType { get; set; }
+        public AuthTypes? AuthorizationType { get; set; }
         public string Currency { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [JsonProperty("expires_at")]
         public DateTime? ExpiresAt { get; set; }
-        public IDictionary<string, object> Metadata { get; set; }
-        public bool Capture { get; set; }
-        public OffsiteTypes Offsite { get; set; }
-        public PaymentSource Source { get; set; }
+        public IDictionary<string, object>? Metadata { get; set; }
+        public bool? Capture { get; set; }
+        public PaymentSource? Source { get; set; }
         [JsonProperty("webhook_endpoints")]
-        public string[] WebhookEndpoints { get; set; }
-        public FlowTypes Flow { get; set; }
-        [JsonProperty("installment_terms")]
-        public int? InstallmentTerms { get; set; }
+        public string[]? WebhookEndpoints { get; set; }
         [JsonProperty("return_uri")]
-        public string ReturnUri { get; set; }
+        public string? ReturnUri { get; set; }
         [JsonProperty("platform_fee")]
-        public PlatformFeeRequest PlatformFee { get; set; }
+        public PlatformFeeRequest? PlatformFee { get; set; }
         [JsonProperty("first_charge")]
-        public string FirstCharge { get; set; }
-         public string Ip { get; set; }
+        public string? FirstCharge { get; set; }
+         public string? Ip { get; set; }
          [JsonProperty("linked_account")]
-         public string LinkedAccount { get; set; }
+         public string? LinkedAccount { get; set; }
          [JsonProperty("recurring_reason")]
-         public RecurringReason RecurringReason { get; set; }
+         public RecurringReason? RecurringReason { get; set; }
          [JsonProperty("transaction_indicator")]
-         public string TransactionIndicator { get; set; }
+         public string? TransactionIndicator { get; set; }
          [JsonProperty("zero_interest_installments")]
-         public bool ZeroInterestInstallments { get; set; }
+         public bool? ZeroInterestInstallments { get; set; }
 
         public CreateChargeRequest()
         {
@@ -53,13 +49,13 @@ namespace Omise.Models
 
     public class UpdateChargeRequest : Request
     {
-        public string Description { get; set; }
-        public IDictionary<string, object> Metadata { get; set; }
+        public string? Description { get; set; }
+        public IDictionary<string, object>? Metadata { get; set; }
     }
     public class CaptureChargeRequest : Request
     {
         [JsonProperty("capture_amount")]
-        public long CaptureAmount { get; set; }
+        public long? CaptureAmount { get; set; }
 
     }
 }

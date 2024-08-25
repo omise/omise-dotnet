@@ -23,6 +23,10 @@ namespace Omise.Models
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
 
+        // TODO: should be removed in when response models are updated as this property is not actually available in all responses.
+        [JsonProperty("deleted")]
+        public bool Deleted { get; set; }
+
 
         // TODO: Provide Task<T> Reload() functionality.
 

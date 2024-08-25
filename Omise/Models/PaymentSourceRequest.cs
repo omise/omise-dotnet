@@ -6,32 +6,32 @@ namespace Omise.Models
     public class CreatePaymentSourceRequest : Request
     {
         public OffsiteTypes Type { get; set; }
-        public FlowTypes Flow { get; set; }
+        public FlowTypes? Flow { get; set; }
         [JsonProperty("platform_type")]
-        public PlatformTypes PlatformType { get; set; }
+        public PlatformTypes? PlatformType { get; set; }
         public long Amount { get; set; }
         public string Currency { get; set; }
-        public string Barcode { get; set; }
-        public string Bank { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
+        public string? Barcode { get; set; }
+        public string? Bank { get; set; }
+        public string? Email { get; set; }
+        public string? Name { get; set; }
         [JsonProperty("mobile_number")]
-        public string MobileNumber { get; set; }
+        public string? MobileNumber { get; set; }
         [JsonProperty("installment_term")]
-        public string InstallmentTerm { get; set; }
+        public string? InstallmentTerm { get; set; }
         [JsonProperty("promotion_code")]
-        public string PromotionCode { get; set; }
+        public string? PromotionCode { get; set; }
         [JsonProperty("store_id")]
-        public string StoreId { get; set; }
+        public string? StoreId { get; set; }
         [JsonProperty("store_name")]
-        public string StoreName { get; set; }
+        public string? StoreName { get; set; }
         [JsonProperty("terminal_id")]
-        public string TerminalId { get; set; }
+        public string? TerminalId { get; set; }
         [JsonProperty("zero_interest_installments")]
-        public bool ZeroInterestInstallments { get; set; }
-        public string Ip { get; set; }
-        public Billing Billing { get; set; }
-        public Shipping Shipping { get; set; }
-        public List<Item> Items { get; set; }
+        public bool? ZeroInterestInstallments { get; set; }
+        public string? Ip { get; set; }
+        public Billing? Billing { get; set; }
+        public Shipping? Shipping { get; set; }
+        public List<Item>? Items { get; set; }
     }
 }
