@@ -48,6 +48,7 @@ namespace Omise.Tests.Resources
                 @"{""every"":1," +
                 @"""period"":""week""," +
                 @"""on"":{""weekdays"":[""friday""]}," +
+                @"""start_date"":""2098-02-01T19:54:00""," +
                 @"""end_date"":""2099-02-01T19:54:00""," +
                 @"""charge"":{" +
                 @"""amount"":3333," +
@@ -67,6 +68,7 @@ namespace Omise.Tests.Resources
                     Weekdays = new[] { Weekdays.Friday },
                 },
                 EndDate = new DateTime(2099, 2, 1, 19, 54, 00),
+                StartDate = new DateTime(2098, 2, 1, 19, 54, 00),
                 Charge = new ChargeScheduling
                 {
                     Amount = 3333,

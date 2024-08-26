@@ -46,7 +46,6 @@ namespace Omise.Tests.Resources
                 BuildCreateRequest(),
                 @"{""amount"":300000," +
                 @"""recipient"":""recp_test_123""," +
-                @"""fail_fast"":false," +
                 @"""metadata"":{""color"":""red""}}"            );
         }
 

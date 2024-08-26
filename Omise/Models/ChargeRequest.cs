@@ -10,6 +10,8 @@ namespace Omise.Models
         public string? Card { get; set; }
         public long Amount { get; set; }
         [JsonProperty("authorization_type")]
+        // Explicit convertor setting as the serializer is not converting this enum properly
+        [JsonConverter(typeof(EnumValueConverter))]
         public AuthTypes? AuthorizationType { get; set; }
         public string Currency { get; set; }
         public string? Description { get; set; }

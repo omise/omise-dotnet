@@ -2,7 +2,7 @@
   Email string
   Currency string
 Balance
-  Available long
+  Transferable long
   Total long
   Currency string
 Bank
@@ -53,7 +53,7 @@ Charge
   SourceOfFund SourceOfFunds source_of_fund
   Card Card
   Source PaymentSource
-  Refunded long
+  RefundedAmount long refunded_amount
   Refunds ScopedList<Refund>
   FailureCode string failure_code
   FailureMessage string failure_message

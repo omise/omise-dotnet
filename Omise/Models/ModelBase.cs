@@ -39,7 +39,8 @@ namespace Omise.Models
             this.Id == another.Id &&
             this.LiveMode == another.LiveMode &&
             this.Location == another.Location &&
-            this.CreatedAt == another.CreatedAt;
+            this.CreatedAt == another.CreatedAt&&
+            this.Deleted == another.Deleted;
         }
 
         public override int GetHashCode()
@@ -52,6 +53,7 @@ namespace Omise.Models
                 hash = hash * 23 + LiveMode.GetHashCode();
                 hash = hash * 23 + Location.GetHashCode();
                 hash = hash * 23 + CreatedAt.GetHashCode();
+                hash = hash * 23 + Deleted.GetHashCode();
 
                 return hash;
             }

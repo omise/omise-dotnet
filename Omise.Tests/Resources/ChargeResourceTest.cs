@@ -110,7 +110,6 @@ namespace Omise.Tests.Resources
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
@@ -138,7 +137,6 @@ namespace Omise.Tests.Resources
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
@@ -167,13 +165,10 @@ namespace Omise.Tests.Resources
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""," +
                 @"""platform_fee"":{""fixed"":100,""percentage"":1}}"
             );
