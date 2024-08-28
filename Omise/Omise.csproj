@@ -12,6 +12,7 @@
     <PackageReleaseNotes>See https://github.com/omise/omise-dotnet/blob/master/CHANGELOG.md for changes shipping in each version of the library.</PackageReleaseNotes>
     <Title>Omise</Title>
     <Description>C# bindings to the Omise API (https://www.omise.co/docs)</Description>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

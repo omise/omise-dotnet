@@ -14,7 +14,7 @@ Barcode
   Image Document
 BankAccount bank_account
   Brand string
-  Number string
+  AccountNumber string account_number
   LastDigits string last_digits
   Name string
 Capability

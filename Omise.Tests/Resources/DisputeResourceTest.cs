@@ -25,6 +25,8 @@ namespace Omise.Tests.Resources
             AssertRequest("GET", "https://api.omise.co/disputes/open");
             await Resource.PendingDisputes.GetList();
             AssertRequest("GET", "https://api.omise.co/disputes/pending");
+            await Resource.ClosedDisputes.GetList();
+            AssertRequest("GET", "https://api.omise.co/disputes/closed");
         }
 
         [Test]

@@ -19,10 +19,10 @@ namespace Omise.Resources
                     return "/disputes/open";
                 case DisputeStatus.Pending:
                     return "/disputes/pending";
+                case DisputeStatus.Closed:
                 case DisputeStatus.Won:
-                    return "/disputes/won";
                 case DisputeStatus.Lost:
-                    return "/disputes/lost";
+                    return "/disputes/closed";
 
                 default:
                     throw new ArgumentException("status");
