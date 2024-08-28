@@ -11,8 +11,8 @@ namespace Omise.Tests.ManualTesting
     [TestFixture, Explicit("code provided for manual testing only.")]
     public class RealNetworkTest : OmiseTest
     {
-        const string PublicKey = "pkey_test_5v3grc3gi8o1lilfcqu";
-        const string SecretKey = "skey_test_5v3grc64l0m4biolo9l";
+        const string PublicKey = "pkey";
+        const string SecretKey = "skey";
         string cardToken = "";
         string cardToken2 = "";
         string chargeId = "";
