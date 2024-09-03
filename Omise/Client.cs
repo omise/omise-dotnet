@@ -44,7 +44,6 @@ namespace Omise
         public string APIVersion
         {
             get { return requester.APIVersion; }
-            set { requester.APIVersion = value; }
         }
 
         public Client(string pkey = null, string skey = null, IEnvironment env = null)
