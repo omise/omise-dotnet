@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Omise.Models
+
 {
     public class CreateRecipientRequest : RecipientRequest
     {
@@ -22,5 +24,6 @@ namespace Omise.Models
 
         [JsonProperty("bank_account")]
         public BankAccountRequest BankAccount { get; set; }
+        public IDictionary<string, object> Metadata { get; set; }
     }
 }

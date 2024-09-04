@@ -191,8 +191,6 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
                 Source = source,
                 ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
@@ -262,8 +260,6 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.BillPaymentTescoLotus,
-                Flow = FlowTypes.Offline,
                 Source = source
             });
 
@@ -280,8 +276,6 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.RabbitLinepay,
-                Flow = FlowTypes.Redirect,
                 Source = source
             });
 
@@ -297,8 +291,6 @@ namespace Omise.Examples
             {
                 Amount = 2000,
                 Currency = "thb",
-                Offsite = OffsiteTypes.WeChatPay,
-                Flow = FlowTypes.Redirect,
                 Source = source
             });
 

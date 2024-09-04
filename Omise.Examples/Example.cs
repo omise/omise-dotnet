@@ -85,7 +85,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "thb",
                 Type = OffsiteTypes.TrueMoney,
-                PhoneNumber = "0812345678"
+                MobileNumber = "0812345678"
             });
         }
 

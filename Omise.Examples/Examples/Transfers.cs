@@ -56,29 +56,6 @@ namespace Omise.Examples
             Console.WriteLine($"transfer amount: {transfer.Amount}");
         }
 
-        public async Task Update__Update()
-        {
-            var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
-            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
-            {
-                Amount = 733137
-            });
-
-            Console.WriteLine($"updated transfer: {transfer.Id}");
-        }
-
-        public async Task Update__Update_With_Metadata()
-        {
-            var transferId = ExampleInfo.TRANSFER_ID; // "trsf_test_560ph0660cgiag1xjeh";
-            var transfer = await Client.Transfers.Update(transferId, new UpdateTransferRequest
-            {
-                Amount = 733137,
-                Metadata = new Dictionary<string, object> { { "color", "red" } }
-            });
-
-            Console.WriteLine($"updated transfer: {transfer.Id}");
-        }
-
         public async Task Destroy__Destroy()
         {
             var transfer = RetrieveTransfer();

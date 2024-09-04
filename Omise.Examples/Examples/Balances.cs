@@ -8,7 +8,7 @@ namespace Omise.Examples
         public async Task Retrieve__Retrieve()
         {
             var balance = await Client.Balance.Get();
-            Console.WriteLine($"available balance: {balance.Available}");
+            Console.WriteLine($"available balance: {balance.Transferable}");
             Console.WriteLine($"total balance: {balance.Total}");
         }
     }

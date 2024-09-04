@@ -105,20 +105,15 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
                 ExpiresAt = CreateExpiresAt(),
             },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""}"
             );
         }
@@ -136,22 +131,17 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
                 ExpiresAt = CreateExpiresAt(),
                 WebhookEndpoints = new string[] { "https://webhook.site/123" }
             },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
                 @"""webhook_endpoints"":[""https://webhook.site/123""]," +
-                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""}"
             );
         }
@@ -169,21 +159,16 @@ namespace Omise.Tests.Resources
                 Description = "Test Charge",
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
                 ExpiresAt = CreateExpiresAt(),
                 PlatformFee = new PlatformFeeRequest{ Fixed = 100, Percentage = 1} 
             },
                 @"{""customer"":""Omise Co., Ltd.""," +
                 @"""card"":""card_test_123""," +
                 @"""amount"":244884," +
-                @"""authorization_type"":null," +
                 @"""currency"":""thb""," +
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""," +
                 @"""platform_fee"":{""fixed"":100,""percentage"":1}}"
             );
@@ -203,8 +188,6 @@ namespace Omise.Tests.Resources
                 AuthorizationType = AuthTypes.PreAuth,
                 Capture = false,
                 ReturnUri = "asdf",
-                Offsite = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect,
                 ExpiresAt = CreateExpiresAt(),
             },
                 @"{""customer"":""Omise Co., Ltd.""," +
@@ -215,8 +198,6 @@ namespace Omise.Tests.Resources
                 @"""description"":""Test Charge""," +
                 @"""expires_at"":""2023-08-08T17:00:00Z""," +
                 @"""capture"":false," +
-                @"""offsite"":""internet_banking_bay""," +
-                @"""flow"":""redirect""," +
                 @"""return_uri"":""asdf""}"
             );
         }

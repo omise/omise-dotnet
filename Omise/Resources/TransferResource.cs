@@ -7,7 +7,6 @@ namespace Omise.Resources
     IListable<Transfer>,
     IListRetrievable<Transfer>,
     ICreatable<Transfer, CreateTransferRequest>,
-    IUpdatable<Transfer, UpdateTransferRequest>,
     IDestroyable<Transfer>,
     ISearchable<Transfer>
     {

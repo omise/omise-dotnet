@@ -13,13 +13,13 @@ namespace Omise.Tests
     {
         const string DummyJson =
             @"{""james"":""Howlett"",""scott"":""Summers"",""johny"":""Mnemonic""," +
-            @"""with"":""SPACES SPACES"",""created"":""9999-12-31T23:59:59.9999999""," +
+            @"""with"":""SPACES SPACES"",""created_at"":""9999-12-31T23:59:59.9999999""," +
             @"""checked"":true,""enumer"":""twth"",""enumer2"":""once"",""nullEnum"":null," +
             @"""nested"":{""field"":""inner""," +
             @"""filters"":{""dictionary"":""should works""}}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
-            "with=SPACES+SPACES&created=9999-12-31T23%3A59%3A59Z&" +
+            "with=SPACES+SPACES&created_at=9999-12-31T23%3A59%3A59Z&" +
             "checked=true&enumer=twth&enumer2=once&" +
             "nested%5Bfield%5D=inner&nested%5Bfilters%5D%5Bdictionary%5D=should+works";
 
@@ -88,7 +88,8 @@ namespace Omise.Tests
         public string Aliased { get; set; }
 
         public string With { get; set; }
-        public DateTime Created { get; set; }
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
         public bool Checked { get; set; }
         public object FieldIsNull { get; set; }
         public DummyEnum Enumer { get; set; }
@@ -116,7 +117,7 @@ namespace Omise.Tests
             James = "Howlett";
             Scott = "Summers";
             With = "SPACES SPACES";
-            Created = DateTime.MaxValue;
+            CreatedAt = DateTime.MaxValue;
             Aliased = "Mnemonic";
             Checked = true;
             FieldIsNull = null;

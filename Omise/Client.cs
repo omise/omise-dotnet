@@ -7,7 +7,7 @@ namespace Omise
     public class Client
     {
         // Default to the latest API Version.
-        private string apiVersion = "2017-11-02";
+        private string apiVersion = "2019-05-29";
 
         readonly IRequester requester;
         readonly IEnvironment environment;
@@ -44,7 +44,6 @@ namespace Omise
         public string APIVersion
         {
             get { return requester.APIVersion; }
-            set { requester.APIVersion = value; }
         }
 
         public Client(string pkey = null, string skey = null, IEnvironment env = null)

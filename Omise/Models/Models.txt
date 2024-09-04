@@ -2,7 +2,7 @@
   Email string
   Currency string
 Balance
-  Available long
+  Transferable long
   Total long
   Currency string
 Bank
@@ -14,7 +14,7 @@ Barcode
   Image Document
 BankAccount bank_account
   Brand string
-  Number string
+  AccountNumber string account_number
   LastDigits string last_digits
   Name string
 Capability
@@ -53,7 +53,7 @@ Charge
   SourceOfFund SourceOfFunds source_of_fund
   Card Card
   Source PaymentSource
-  Refunded long
+  RefundedAmount long refunded_amount
   Refunds ScopedList<Refund>
   FailureCode string failure_code
   FailureMessage string failure_message
@@ -134,6 +134,29 @@ PaymentSource
   StoreName string store_name
   TerminalId string terminal_id
   Ip string
+Billing
+  City string
+  Country string
+  PostalCode string postal_code
+  State string
+  Street1 string
+  Street2 string?
+Shipping
+  City string
+  Country string
+  PostalCode string postal_code
+  State string
+  Street1 string
+  Street2 string?
+Item
+  Amount long?
+  Sku string?
+  Name string?
+  Quantity long?
+  Category string?
+  Brand string?
+  ItemUri string? item_uri
+  ImageUri string? image_uri
 Receipt
   Number string
   CustomerName string customer_name
