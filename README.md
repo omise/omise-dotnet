@@ -3,8 +3,6 @@
 [![NuGet](https://img.shields.io/nuget/v/Omise.svg?style=flat-square)](https://www.nuget.org/packages/Omise/)
 [![.NET](https://github.com/omise/omise-dotnet/actions/workflows/dotnet-core.yml/badge.svg)](https://github.com/omise/omise-dotnet/actions/workflows/dotnet-core.yml)
 
-**This library has been updated to v2.0, check the v1 branch for the previous version.**
-
 Omise.Net is a NuGet package for CLR platforms (.NET Standard) written in C#. This
 library is developed on OS X using Visual Studio for Mac. This package provides a set of
 bindings to the [Opn Payments REST API](https://docs.opn.ooo/).
