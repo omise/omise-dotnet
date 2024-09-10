@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Omise.svg?style=flat-square)](https://www.nuget.org/packages/Omise/)
 [![.NET](https://github.com/omise/omise-dotnet/actions/workflows/dotnet-core.yml/badge.svg)](https://github.com/omise/omise-dotnet/actions/workflows/dotnet-core.yml)
 
-Omise.Net is a NuGet package for CLR platforms (.NET Standard) written in C#. This
+Omise.Net is a NuGet package for CLR platforms (.NET Standard) and is written in C#. This
 library is developed on OS X using Visual Studio for Mac. This package provides a set of
 bindings to the [Opn Payments REST API](https://docs.opn.ooo/).
 
@@ -24,14 +24,14 @@ platforms and compatibility with projects that target the PCL, please consult
 
 # Versioning and Compatibility
 
-Although omise-dotnet can be used with other .NET versions, the versions listed below have been test-validated in our CI pipeline to ensure compatibility and stability.
+Although you can use omise-dotnet with other .NET versions, we have validated the following versions in our CI pipeline to ensure compatibility and stability.
 
-| `omise-dotnet` Version | Supported Omise API Version | .NET Version(s) Supported                             | Type of Support         | Notes                                                                                              |
-| ---------------------- | --------------------------- | ----------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------- |
-| 1.x                    | 2014-07-27                  | N/A                                                   | End of Life (EOL)       | Initial release with basic features. No longer maintained.                                         |
-| 2.x                    | 2017-11-02                  | .NET Core 2.1.x, .NET Core 3.1.x, .NET 5.0.x          | End of Life (EOL)       | Major release with breaking changes, aligning with the new Omise API version. No longer maintained |
-| 3.x                    | 2017-11-02                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Long term support (LTS) | Drop support for .NET Core 2.1.x to allow usage of c# 8                                            |
-| 4.x                    | 2019-05-29                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Active                  | Support 2019-05-29 api version                                                                     |
+| Library Version | Support                 | Supported Omise API Version | .NET Version(s) Supported                             | Notes                                                                                              |
+| --------------- | ----------------------- | --------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| 1.x             | End of Life (EOL)       | 2014-07-27                  | N/A                                                   | Initial release with basic features. No longer maintained.                                         |
+| 2.x             | End of Life (EOL)       | 2017-11-02                  | .NET Core 2.1.x, .NET Core 3.1.x, .NET 5.0.x          | Major release with breaking changes, aligning with the new Omise API version. No longer maintained |
+| 3.x             | Long term support (LTS) | 2017-11-02                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Drop support for .NET Core 2.1.x to allow usage of c# 8                                            |
+| 4.x             | Active                  | 2019-05-29                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Support 2019-05-29 api version                                                                     |
 
 # Installation
 
