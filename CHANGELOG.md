@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## v4.0.0
+
+- Support Omise API v 2019-05-29 ([#92](https://github.com/omise/omise-dotnet/pull/92))
+
 ## v3.1.0
 
 - Add new source: `shopeepay` ([#90](https://github.com/omise/omise-dotnet/pull/90))
