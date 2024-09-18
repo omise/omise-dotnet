@@ -22,6 +22,46 @@ This library targets the .NET Standard version 2.0. For an updated list of suppo
 platforms and compatibility with projects that target the PCL, please consult
 [Official Microsoft's Documentation on .NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
+## Migration Guide v4.x
+
+### Changes in Response Parameters
+
+1. **AuthType**:
+
+   - **Removed**: `AuthType.None`
+
+2. **Get Balance**:
+
+   - **Updated**: `Available` → `Transferable`
+
+3. **BankAccount**:
+
+   - **Updated**: `number` → `AccountNumber`
+
+4. **Charge**:
+
+   - **Updated**: `Refunded` → `RefundedAmount`
+
+5. **All Responses**:
+   - **Updated**: `Created` → `CreatedAt`
+
+### Changes in Request Parameters
+
+1. **Source Creation**:
+
+   - **Updated**: `PhoneNumber` → `MobileNumber`
+   - **Removed**: `Offsite`
+   - **Removed**: `Flow`
+
+2. **Charge Creation**:
+   - **Removed**: `Offsite`
+   - **Removed**: `Flow`
+
+### Migration Notes
+
+- Ensure to update your code to handle the changes in response and request parameters as listed above.
+- Review and test your integration thoroughly to confirm that all changes are accommodated and no unexpected behavior occurs.
+
 # Versioning and Compatibility
 
 Although you can use omise-dotnet with other .NET versions, we have validated the following versions in our CI pipeline to ensure compatibility and stability.
