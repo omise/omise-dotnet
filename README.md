@@ -59,7 +59,7 @@ platforms and compatibility with projects that target the PCL, please consult
 
 ### Migration Notes
 
-- Ensure to update your code to handle the changes in response and request parameters as listed above.
+- Ensure to update your code to handle the changes in response and request parameters as previously listed.
 - Review and test your integration thoroughly to confirm that all changes are accommodated and no unexpected behavior occurs.
 
 # Versioning and Compatibility
