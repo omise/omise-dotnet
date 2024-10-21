@@ -50,7 +50,6 @@ Charge
   Paid bool
   PaidAt DateTime paid_at
   Transaction string
-  SourceOfFund SourceOfFunds source_of_fund
   Card Card
   Source PaymentSource
   RefundedAmount long refunded_amount
