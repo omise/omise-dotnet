@@ -15,8 +15,8 @@ namespace Omise.Models
         public string? Bank { get; set; }
         public string? Email { get; set; }
         public string? Name { get; set; }
-        [JsonProperty("mobile_number")]
-        public string? MobileNumber { get; set; }
+        [JsonProperty("phone_number")]
+        public string? PhoneNumber { get; set; }
         [JsonProperty("installment_term")]
         public string? InstallmentTerm { get; set; }
         [JsonProperty("promotion_code")]

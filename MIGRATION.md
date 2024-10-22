@@ -37,7 +37,7 @@ None
 | https://api.omise.co/balance    | None                      | Available => Transferable                                    |
 | BankAccount model               | None                      | Number = > AccountNumber                                     |
 | https://api.omise.co/charges    | Offsite, Flow => removed  | Refunded => RefundedAmount, Offsite, SourceOfFund => removed |
-| https://api.omise.co/sources    | Offsite, Flow => removed  | PhoneNumber => MobileNumber                                  |
+| https://api.omise.co/sources    | Offsite, Flow => removed  | None                                                         |
 | AuthTypes enum                  | AuthTypes.None => removed | AuthTypes.None => removed                                    |
 | All models using the base model | None                      | Created => CreatedAt                                         |
 
