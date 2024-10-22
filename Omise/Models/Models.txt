@@ -50,7 +50,6 @@ Charge
   Paid bool
   PaidAt DateTime paid_at
   Transaction string
-  SourceOfFund SourceOfFunds source_of_fund
   Card Card
   Source PaymentSource
   RefundedAmount long refunded_amount
@@ -62,7 +61,6 @@ Charge
   Dispute Dispute
   ReturnURI string return_uri
   AuthorizeURI string authorize_uri
-  Offsite OffsiteTypes
   InstallmentTerms int installment_terms
   PlatformFee PlatformFee platform_fee
 PlatformFee
@@ -107,10 +105,10 @@ Occurrence
   Message String
   Result String
 PaymentMethod
-  Type string
+  Name string
   Currencies List<string>
-  Brands List<string>
-  AllowedInstallmentTerms List<int> allowed_installment_terms
+  CardBrands List<string> card_brands
+  InstallmentTerms List<int> installment_terms
   Banks List<Bank>
 PaymentReference
   OmiseTaxId string
@@ -198,8 +196,8 @@ Schedule
   Period SchedulePeriod
   On ScheduleOn
   InWords String in_words
-  StartDate DateTime start_date
-  EndDate DateTime end_date
+  StartOn DateTime start_on
+  EndOn DateTime end_on
   Charge ChargeScheduling
   Transfer TransferScheduling
   Occurrences ScopedList<Occurrence>
@@ -219,7 +217,7 @@ Transaction
   Transferable DateTime
 Transfer
   Recipient string
-  BankAccount BankAccount
+  BankAccount BankAccount bank_account
   Sent bool
   Paid bool
   Fee long
