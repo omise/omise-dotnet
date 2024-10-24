@@ -20,7 +20,7 @@ This guide is to help integrators migrate from v3.x to v4.x
 
 ## Breaking Changes
 
-The behavior of the SDK in not affected.
+The behavior of the SDK is not affected.
 
 ## Deprecated Endpoints
 
