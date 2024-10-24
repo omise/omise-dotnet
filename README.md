@@ -30,8 +30,8 @@ Although you can use omise-dotnet with other .NET versions, we have validated th
 | --------------- | ----------------- | --------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | 1.x             | End of Life (EOL) | 2014-07-27                  | N/A                                                   | Initial release with basic features. No longer maintained.                                         |
 | 2.x             | End of Life (EOL) | 2017-11-02                  | .NET Core 2.1.x, .NET Core 3.1.x, .NET 5.0.x          | Major release with breaking changes, aligning with the new Omise API version. No longer maintained |
-| 3.x             | Active            | 2017-11-02                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Drop support for .NET Core 2.1.x to allow usage of c# 8                                            |
-| 4.x             | Upcoming          | 2019-05-29                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Support 2019-05-29 api version                                                                     |
+| 3.x             | Maintenance mode  | 2017-11-02                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Drop support for .NET Core 2.1.x to allow usage of c# 8                                            |
+| 4.x             | Active            | 2019-05-29                  | .NET Core 3.0, .NET 5.0, .NET 6.0, .NET 7.0, .NET 8.0 | Support 2019-05-29 api version<br>[Migration Guide](./MIGRATION.md)                                |
 
 <sup><b>\*Maintenance mode includes only bug fixes and security updates.</b></sup>
 
