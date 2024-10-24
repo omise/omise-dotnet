@@ -73,7 +73,7 @@ namespace Omise.Tests.ManualTesting
                 Ip = "10.0.0.2",
                 InstallmentTerm = "3",
                 Items = new List<Item> { new Item { Amount = 2000, Brand = "TestBrand", Sku = "Sku", Category = "Category", ImageUri = "https://www.opn.ooo/", ItemUri = "https://www.opn.ooo/", Name = "Name", Quantity = 4, } },
-                MobileNumber = "0745123498",
+                PhoneNumber = "0745123498",
                 Name = "Name",
                 PromotionCode = "code",
                 Shipping = new Shipping() { City = "City", Country = "TH", PostalCode = "18321", State = "State", Street1 = "Streets1", Street2 = "Street2" },
