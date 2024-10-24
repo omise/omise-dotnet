@@ -3,6 +3,7 @@
 ## v4.0.0
 
 - Support Omise API v 2019-05-29 ([#92](https://github.com/omise/omise-dotnet/pull/92))
+- Add migration guide from v3.x to v4.x ([#99](https://github.com/omise/omise-dotnet/pull/99))
 
 ## v3.1.0
 
