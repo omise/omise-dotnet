@@ -68,6 +68,7 @@ namespace Omise.Tests.ManualTesting
                 Barcode = "Barcode",
                 Billing = new Billing() { City = "City", Country = "TH", PostalCode = "18321", State = "State", Street1 = "Streets1", Street2 = "Street2" },
                 Currency = "THB",
+                PlatformType = PlatformTypes.Web,
                 Email = "test@gmail.com",
                 Flow = FlowTypes.Redirect,
                 Ip = "10.0.0.2",

@@ -30,7 +30,8 @@ namespace Omise
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.GetTypeInfo().IsEnum;
+            // Check if the object type is an enum or a nullable enum
+            return objectType.GetTypeInfo().IsEnum || (Nullable.GetUnderlyingType(objectType)?.IsEnum == true);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
