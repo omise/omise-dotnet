@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v4.0.1
+
+### Fixed
+
+- **Serialization bug**: Fixed an issue where the library failed to properly serialize nullable enums. The bug caused inability to send requests when nullable enums are involved.
+
 ## v4.0.0
 
 - Support Omise API v 2019-05-29 ([#92](https://github.com/omise/omise-dotnet/pull/92))
