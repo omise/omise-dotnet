@@ -14,13 +14,13 @@ namespace Omise.Tests
         const string DummyJson =
             @"{""james"":""Howlett"",""scott"":""Summers"",""johny"":""Mnemonic""," +
             @"""with"":""SPACES SPACES"",""created_at"":""9999-12-31T23:59:59.9999999""," +
-            @"""checked"":true,""enumer"":""twth"",""enumer2"":""once"",""nullEnum"":null," +
+            @"""checked"":true,""enumer"":""twth"",""enumer2"":""once"",""nullEnum"":null,""nullableEnum"":""once""," +
             @"""nested"":{""field"":""inner""," +
             @"""filters"":{""dictionary"":""should works""}}}";
         const string DummyUrlEncoded =
             "james=Howlett&scott=Summers&Johny=Mnemonic&" +
             "with=SPACES+SPACES&created_at=9999-12-31T23%3A59%3A59Z&" +
-            "checked=true&enumer=twth&enumer2=once&" +
+            "checked=true&enumer=twth&enumer2=once&nullableenum=once&" +
             "nested%5Bfield%5D=inner&nested%5Bfilters%5D%5Bdictionary%5D=should+works";
 
         Serializer Serializer { get; set; }
@@ -42,7 +42,6 @@ namespace Omise.Tests
                 Serializer.JsonSerialize(stream, Dummy);
                 result = stream.ToDecodedString();
             }
-
             Assert.AreEqual(DummyJson, result);
         }
 
@@ -60,6 +59,7 @@ namespace Omise.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(Dummy.James, result.James);
             Assert.AreEqual(Dummy.Scott, result.Scott);
+            Assert.AreEqual(Dummy.NullableEnum, result.NullableEnum);
         }
 
         [Test]
@@ -68,6 +68,7 @@ namespace Omise.Tests
             Serializer.JsonPopulate(DummyJson, Dummy);
             Assert.AreEqual("Howlett", Dummy.James);
             Assert.AreEqual("Summers", Dummy.Scott);
+            Assert.AreEqual("Once", Dummy.NullableEnum.ToString());
         }
 
         [Test]
@@ -95,6 +96,7 @@ namespace Omise.Tests
         public DummyEnum Enumer { get; set; }
         public DummyEnum Enumer2 { get; set; }
         public DummyEnum NullEnum { get; set; }
+        public DummyEnum? NullableEnum { get; set; }
         public NestedKlass Nested { get; set; }
 
         public enum DummyEnum
@@ -123,6 +125,7 @@ namespace Omise.Tests
             FieldIsNull = null;
             Enumer = DummyEnum.TwiceThrice;
             Enumer2 = DummyEnum.Once;
+            NullableEnum = DummyEnum.Once;
             NullEnum = DummyEnum.None;
             Nested = new NestedKlass
             {
