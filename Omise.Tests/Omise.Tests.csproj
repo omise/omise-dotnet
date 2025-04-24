@@ -61,4 +61,15 @@
     <ProjectReference Include="..\Omise\Omise.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestData.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="TestData.cs">
+      <DependentUpon>TestData.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -63,6 +63,9 @@ Charge
   AuthorizeURI string authorize_uri
   InstallmentTerms int installment_terms
   PlatformFee PlatformFee platform_fee
+  MerchantAdvice string merchant_advice
+  MerchantAdviceCode string merchant_advice_code
+  Missing3dsFields List<string> missing_3ds_fields
 PlatformFee
   Fixed long? 
   Amount long?

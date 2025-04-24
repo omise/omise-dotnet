@@ -234,6 +234,9 @@ namespace Omise.Tests.Resources
         {
             var charge = await Fixtures.Create(new CreateChargeRequest());
             Assert.AreEqual(ChargeId, charge.Id);
+            Assert.AreEqual("Do not retry the transaction with the same card", charge.MerchantAdvice);
+            Assert.AreEqual("9003", charge.MerchantAdviceCode);
+            Assert.AreEqual(new List<string> { "email", "phone_number" }, charge.Missing3dsFields);
             Assert.AreEqual(100000, charge.Amount);
             Assert.IsInstanceOf(typeof(PaymentSource), charge.Source);
             Assert.IsInstanceOf(typeof(Barcode), charge.Source.ScannableCode);
