@@ -16,7 +16,7 @@ jobs:
         dotnet-version: '3.1.x'
 
     - name: Install dependencies
-      run: nuget restore Omise.sln
+      run: dotnet restore Omise.sln
 
     - name: Test
       run: make test TargetDotNet=3.0

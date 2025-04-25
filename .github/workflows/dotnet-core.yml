@@ -21,6 +21,6 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Install dependencies
-      run: nuget restore Omise.sln
+      run: dotnet restore Omise.sln
     - name: Test
       run: make test TargetDotNet=${{ matrix.dotnet }}
