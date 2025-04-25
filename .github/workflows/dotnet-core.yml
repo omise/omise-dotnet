@@ -20,6 +20,14 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ matrix.dotnet }}
+
+    - name: Install libssl1.1 for older .NET versions
+      if: matrix.dotnet == '3.0' || matrix.dotnet == '5.0'
+      run: |
+        sudo add-apt-repository ppa:deadsnakes/ppa -y
+        sudo apt-get update
+        sudo apt-get install -y libssl1.1 || echo "libssl1.1 not available"
+
     - name: Install dependencies
       run: dotnet restore Omise.sln
     - name: Test
