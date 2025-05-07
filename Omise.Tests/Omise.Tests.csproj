@@ -44,6 +44,13 @@
         <TargetFramework>net8.0</TargetFramework>
       </PropertyGroup>
     </When>
+
+    <!-- .NET 9.0 -->
+    <When Condition="'$(TargetDotNet)' == '9.0'">
+      <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+      </PropertyGroup>
+    </When>
   </Choose>
 
   <ItemGroup>
