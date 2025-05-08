@@ -19,7 +19,7 @@ jobs:
       run: dotnet restore Omise.sln
 
     - name: Test
-      run: make test TargetDotNet=3.0
+      run: make test TargetDotNet=8.0
 
     - name: Create package
       run: dotnet pack -c Release Omise/Omise.csproj
