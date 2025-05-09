@@ -44,6 +44,13 @@
         <TargetFramework>net8.0</TargetFramework>
       </PropertyGroup>
     </When>
+
+    <!-- .NET 9.0 -->
+    <When Condition="'$(TargetDotNet)' == '9.0'">
+      <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+      </PropertyGroup>
+    </When>
   </Choose>
 
   <ItemGroup>
@@ -61,4 +68,15 @@
     <ProjectReference Include="..\Omise\Omise.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestData.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="TestData.cs">
+      <DependentUpon>TestData.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
