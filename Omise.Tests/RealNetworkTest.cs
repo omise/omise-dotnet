@@ -154,7 +154,7 @@ namespace Omise.Tests.ManualTesting
                 AuthorizationType = AuthTypes.FinalAuth,
                 ReturnUri = "https://www.example.com",
                 Capture = true,
-                Source = new PaymentSource
+                Source = new CreatePaymentSourceRequest
                 {
                     Amount = 2000,
                     Barcode = "Barcode",

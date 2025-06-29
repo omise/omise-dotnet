@@ -186,12 +186,17 @@ namespace Omise.Examples
         #region Internet Banking
         public async Task Create__Create_With_Source_InternetBanking()
         {
-            var source = await RetrieveSourceInternetBanking();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.InternetBankingBAY,
+                    Flow = FlowTypes.Redirect
+                },
                 ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
                 {
@@ -209,12 +214,16 @@ namespace Omise.Examples
         #region Mobile Banking
         public async Task Create__Create_With_Source_MobileBankingSCB()
         {
-            var source = await RetrieveSourceMobileBankingSCB();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.MobileBankingSCB,
+                },
                 ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
                 {
@@ -232,12 +241,16 @@ namespace Omise.Examples
         #region ShopeePay
         public async Task Create__Create_With_Source_ShopeePay()
         {
-            var source = await RetrieveSourceShopeePay();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.ShopeePay,
+                },
                 ReturnUri = "https://www.omise.co/",
                 Metadata = new Dictionary<string, object>
                 {
@@ -255,12 +268,17 @@ namespace Omise.Examples
         #region Bill Payment
         public async Task Create__Create_With_Source_BillPayment()
         {
-            var source = await RetrieveSourceBillPayment();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.BillPaymentTescoLotus,
+                    Flow = FlowTypes.Offline
+                }
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -271,12 +289,17 @@ namespace Omise.Examples
         #region Rabbit Linepay
         public async Task Create__Create_With_Source_RabbitLinepay()
         {
-            var source = await RetrieveSourceRabbitLinepay();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.RabbitLinepay,
+                    Flow = FlowTypes.Redirect
+                }
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -286,12 +309,18 @@ namespace Omise.Examples
         #region WeChat Pay
         public async Task Create__Create_With_Source_WeChatPay()
         {
-            var source = await RetrieveSourceWeChatPay();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Ip = "127.0.0.1",
+                    Type = OffsiteTypes.WeChatPay,
+                    Flow = FlowTypes.Redirect
+                }
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -309,7 +338,7 @@ namespace Omise.Examples
                 Amount = 2000,
                 Currency = "thb",
                 Description = "Test product",
-                Source = new PaymentSource()
+                Source = new CreatePaymentSourceRequest()
                 {
                     Type = OffsiteTypes.BarcodeAlipay,
                     Barcode = "201234567890",
@@ -335,12 +364,17 @@ namespace Omise.Examples
         #region TrueMoney
         public async Task Create__Create_With_Source_TrueMoney()
         {
-            var source = await RetrieveSourceTrueMoney();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.TrueMoney,
+                    PhoneNumber = "0812345678"
+                }
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -351,12 +385,18 @@ namespace Omise.Examples
         #region
         public async Task Create__Create_With_Source_Fpx()
         {
-            var source = await RetrieveSourceFpx();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "myr",
-                Source = source
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "myr",
+                    Type = OffsiteTypes.Fpx,
+                    Email = "example@omise.co",
+                    Bank = "cimb"
+                }
             });
 
             Console.WriteLine($"created charge: {charge.Id}");
@@ -368,12 +408,18 @@ namespace Omise.Examples
         #region
         public async Task Create__Create_With_Source_AlipayCN()
         {
-            var source = await RetrieveSourceAlipayCN();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "sgd",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "sgd",
+                    Type = OffsiteTypes.AlipayCN,
+                    PlatformType = PlatformTypes.Web,
+                    Email = "example@omise.co",
+                },
                 ReturnUri = "https://www.example.com"
             });
 
@@ -386,12 +432,19 @@ namespace Omise.Examples
         #region AlipayPlusUPM
         public async Task Create__Create_With_Source_AlipayUPM()
         {
-            var source = await RetrieveSourceAlipayPlusUPM();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "sgd",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "sgd",
+                    Type = OffsiteTypes.AlipayPlusUPM,
+                    PlatformType = PlatformTypes.Web,
+                    Email = "example@omise.co",
+                    Barcode = "2897991359827699709"
+                },
                 ReturnUri = "https://www.example.com"
             });
 
@@ -402,12 +455,18 @@ namespace Omise.Examples
         #region AlipayPlusMPM
         public async Task Create__Create_With_Source_AlipayMPM()
         {
-            var source = await RetrieveSourceAlipayPlusMPM();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "sgd",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "sgd",
+                    Type = OffsiteTypes.AlipayPlusMPM,
+                    PlatformType = PlatformTypes.Web,
+                    Email = "example@omise.co",
+                },
                 ReturnUri = "https://www.example.com"
             });
 
@@ -418,12 +477,17 @@ namespace Omise.Examples
         #region
         public async Task Create__Create_With_Source_OCBCPAO()
         {
-            var source = await RetrieveSourceOCBCPAO();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "sgd",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "sgd",
+                    Type = OffsiteTypes.MobileBankingOCBCPAO,
+                    PlatformType = PlatformTypes.iOS,
+                },
                 ReturnUri = "https://www.example.com"
             });
 
@@ -437,12 +501,18 @@ namespace Omise.Examples
         #region
         public async Task Create__Create_With_Source_PromptPay()
         {
-            var source = await RetrieveSourcePromptPay();
             var charge = await Client.Charges.Create(new CreateChargeRequest()
             {
                 Amount = 2000,
                 Currency = "thb",
-                Source = source,
+                Source = new CreatePaymentSourceRequest
+                {
+                    Amount = 2000,
+                    Currency = "thb",
+                    Type = OffsiteTypes.PromptPay,
+                    PlatformType = PlatformTypes.Web,
+                    Email = "example@omise.co",
+                },
                 ReturnUri = "https://www.example.com",
                 ExpiresAt = DateTime.Now.AddHours(11),
             });

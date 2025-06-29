@@ -19,7 +19,7 @@ namespace Omise.Models
         public DateTime? ExpiresAt { get; set; }
         public IDictionary<string, object>? Metadata { get; set; }
         public bool? Capture { get; set; }
-        public PaymentSource? Source { get; set; }
+        public CreatePaymentSourceRequest? Source { get; set; }
         [JsonProperty("webhook_endpoints")]
         public string[]? WebhookEndpoints { get; set; }
         [JsonProperty("return_uri")]
