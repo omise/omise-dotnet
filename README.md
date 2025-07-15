@@ -193,6 +193,51 @@ var charge = await Client.Charges.Create(new CreateChargeRequest
 Print("created charge: {0}", charge.Id);
 ```
 
+### ⚠️ Note on Creating Charges with Sources
+
+When creating a charge with a source, **do not** create the source separately and then pass the retrieved source object into the charge request. This can result in **duplicate source creation**, which may cause unexpected behavior.
+
+Instead, pass the **source creation request directly inside the charge creation request**. This ensures the expected, correct flow.
+
+#### ❌ Incorrect Usage (Creates source twice):
+
+```csharp
+var source = await RetrieveSourceInternetBanking();
+var charge = await Client.Charges.Create(new CreateChargeRequest()
+{
+    Amount = 2000,
+    Currency = "thb",
+    Source = source,
+    ReturnUri = "https://www.omise.co/",
+    Metadata = new Dictionary<string, object>
+    {
+        { "invoice_id", "ABC1234" }
+    }
+});
+```
+
+#### ✅ Correct Usage (Creates source once):
+
+```csharp
+var charge = await Client.Charges.Create(new CreateChargeRequest()
+{
+    Amount = 2000,
+    Currency = "thb",
+    Source = new PaymentSource
+    {
+        Amount = 2000,
+        Currency = "thb",
+        Type = OffsiteTypes.InternetBankingBAY,
+        Flow = FlowTypes.Redirect
+    },
+    ReturnUri = "https://www.omise.co/",
+    Metadata = new Dictionary<string, object>
+    {
+        { "invoice_id", "ABC1234" }
+    }
+});
+```
+
 ### Transferring money to the default Recipient
 
 ```c#
