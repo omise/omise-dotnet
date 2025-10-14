@@ -277,6 +277,45 @@ var transfer = await Client.Transfers.Create(new CreateTransferRequest
 Print("created transfer: {0}", transfer.Id);
 ```
 
+# Passkey Integration
+
+The Omise .NET SDK supports Passkey authentication for enhanced security and user experience. Passkey provides a passwordless authentication method that uses biometric authentication or device PINs, making payments more secure and convenient for users.
+
+## Prerequisites
+
+Before implementing Passkey authentication:
+
+- Ensure your Omise account supports Passkey authentication
+- Configure your frontend to collect proper card holder data (email/phoneNumber)
+
+## Implementation
+
+### Requesting Cardholder Data
+
+To use Passkey authentication, you must request cardholder data fields (email or phone number) during the payment process on the frontend. This information is required for the backend Passkey authentication setup.
+
+### Creating a Passkey Charge
+
+Once you have created a token on the frontend that includes the email/phoneNumber of the user, you can now use this token to create a passkey charge.
+To create a passkey charge you must set the `Authntication` field in the charge request to `Passkey`. This will trigger the required flows and you will also be able to check the `AuthenticatedBy` field in the charge response in order to check the actual authentication method. Here is an example code for creating a charge with the passkey flow:
+
+```c#
+var charge = await Client.Charges.Create(new CreateChargeRequest()
+{
+    Amount = 2000,
+    Currency = "thb",
+    Card = tokenId,
+    ReturnUri = "https://www.omise.co/",
+    Metadata = new Dictionary<string, object>
+    {
+        { "invoice_id", "ABC1234" }
+    },
+    Authentication = AuthFlow.Passkey
+});
+```
+
+---
+
 # Important note about merchant compliance
 
 Card data should never transit through your server. This library provides the means to create
