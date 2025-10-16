@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v4.1.0
+
+### Added
+
+- **TAS Passkey Authentication**: Added support for TAS Passkey authentication flow.
+
 ## v4.0.1
 
 ### Fixed
