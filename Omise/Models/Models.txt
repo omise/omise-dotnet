@@ -66,7 +66,7 @@ Charge
   MerchantAdvice string merchant_advice
   MerchantAdviceCode string merchant_advice_code
   Missing3dsFields List<string> missing_3ds_fields
-  AuthenticatedBy AuthFlow authenticated_by
+  AuthenticatedBy AuthFlow? authenticated_by
 PlatformFee
   Fixed long? 
   Amount long?
