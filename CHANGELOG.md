@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v4.2.0
+
+### Fix
+
+- **Nullable Enums**: Some enum values defaulted to incorrect values when null, now this has been fixed to reflect the correct behavior and values.
+
 ## v4.1.0
 
 ### Added
