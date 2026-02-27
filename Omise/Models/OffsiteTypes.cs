@@ -6,14 +6,7 @@ namespace Omise.Models
     {
         [EnumMember(Value = null)]
         None,
-        [EnumMember(Value = "internet_banking_scb")]
-        InternetBankingSCB,
-        [EnumMember(Value = "internet_banking_bbl")]
-        InternetBankingBBL,
-        [EnumMember(Value = "internet_banking_ktb")]
-        InternetBankingKTB,
-        [EnumMember(Value = "internet_banking_bay")]
-        InternetBankingBAY,
+
         [EnumMember(Value = "alipay")]
         AlipayOnline,
         [EnumMember(Value = "alipay_cn")]

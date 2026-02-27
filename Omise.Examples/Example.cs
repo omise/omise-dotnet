@@ -29,17 +29,6 @@ namespace Omise.Examples
             });
         }
 
-        // Creates a new PaymentSource called RetrieveSourceInternetBanking, as sources can be created client-side (as well as server-side).
-        protected async Task<PaymentSource> RetrieveSourceInternetBanking()
-        {
-            return await Client.Sources.Create(new CreatePaymentSourceRequest
-            {
-                Amount = 2000,
-                Currency = "thb",
-                Type = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
-            });
-        }
 
         // Creates a new PaymentSource called RetrieveSourceBillPayment, as sources can be created client-side (as well as server-side).
         protected async Task<PaymentSource> RetrieveSourceBillPayment()
