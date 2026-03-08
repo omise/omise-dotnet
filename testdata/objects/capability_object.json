@@ -69,54 +69,7 @@
         ]
       }
     },
-    {
-      "internet_banking_bay": {
-        "type": "internet_banking",
-        "currencies": [
-          "thb"
-        ],
-        "amount": {
-          "min": 2000,
-          "max": 15000000
-        }
-      }
-    },
-    {
-      "internet_banking_ktb": {
-        "type": "internet_banking",
-        "currencies": [
-          "thb"
-        ],
-        "amount": {
-          "min": 2000,
-          "max": 15000000
-        }
-      }
-    },
-    {
-      "internet_banking_scb": {
-        "type": "internet_banking",
-        "currencies": [
-          "thb"
-        ],
-        "amount": {
-          "min": 2000,
-          "max": 15000000
-        }
-      }
-    },
-    {
-      "internet_banking_bbl": {
-        "type": "internet_banking",
-        "currencies": [
-          "thb"
-        ],
-        "amount": {
-          "min": 2000,
-          "max": 15000000
-        }
-      }
-    },
+
     {
       "alipay": {
         "type": "alipay",

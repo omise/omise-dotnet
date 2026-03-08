@@ -202,7 +202,7 @@ Instead, pass the **source creation request directly inside the charge creation 
 #### ❌ Incorrect Usage (Creates source twice):
 
 ```csharp
-var source = await RetrieveSourceInternetBanking();
+var source = await RetrieveSourceRabbitLinepay();
 var charge = await Client.Charges.Create(new CreateChargeRequest()
 {
     Amount = 2000,
@@ -227,7 +227,7 @@ var charge = await Client.Charges.Create(new CreateChargeRequest()
     {
         Amount = 2000,
         Currency = "thb",
-        Type = OffsiteTypes.InternetBankingBAY,
+        Type = OffsiteTypes.RabbitLinepay,
         Flow = FlowTypes.Redirect
     },
     ReturnUri = "https://www.omise.co/",

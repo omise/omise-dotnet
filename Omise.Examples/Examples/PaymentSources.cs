@@ -6,32 +6,6 @@ namespace Omise.Examples
 {
     public class PaymentSources : Example
     {
-        #region Internet Banking
-        public async Task Create__Create_InternetBanking()
-        {
-            var source = await Client.Sources.Create(new CreatePaymentSourceRequest
-            {
-                Amount = 2000,
-                Currency = "thb",
-                Type = OffsiteTypes.InternetBankingBAY,
-                Flow = FlowTypes.Redirect
-            });
-
-            Console.WriteLine($"created source: {source.Id}");
-        }
-
-        public async Task Retrieve__Retrieve_InternetBanking()
-        {
-            var sourceId = RetrieveInternetBankingSourceId();
-            var source = await Client.Sources.Get(sourceId);
-            Console.WriteLine($"source flow is {source.Flow.ToString()}");
-        }
-
-        protected string RetrieveInternetBankingSourceId()
-        {
-            return RetrieveSourceInternetBanking().Result.Id;
-        }
-        #endregion
 
         #region Rabbit Linepay
         public async Task Create__Create_RabbitLinepay()

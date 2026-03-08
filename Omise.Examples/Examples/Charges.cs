@@ -183,33 +183,6 @@ namespace Omise.Examples
 
         #region PaymentSources
 
-        #region Internet Banking
-        public async Task Create__Create_With_Source_InternetBanking()
-        {
-            var charge = await Client.Charges.Create(new CreateChargeRequest()
-            {
-                Amount = 2000,
-                Currency = "thb",
-                Source = new PaymentSource
-                {
-                    Amount = 2000,
-                    Currency = "thb",
-                    Type = OffsiteTypes.InternetBankingBAY,
-                    Flow = FlowTypes.Redirect
-                },
-                ReturnUri = "https://www.omise.co/",
-                Metadata = new Dictionary<string, object>
-                {
-                    { "invoice_id", "ABC1234" }
-                }
-            });
-
-            Console.WriteLine($"created charge: {charge.Id}");
-            Console.WriteLine($"redirect customer to {charge.AuthorizeURI}");
-        }
-
-        // TODO: handle the return from the bank
-        #endregion
 
         #region Mobile Banking
         public async Task Create__Create_With_Source_MobileBankingSCB()
