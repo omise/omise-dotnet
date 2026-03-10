@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+## v4.3.0
+
+### Sunset
+
+- **Internet Banking**: Removed support for internet banking payment method.
+
 ## v4.2.0
 
 ### Fix
