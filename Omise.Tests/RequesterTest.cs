@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Omise.Models;
 using Omise.Tests.Util;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Omise.Tests
 {
@@ -32,14 +34,20 @@ namespace Omise.Tests
                 Assert.That(authHeader, Is.EqualTo(expectedAuthHeader));
 
                 var libAsm = typeof(Requester).Assembly;
-                var clrAsm = typeof(object).Assembly;
+                var libVersion = libAsm
+                    .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                    .InformationalVersion ?? libAsm.GetName().Version.ToString();
 
-                var libVersion = libAsm.GetName().Version.ToString();
-                var clrVersion = clrAsm.GetName().Version.ToString();
+                if (libVersion.Contains("+"))
+                {
+                    libVersion = libVersion.Substring(0, libVersion.IndexOf("+"));
+                }
 
                 var userAgents = req.Headers.GetValues("User-Agent").ToList();
-                Assert.That(userAgents, Contains.Item($"Omise.Net/{libVersion}"));
-                Assert.That(userAgents, Contains.Item($".Net/{clrVersion}"));
+                var uaString = string.Join(" ", userAgents);
+                
+                Assert.That(uaString, Does.Contain($"Omise.Net/{libVersion}"));
+                Assert.That(uaString, Does.Contain($".Net/{RuntimeInformation.FrameworkDescription}"));
 
                 var apiVersion = req.Headers.GetValues("Omise-Version").FirstOrDefault();
                 Assert.That(apiVersion, Is.EqualTo("2000-02-01"));
