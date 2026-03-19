@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Omise.Models;
 using System.IO;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Omise
 {
@@ -45,13 +46,21 @@ namespace Omise
 
         IDictionary<string, string> buildRequestMetadata()
         {
-            var thisAsmName = GetType().GetTypeInfo().Assembly.GetName();
-            var clrAsmName = typeof(object).GetTypeInfo().Assembly.GetName();
+            var libAsm = typeof(Requester).Assembly;
+            var libVersion = libAsm
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                .InformationalVersion ?? libAsm.GetName().Version.ToString();
+
+            // Some pipelines might use the commit hash in the version which is typical in dotnet builds but we do not want to include that in the user agent
+            if (libVersion.Contains("+"))
+            {
+                libVersion = libVersion.Substring(0, libVersion.IndexOf("+"));
+            }
 
             return new Dictionary<string, string>
             {
-                { "Omise.Net", thisAsmName.Version.ToString() },
-                { ".Net", clrAsmName.Version.ToString() },
+                { "Omise.Net", libVersion },
+                { ".Net", RuntimeInformation.FrameworkDescription },
             };
         }
 
